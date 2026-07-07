@@ -1,0 +1,1131 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Cuestionario Java 17 & 21 - Curso Hello World Java (Miguel Rugerio)</title>
+<style>
+  :root{
+    --bg:#0f1720; --panel:#161f2b; --panel2:#1d2733; --border:#2b3644;
+    --text:#e8edf2; --text2:#a9b6c4; --muted:#7c8a99;
+    --accent:#4d8dff; --accent-dark:#1f3a63;
+    --good:#3ecf8e; --good-bg:#123328;
+    --bad:#ff6161; --bad-bg:#3a1a1a;
+    --amber:#f2b84b;
+    --radius:10px;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0; background:var(--bg); color:var(--text);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    line-height:1.55; padding:24px 16px 60px;
+  }
+  .wrap{max-width:820px; margin:0 auto;}
+  h1{font-size:22px; font-weight:600; margin:0 0 4px;}
+  .subtitle{color:var(--text2); font-size:14px; margin:0 0 24px;}
+  .panel{background:var(--panel); border:1px solid var(--border); border-radius:var(--radius); padding:20px; margin-bottom:16px;}
+  .row{display:flex; gap:10px; flex-wrap:wrap; align-items:center;}
+  select, button{
+    font-size:14px; font-family:inherit; border-radius:8px; border:1px solid var(--border);
+    padding:9px 14px; background:var(--panel2); color:var(--text); cursor:pointer;
+  }
+  select{min-width:220px;}
+  button.primary{background:var(--accent); border-color:var(--accent); color:#08111c; font-weight:600;}
+  button.primary:hover{filter:brightness(1.08);}
+  button:hover{background:#25313f;}
+  button:disabled{opacity:.45; cursor:not-allowed;}
+  .stats{display:flex; gap:12px; flex-wrap:wrap; margin-top:14px;}
+  .stat{background:var(--panel2); border:1px solid var(--border); border-radius:8px; padding:10px 14px; font-size:13px; color:var(--text2); flex:1; min-width:110px;}
+  .stat b{display:block; font-size:18px; color:var(--text); font-weight:600; margin-top:2px;}
+  .progress-bar{height:6px; background:var(--panel2); border-radius:6px; overflow:hidden; margin:14px 0 0;}
+  .progress-fill{height:100%; background:var(--accent); width:0%; transition:width .25s;}
+  .tag{display:inline-block; font-size:11.5px; text-transform:uppercase; letter-spacing:.04em; color:var(--accent); background:var(--accent-dark); padding:3px 9px; border-radius:20px; margin-bottom:10px; font-weight:600;}
+  .qtext{font-size:16.5px; font-weight:500; margin:0 0 12px;}
+  pre{background:#0b1119; border:1px solid var(--border); border-radius:8px; padding:12px 14px; overflow-x:auto; font-size:13.5px; margin:0 0 14px;}
+  code{font-family:"SF Mono",Consolas,Menlo,monospace;}
+  .opt{
+    display:flex; align-items:flex-start; gap:10px; padding:11px 13px; border:1px solid var(--border);
+    border-radius:8px; margin-bottom:8px; cursor:pointer; background:var(--panel2); transition:border-color .15s;
+    font-size:14.5px;
+  }
+  .opt:hover{border-color:var(--muted);}
+  .opt input{margin-top:3px;}
+  .opt.correct{border-color:var(--good); background:var(--good-bg); color:#d6ffe9;}
+  .opt.incorrect{border-color:var(--bad); background:var(--bad-bg); color:#ffd9d9;}
+  .opt.locked{cursor:default;}
+  .feedback{margin-top:12px; padding:12px 14px; border-radius:8px; font-size:14px; display:none;}
+  .feedback.show{display:block;}
+  .feedback.ok{background:var(--good-bg); border:1px solid var(--good); color:#d6ffe9;}
+  .feedback.no{background:var(--bad-bg); border:1px solid var(--bad); color:#ffd9d9;}
+  .nav{display:flex; justify-content:space-between; margin-top:18px; gap:10px;}
+  .hidden{display:none !important;}
+  .missed-item{border-bottom:1px solid var(--border); padding:14px 0;}
+  .missed-item:last-child{border-bottom:none;}
+  .missed-item .qtext{font-size:14.5px; margin-bottom:6px;}
+  .badge-cat{color:var(--muted); font-size:12px;}
+  .correct-answer{color:var(--good); font-weight:500;}
+  .your-answer{color:var(--bad); font-weight:500;}
+  .explain{color:var(--text2); font-size:13.5px; margin-top:6px;}
+  #resultScore{font-size:38px; font-weight:700; margin:6px 0;}
+  a, a:visited{color:var(--accent);}
+  .footer-note{color:var(--muted); font-size:12.5px; margin-top:26px; text-align:center;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <h1>Cuestionario interactivo · Java 17 &amp; 21</h1>
+  <p class="subtitle">Basado en los temas del curso <b>"Curso Certificación Java 17 &amp; 21"</b> del canal <b>Hello World Java</b> (Miguel Rugerio) — alineado con los objetivos del examen Oracle OCP 1Z0-829.</p>
+
+  <div class="panel" id="setupPanel">
+    <div class="row">
+      <select id="categorySelect"></select>
+      <select id="countSelect">
+        <option value="10">10 preguntas</option>
+        <option value="20" selected>20 preguntas</option>
+        <option value="40">40 preguntas</option>
+        <option value="9999">Todas las de la categoría</option>
+      </select>
+      <button class="primary" id="startBtn">Comenzar cuestionario</button>
+    </div>
+    <div class="stats">
+      <div class="stat">Banco total de preguntas<b id="totalCount">-</b></div>
+      <div class="stat">Categorías<b id="catCount">-</b></div>
+      <div class="stat">Última puntuación<b id="lastScore">—</b></div>
+    </div>
+  </div>
+
+  <div class="panel hidden" id="quizPanel">
+    <div class="row" style="justify-content:space-between;">
+      <span class="tag" id="qCatTag">Categoría</span>
+      <span style="color:var(--muted); font-size:13px;" id="qCounter">1 / 20</span>
+    </div>
+    <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+    <div style="margin-top:18px;">
+      <div class="qtext" id="qText"></div>
+      <pre id="qCode" class="hidden"><code></code></pre>
+      <div id="optionsList"></div>
+      <div class="feedback" id="feedback"></div>
+    </div>
+    <div class="nav">
+      <button id="quitBtn">Salir</button>
+      <button class="primary" id="nextBtn" disabled>Siguiente →</button>
+    </div>
+  </div>
+
+  <div class="panel hidden" id="resultPanel">
+    <div class="tag">Resultado</div>
+    <div id="resultScore">0 / 0</div>
+    <p id="resultMsg" style="color:var(--text2);"></p>
+    <div class="row">
+      <button class="primary" id="retryBtn">Reintentar categoría</button>
+      <button id="backBtn">Volver al menú</button>
+    </div>
+    <div id="missedWrap" style="margin-top:20px;"></div>
+  </div>
+
+  <p class="footer-note">Material de estudio generado para práctica personal. Repite el cuestionario por categorías hasta responder correctamente al menos el 90% de las preguntas.</p>
+</div>
+
+<script>
+const QUESTIONS = [
+
+// ---------------- FUNDAMENTOS ----------------
+{cat:"Fundamentos JVM/JDK", q:"¿Cuál es la diferencia principal entre JDK, JRE y JVM?", opts:[
+ "JDK incluye herramientas de desarrollo (javac, etc.) y el JRE; el JRE contiene la JVM y las librerías necesarias para ejecutar; la JVM ejecuta el bytecode",
+ "JRE es para desarrollar, JDK es solo para ejecutar programas ya compilados",
+ "La JVM compila el código fuente .java directamente a código máquina nativo sin bytecode intermedio",
+ "JDK y JRE son sinónimos y ambos requieren instalar la JVM por separado"
+], correct:0, exp:"El JDK (Java Development Kit) contiene compilador, herramientas y el JRE. El JRE (Java Runtime Environment) trae la JVM y librerías estándar para ejecutar. La JVM interpreta/compila JIT el bytecode .class."},
+
+{cat:"Fundamentos JVM/JDK", q:"¿Qué extensión tiene el archivo generado tras compilar un .java con javac?", opts:[".class", ".jar", ".exe", ".bytecode"], correct:0, exp:"javac genera archivos .class que contienen bytecode, ejecutado luego por la JVM."},
+
+{cat:"Fundamentos JVM/JDK", q:"¿Qué instrucción usarías para ejecutar directamente un archivo fuente Java de un solo archivo sin compilar manualmente (característica desde Java 11)?", opts:[
+ "java MiArchivo.java", "javac -run MiArchivo.java", "jshell MiArchivo.java --exec", "java --compile MiArchivo.java"
+], correct:0, exp:"Desde JEP 330 (Java 11) se puede ejecutar 'java MiArchivo.java' para lanzar un programa de un solo archivo fuente sin compilación explícita."},
+
+// ---------------- TIPOS PRIMITIVOS / CASTING / VAR ----------------
+{cat:"Primitivos, casting y var", q:"¿Cuáles son los 8 tipos primitivos de Java?", opts:[
+ "byte, short, int, long, float, double, char, boolean",
+ "byte, short, int, long, float, double, String, boolean",
+ "int, long, float, double, char, boolean, Integer, Double",
+ "byte, int, long, double, char, boolean, var, Object"
+], correct:0, exp:"Los 8 tipos primitivos son: byte, short, int, long, float, double, char y boolean. String no es primitivo."},
+
+{cat:"Primitivos, casting y var", q:"¿Qué imprime este código?\nint x = 130;\nbyte b = (byte) x;\nSystem.out.println(b);", code:"int x = 130;\nbyte b = (byte) x;\nSystem.out.println(b);", opts:["-126", "130", "Error de compilación", "0"], correct:0, exp:"byte es de 8 bits (rango -128 a 127). 130 se desborda: 130 - 256 = -126 debido al overflow al hacer narrowing cast."},
+
+{cat:"Primitivos, casting y var", q:"¿Cuál de las siguientes declaraciones con 'var' NO compila?", opts:[
+ "var x;  (sin inicializador)",
+ "var lista = new ArrayList<String>();",
+ "var texto = \"hola\";",
+ "var numero = 10;"
+], correct:0, exp:"'var' requiere inicialización en la misma línea porque el compilador infiere el tipo a partir del valor asignado; no puede usarse sin inicializador ni como tipo de campo/parámetro."},
+
+{cat:"Primitivos, casting y var", q:"¿Se puede usar 'var' para declarar un atributo (campo) de una clase?", opts:[
+ "No, 'var' solo es válido para variables locales (dentro de métodos, bloques, for, try-with-resources)",
+ "Sí, siempre que el campo sea private",
+ "Sí, pero solo si el campo es static final",
+ "Sí, en cualquier contexto incluyendo parámetros de métodos"
+], correct:0, exp:"'var' (inferencia de tipo local, LVTI) solo aplica a variables locales, no a campos de clase, parámetros de método o tipos de retorno."},
+
+// ---------------- OPERADORES / CONTROL DE FLUJO ----------------
+{cat:"Operadores y control de flujo", q:"¿Qué imprime el siguiente switch expression?\nint dia = 3;\nString r = switch(dia){\n  case 1,7 -> \"Fin de semana\";\n  default -> \"Entre semana\";\n};\nSystem.out.println(r);", code:"int dia = 3;\nString r = switch(dia){\n  case 1, 7 -> \"Fin de semana\";\n  default -> \"Entre semana\";\n};\nSystem.out.println(r);", opts:["Entre semana", "Fin de semana", "Error de compilación", "3"], correct:0, exp:"Con la nueva sintaxis de switch expression (flechas), múltiples valores se agrupan con comas. Como dia=3 no coincide con 1 ni 7, cae en default."},
+
+{cat:"Operadores y control de flujo", q:"¿Qué palabra clave se usa en un switch expression para devolver un valor calculado dentro de un bloque {}?", opts:["yield", "return", "break", "value"], correct:0, exp:"'yield' se usa dentro de un bloque {} de un switch expression para producir el valor resultante."},
+
+{cat:"Operadores y control de flujo", q:"¿Cuál es el resultado de: System.out.println(5 / 2); y luego System.out.println(5.0 / 2);?", opts:["2 y 2.5", "2.5 y 2.5", "2 y 2", "2.5 y 2"], correct:0, exp:"La división entera (int/int) trunca el decimal → 2. Si al menos un operando es double, el resultado es double → 2.5."},
+
+// ---------------- ARRAYS Y VARARGS ----------------
+{cat:"Arrays y varargs", q:"¿Cuál declaración de un método varargs es válida?", opts:[
+ "void metodo(String... nombres)",
+ "void metodo(String nombres...)",
+ "void metodo(...String nombres)",
+ "void metodo(String[]... nombres, int x)"
+], correct:0, exp:"La sintaxis correcta de varargs es 'Tipo... nombre'. Solo puede haber un parámetro varargs y debe ser el último de la lista."},
+
+{cat:"Arrays y varargs", q:"¿Qué ocurre si un método tiene un parámetro varargs y otro sobrecargado con array explícito del mismo tipo?", opts:[
+ "Compila; Java prefiere la coincidencia exacta (el método con array explícito) antes que expandir varargs",
+ "Error de compilación por ambigüedad siempre",
+ "Siempre se ejecuta la versión varargs",
+ "Solo compila si varargs se declara primero en el archivo"
+], correct:0, exp:"La resolución de sobrecarga en Java prioriza la coincidencia sin varargs (aplicabilidad estricta) antes de considerar métodos varargs."},
+
+{cat:"Arrays y varargs", q:"int[] a = new int[3]; ¿cuál es el valor por defecto de cada elemento?", opts:["0", "null", "Error de compilación, hay que inicializar", "-1"], correct:0, exp:"Los arrays de tipos primitivos numéricos se inicializan por defecto a 0 (boolean a false, char a '\\u0000', referencias a null)."},
+
+// ---------------- STRINGS Y BLOQUES DE TEXTO ----------------
+{cat:"Strings y bloques de texto", q:"¿Por qué se dice que String es inmutable en Java?", opts:[
+ "Porque una vez creado un objeto String, su contenido no puede modificarse; operaciones como concat() devuelven un nuevo objeto",
+ "Porque String no permite ser referenciado por más de una variable",
+ "Porque el compilador prohíbe declarar más de un String por clase",
+ "Porque String usa arrays mutables internamente sincronizados"
+], correct:0, exp:"Los objetos String son inmutables: cualquier método que 'modifica' un String (concat, replace, toUpperCase...) realmente crea y devuelve un nuevo objeto."},
+
+{cat:"Strings y bloques de texto", q:"¿Qué imprime?\nString a = \"hola\";\nString b = \"hola\";\nSystem.out.println(a == b);", code:"String a = \"hola\";\nString b = \"hola\";\nSystem.out.println(a == b);", opts:["true", "false", "Error de compilación", "Depende del JIT"], correct:0, exp:"Los literales String se almacenan en el String pool. Ambas variables referencian el mismo objeto interno, así que '==' (comparación de referencia) da true."},
+
+{cat:"Strings y bloques de texto", q:"¿Cuál es la sintaxis correcta para iniciar un bloque de texto (text block, Java 15+)?", opts:[
+ "Triple comillas dobles \"\"\" seguidas de salto de línea",
+ "Comillas simples triples '''",
+ "Corchetes angulares <\"\">",
+ "Prefijo tb\" seguido de comillas dobles"
+], correct:0, exp:"Un text block comienza con tres comillas dobles \"\"\" y un salto de línea inmediatamente después, terminando también con \"\"\"."},
+
+{cat:"Strings y bloques de texto", q:"¿Qué método se usa para comparar el contenido de dos Strings (no la referencia)?", opts:["equals()", "==", "compareRef()", "same()"], correct:0, exp:"'equals()' compara el contenido carácter por carácter; '==' compara si ambas referencias apuntan al mismo objeto en memoria."},
+
+// ---------------- POO BASICO ----------------
+{cat:"POO: clases, constructores y encapsulamiento", q:"¿Qué ocurre si una clase no define ningún constructor explícito?", opts:[
+ "El compilador genera automáticamente un constructor por defecto sin argumentos",
+ "La clase no puede ser instanciada nunca",
+ "Java lanza una excepción en tiempo de ejecución al usar new",
+ "Se genera un constructor con todos los atributos como parámetros"
+], correct:0, exp:"Si no se declara ningún constructor, el compilador provee uno por defecto (sin parámetros) que llama implícitamente a super()."},
+
+{cat:"POO: clases, constructores y encapsulamiento", q:"¿Qué significa que un atributo sea 'static'?", opts:[
+ "Pertenece a la clase y es compartido por todas las instancias, en lugar de pertenecer a cada objeto individual",
+ "No puede modificarse nunca después de asignarse",
+ "Solo puede accederse desde el método main",
+ "Se destruye automáticamente al finalizar cada método"
+], correct:0, exp:"Un miembro static pertenece a la clase, no a instancias individuales; existe una sola copia compartida por todos los objetos."},
+
+{cat:"POO: clases, constructores y encapsulamiento", q:"¿Cuál es el propósito principal del modificador 'final' aplicado a una variable?", opts:[
+ "Impedir que la variable sea reasignada después de su primera asignación",
+ "Hacer que la variable sea accesible desde cualquier paquete",
+ "Convertir la variable en static automáticamente",
+ "Permitir que la variable se sobrescriba en subclases"
+], correct:0, exp:"'final' en una variable impide reasignación tras la inicialización. En una clase impide herencia; en un método impide override."},
+
+{cat:"POO: clases, constructores y encapsulamiento", q:"¿Puede una clase declarada como 'final' ser extendida (heredada)?", opts:["No, una clase final no puede tener subclases", "Sí, siempre", "Solo si está en el mismo paquete", "Solo si implementa una interfaz"], correct:0, exp:"'final' en una clase prohíbe que otras clases la extiendan, por ejemplo java.lang.String es final."},
+
+// ---------------- HERENCIA Y POLIMORFISMO ----------------
+{cat:"Herencia y polimorfismo", q:"¿Qué es 'overriding' (sobrescritura) de métodos?", opts:[
+ "Redefinir en una subclase un método con la misma firma que el de la superclase, cambiando su implementación",
+ "Definir varios métodos con el mismo nombre pero distintos parámetros en la misma clase",
+ "Declarar un método como private en una subclase",
+ "Llamar a un método estático desde una instancia"
+], correct:0, exp:"El overriding ocurre cuando una subclase redefine un método heredado con la misma firma (nombre y parámetros); el overloading es tener varios métodos con el mismo nombre pero distinta lista de parámetros."},
+
+{cat:"Herencia y polimorfismo", q:"¿Qué palabra clave permite invocar el constructor o método de la superclase desde una subclase?", opts:["super", "this", "parent", "extends"], correct:0, exp:"'super' referencia la superclase; super() invoca su constructor y super.metodo() invoca su implementación de un método."},
+
+{cat:"Herencia y polimorfismo", q:"Dado:\nclass Animal { void sonido(){ System.out.println(\"...\"); } }\nclass Perro extends Animal { void sonido(){ System.out.println(\"Guau\"); } }\nAnimal a = new Perro();\na.sonido();\n¿Qué se imprime?", code:"class Animal { void sonido(){ System.out.println(\"...\"); } }\nclass Perro extends Animal { void sonido(){ System.out.println(\"Guau\"); } }\nAnimal a = new Perro();\na.sonido();", opts:["Guau", "...", "Error de compilación", "Guau seguido de ..."], correct:0, exp:"El polimorfismo en tiempo de ejecución (dynamic dispatch) hace que se ejecute la versión sobrescrita del objeto real (Perro), no la del tipo de referencia declarado (Animal)."},
+
+{cat:"Herencia y polimorfismo", q:"Java permite herencia múltiple de clases pero sí de interfaces. ¿Verdadero o falso?", opts:[
+ "Falso: Java NO permite herencia múltiple de clases (solo una superclase), pero SÍ permite implementar múltiples interfaces",
+ "Verdadero, ambas cosas son posibles sin restricción",
+ "Falso, tampoco permite implementar múltiples interfaces",
+ "Verdadero, pero solo desde Java 21"
+], correct:0, exp:"Una clase solo puede extender una única superclase (extends), pero puede implementar múltiples interfaces (implements A, B, C)."},
+
+// ---------------- INTERFACES Y CLASES ANONIMAS ----------------
+{cat:"Interfaces y clases abstractas", q:"¿Qué permiten los métodos 'default' en una interfaz (desde Java 8)?", opts:[
+ "Proveer una implementación concreta dentro de la interfaz que las clases implementadoras pueden usar o sobrescribir",
+ "Hacer que el método sea abstracto obligatoriamente",
+ "Convertir la interfaz en una clase abstracta automáticamente",
+ "Ejecutarse solo si la clase implementadora es static"
+], correct:0, exp:"Los métodos default tienen cuerpo dentro de la interfaz, permitiendo evolucionar interfaces sin romper implementaciones existentes."},
+
+{cat:"Interfaces y clases abstractas", q:"¿Puede una clase abstracta tener constructores?", opts:["Sí, aunque no se pueda instanciar directamente, sus constructores se ejecutan al instanciar subclases concretas", "No, nunca", "Solo si es final", "Solo si no tiene métodos abstractos"], correct:0, exp:"Las clases abstractas pueden tener constructores, campos y métodos concretos; se invocan mediante super() al construir una subclase concreta."},
+
+{cat:"Interfaces y clases abstractas", q:"¿Qué es una clase anónima en Java?", opts:[
+ "Una clase sin nombre que se define e instancia en un único paso, útil para implementar una interfaz o extender una clase de forma puntual",
+ "Una clase que no puede tener métodos",
+ "Un tipo de enum sin constantes",
+ "Una clase que solo puede usarse dentro de records"
+], correct:0, exp:"Una clase anónima combina la declaración de una subclase (o implementación de interfaz) y su instanciación en una sola expresión, sin nombre propio."},
+
+{cat:"Interfaces y clases abstractas", q:"¿Cuántos métodos abstractos puede tener como máximo una interfaz funcional?", opts:["Exactamente uno (además de métodos default/static)", "Cero", "Máximo dos", "Ilimitados"], correct:0, exp:"Una interfaz funcional (anotada opcionalmente con @FunctionalInterface) debe declarar exactamente un método abstracto, lo que permite implementarla con una expresión lambda."},
+
+// ---------------- ENUMS ----------------
+{cat:"Enums", q:"¿Pueden los enums en Java tener constructores, campos y métodos?", opts:[
+ "Sí, un enum es una clase especial que puede tener constructores (siempre implícitamente privados), campos y métodos, incluso implementar interfaces",
+ "No, un enum solo puede contener constantes simples",
+ "Solo puede tener métodos static",
+ "Solo puede implementar una interfaz si no tiene constructor"
+], correct:0, exp:"Los enums son clases especiales; pueden tener campos, constructores (implícitamente private) y métodos, además de implementar interfaces y sobrescribir métodos por constante."},
+
+{cat:"Enums", q:"¿Qué método permite obtener la posición ordinal (basada en 0) de una constante enum?", opts:["ordinal()", "position()", "index()", "value()"], correct:0, exp:"ordinal() devuelve la posición de la constante según el orden de declaración, comenzando en 0. name() devuelve su nombre como String."},
+
+{cat:"Enums", q:"¿Se puede usar un enum en un switch statement/expression sin prefijo del nombre de la clase en los 'case'?", opts:["Sí, solo se usa el nombre de la constante (ej. case LUNES ->)", "No, siempre hay que escribir DiaSemana.LUNES", "Solo si el enum es public", "Solo en switch clásico, no en switch expression"], correct:0, exp:"En un switch sobre un enum, los case usan directamente el nombre de la constante sin calificar con el nombre de la clase."},
+
+// ---------------- RECORDS ----------------
+{cat:"Records", q:"¿Qué genera automáticamente el compilador al declarar un record?", opts:[
+ "Constructor canónico, métodos de acceso (accessors) con el nombre del componente, equals(), hashCode() y toString()",
+ "Solo el método toString()",
+ "Getters con prefijo 'get' como en un JavaBean tradicional",
+ "Setters para modificar cada componente"
+], correct:0, exp:"Un record genera automáticamente: constructor canónico, accessors (con el mismo nombre del campo, sin prefijo 'get'), equals(), hashCode() y toString(). No genera setters porque los records son inmutables."},
+
+{cat:"Records", q:"¿Son mutables los componentes de un record?", opts:["No, todos los campos de un record son implícitamente final e inmutables", "Sí, se pueden reasignar con setters generados", "Solo si se declaran como var", "Depende de si el record implementa Serializable"], correct:0, exp:"Los records son inmutables por diseño: sus campos son implícitamente private final, sin setters generados."},
+
+{cat:"Records", q:"¿Qué es un 'constructor compacto' en un record?", opts:[
+ "Una forma de escribir el constructor canónico sin repetir la lista de parámetros, útil para validar o normalizar valores antes de la asignación implícita",
+ "Un constructor que no acepta parámetros",
+ "Un constructor privado obligatorio en todo record",
+ "Un método estático que reemplaza al constructor"
+], correct:0, exp:"El constructor compacto se escribe como 'public NombreRecord { ... validaciones ... }' sin paréntesis de parámetros; el compilador asigna los campos automáticamente al final."},
+
+// ---------------- SEALED CLASSES / PATTERN MATCHING ----------------
+{cat:"Sealed classes y pattern matching", q:"¿Para qué sirve la palabra clave 'sealed' en una clase o interfaz (Java 17)?", opts:[
+ "Para restringir explícitamente qué clases pueden extenderla o implementarla, usando la cláusula 'permits'",
+ "Para hacerla immutable automáticamente como un record",
+ "Para prohibir que tenga métodos abstractos",
+ "Para convertirla automáticamente en final"
+], correct:0, exp:"'sealed' junto con 'permits' limita el conjunto de subtipos autorizados, permitiendo un control exhaustivo (útil junto a pattern matching en switch)."},
+
+{cat:"Sealed classes y pattern matching", q:"Una subclase de una clase sealed, ¿qué modificador debe declarar obligatoriamente?", opts:["final, sealed o non-sealed", "static", "abstract siempre", "private"], correct:0, exp:"Cada subclase permitida de un tipo sealed debe declararse explícitamente como final, sealed (para seguir restringiendo) o non-sealed (para abrir la jerarquía de nuevo)."},
+
+{cat:"Sealed classes y pattern matching", q:"¿Qué permite el pattern matching for instanceof (Java 16+)?", opts:[
+ "Combinar la comprobación instanceof con la asignación a una variable en una sola expresión, evitando el cast manual: if (obj instanceof String s) {...}",
+ "Comparar dos instancias por referencia",
+ "Convertir automáticamente cualquier objeto a String",
+ "Verificar solo si un objeto es null"
+], correct:0, exp:"Pattern matching for instanceof permite escribir 'if (obj instanceof String s)' y usar 's' ya tipado y con cast implícito dentro del bloque, sin necesidad de castear manualmente."},
+
+{cat:"Sealed classes y pattern matching", q:"En Java 21, ¿qué aporta el pattern matching para switch sobre records (record patterns)?", opts:[
+ "Permite desestructurar los componentes de un record directamente en el 'case' (ej. case Punto(int x, int y) -> ...)",
+ "Permite modificar los valores del record dentro del switch",
+ "Obliga a que el record implemente Comparable",
+ "Solo funciona con enums, no con records"
+], correct:0, exp:"Los record patterns (Java 21) permiten deconstruir un record en el propio patrón del case, extrayendo sus componentes como variables locales."},
+
+// ---------------- GENERICS ----------------
+{cat:"Generics y covarianza", q:"¿Qué problema resuelven los Generics en Java?", opts:[
+ "Proveen seguridad de tipos en tiempo de compilación para colecciones y clases, evitando ClassCastException en tiempo de ejecución y castings manuales",
+ "Permiten que una variable cambie de tipo dinámicamente en tiempo de ejecución",
+ "Eliminan la necesidad de interfaces",
+ "Sirven solo para arrays primitivos"
+], correct:0, exp:"Los generics permiten parametrizar tipos (List<String>, por ejemplo), detectando errores de tipo en compilación en vez de en runtime."},
+
+{cat:"Generics y covarianza", q:"¿Qué significa el comodín '? extends Number' en una declaración de generics?", opts:[
+ "Acepta el tipo Number o cualquiera de sus subtipos (útil para lectura/producción de datos, 'Producer Extends')",
+ "Acepta solo el tipo Number exacto",
+ "Acepta cualquier tipo excepto Number",
+ "Permite modificar la colección añadiendo elementos de cualquier subtipo libremente"
+], correct:0, exp:"'? extends Number' es un wildcard covariante: acepta Number o subtipos. Sigue el principio PECS (Producer Extends, Consumer Super); con extends solo puedes leer, no añadir (excepto null)."},
+
+{cat:"Generics y covarianza", q:"¿Por qué List<String> NO es un subtipo de List<Object> en Java (a diferencia de los arrays)?", opts:[
+ "Porque los generics son invariantes: aunque String sea subtipo de Object, List<String> y List<Object> son tipos distintos sin relación de subtipo entre sí",
+ "Porque List<String> no puede contener objetos de tipo Object",
+ "Porque los generics no soportan herencia en absoluto",
+ "Porque solo los arrays son válidos en Java, List<> es obsoleto"
+], correct:0, exp:"A diferencia de los arrays (covariantes, lo que puede causar ArrayStoreException en runtime), los generics son invariantes por diseño para mantener la seguridad de tipos en compilación."},
+
+{cat:"Generics y covarianza", q:"¿Qué es 'type erasure' (borrado de tipos) en Java?", opts:[
+ "El proceso por el cual la información de tipo genérico se elimina en tiempo de compilación, quedando solo el tipo raw (u Object) en el bytecode",
+ "Un proceso que elimina variables no usadas del código fuente",
+ "Una técnica para borrar clases genéricas del classpath",
+ "Un mecanismo del recolector de basura para objetos genéricos"
+], correct:0, exp:"Debido a type erasure, la JVM no conserva los parámetros de tipo en tiempo de ejecución; List<String> y List<Integer> comparten la misma clase List en bytecode."},
+
+// ---------------- COMPARABLE / COMPARATOR ----------------
+{cat:"Comparable y Comparator", q:"¿Cuál es la diferencia principal entre Comparable y Comparator?", opts:[
+ "Comparable se implementa en la propia clase para definir su orden natural (compareTo); Comparator se define externamente y permite múltiples estrategias de ordenación (compare)",
+ "Comparable es para colecciones y Comparator solo para arrays",
+ "Comparator solo funciona con tipos primitivos",
+ "No hay diferencia, son sinónimos desde Java 17"
+], correct:0, exp:"Comparable define el orden natural de un objeto mediante compareTo(); Comparator es una interfaz separada para definir órdenes alternativos mediante compare(a,b), útil para múltiples criterios."},
+
+{cat:"Comparable y Comparator", q:"¿Qué valor devuelve compareTo() si el objeto actual es 'mayor' que el que se compara?", opts:["Un valor positivo", "Un valor negativo", "Siempre 1 exactamente", "0"], correct:0, exp:"Por convención: negativo si el objeto es menor, 0 si es igual, positivo si es mayor. No se garantiza un valor exacto como 1 o -1, solo el signo."},
+
+{cat:"Comparable y Comparator", q:"¿Cómo se encadenan múltiples criterios de comparación usando Comparator (por ejemplo, por apellido y luego por nombre)?", opts:[
+ "Comparator.comparing(Persona::getApellido).thenComparing(Persona::getNombre)",
+ "Comparator.and(Persona::getApellido, Persona::getNombre)",
+ "Comparator.merge(apellido, nombre)",
+ "No es posible encadenar comparadores en Java"
+], correct:0, exp:"El método thenComparing() permite encadenar criterios de desempate adicionales tras el comparador principal."},
+
+// ---------------- LAMBDAS Y FUNCIONALES ----------------
+{cat:"Lambdas e interfaces funcionales", q:"¿Cuál es la sintaxis correcta de una expresión lambda que recibe dos enteros y devuelve su suma?", opts:[
+ "(a, b) -> a + b",
+ "function(a, b) => a + b",
+ "lambda(a, b) { return a + b; }",
+ "(a, b) => { a + b }"
+], correct:0, exp:"La sintaxis de lambdas en Java es (parámetros) -> expresión_o_bloque. No se usa '=>' como en JavaScript."},
+
+{cat:"Lambdas e interfaces funcionales", q:"¿Qué interfaz funcional del paquete java.util.function representa una operación que recibe un argumento y devuelve un boolean?", opts:["Predicate<T>", "Function<T,R>", "Supplier<T>", "Consumer<T>"], correct:0, exp:"Predicate<T> tiene el método test(T t) que devuelve boolean, típicamente usado para filtrar (Stream.filter)."},
+
+{cat:"Lambdas e interfaces funcionales", q:"¿Qué interfaz funcional representa una operación que NO recibe argumentos pero produce un resultado?", opts:["Supplier<T>", "Consumer<T>", "Function<T,R>", "BiFunction<T,U,R>"], correct:0, exp:"Supplier<T> tiene el método get() sin parámetros que produce/devuelve un valor de tipo T, útil para provisión perezosa de valores."},
+
+{cat:"Lambdas e interfaces funcionales", q:"¿Puede una expresión lambda acceder y modificar una variable local externa capturada?", opts:[
+ "No, solo puede leer variables locales externas que sean 'effectively final' (efectivamente finales); no puede reasignarlas",
+ "Sí, puede modificar libremente cualquier variable local externa",
+ "Solo si la variable es static",
+ "Solo dentro de un Comparator"
+], correct:0, exp:"Las lambdas solo pueden capturar variables locales 'effectively final' (que no cambian tras su inicialización); intentar reasignarlas produce error de compilación."},
+
+// ---------------- METHOD REFERENCES ----------------
+{cat:"Method references", q:"¿Cuál de estas es la sintaxis de una referencia a método estático?", opts:["Clase::metodoEstatico", "Clase->metodoEstatico", "Clase.metodoEstatico()", "new Clase::metodo"], correct:0, exp:"Referencia a método estático: Clase::metodo. Ejemplo: Integer::parseInt equivale a s -> Integer.parseInt(s)."},
+
+{cat:"Method references", q:"¿Qué representa la referencia a método String::toUpperCase usada como Function<String,String>?", opts:[
+ "Una referencia a un método de instancia de un objeto particular (referencia sobre un tipo arbitrario), equivalente a s -> s.toUpperCase()",
+ "Una referencia a un constructor",
+ "Una referencia a un método estático de la clase String",
+ "Un error de compilación porque toUpperCase no es estático"
+], correct:0, exp:"Cuando se usa Clase::metodoDeInstancia sin especificar objeto, el primer parámetro de la interfaz funcional se convierte en el receptor de la llamada: equivale a s -> s.toUpperCase()."},
+
+{cat:"Method references", q:"¿Cómo se escribe una referencia a constructor para crear instancias de ArrayList mediante un Supplier?", opts:["ArrayList::new", "new ArrayList()::create", "ArrayList.new()", "Supplier.of(ArrayList)"], correct:0, exp:"Clase::new es la sintaxis de referencia a constructor, usable como Supplier<ArrayList> u otra interfaz funcional compatible con la firma del constructor."},
+
+// ---------------- STREAMS ----------------
+{cat:"Streams API", q:"¿Qué caracteriza a los streams en Java respecto a las colecciones que los originan?", opts:[
+ "Un stream no almacena datos propios; procesa datos de una fuente de forma perezosa (lazy) y puede consumirse una sola vez",
+ "Un stream modifica siempre la colección original",
+ "Un stream se puede recorrer múltiples veces como una lista",
+ "Un stream requiere que la colección esté ordenada previamente"
+], correct:0, exp:"Los streams no almacenan elementos; describen operaciones sobre una fuente de datos, se evalúan de forma perezosa (las operaciones intermedias no se ejecutan hasta una operación terminal) y son de un solo uso."},
+
+{cat:"Streams API", q:"¿Cuál de las siguientes es una operación TERMINAL de Stream (no intermedia)?", opts:["collect()", "filter()", "map()", "sorted()"], correct:0, exp:"collect(), forEach(), count(), reduce() son operaciones terminales que disparan el procesamiento. filter, map, sorted, distinct son intermedias y perezosas (devuelven otro Stream)."},
+
+{cat:"Streams API", q:"¿Qué hace el siguiente código?\nList<String> nombres = List.of(\"Ana\",\"Luis\",\"Eva\");\nnombres.stream().filter(n -> n.length()>3).forEach(System.out::println);", code:"List<String> nombres = List.of(\"Ana\",\"Luis\",\"Eva\");\nnombres.stream()\n  .filter(n -> n.length() > 3)\n  .forEach(System.out::println);", opts:["Imprime solo \"Luis\" porque es el único nombre con más de 3 caracteres", "Imprime los tres nombres", "No compila", "Imprime \"Ana\" y \"Eva\""], correct:0, exp:"filter conserva solo elementos cuyo length() sea mayor a 3. \"Ana\"(3) y \"Eva\"(3) no cumplen; solo \"Luis\"(4) pasa el filtro."},
+
+{cat:"Streams API", q:"¿Qué clase se usa típicamente para acumular resultados de un Stream en una colección mediante collect(), como Collectors.toList()?", opts:["java.util.stream.Collectors", "java.util.Collection", "java.util.Accumulator", "java.util.stream.Reducer"], correct:0, exp:"La clase utilitaria Collectors provee fábricas de Collector como toList(), toSet(), toMap(), joining(), groupingBy(), etc."},
+
+{cat:"Streams API", q:"¿Qué hace Collectors.groupingBy()?", opts:[
+ "Agrupa los elementos de un stream en un Map según una función clasificadora, devolviendo un Map<clave, List<elementos>>",
+ "Ordena los elementos alfabéticamente",
+ "Elimina duplicados del stream",
+ "Convierte el stream en un array"
+], correct:0, exp:"groupingBy(funcionClasificadora) agrupa los elementos según el resultado de esa función, generando un Map donde cada clave mapea a una lista (u otro collector downstream) de elementos."},
+
+{cat:"Streams API", q:"¿Cuál es la diferencia entre map() y flatMap() en Streams?", opts:[
+ "map() transforma cada elemento en otro elemento uno a uno; flatMap() transforma cada elemento en un stream y luego 'aplana' todos esos streams en uno solo",
+ "map() solo funciona con enteros y flatMap solo con Strings",
+ "flatMap() es simplemente un alias de map()",
+ "map() es una operación terminal y flatMap() es intermedia"
+], correct:0, exp:"flatMap se usa cuando cada elemento produce un Stream (por ejemplo, una lista de listas), y combina/aplana todos esos streams internos en un único Stream resultante."},
+
+// ---------------- OPTIONAL ----------------
+{cat:"Optional", q:"¿Cuál es el propósito principal de la clase Optional<T>?", opts:[
+ "Representar explícitamente la posible ausencia de un valor, evitando NullPointerException y forzando un manejo explícito del caso 'vacío'",
+ "Reemplazar por completo el uso de null en cualquier contexto, incluidos campos de clase",
+ "Mejorar el rendimiento de las colecciones",
+ "Servir como una nueva colección ordenada"
+], correct:0, exp:"Optional<T> es un contenedor que puede o no tener un valor, comunicando explícitamente en la firma del método que el resultado puede estar ausente."},
+
+{cat:"Optional", q:"¿Qué hace Optional.ofNullable(valor) si 'valor' es null?", opts:[
+ "Devuelve un Optional vacío (Optional.empty()) sin lanzar excepción", "Lanza NullPointerException inmediatamente", "Devuelve null", "No compila"
+], correct:0, exp:"A diferencia de Optional.of() (que lanza NPE si el argumento es null), ofNullable() acepta null y produce un Optional vacío en ese caso."},
+
+{cat:"Optional", q:"¿Cuál es una forma recomendada de obtener un valor por defecto de un Optional si está vacío?", opts:["optional.orElse(valorPorDefecto)", "optional.getDefault()", "optional.value()", "optional.orNull()"], correct:0, exp:"orElse(valorDefault) devuelve el valor contenido si existe, o el valor por defecto indicado si el Optional está vacío. También existe orElseGet() (con Supplier) y orElseThrow()."},
+
+// ---------------- COLLECTIONS ----------------
+{cat:"Collections Framework", q:"¿Cuál es la diferencia principal entre List, Set y Map en el Collections Framework?", opts:[
+ "List permite duplicados y mantiene orden de inserción; Set no permite duplicados; Map almacena pares clave-valor",
+ "List no permite duplicados; Set sí los permite; Map es solo para arrays",
+ "Los tres son idénticos, solo cambia el nombre",
+ "Set mantiene siempre orden alfabético automáticamente y List nunca permite acceso por índice"
+], correct:0, exp:"List: colección ordenada indexada con duplicados permitidos. Set: no permite elementos duplicados. Map: asocia claves únicas a valores (no extiende Collection)."},
+
+{cat:"Collections Framework", q:"¿Qué implementación de List garantiza acceso rápido O(1) por índice, pero inserciones/eliminaciones costosas en el medio?", opts:["ArrayList", "LinkedList", "Vector solamente", "TreeSet"], correct:0, exp:"ArrayList se respalda en un array, por lo que el acceso por índice es O(1), pero insertar/eliminar en medio requiere desplazar elementos (O(n)). LinkedList es más eficiente en inserciones/eliminaciones."},
+
+{cat:"Collections Framework", q:"¿Qué característica distingue a un TreeMap de un HashMap?", opts:[
+ "TreeMap mantiene sus claves ordenadas (orden natural o Comparator); HashMap no garantiza ningún orden",
+ "TreeMap permite claves duplicadas y HashMap no",
+ "HashMap es más lento que TreeMap en todos los casos",
+ "TreeMap no permite valores null nunca y HashMap sí siempre"
+], correct:0, exp:"TreeMap implementa NavigableMap y mantiene las claves ordenadas (usando compareTo o un Comparator); HashMap ofrece acceso O(1) promedio pero sin orden garantizado."},
+
+{cat:"Collections Framework", q:"¿Qué devuelve List.of(1,2,3) en cuanto a mutabilidad?", opts:[
+ "Una lista inmutable; intentar añadir o eliminar elementos lanza UnsupportedOperationException",
+ "Una lista completamente mutable equivalente a ArrayList",
+ "Un array primitivo int[]",
+ "Un Set en lugar de una List"
+], correct:0, exp:"Los métodos de fábrica List.of(), Set.of(), Map.of() (Java 9+) devuelven colecciones inmutables; cualquier intento de modificarlas lanza UnsupportedOperationException."},
+
+{cat:"Collections Framework", q:"¿Qué interfaz debe implementar una clase para poder usarse como clave en un HashMap de forma correcta y consistente?", opts:[
+ "Debe sobrescribir adecuadamente equals() y hashCode() (no es una interfaz per se, sino un contrato de Object)",
+ "Comparable obligatoriamente",
+ "Serializable obligatoriamente",
+ "Cloneable obligatoriamente"
+], correct:0, exp:"HashMap usa hashCode() para ubicar el bucket y equals() para verificar igualdad de claves; si no se sobrescriben correctamente y de forma consistente entre sí, el comportamiento del Map puede ser incorrecto."},
+
+// ---------------- CONCURRENCIA ----------------
+{cat:"Concurrencia y virtual threads", q:"¿Qué interfaz representa una tarea que puede devolver un resultado y lanzar excepciones checked, a diferencia de Runnable?", opts:["Callable<V>", "Runnable", "Thread", "Executor"], correct:0, exp:"Callable<V> define call() que devuelve un valor V y puede lanzar excepciones checked; Runnable define run() sin retorno y sin poder lanzar checked exceptions."},
+
+{cat:"Concurrencia y virtual threads", q:"¿Qué provee un ExecutorService respecto a crear Thread manualmente?", opts:[
+ "Un framework de alto nivel para administrar un pool de hilos reutilizables, enviar tareas (submit/execute) y gestionar su ciclo de vida",
+ "Solo permite ejecutar un hilo a la vez",
+ "Reemplaza completamente la necesidad de sincronización",
+ "Es exclusivo para aplicaciones de red"
+], correct:0, exp:"ExecutorService (java.util.concurrent) administra un conjunto de hilos, permitiendo enviar tareas mediante submit()/execute() sin gestionar manualmente la creación y destrucción de cada Thread."},
+
+{cat:"Concurrencia y virtual threads", q:"¿Qué son los 'virtual threads' introducidos en Java 21 (JEP 444)?", opts:[
+ "Hilos ligeros gestionados por la JVM (no por el sistema operativo) que permiten crear millones de hilos concurrentes con bajo costo de memoria, ideales para aplicaciones con mucha I/O",
+ "Hilos que solo pueden ejecutar código funcional (lambdas)",
+ "Un reemplazo para las clases enum",
+ "Hilos que se ejecutan exclusivamente en la GPU"
+], correct:0, exp:"Los virtual threads (Project Loom, estándar desde Java 21) son gestionados por la JVM en lugar de mapearse 1:1 a hilos del SO, permitiendo alta concurrencia con muy bajo overhead, especialmente útil en tareas bloqueantes de I/O."},
+
+{cat:"Concurrencia y virtual threads", q:"¿Qué palabra clave permite garantizar que solo un hilo a la vez ejecute un bloque de código crítico?", opts:["synchronized", "volatile", "static", "transient"], correct:0, exp:"'synchronized' aplicado a un método o bloque asegura exclusión mutua: solo un hilo puede ejecutar esa sección crítica sobre el mismo monitor/objeto a la vez."},
+
+{cat:"Concurrencia y virtual threads", q:"¿Cómo se crea rápidamente un ExecutorService basado en virtual threads en Java 21?", opts:[
+ "Executors.newVirtualThreadPerTaskExecutor()",
+ "Executors.newFixedThreadPool(1)",
+ "Thread.ofVirtual().createPool()",
+ "new VirtualExecutorService()"
+], correct:0, exp:"Executors.newVirtualThreadPerTaskExecutor() crea un ExecutorService que lanza una nueva virtual thread por cada tarea enviada."},
+
+// ---------------- EXCEPCIONES ----------------
+{cat:"Manejo de excepciones", q:"¿Cuál es la diferencia entre una excepción 'checked' y una 'unchecked'?", opts:[
+ "Las checked deben declararse (throws) o manejarse obligatoriamente en tiempo de compilación (extienden Exception, no RuntimeException); las unchecked no obligan a manejo explícito (extienden RuntimeException)",
+ "Las unchecked solo pueden lanzarse dentro de un try-catch",
+ "Las checked no pueden ser capturadas nunca con catch",
+ "No hay diferencia real, es solo una convención de nombres"
+], correct:0, exp:"Las excepciones checked (como IOException) obligan al compilador a exigir manejo o declaración con throws; las unchecked (RuntimeException y sus subclases, como NullPointerException) no tienen esa obligación."},
+
+{cat:"Manejo de excepciones", q:"¿Qué garantiza el bloque 'finally' en un try-catch-finally?", opts:[
+ "Se ejecuta siempre, haya o no excepción, e incluso si hay un return dentro del try o catch (salvo System.exit() o error grave de JVM)",
+ "Solo se ejecuta si no ocurrió ninguna excepción", "Solo se ejecuta si hubo una excepción no capturada", "Se ejecuta antes que el bloque try"
+], correct:0, exp:"El bloque finally se ejecuta siempre tras try/catch, independientemente de si hubo excepción o un return, salvo casos extremos como System.exit() o caída de la JVM."},
+
+{cat:"Manejo de excepciones", q:"¿Qué ventaja ofrece 'try-with-resources' introducido en Java 7?", opts:[
+ "Cierra automáticamente los recursos que implementan AutoCloseable al finalizar el bloque try, sin necesidad de un finally explícito",
+ "Permite capturar cualquier tipo de excepción sin declarar catch",
+ "Elimina la necesidad de manejar excepciones por completo",
+ "Solo funciona con archivos, no con conexiones de red o BD"
+], correct:0, exp:"try-with-resources cierra automáticamente cada recurso declarado (que implemente AutoCloseable/Closeable) al salir del bloque, en orden inverso a su declaración, incluso si ocurre una excepción."},
+
+{cat:"Manejo de excepciones", q:"¿Qué clase es la superclase común de Exception y Error?", opts:["Throwable", "RuntimeException", "Object", "IOException"], correct:0, exp:"java.lang.Throwable es la raíz de la jerarquía; de ella derivan Exception (condiciones recuperables) y Error (problemas graves como OutOfMemoryError, normalmente no manejables)."},
+
+// ---------------- BIGDECIMAL ----------------
+{cat:"BigDecimal y precisión numérica", q:"¿Por qué se recomienda usar BigDecimal en lugar de double para cálculos monetarios?", opts:[
+ "Porque double usa representación de punto flotante binario que introduce errores de redondeo; BigDecimal representa números decimales exactos con precisión arbitraria",
+ "Porque double no puede almacenar números negativos",
+ "Porque BigDecimal es más rápido en todas las operaciones aritméticas",
+ "Porque double no permite más de 2 decimales"
+], correct:0, exp:"double/float usan representación binaria IEEE 754 que no puede representar exactamente muchos decimales (ej. 0.1), causando errores acumulativos; BigDecimal evita esto mediante representación decimal exacta."},
+
+{cat:"BigDecimal y precisión numérica", q:"¿Cuál es la forma recomendada de crear un BigDecimal a partir de un valor decimal exacto como 19.99?", opts:[
+ "new BigDecimal(\"19.99\") usando un String, para evitar imprecisión del double",
+ "new BigDecimal(19.99) usando el double directamente, siempre es exacto",
+ "BigDecimal.valueOf(19.99f) usando float", 
+ "No es posible crear BigDecimal con decimales"
+], correct:0, exp:"Construir BigDecimal a partir de un double literal puede arrastrar la imprecisión binaria de ese double; usar el constructor con String (o BigDecimal.valueOf(double) que internamente usa Double.toString) es más seguro."},
+
+{cat:"BigDecimal y precisión numérica", q:"¿Por qué comparar dos BigDecimal con equals() puede dar resultados inesperados, por ejemplo entre new BigDecimal(\"2.0\") y new BigDecimal(\"2.00\")?", opts:[
+ "Porque equals() considera también la escala (número de decimales); para comparar solo el valor numérico se debe usar compareTo()",
+ "Porque BigDecimal no sobrescribe equals()", "Porque BigDecimal siempre lanza excepción al comparar", "Porque equals() en BigDecimal compara referencias, no valores"
+], correct:0, exp:"equals() en BigDecimal compara valor Y escala; '2.0' y '2.00' son matemáticamente iguales pero tienen distinta escala, por lo que equals() devuelve false. compareTo() sí compara solo el valor numérico."},
+
+// ---------------- LOCALIZACION / RESOURCEBUNDLE ----------------
+{cat:"Internacionalización (Locale, ResourceBundle)", q:"¿Qué clase representa una región geográfica, política o cultural específica para adaptar formatos y textos (i18n)?", opts:["java.util.Locale", "java.util.Region", "java.util.Country", "java.text.Zone"], correct:0, exp:"Locale encapsula idioma y país/región (ej. new Locale(\"es\",\"MX\")), usado por clases como NumberFormat, DateFormat y ResourceBundle para adaptar la salida."},
+
+{cat:"Internacionalización (Locale, ResourceBundle)", q:"¿Cómo se cargan mensajes traducidos según el idioma usando ResourceBundle?", opts:[
+ "ResourceBundle.getBundle(\"nombreBase\", locale) busca automáticamente el archivo .properties más específico que coincida con el Locale dado, con fallback al bundle por defecto",
+ "Se debe escribir manualmente un if-else para cada idioma soportado",
+ "ResourceBundle solo soporta inglés y español", "Los archivos .properties deben estar compilados como clases .class"
+], correct:0, exp:"ResourceBundle.getBundle busca archivos como mensajes_es_MX.properties, mensajes_es.properties, hasta mensajes.properties (default), siguiendo el algoritmo de resolución de Locale."},
+
+{cat:"Internacionalización (Locale, ResourceBundle)", q:"¿Qué clase se usa para formatear números o monedas de acuerdo a un Locale específico?", opts:["java.text.NumberFormat", "java.lang.NumberParser", "java.util.Formatter.Locale", "java.text.LocaleFormat"], correct:0, exp:"NumberFormat.getInstance(locale) o NumberFormat.getCurrencyInstance(locale) formatean números respetando las convenciones (separador decimal, símbolo de moneda, etc.) del Locale indicado."},
+
+// ---------------- PATRONES DE DISEÑO ----------------
+{cat:"Patrones de diseño (Strategy)", q:"¿Qué problema resuelve el patrón de diseño Strategy?", opts:[
+ "Permite definir una familia de algoritmos intercambiables, encapsulando cada uno en una clase/implementación separada, de modo que el algoritmo pueda variar independientemente del código que lo usa",
+ "Permite crear una única instancia global de una clase",
+ "Convierte una interfaz incompatible en otra que el cliente espera",
+ "Permite añadir responsabilidades a un objeto dinámicamente envolviéndolo"
+], correct:0, exp:"Strategy define una interfaz común para varios algoritmos intercambiables (estrategias); el contexto delega en la estrategia concreta, permitiendo cambiarla en tiempo de ejecución sin modificar el cliente."},
+
+{cat:"Patrones de diseño (Strategy)", q:"En Java moderno, ¿qué característica del lenguaje permite implementar el patrón Strategy de forma muy concisa sin crear clases separadas para cada algoritmo?", opts:[
+ "Expresiones lambda que implementan una interfaz funcional que representa la estrategia", "Los records", "Los enums simples", "Los bloques de texto"
+], correct:0, exp:"Si la interfaz Strategy es funcional (un único método abstracto), se puede pasar una lambda o method reference como estrategia en lugar de crear una clase concreta por cada algoritmo."},
+
+{cat:"Patrones de diseño (Strategy)", q:"¿Cuál es una ventaja de usar Strategy frente a múltiples bloques if-else o switch para seleccionar un algoritmo?", opts:[
+ "Facilita añadir nuevas estrategias sin modificar el código existente que las usa (principio abierto/cerrado)", "Hace que el código se ejecute más rápido siempre", "Elimina la necesidad de interfaces", "Convierte el código automáticamente en concurrente"
+], correct:0, exp:"Strategy favorece el principio Open/Closed: se pueden añadir nuevas estrategias creando nuevas implementaciones, sin tener que modificar el código cliente existente ni añadir más ramas condicionales."},
+
+{"cat":"Fundamentos JVM/JDK", "q":"¿Qué hace el Garbage Collector (recolector de basura) en Java?", "opts":[
+ "Libera automáticamente la memoria de objetos que ya no tienen referencias alcanzables, sin que el programador deba liberarla manualmente",
+ "Compila el código fuente a bytecode",
+ "Elimina variables locales no usadas antes de compilar",
+ "Cierra automáticamente todos los sockets y archivos abiertos"
+], "correct":0, "exp":"El Garbage Collector es un proceso de la JVM que identifica y libera memoria ocupada por objetos que ya no son alcanzables desde ninguna referencia activa del programa."},
+
+{"cat":"Fundamentos JVM/JDK", "q":"¿Qué firma debe tener obligatoriamente el método main para que la JVM pueda ejecutar un programa?", "opts":[
+ "public static void main(String[] args)",
+ "public void main(String[] args)",
+ "static void Main(String args)",
+ "public static int main(String... args)"
+], "correct":0, "exp":"La JVM busca exactamente 'public static void main(String[] args)' (o su variante con varargs String... args) como punto de entrada del programa."},
+
+{"cat":"Fundamentos JVM/JDK", "q":"¿Qué es JShell, introducido en Java 9?", "opts":[
+ "Una herramienta REPL (Read-Eval-Print Loop) que permite ejecutar fragmentos de código Java de forma interactiva sin crear un proyecto completo",
+ "Un nuevo compilador que reemplaza a javac",
+ "Un shell del sistema operativo escrito en Java",
+ "Una herramienta exclusiva para depurar hilos concurrentes"
+], "correct":0, "exp":"JShell es una consola interactiva (REPL) para probar expresiones, declaraciones y fragmentos de Java sin necesidad de compilar un proyecto completo."},
+
+{"cat":"Primitivos, casting y var", "q":"¿Qué es el 'autoboxing' en Java?", "opts":[
+ "La conversión automática que realiza el compilador de un tipo primitivo a su clase wrapper correspondiente (por ejemplo, int a Integer)",
+ "Un proceso manual que el programador debe invocar explícitamente con cast",
+ "Una técnica para envolver excepciones dentro de otras excepciones",
+ "La conversión de un array a una lista"
+], "correct":0, "exp":"El autoboxing convierte automáticamente tipos primitivos en sus wrappers (int→Integer, double→Double, etc.) cuando el contexto lo requiere, por ejemplo al añadir un int a una List<Integer>."},
+
+{"cat":"Primitivos, casting y var", "q":"¿Qué imprime este código?\ndouble d = 9.99;\nint i = (int) d;\nSystem.out.println(i);", "code":"double d = 9.99;\nint i = (int) d;\nSystem.out.println(i);", "opts":["9", "10", "9.99", "Error de compilación"], "correct":0, "exp":"El casting explícito de double a int simplemente trunca la parte decimal (no redondea), por lo que 9.99 se convierte en 9."},
+
+{"cat":"Primitivos, casting y var", "q":"¿Cuál de las siguientes asignaciones requiere un cast explícito para compilar?", "opts":[
+ "int x = (int) 3.5; (double a int)",
+ "long l = 100; (int a long)",
+ "double d = 100; (int a double)",
+ "float f = 100L; (long literal a float con widening)"
+], "correct":0, "exp":"Las conversiones de un tipo 'más ancho' a uno 'más estrecho' (narrowing), como double a int, requieren cast explícito porque pueden perder precisión. Las conversiones de ensanchamiento (widening) como int→long son implícitas."},
+
+{"cat":"Operadores y control de flujo", "q":"¿Qué diferencia hay entre los operadores '&&' y '&' cuando se usan con dos expresiones booleanas?", "opts":[
+ "'&&' usa cortocircuito (no evalúa el segundo operando si el primero ya determina el resultado); '&' siempre evalúa ambos operandos",
+ "'&' es solo para booleanos y '&&' solo para enteros",
+ "No hay ninguna diferencia entre ambos",
+ "'&&' siempre evalúa ambos operandos y '&' usa cortocircuito"
+], "correct":0, "exp":"El operador '&&' (AND lógico con cortocircuito) no evalúa el segundo operando si el primero ya es false; '&' (AND bit a bit/lógico) siempre evalúa ambos lados, lo cual es relevante si el segundo operando tiene efectos secundarios."},
+
+{"cat":"Operadores y control de flujo", "q":"¿Qué imprime este bucle?\nfor(int i = 0; i < 3; i++){\n  if(i == 1) continue;\n  System.out.print(i);\n}", "code":"for(int i = 0; i < 3; i++){\n  if(i == 1) continue;\n  System.out.print(i);\n}", "opts":["02", "012", "01", "2"], "correct":0, "exp":"continue salta directamente a la siguiente iteración sin ejecutar el resto del cuerpo del bucle; cuando i==1 se omite el print, por lo que se imprime 0 y luego 2."},
+
+{"cat":"Operadores y control de flujo", "q":"¿Es obligatorio el 'break' al final de cada rama en un switch statement clásico (con dos puntos ':')?", "opts":[
+ "No es obligatorio sintácticamente, pero sin él el flujo 'cae' (fall-through) a la siguiente rama, lo cual suele ser un error común",
+ "Sí, el compilador rechaza un switch clásico sin break en cada case",
+ "El break solo es válido dentro de bucles, nunca en un switch",
+ "Solo es necesario en el último case del switch"
+], "correct":0, "exp":"En un switch clásico, si no se coloca 'break', la ejecución continúa (fall-through) hacia el siguiente case, ejecutando su código también, lo cual suele ser una fuente de errores si no es intencional."},
+
+{"cat":"Arrays y varargs", "q":"¿Qué imprime este código?\nint[][] matriz = {{1,2},{3,4,5}};\nSystem.out.println(matriz[1].length);", "code":"int[][] matriz = {{1,2},{3,4,5}};\nSystem.out.println(matriz[1].length);", "opts":["3", "2", "5", "Error de compilación"], "correct":0, "exp":"Java permite arrays multidimensionales 'irregulares' (jagged arrays), donde cada fila puede tener distinto tamaño. matriz[1] es {3,4,5}, cuyo length es 3."},
+
+{"cat":"Arrays y varargs", "q":"¿Qué método de la clase Arrays permite convertir un array en una representación de texto legible, como \"[1, 2, 3]\"?", "opts":["Arrays.toString(array)", "array.print()", "Arrays.display(array)", "String.valueOf(array) directamente muestra el contenido"], "correct":0, "exp":"Arrays.toString() genera una representación legible de un array unidimensional. Para arrays multidimensionales existe Arrays.deepToString()."},
+
+{"cat":"Arrays y varargs", "q":"¿Qué ocurre al intentar acceder a un índice fuera de rango de un array, por ejemplo array[10] en un array de tamaño 5?", "opts":[
+ "Se lanza ArrayIndexOutOfBoundsException en tiempo de ejecución", "El compilador rechaza el código", "Devuelve null silenciosamente", "Devuelve 0 silenciosamente"
+], "correct":0, "exp":"Acceder a un índice inválido de un array lanza ArrayIndexOutOfBoundsException en tiempo de ejecución; el compilador no puede detectar este error en general."},
+
+{"cat":"Strings y bloques de texto", "q":"¿Por qué se recomienda StringBuilder en lugar de concatenar Strings con '+' dentro de un bucle con muchas iteraciones?", "opts":[
+ "Porque cada concatenación con '+' crea un nuevo objeto String (dado que String es inmutable), lo que es ineficiente; StringBuilder modifica un buffer mutable interno",
+ "Porque el operador '+' no está permitido con Strings en bucles",
+ "Porque StringBuilder es la única clase que soporta texto en Java",
+ "Porque '+' solo funciona fuera de bucles"
+], "correct":0, "exp":"Al ser String inmutable, cada '+' genera un nuevo objeto, desperdiciando memoria y tiempo en bucles largos. StringBuilder usa un array de caracteres mutable interno, evitando esas creaciones repetidas."},
+
+{"cat":"Strings y bloques de texto", "q":"¿Qué imprime?\nString s = \"  Hola Mundo  \";\nSystem.out.println(s.strip().length());", "code":"String s = \"  Hola Mundo  \";\nSystem.out.println(s.strip().length());", "opts":["10", "14", "9", "11"], "correct":0, "exp":"strip() (Java 11+) elimina espacios en blanco al inicio y al final. \"Hola Mundo\" sin los espacios circundantes tiene 10 caracteres."},
+
+{"cat":"Strings y bloques de texto", "q":"¿Qué método de String permite dividir el texto en un array usando un delimitador, por ejemplo una coma?", "opts":["split(regex)", "divide(regex)", "tokenize(regex)", "partition(regex)"], "correct":0, "exp":"split(String regex) divide el String en un array de substrings usando la expresión regular indicada como delimitador."},
+
+{"cat":"POO: clases, constructores y encapsulamiento", "q":"¿Qué es un bloque de inicialización estático (static initializer block) y cuándo se ejecuta?", "opts":[
+ "Un bloque static { ... } que se ejecuta una única vez, cuando la clase se carga por primera vez en la JVM, antes de crear cualquier instancia",
+ "Un bloque que se ejecuta cada vez que se crea una nueva instancia de la clase",
+ "Un bloque que solo puede contener llamadas a métodos privados",
+ "Un bloque que reemplaza al constructor por completo"
+], "correct":0, "exp":"Un bloque static{} se ejecuta una sola vez al cargar la clase en memoria, útil para inicializar campos static complejos, antes de cualquier instanciación."},
+
+{"cat":"POO: clases, constructores y encapsulamiento", "q":"¿Cuál es el propósito principal del encapsulamiento en POO?", "opts":[
+ "Ocultar el estado interno de un objeto y exponer solo una interfaz pública controlada (getters/setters), protegiendo la integridad de los datos",
+ "Permitir que todas las clases accedan directamente a los atributos de cualquier otra clase",
+ "Eliminar la necesidad de constructores",
+ "Convertir automáticamente todos los métodos en static"
+], "correct":0, "exp":"El encapsulamiento oculta los detalles internos (atributos generalmente private) y expone un comportamiento controlado a través de métodos públicos, protegiendo la consistencia del objeto."},
+
+{"cat":"POO: clases, constructores y encapsulamiento", "q":"¿Qué hace la palabra clave 'this' dentro de un constructor cuando se usa como this(...)?", "opts":[
+ "Invoca a otro constructor sobrecargado de la misma clase (constructor chaining), y debe ser la primera línea del constructor",
+ "Invoca al constructor de la superclase",
+ "Crea una nueva instancia adicional de la clase actual",
+ "Es equivalente a static en ese contexto"
+], "correct":0, "exp":"this(...) se usa para llamar a otro constructor de la misma clase (encadenamiento de constructores), y debe ser obligatoriamente la primera sentencia dentro del constructor."},
+
+{"cat":"Herencia y polimorfismo", "q":"¿Qué modificador de acceso permite que un miembro sea visible solo dentro del mismo paquete y en subclases de otros paquetes?", "opts":["protected", "private", "default (sin modificador)", "public"], "correct":0, "exp":"'protected' permite el acceso desde el mismo paquete y también desde subclases ubicadas en paquetes distintos. El modificador 'default' (sin palabra clave) solo permite acceso dentro del mismo paquete."},
+
+{"cat":"Herencia y polimorfismo", "q":"¿Puede un método sobrescrito (override) en una subclase declarar una excepción checked más amplia que la del método original de la superclase?", "opts":[
+ "No, el método sobrescrito solo puede declarar la misma excepción checked, una subclase de ella, o ninguna; nunca una más amplia",
+ "Sí, siempre puede declarar cualquier excepción checked adicional",
+ "Solo si el método es static", "Solo si la superclase es una interfaz"
+], "correct":0, "exp":"Una regla de overriding es que el método no puede lanzar excepciones checked nuevas o más amplias que las declaradas en el método de la superclase, para preservar la sustituibilidad de Liskov."},
+
+{"cat":"Herencia y polimorfismo", "q":"¿Qué es el 'binding estático' (static binding) frente al 'binding dinámico' (dynamic binding)?", "opts":[
+ "El binding estático resuelve en compilación qué método se llama (métodos static, private, final, y sobrecarga); el binding dinámico resuelve en tiempo de ejecución (métodos sobrescritos vía polimorfismo)",
+ "Ambos se resuelven siempre en tiempo de compilación",
+ "El binding dinámico solo aplica a atributos, nunca a métodos",
+ "El binding estático solo existe en interfaces"
+], "correct":0, "exp":"Los métodos static, private y final (y la resolución de sobrecarga) se enlazan en compilación (static binding); los métodos de instancia sobrescritos se resuelven en runtime según el tipo real del objeto (dynamic binding/dispatch)."},
+
+{"cat":"Interfaces y clases abstractas", "q":"¿Puede una interfaz declarar campos (variables)?", "opts":[
+ "Sí, pero son implícitamente public static final (constantes), no se pueden tener campos de instancia mutables",
+ "No, las interfaces nunca pueden declarar variables",
+ "Sí, y son mutables como en una clase normal",
+ "Solo si la interfaz es sealed"
+], "correct":0, "exp":"Cualquier campo declarado en una interfaz es implícitamente public static final, es decir, una constante compartida, no un campo de instancia."},
+
+{"cat":"Interfaces y clases abstractas", "q":"¿Qué son los métodos 'static' dentro de una interfaz (desde Java 8)?", "opts":[
+ "Métodos con implementación que pertenecen a la interfaz misma y se invocan como NombreInterfaz.metodo(), no se heredan a las clases implementadoras",
+ "Métodos que deben ser sobrescritos obligatoriamente por cada clase implementadora",
+ "Métodos abstractos adicionales",
+ "Un sinónimo de los métodos default"
+], "correct":0, "exp":"Los métodos static en interfaces se invocan sobre el nombre de la interfaz (como utilidades relacionadas), y no se heredan ni pueden sobrescribirse en las clases implementadoras."},
+
+{"cat":"Interfaces y clases abstractas", "q":"Si una clase implementa dos interfaces que definen el mismo método default con distinta implementación, ¿qué ocurre?", "opts":[
+ "La clase debe sobrescribir explícitamente ese método para resolver la ambigüedad, o el código no compila",
+ "Java elige automáticamente la implementación de la primera interfaz declarada",
+ "Se produce un error solo en tiempo de ejecución, no en compilación",
+ "Ambas implementaciones se ejecutan en secuencia automáticamente"
+], "correct":0, "exp":"Ante un conflicto de métodos default heredados de múltiples interfaces, el compilador exige que la clase implementadora sobrescriba el método explícitamente para eliminar la ambigüedad."},
+
+{"cat":"Enums", "q":"¿Qué método permite obtener todas las constantes de un enum como un array?", "opts":["NombreEnum.values()", "NombreEnum.getAll()", "NombreEnum.list()", "NombreEnum.entries()"], "correct":0, "exp":"El método static implícito values() devuelve un array con todas las constantes del enum en el orden en que fueron declaradas."},
+
+{"cat":"Enums", "q":"¿Puede un enum implementar un cuerpo de clase distinto para cada constante (constant-specific class body)?", "opts":[
+ "Sí, cada constante puede sobrescribir un método abstracto declarado en el enum con su propia implementación",
+ "No, todas las constantes deben compartir exactamente el mismo comportamiento",
+ "Solo si el enum no tiene constructor",
+ "Solo es posible con dos constantes como máximo"
+], "correct":0, "exp":"Un enum puede declarar un método abstracto y cada constante puede proveer su propio cuerpo de implementación entre llaves, permitiendo comportamiento distinto por constante."},
+
+{"cat":"Enums", "q":"¿Qué excepción se lanza si se llama a valueOf() de un enum con un nombre que no corresponde a ninguna constante?", "opts":["IllegalArgumentException", "NullPointerException", "ClassCastException", "NoSuchFieldException"], "correct":0, "exp":"NombreEnum.valueOf(\"texto\") lanza IllegalArgumentException si el texto no coincide exactamente con el nombre de ninguna constante declarada."},
+
+{"cat":"Records", "q":"¿Puede un record implementar interfaces?", "opts":[
+ "Sí, un record puede implementar una o varias interfaces, igual que una clase normal",
+ "No, los records no pueden implementar ninguna interfaz",
+ "Solo pueden implementar Comparable",
+ "Solo pueden implementar Serializable"
+], "correct":0, "exp":"Un record puede implementar cualquier interfaz (implements), aunque no puede extender otra clase, ya que implícitamente ya extiende java.lang.Record."},
+
+{"cat":"Records", "q":"¿Puede un record declarar campos de instancia adicionales fuera de los componentes definidos en su cabecera?", "opts":[
+ "No, un record solo puede tener los campos correspondientes a sus componentes declarados; sí puede tener campos static adicionales",
+ "Sí, puede declarar cualquier campo de instancia adicional libremente",
+ "Sí, pero solo si son públicos",
+ "Sí, pero solo si el record es sealed"
+], "correct":0, "exp":"Los records solo permiten campos de instancia correspondientes a los componentes de su cabecera (para mantener la transparencia de datos), aunque sí pueden declarar campos static adicionales."},
+
+{"cat":"Records", "q":"¿Qué genera el compilador si defines explícitamente el accessor de un componente de un record, por ejemplo public int x() { return x * -1; }?", "opts":[
+ "Usa la implementación personalizada en lugar del accessor generado automáticamente, permitiendo modificar qué se devuelve",
+ "Produce un error de compilación porque no se puede sobrescribir un accessor",
+ "Ignora la implementación personalizada y usa siempre la generada",
+ "Solo funciona si el método se declara private"
+], "correct":0, "exp":"Se puede sobrescribir explícitamente el método accessor de un componente; el compilador usará esa implementación personalizada en lugar de generar la trivial por defecto."},
+
+{"cat":"Sealed classes y pattern matching", "q":"¿Pueden las clases permitidas ('permits') de una clase sealed estar en un paquete diferente?", "opts":[
+ "Sí, pero solo si pertenecen al mismo módulo, o si están en el mismo paquete cuando no se usan módulos",
+ "No, siempre deben estar exactamente en el mismo archivo .java",
+ "Sí, sin ninguna restricción de paquete o módulo",
+ "Solo si son records"
+], "correct":0, "exp":"Las subclases permitidas de un tipo sealed deben pertenecer al mismo módulo (en un proyecto modularizado) o, si no hay módulos, al mismo paquete que la clase sealed."},
+
+{"cat":"Sealed classes y pattern matching", "q":"¿Qué ventaja aporta un switch exhaustivo sobre una jerarquía sealed junto con pattern matching?", "opts":[
+ "El compilador puede verificar que se cubren todos los subtipos posibles, sin necesitar una rama 'default', mejorando la seguridad en compilación",
+ "Permite que el switch se ejecute en paralelo automáticamente",
+ "Elimina la necesidad de declarar 'permits'",
+ "Convierte automáticamente el sealed en un enum"
+], "correct":0, "exp":"Como el conjunto de subtipos de una clase/interfaz sealed es cerrado y conocido, el compilador puede verificar exhaustividad en un switch pattern matching sin exigir una rama default."},
+
+{"cat":"Sealed classes y pattern matching", "q":"¿Qué patrón usarías en un case para descomponer un record Punto(int x, int y) y aplicar una guarda adicional 'cuando x sea positivo' (Java 21, guarded patterns)?", "opts":[
+ "case Punto(int x, int y) when x > 0 -> ...",
+ "case Punto(int x, int y) if x > 0 -> ...",
+ "case Punto(int x, int y) && x > 0 -> ...",
+ "No es posible añadir condiciones adicionales dentro de un case"
+], "correct":0, "exp":"Java 21 introduce las guarded patterns con la palabra clave 'when' para añadir una condición booleana adicional al patrón deconstruido dentro de un case."},
+
+{"cat":"Generics y covarianza", "q":"¿Qué significa el comodín '? super Integer' en una declaración de generics?", "opts":[
+ "Acepta Integer o cualquiera de sus supertipos (útil para escribir/consumir datos, 'Consumer Super')",
+ "Acepta solo subtipos de Integer",
+ "Acepta cualquier tipo excepto Integer",
+ "Es sintácticamente inválido en Java"
+], "correct":0, "exp":"'? super Integer' es un wildcard contravariante: acepta Integer o cualquier supertipo suyo (como Number u Object), permitiendo añadir elementos Integer de forma segura (principio Consumer Super de PECS)."},
+
+{"cat":"Generics y covarianza", "q":"¿Se puede crear un array de un tipo genérico parametrizado, como new List<String>[10]?", "opts":[
+ "No, Java no permite crear directamente arrays de tipos genéricos parametrizados debido al conflicto entre la covarianza de arrays y el borrado de tipos",
+ "Sí, sin ninguna restricción", "Solo si el tipo genérico es Object", "Solo dentro de métodos static"
+], "correct":0, "exp":"Crear arrays genéricos parametrizados (new List<String>[10]) no es válido porque, combinado con la covarianza de arrays y el type erasure, podría romper la seguridad de tipos en tiempo de ejecución."},
+
+{"cat":"Generics y covarianza", "q":"¿Qué es un método genérico y cómo se declara su parámetro de tipo?", "opts":[
+ "Un método que declara su propio parámetro de tipo antes del tipo de retorno, por ejemplo: public <T> T primero(List<T> lista)",
+ "Un método que solo puede usarse dentro de clases genéricas",
+ "Un método que acepta cualquier objeto sin necesidad de declarar tipo alguno",
+ "Un método que siempre debe devolver Object"
+], "correct":0, "exp":"Un método genérico declara su propio parámetro de tipo entre '<>' justo antes del tipo de retorno, independientemente de si la clase contenedora es o no genérica."},
+
+{"cat":"Comparable y Comparator", "q":"¿Qué ocurre si dos objetos son 'iguales' según equals() pero compareTo() no devuelve 0 para ellos?", "opts":[
+ "Se dice que la clase tiene un orden 'inconsistente con equals', lo cual puede causar comportamientos inesperados en colecciones ordenadas como TreeSet o TreeMap",
+ "Java lanza una excepción automáticamente en tiempo de compilación",
+ "No tiene ningún efecto práctico en ninguna colección",
+ "Se corrige automáticamente al usar Comparator en vez de Comparable"
+], "correct":0, "exp":"Se recomienda que compareTo() sea consistente con equals(); si no lo es, colecciones basadas en orden como TreeSet/TreeMap pueden comportarse de forma sorprendente (por ejemplo, tratar como iguales elementos que equals() distingue)."},
+
+{"cat":"Comparable y Comparator", "q":"¿Cómo se invierte el orden producido por un Comparator existente, por ejemplo para ordenar de mayor a menor?", "opts":[
+ "comparator.reversed()", "comparator.invert()", "Comparator.negate(comparator)", "comparator.opposite()"
+], "correct":0, "exp":"El método por defecto reversed() de Comparator devuelve un nuevo Comparator con el orden invertido respecto al original."},
+
+{"cat":"Comparable y Comparator", "q":"¿Qué método estático de Comparator crea un comparador a partir de una función que extrae una clave comparable de cada elemento?", "opts":["Comparator.comparing(funcionExtractora)", "Comparator.by(funcionExtractora)", "Comparator.key(funcionExtractora)", "Comparator.extract(funcionExtractora)"], "correct":0, "exp":"Comparator.comparing(Function keyExtractor) crea un Comparator que ordena según el valor Comparable devuelto por esa función aplicada a cada elemento."},
+
+{"cat":"Lambdas e interfaces funcionales", "q":"¿Qué interfaz funcional recibe un argumento y no devuelve ningún resultado (void)?", "opts":["Consumer<T>", "Supplier<T>", "Function<T,R>", "Predicate<T>"], "correct":0, "exp":"Consumer<T> define el método accept(T t) que recibe un argumento y no retorna nada, útil para operaciones como forEach."},
+
+{"cat":"Lambdas e interfaces funcionales", "q":"¿Qué interfaz funcional recibe un argumento de tipo T y produce un resultado de tipo R distinto?", "opts":["Function<T,R>", "UnaryOperator<T>", "Predicate<T>", "BiConsumer<T,U>"], "correct":0, "exp":"Function<T,R> define apply(T t) devolviendo R, permitiendo transformar un tipo en otro. UnaryOperator<T> es un caso especial donde entrada y salida son del mismo tipo T."},
+
+{"cat":"Lambdas e interfaces funcionales", "q":"¿Puede una expresión lambda lanzar una excepción checked si la interfaz funcional que implementa no la declara en su método abstracto?", "opts":[
+ "No, si el método abstracto de la interfaz funcional no declara esa excepción checked, la lambda no puede lanzarla (no compila)",
+ "Sí, cualquier lambda puede lanzar cualquier excepción sin restricciones",
+ "Solo si la lambda se asigna a una variable Object",
+ "Solo si la excepción es unchecked, nunca aplica a checked de todos modos"
+], "correct":0, "exp":"El cuerpo de una lambda debe respetar la firma (incluidas las excepciones checked declaradas) del método abstracto de la interfaz funcional que implementa; si el método no declara throws, la lambda no puede lanzar una checked exception."},
+
+{"cat":"Method references", "q":"¿Cuál es la sintaxis de una referencia a un método de instancia sobre un objeto particular ya existente, por ejemplo 'obj::metodo'?", "opts":[
+ "objetoExistente::metodoDeInstancia — el objeto ya está fijado como receptor de la llamada",
+ "Clase::metodoDeInstancia sin objeto",
+ "objetoExistente->metodoDeInstancia",
+ "new objetoExistente::metodo"
+], "correct":0, "exp":"Cuando se usa una referencia sobre un objeto ya creado (objeto::metodo), ese objeto queda fijado como receptor, y los parámetros de la interfaz funcional corresponden únicamente a los argumentos del método."},
+
+{"cat":"Method references", "q":"¿A qué expresión lambda equivale la referencia de método Math::max usada como BinaryOperator<Integer>?", "opts":[
+ "(a, b) -> Math.max(a, b)", "(a) -> Math.max(a)", "() -> Math.max()", "(a, b) -> a.max(b)"
+], "correct":0, "exp":"Math::max sobre una interfaz que recibe dos argumentos y devuelve un resultado equivale a (a, b) -> Math.max(a, b), ya que max es un método estático de dos parámetros."},
+
+{"cat":"Streams API", "q":"¿Qué devuelve la operación terminal reduce() en un Stream?", "opts":[
+ "Combina los elementos del stream en un único resultado acumulado, aplicando repetidamente una función de combinación binaria",
+ "Elimina elementos duplicados", "Divide el stream en dos partes", "Ordena los elementos de forma descendente"
+], "correct":0, "exp":"reduce() combina todos los elementos usando una función asociativa (por ejemplo, sumar), produciendo un único valor acumulado, normalmente envuelto en Optional si no se especifica un valor identidad."},
+
+{"cat":"Streams API", "q":"¿Cuál es la diferencia entre un stream secuencial y uno paralelo (parallelStream())?", "opts":[
+ "El stream paralelo divide el procesamiento entre múltiples hilos usando el ForkJoinPool común, mientras que el secuencial procesa los elementos uno a uno en un solo hilo",
+ "El stream paralelo siempre garantiza mantener el orden original de los elementos en cualquier operación",
+ "No hay ninguna diferencia práctica de rendimiento", "El stream paralelo solo puede usarse con listas de tipo primitivo"
+], "correct":0, "exp":"parallelStream() (o stream().parallel()) reparte el trabajo entre varios hilos del ForkJoinPool común, lo que puede acelerar operaciones costosas en datasets grandes, pero introduce consideraciones de orden y efectos secundarios que no aplican al stream secuencial."},
+
+{"cat":"Streams API", "q":"¿Qué método de Stream permite limitar la cantidad de elementos procesados, por ejemplo a los primeros 5?", "opts":["limit(5)", "take(5)", "first(5)", "cut(5)"], "correct":0, "exp":"limit(n) es una operación intermedia que trunca el stream para que contenga como máximo n elementos."},
+
+{"cat":"Streams API", "q":"¿Qué método permite obtener un IntStream de números consecutivos, por ejemplo del 1 al 10?", "opts":["IntStream.rangeClosed(1, 10)", "IntStream.of(1, 10)", "IntStream.sequence(1, 10)", "IntStream.between(1, 10)"], "correct":0, "exp":"IntStream.rangeClosed(1, 10) genera un stream de enteros del 1 al 10 inclusive; IntStream.range(1, 10) generaría del 1 al 9 (excluyendo el límite superior)."},
+
+{"cat":"Optional", "q":"¿Qué hace Optional.map(funcion) si el Optional está vacío?", "opts":[
+ "Devuelve directamente un Optional vacío, sin aplicar la función", "Lanza NoSuchElementException", "Ejecuta la función igualmente con un valor null", "No compila"
+], "correct":0, "exp":"Si el Optional está vacío, map() simplemente devuelve otro Optional vacío sin invocar la función de transformación, evitando NullPointerException."},
+
+{"cat":"Optional", "q":"¿Qué excepción lanza optional.get() si el Optional está vacío?", "opts":["NoSuchElementException", "NullPointerException", "IllegalStateException", "OptionalNotPresentException"], "correct":0, "exp":"Llamar a get() sobre un Optional vacío lanza NoSuchElementException; por eso se recomienda usar isPresent()/ifPresent(), orElse(), o orElseThrow() en su lugar."},
+
+{"cat":"Optional", "q":"¿Cuál es una buena práctica respecto al uso de Optional como tipo de un campo de clase o parámetro de método?", "opts":[
+ "Se recomienda evitarlo: Optional está pensado principalmente como tipo de retorno de métodos, no para campos ni parámetros",
+ "Se recomienda usar Optional en todos los campos de todas las clases",
+ "Optional debe usarse siempre en lugar de tipos primitivos", "No existe ninguna recomendación al respecto"
+], "correct":0, "exp":"La convención de la comunidad Java (y de los propios diseñadores del API) es usar Optional principalmente como tipo de retorno para indicar ausencia posible de valor, evitando su uso en campos de clase, parámetros o colecciones."},
+
+{"cat":"Collections Framework", "q":"¿Qué estructura de datos implementa típicamente una Queue de tipo FIFO (primero en entrar, primero en salir)?", "opts":["LinkedList (implementando Queue)", "TreeSet", "Stack únicamente", "HashMap"], "correct":0, "exp":"LinkedList implementa la interfaz Queue, permitiendo comportamiento FIFO mediante métodos como offer(), poll() y peek()."},
+
+{"cat":"Collections Framework", "q":"¿Qué diferencia hay entre Iterator y ListIterator?", "opts":[
+ "ListIterator extiende Iterator añadiendo la capacidad de recorrer en ambas direcciones y modificar elementos durante la iteración (add, set)",
+ "Iterator solo funciona con Map, ListIterator solo con List",
+ "No hay ninguna diferencia real entre ambos",
+ "ListIterator no permite eliminar elementos mientras que Iterator sí"
+], "correct":0, "exp":"ListIterator añade métodos como hasPrevious(), previous(), set() y add(), permitiendo recorrer una List en ambos sentidos y modificarla durante la iteración, algo que Iterator (más genérico) no ofrece."},
+
+{"cat":"Collections Framework", "q":"¿Qué excepción se lanza al modificar una colección (por ejemplo, con remove()) directamente mientras se itera sobre ella con un for-each, sin usar el propio Iterator?", "opts":["ConcurrentModificationException", "UnsupportedOperationException", "IllegalStateException", "NoSuchElementException"], "correct":0, "exp":"Modificar estructuralmente una colección mientras se itera con for-each (que usa un Iterator internamente) sin pasar por los métodos del propio Iterator provoca ConcurrentModificationException en la mayoría de implementaciones."},
+
+{"cat":"Concurrencia y virtual threads", "q":"¿Qué método de la clase Thread permite pausar la ejecución del hilo actual durante un tiempo determinado?", "opts":["Thread.sleep(milisegundos)", "Thread.pause(milisegundos)", "Thread.wait(milisegundos) sin sincronización", "Thread.delay(milisegundos)"], "correct":0, "exp":"Thread.sleep(ms) pausa la ejecución del hilo actual durante el tiempo indicado, sin liberar ningún monitor que tenga adquirido."},
+
+{"cat":"Concurrencia y virtual threads", "q":"¿Qué es una 'race condition' (condición de carrera) en programación concurrente?", "opts":[
+ "Una situación en la que el resultado del programa depende del orden impredecible de ejecución de múltiples hilos accediendo a datos compartidos sin la sincronización adecuada",
+ "Un mecanismo que garantiza que los hilos se ejecuten siempre en el mismo orden",
+ "Un tipo de excepción lanzada exclusivamente por ExecutorService",
+ "Una técnica de optimización de rendimiento en la JVM"
+], "correct":0, "exp":"Una race condition ocurre cuando el resultado depende del orden en que se intercalan operaciones de distintos hilos sobre recursos compartidos, produciendo resultados inconsistentes si no hay sincronización adecuada."},
+
+{"cat":"Concurrencia y virtual threads", "q":"¿Qué aporta la clase java.util.concurrent.atomic.AtomicInteger frente a un int normal en un entorno multihilo?", "opts":[
+ "Provee operaciones atómicas (como incrementAndGet()) que se ejecutan de forma indivisible sin necesidad de bloques synchronized, evitando condiciones de carrera",
+ "Convierte automáticamente el entero en un tipo BigInteger",
+ "Solo puede usarse fuera de hilos concurrentes",
+ "Reemplaza completamente a ExecutorService"
+], "correct":0, "exp":"AtomicInteger (y clases similares) ofrece operaciones atómicas sin bloqueo explícito, útiles para contadores y acumuladores compartidos entre hilos, evitando problemas de concurrencia sin la sobrecarga de synchronized."},
+
+{"cat":"Manejo de excepciones", "q":"¿Se puede tener múltiples bloques catch para un mismo try, capturando distintos tipos de excepción?", "opts":[
+ "Sí, se pueden encadenar varios catch; el orden importa: las excepciones más específicas deben ir antes que las más generales",
+ "No, solo se permite un único catch por try",
+ "Sí, pero el orden de los catch nunca importa", "Solo se permite si todas las excepciones son unchecked"
+], "correct":0, "exp":"Java permite múltiples bloques catch; deben ordenarse de más específico a más general, ya que colocar una excepción general (como Exception) antes que una más específica provoca un error de compilación por código inalcanzable."},
+
+{"cat":"Manejo de excepciones", "q":"¿Qué permite el 'multi-catch' introducido en Java 7 (catch (IOException | SQLException e))?", "opts":[
+ "Capturar varios tipos de excepción no relacionados jerárquicamente en un único bloque catch, evitando duplicar código de manejo",
+ "Capturar todas las excepciones posibles automáticamente sin especificarlas",
+ "Ejecutar el bloque catch varias veces en secuencia",
+ "Es solo válido para excepciones unchecked"
+], "correct":0, "exp":"El multi-catch permite manejar varios tipos de excepción con el mismo bloque de código usando '|', siempre que no exista relación de herencia directa entre ellas (ya que en ese caso bastaría capturar la más general)."},
+
+{"cat":"Manejo de excepciones", "q":"¿Qué es una excepción personalizada (custom exception) y cómo se crea típicamente?", "opts":[
+ "Una clase que extiende Exception (checked) o RuntimeException (unchecked) para representar un error específico del dominio de la aplicación",
+ "Una excepción que solo puede lanzarse desde el método main",
+ "Una excepción que no puede tener mensaje ni causa asociada",
+ "Un tipo de anotación que reemplaza al try-catch"
+], "correct":0, "exp":"Se crean excepciones personalizadas extendiendo Exception (si debe ser checked) o RuntimeException (si debe ser unchecked), típicamente añadiendo constructores que reciban un mensaje y/o causa."},
+
+{"cat":"BigDecimal y precisión numérica", "q":"¿Qué método de BigDecimal se usa para redondear un valor a una cantidad específica de decimales con un modo de redondeo determinado?", "opts":[
+ "setScale(decimales, RoundingMode.HALF_UP) (u otro RoundingMode)", "round(decimales)", "truncate(decimales)", "toFixed(decimales)"
+], "correct":0, "exp":"setScale(int newScale, RoundingMode mode) ajusta la escala (decimales) de un BigDecimal aplicando el modo de redondeo indicado, como HALF_UP, HALF_EVEN, etc."},
+
+{"cat":"BigDecimal y precisión numérica", "q":"¿Por qué BigDecimal es inmutable, igual que String?", "opts":[
+ "Porque cada operación aritmética (add, subtract, multiply...) devuelve un nuevo objeto BigDecimal en lugar de modificar el original, garantizando consistencia y seguridad en entornos concurrentes",
+ "Porque solo puede contener un dígito a la vez", "Porque no permite operaciones aritméticas en absoluto", "Porque BigDecimal está deprecado desde Java 17"
+], "correct":0, "exp":"Al ser inmutable, cada operación como add() o multiply() retorna un nuevo BigDecimal; esto facilita el razonamiento sobre el código y la seguridad en concurrencia, similar al diseño de String."},
+
+{"cat":"Internacionalización (Locale, ResourceBundle)", "q":"¿Cómo se crea un Locale específico para español de México?", "opts":[
+ "Locale.of(\"es\", \"MX\") (o el constructor equivalente new Locale(\"es\",\"MX\") en versiones previas)",
+ "new Locale(\"MX-es\")", "Locale.create(\"spanish\", \"mexico\")", "Locale.MEXICO_SPANISH"
+], "correct":0, "exp":"Se construye combinando el código de idioma ISO (es) y el código de país ISO (MX); en versiones recientes se recomienda el método de fábrica Locale.of(idioma, pais) en lugar del constructor directo."},
+
+{"cat":"Internacionalización (Locale, ResourceBundle)", "q":"¿Qué convención de nombres de archivo sigue un ResourceBundle basado en propiedades para el Locale francés (fr_FR), con nombre base 'mensajes'?", "opts":[
+ "mensajes_fr_FR.properties", "mensajes-fr-FR.properties", "fr_FR_mensajes.properties", "mensajes.fr.FR.properties"
+], "correct":0, "exp":"La convención es nombreBase_idioma_PAIS.properties, por ejemplo mensajes_fr_FR.properties, con guiones bajos separando idioma y país."},
+
+{"cat":"Patrones de diseño (Strategy)", "q":"En el patrón Strategy, ¿qué rol cumple la clase 'Contexto'?", "opts":[
+ "Mantiene una referencia a una estrategia (interfaz común) y delega en ella la ejecución del algoritmo, sin conocer los detalles de la implementación concreta",
+ "Es la implementación concreta de un algoritmo específico",
+ "Es la interfaz que define el contrato del algoritmo",
+ "Es una clase estática que no puede cambiar en tiempo de ejecución"
+], "correct":0, "exp":"El Contexto mantiene una referencia a la interfaz Strategy y delega en ella la ejecución concreta, pudiendo cambiar de estrategia en tiempo de ejecución sin modificar su propio código."},
+
+{"cat":"Clases anidadas e internas", "q":"¿Qué es una clase interna (inner class) no estática en Java?", "opts":[
+ "Una clase definida dentro de otra clase que mantiene una referencia implícita a una instancia de la clase contenedora, permitiendo acceder a sus miembros de instancia",
+ "Una clase que solo puede definirse dentro de un método main",
+ "Una clase que no puede tener métodos propios",
+ "Un sinónimo exacto de clase estática anidada"
+], "correct":0, "exp":"Una clase interna no estática está ligada a una instancia de la clase externa (se crea como externa.new Interna()), y puede acceder directamente a los miembros de instancia de esa clase externa."},
+
+{"cat":"Clases anidadas e internas", "q":"¿Cuál es la diferencia principal entre una clase anidada 'static' y una clase interna (no estática)?", "opts":[
+ "La clase anidada static no necesita una instancia de la clase externa para crearse y no tiene acceso implícito a los miembros de instancia de esta; la clase interna sí requiere esa instancia",
+ "La clase anidada static no puede tener métodos", "Ambas son exactamente iguales, solo cambia el nombre", "Solo la clase interna puede ser private"
+], "correct":0, "exp":"Una clase estática anidada se comporta como una clase de nivel superior más, sin vínculo a una instancia externa (ClaseExterna.ClaseEstatica obj = new ClaseExterna.ClaseEstatica()); la clase interna no estática requiere una instancia externa asociada."},
+
+{"cat":"Clases anidadas e internas", "q":"¿Qué es una clase local (local class) en Java?", "opts":[
+ "Una clase definida dentro del cuerpo de un método, visible solo dentro de ese método", "Una clase que solo puede usarse en el paquete java.util", "Una clase que no puede implementar interfaces", "Un sinónimo de clase anónima"
+], "correct":0, "exp":"Una clase local se declara dentro de un bloque de método y solo es visible/utilizable dentro de ese bloque, a diferencia de las clases anónimas que no tienen nombre propio."},
+
+{"cat":"Clases anidadas e internas", "q":"¿Puede una clase interna no estática acceder directamente a variables private de la clase externa que la contiene?", "opts":[
+ "Sí, las clases internas tienen acceso completo a todos los miembros (incluidos private) de la clase externa que las contiene",
+ "No, nunca puede acceder a miembros private de la clase externa",
+ "Solo si ambas clases están en el mismo archivo pero en paquetes distintos",
+ "Solo si la clase interna es también private"
+], "correct":0, "exp":"Una de las principales ventajas de las clases internas es su acceso irrestricto a todos los miembros, incluidos los private, de la clase que las contiene."},
+
+{"cat":"API de fecha y hora (java.time)", "q":"¿Qué clase del paquete java.time representa una fecha sin hora, como '2026-07-07'?", "opts":["LocalDate", "LocalDateTime", "LocalTime", "Instant"], "correct":0, "exp":"LocalDate representa solo una fecha (año, mes, día) sin componente de hora ni zona horaria."},
+
+{"cat":"API de fecha y hora (java.time)", "q":"¿Qué clase representa una fecha y hora sin información de zona horaria?", "opts":["LocalDateTime", "ZonedDateTime", "Instant", "OffsetDateTime"], "correct":0, "exp":"LocalDateTime combina fecha y hora (LocalDate + LocalTime) sin asociar ninguna zona horaria específica. ZonedDateTime y OffsetDateTime sí incluyen esa información."},
+
+{"cat":"API de fecha y hora (java.time)", "q":"¿Son mutables los objetos de las clases del paquete java.time como LocalDate y LocalDateTime?", "opts":[
+ "No, son inmutables; métodos como plusDays() devuelven una nueva instancia en lugar de modificar el objeto original",
+ "Sí, son completamente mutables como Calendar", "Solo LocalDate es inmutable, LocalDateTime no", "Depende de si se usa un builder"
+], "correct":0, "exp":"Al igual que String y BigDecimal, las clases del API java.time (introducido en Java 8 para reemplazar la antigua y problemática clase Date/Calendar) son inmutables; sus métodos de modificación devuelven siempre un nuevo objeto."},
+
+{"cat":"API de fecha y hora (java.time)", "q":"¿Qué clase se usa para representar una cantidad de tiempo basada en fechas (años, meses, días), como la diferencia entre dos LocalDate?", "opts":["Period", "Duration", "Instant", "Interval"], "correct":0, "exp":"Period representa una cantidad de tiempo en términos de años/meses/días (basado en fechas del calendario); Duration representa cantidades de tiempo basadas en segundos/nanosegundos, útil entre instantes temporales."},
+
+{"cat":"API de fecha y hora (java.time)", "q":"¿Qué método se usa para calcular la diferencia entre dos LocalDate en días?", "opts":[
+ "ChronoUnit.DAYS.between(fecha1, fecha2)", "fecha1.diff(fecha2)", "fecha1.minus(fecha2)", "Period.diasEntre(fecha1, fecha2)"
+], "correct":0, "exp":"ChronoUnit.DAYS.between(inicio, fin) calcula la cantidad de días entre dos objetos temporales; también puede usarse Period.between() para obtener años/meses/días por separado."},
+
+{"cat":"Autoboxing, unboxing y wrapper classes", "q":"¿Qué es el 'unboxing' en Java?", "opts":[
+ "La conversión automática de un objeto wrapper (como Integer) a su tipo primitivo correspondiente (como int)", "El proceso de crear un array de wrappers", "Una técnica para deshabilitar el autoboxing", "Un método para serializar objetos"
+], "correct":0, "exp":"El unboxing convierte automáticamente un objeto wrapper (Integer, Double, etc.) a su primitivo equivalente cuando el contexto lo requiere, por ejemplo en una operación aritmética."},
+
+{"cat":"Autoboxing, unboxing y wrapper classes", "q":"¿Qué ocurre si se intenta hacer unboxing de un valor Integer que es null, por ejemplo al asignarlo a un int?", "opts":[
+ "Se lanza NullPointerException en tiempo de ejecución", "Se asigna automáticamente el valor 0", "El compilador lo rechaza en compilación", "Se lanza ClassCastException"
+], "correct":0, "exp":"Intentar convertir un Integer null a un int primitivo provoca NullPointerException en tiempo de ejecución, ya que no existe un valor primitivo que represente 'ausencia de valor'."},
+
+{"cat":"Autoboxing, unboxing y wrapper classes", "q":"¿Qué imprime este código?\nInteger a = 100;\nInteger b = 100;\nSystem.out.println(a == b);\nInteger c = 200;\nInteger d = 200;\nSystem.out.println(c == d);", "code":"Integer a = 100;\nInteger b = 100;\nSystem.out.println(a == b);\nInteger c = 200;\nInteger d = 200;\nSystem.out.println(c == d);", "opts":["true y false", "true y true", "false y false", "false y true"], "correct":0, "exp":"Java cachea automáticamente los objetos Integer en el rango -128 a 127 (Integer Cache); por eso a==b da true (mismo objeto cacheado), pero 200 está fuera del rango cacheado, por lo que c==d compara referencias distintas y da false."},
+
+{"cat":"Autoboxing, unboxing y wrapper classes", "q":"¿Cuál es el método recomendado para convertir un String a un int de forma directa, sin pasar por un objeto Integer?", "opts":["Integer.parseInt(texto)", "Integer.valueOf(texto).getPrimitive()", "new Integer(texto).toInt()", "int.parse(texto)"], "correct":0, "exp":"Integer.parseInt(String) devuelve directamente un int primitivo; Integer.valueOf(String) en cambio devuelve un objeto Integer (con posible uso de la caché)."},
+
+{"cat":"Módulos Java (JPMS)", "q":"¿Qué archivo declara un módulo en el sistema de módulos de Java (JPMS, introducido en Java 9)?", "opts":["module-info.java", "module.xml", "package-info.java", "moduleconfig.properties"], "correct":0, "exp":"module-info.java, ubicado en la raíz del código fuente del módulo, contiene la declaración del módulo: su nombre, qué paquetes exporta y qué módulos requiere."},
+
+{"cat":"Módulos Java (JPMS)", "q":"¿Qué directiva dentro de module-info.java indica que un módulo depende de otro módulo?", "opts":["requires nombreModulo;", "imports nombreModulo;", "depends nombreModulo;", "uses nombreModulo;"], "correct":0, "exp":"'requires' declara una dependencia de compilación y ejecución hacia otro módulo. 'uses' se refiere a servicios consumidos, no a dependencias de módulo directas."},
+
+{"cat":"Módulos Java (JPMS)", "q":"¿Qué directiva permite que otros módulos accedan a las clases públicas de un paquete específico?", "opts":["exports nombrePaquete;", "public nombrePaquete;", "open nombrePaquete;", "expose nombrePaquete;"], "correct":0, "exp":"'exports' hace visible un paquete (sus tipos públicos) a otros módulos que lo requieran; sin exportar el paquete, sus clases permanecen encapsuladas dentro del módulo, incluso si son públicas."},
+
+{"cat":"Módulos Java (JPMS)", "q":"¿Cuál es uno de los principales beneficios del sistema de módulos (JPMS) respecto al classpath tradicional?", "opts":[
+ "Permite encapsulamiento fuerte a nivel de módulo: un paquete no exportado no es accesible desde fuera, incluso si sus clases son públicas",
+ "Elimina por completo la necesidad de compilar el código", "Hace que todos los paquetes sean automáticamente públicos entre módulos", "Reemplaza completamente a Maven y Gradle"
+], "correct":0, "exp":"JPMS introduce encapsulamiento fuerte: solo los paquetes explícitamente exportados con 'exports' son visibles fuera del módulo, mejorando la seguridad y el diseño frente al classpath tradicional donde todo lo público era accesible."},
+
+{"cat":"Módulos Java (JPMS)", "q":"¿Qué directiva se usa en module-info.java para declarar que un módulo abre un paquete a la reflexión (por ejemplo para frameworks como Hibernate)?", "opts":["opens nombrePaquete;", "reflect nombrePaquete;", "unlock nombrePaquete;", "grant nombrePaquete;"], "correct":0, "exp":"'opens' permite el acceso reflexivo (incluso a miembros privados vía reflection) a un paquete desde otros módulos, útil para frameworks que instancian objetos dinámicamente."},
+];
+
+// ---------- estado y lógica ----------
+let current = [];
+let idx = 0;
+let score = 0;
+let missed = [];
+let answered = false;
+
+function uniqueCats(){
+  const set = new Set(QUESTIONS.map(q=>q.cat));
+  return Array.from(set);
+}
+
+function fillCategorySelect(){
+  const sel = document.getElementById('categorySelect');
+  sel.innerHTML = '<option value="__all__">Todas las categorías (' + QUESTIONS.length + ' preguntas)</option>';
+  uniqueCats().forEach(c=>{
+    const count = QUESTIONS.filter(q=>q.cat===c).length;
+    const o = document.createElement('option');
+    o.value = c;
+    o.textContent = c + ' (' + count + ')';
+    sel.appendChild(o);
+  });
+}
+
+function shuffle(arr){
+  const a = arr.slice();
+  for(let i=a.length-1;i>0;i--){
+    const j = Math.floor(Math.random()*(i+1));
+    [a[i],a[j]]=[a[j],a[i]];
+  }
+  return a;
+}
+
+function startQuiz(){
+  const cat = document.getElementById('categorySelect').value;
+  const countVal = parseInt(document.getElementById('countSelect').value,10);
+  let pool = cat === '__all__' ? QUESTIONS.slice() : QUESTIONS.filter(q=>q.cat===cat);
+  pool = shuffle(pool);
+  current = pool.slice(0, Math.min(countVal, pool.length));
+  idx = 0; score = 0; missed = [];
+  document.getElementById('setupPanel').classList.add('hidden');
+  document.getElementById('resultPanel').classList.add('hidden');
+  document.getElementById('quizPanel').classList.remove('hidden');
+  renderQuestion();
+}
+
+function renderQuestion(){
+  answered = false;
+  const q = current[idx];
+  document.getElementById('qCatTag').textContent = q.cat;
+  document.getElementById('qCounter').textContent = (idx+1) + ' / ' + current.length;
+  document.getElementById('progressFill').style.width = (100*idx/current.length) + '%';
+  document.getElementById('qText').textContent = q.q;
+  const codeEl = document.getElementById('qCode');
+  if(q.code){
+    codeEl.classList.remove('hidden');
+    codeEl.querySelector('code').textContent = q.code;
+  } else {
+    codeEl.classList.add('hidden');
+  }
+  const optWrap = document.getElementById('optionsList');
+  optWrap.innerHTML = '';
+  const order = shuffle(q.opts.map((text,i)=>({text,i})));
+  order.forEach(opt=>{
+    const div = document.createElement('label');
+    div.className = 'opt';
+    div.innerHTML = '<input type="radio" name="opt" value="'+opt.i+'"> <span>'+opt.text+'</span>';
+    div.addEventListener('click', ()=>selectOption(opt.i, div));
+    optWrap.appendChild(div);
+  });
+  document.getElementById('feedback').className = 'feedback';
+  document.getElementById('feedback').textContent = '';
+  document.getElementById('nextBtn').disabled = true;
+}
+
+function selectOption(chosenIndex, el){
+  if(answered) return;
+  answered = true;
+  const q = current[idx];
+  const isCorrect = chosenIndex === q.correct;
+  document.querySelectorAll('.opt').forEach(o=>{
+    o.classList.add('locked');
+    const val = parseInt(o.querySelector('input').value,10);
+    if(val === q.correct) o.classList.add('correct');
+    else if(o===el && !isCorrect) o.classList.add('incorrect');
+  });
+  const fb = document.getElementById('feedback');
+  fb.classList.add('show');
+  if(isCorrect){
+    score++;
+    fb.classList.add('ok');
+    fb.textContent = 'Correcto. ' + q.exp;
+  } else {
+    fb.classList.add('no');
+    fb.textContent = 'Incorrecto. ' + q.exp;
+    missed.push({q, chosen: chosenIndex});
+  }
+  document.getElementById('nextBtn').disabled = false;
+}
+
+function nextQuestion(){
+  idx++;
+  if(idx >= current.length){
+    showResults();
+  } else {
+    renderQuestion();
+  }
+}
+
+function showResults(){
+  document.getElementById('quizPanel').classList.add('hidden');
+  document.getElementById('resultPanel').classList.remove('hidden');
+  document.getElementById('resultScore').textContent = score + ' / ' + current.length;
+  const pct = Math.round(100*score/current.length);
+  document.getElementById('lastScore').textContent = pct + '%';
+  let msg = '';
+  if(pct >= 90) msg = 'Excelente dominio de esta categoría.';
+  else if(pct >= 70) msg = 'Buen resultado, repasa los conceptos fallados abajo.';
+  else msg = 'Conviene repasar el tema antes de continuar. Revisa las explicaciones a continuación.';
+  document.getElementById('resultMsg').textContent = msg + ' (' + pct + '% de aciertos)';
+
+  const wrap = document.getElementById('missedWrap');
+  wrap.innerHTML = '';
+  if(missed.length){
+    const h = document.createElement('div');
+    h.className = 'tag';
+    h.textContent = 'Preguntas para repasar (' + missed.length + ')';
+    wrap.appendChild(h);
+    missed.forEach(m=>{
+      const item = document.createElement('div');
+      item.className = 'missed-item';
+      item.innerHTML =
+        '<div class="badge-cat">'+m.q.cat+'</div>'+
+        '<div class="qtext">'+m.q.q+'</div>'+
+        '<div class="your-answer">Tu respuesta: '+m.q.opts[m.chosen]+'</div>'+
+        '<div class="correct-answer">Respuesta correcta: '+m.q.opts[m.q.correct]+'</div>'+
+        '<div class="explain">'+m.q.exp+'</div>';
+      wrap.appendChild(item);
+    });
+  }
+}
+
+document.getElementById('startBtn').addEventListener('click', startQuiz);
+document.getElementById('nextBtn').addEventListener('click', nextQuestion);
+document.getElementById('quitBtn').addEventListener('click', ()=>{
+  document.getElementById('quizPanel').classList.add('hidden');
+  document.getElementById('setupPanel').classList.remove('hidden');
+});
+document.getElementById('retryBtn').addEventListener('click', startQuiz);
+document.getElementById('backBtn').addEventListener('click', ()=>{
+  document.getElementById('resultPanel').classList.add('hidden');
+  document.getElementById('setupPanel').classList.remove('hidden');
+});
+
+fillCategorySelect();
+document.getElementById('totalCount').textContent = QUESTIONS.length;
+document.getElementById('catCount').textContent = uniqueCats().length;
+</script>
+</body>
+</html>
