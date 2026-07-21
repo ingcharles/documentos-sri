@@ -144,6 +144,19 @@ select{
 /* ---------- Runner screen ---------- */
 .run-toolbar{display:flex; align-items:center; gap:14px; margin-bottom:6px;}
 .btn-pause{padding:8px 14px; font-size:12.5px; flex:none; white-space:nowrap;}
+.timer-display{
+  font-family:var(--font-mono); font-size:13px; font-weight:600; color:var(--ink-soft);
+  flex:none; white-space:nowrap; min-width:64px; text-align:center;
+}
+.timer-display.overtime{color:var(--danger);}
+.time-warning{
+  display:flex; align-items:center; justify-content:space-between; gap:12px;
+  background:var(--gold-soft); border:1px solid var(--gold); color:#6b4f14;
+  border-radius:10px; padding:10px 14px; font-size:13px; margin-bottom:16px;
+}
+.time-warning button{
+  background:none; border:none; color:#6b4f14; font-size:16px; cursor:pointer; line-height:1; padding:0 4px;
+}
 .pause-overlay{
   text-align:center; padding:50px 20px 40px;
 }
@@ -318,11 +331,16 @@ a{color:var(--green-700);}
     <div class="card" id="run-card">
       <div class="run-toolbar">
         <div class="meter-track" style="flex:1;"><div class="meter-fill" id="progress-fill" style="width:0%"></div></div>
+        <span class="timer-display" id="timer-display" title="Tiempo estimado, calculado a 120 preguntas por hora">⏱ 00:00</span>
         <button class="btn btn-ghost btn-pause" id="btn-pause" title="Pausar evaluación">⏸ Pausar</button>
       </div>
       <div class="meter-caption">
         <span id="progress-caption">Pregunta 1 de 20</span>
         <span id="progress-score">Aciertos: 0</span>
+      </div>
+      <div class="time-warning hidden" id="time-warning">
+        <span id="time-warning-text"></span>
+        <button id="time-warning-dismiss" aria-label="Cerrar aviso">×</button>
       </div>
 
       <div id="run-content">
@@ -446,6 +464,10 @@ let state = {
   answers: {},        // id -> {selectedIdx, correct}
   wrongIds: [],
   locked: false,
+  timerHandle: null,
+  timeBudgetSec: 0,
+  timeRemainingSec: 0,
+  timeWarned: false,
 };
 
 /* =========================================================
@@ -648,6 +670,65 @@ const screenConfig = document.getElementById('screen-config');
 const screenRun = document.getElementById('screen-run');
 const screenResults = document.getElementById('screen-results');
 
+// Cronometro: 120 preguntas por hora => 30 segundos por pregunta.
+// Es solo referencial: al llegar a 0 NO bloquea el test, solo muestra un
+// aviso una vez y el contador sigue en "tiempo extra" (en rojo).
+const SECONDS_PER_QUESTION = 3600 / 120; // 30
+
+function formatTime(totalSeconds){
+  const sign = totalSeconds < 0 ? '+' : '';
+  const abs = Math.abs(Math.round(totalSeconds));
+  const m = Math.floor(abs / 60);
+  const s = abs % 60;
+  return `${sign}${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
+}
+
+function updateTimerDisplay(){
+  const el = document.getElementById('timer-display');
+  el.textContent = '⏱ ' + formatTime(state.timeRemainingSec);
+  el.classList.toggle('overtime', state.timeRemainingSec < 0);
+}
+
+function tickTimer(){
+  state.timeRemainingSec--;
+  updateTimerDisplay();
+  if(state.timeRemainingSec === 0 && !state.timeWarned){
+    state.timeWarned = true;
+    const mins = Math.round(state.timeBudgetSec/60);
+    const warn = document.getElementById('time-warning');
+    document.getElementById('time-warning-text').textContent =
+      `Se cumplió el tiempo estimado (${mins} min para ${state.queue.length} preguntas). Puede seguir respondiendo con normalidad; esto es solo una referencia, no bloquea el test.`;
+    warn.classList.remove('hidden');
+  }
+}
+
+function startTimer(numQuestions){
+  clearInterval(state.timerHandle);
+  state.timeBudgetSec = Math.round(numQuestions * SECONDS_PER_QUESTION);
+  state.timeRemainingSec = state.timeBudgetSec;
+  state.timeWarned = false;
+  document.getElementById('time-warning').classList.add('hidden');
+  updateTimerDisplay();
+  state.timerHandle = setInterval(tickTimer, 1000);
+}
+
+function pauseTimer(){
+  clearInterval(state.timerHandle);
+}
+
+function resumeTimer(){
+  clearInterval(state.timerHandle);
+  state.timerHandle = setInterval(tickTimer, 1000);
+}
+
+function stopTimer(){
+  clearInterval(state.timerHandle);
+}
+
+document.getElementById('time-warning-dismiss').addEventListener('click', ()=>{
+  document.getElementById('time-warning').classList.add('hidden');
+});
+
 function startRun(sourceQuestions){
   state.runFormat = state.responseFormat; // formato fijado para toda la ejecución
   state.queue = buildRunQueue(sourceQuestions, state.runFormat);
@@ -659,6 +740,7 @@ function startRun(sourceQuestions){
   screenRun.classList.remove('hidden');
   document.getElementById('pause-overlay').classList.add('hidden');
   document.getElementById('run-content').classList.remove('hidden');
+  startTimer(state.queue.length);
   renderQuestion();
 }
 
@@ -842,11 +924,13 @@ document.getElementById('btn-next').addEventListener('click', ()=>{
 document.getElementById('btn-pause').addEventListener('click', ()=>{
   document.getElementById('run-content').classList.add('hidden');
   document.getElementById('pause-overlay').classList.remove('hidden');
+  pauseTimer();
 });
 
 document.getElementById('btn-resume').addEventListener('click', ()=>{
   document.getElementById('pause-overlay').classList.add('hidden');
   document.getElementById('run-content').classList.remove('hidden');
+  resumeTimer();
 });
 
 document.getElementById('btn-restart-fresh').addEventListener('click', ()=>{
@@ -859,6 +943,7 @@ document.getElementById('btn-go-home').addEventListener('click', ()=>{
   document.getElementById('run-content').classList.remove('hidden');
   screenRun.classList.add('hidden');
   screenConfig.classList.remove('hidden');
+  stopTimer();
 });
 
 /* =========================================================
@@ -892,6 +977,7 @@ function drawGauge(pct){
 }
 
 function showResults(){
+  stopTimer();
   screenRun.classList.add('hidden');
   screenResults.classList.remove('hidden');
 
