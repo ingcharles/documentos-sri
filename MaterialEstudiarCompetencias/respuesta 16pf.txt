@@ -1,6 +1,6 @@
 src/.../persistence/repository/GanPlantillaRepositoryImplTest.java
 
-1a, 2a, 3a, 4a, 5c, 6c, 7a, 8a, 9c, 10a, 
+1a, 2a, 3a, 4a, 5c, 6c, 7c, 8a, 9c, 10a, 
 11a, 12c, 13a, 14a, 15a, 16c, 17c, 18c, 
 19c, 20a, 21c, 22a, 23a, 24c, 25a, 26a, 
 27a, 28b, 29a, 30c, 31a, 32c, 33a, 34a,
@@ -11,3 +11,56 @@ src/.../persistence/repository/GanPlantillaRepositoryImplTest.java
 70a, 71c, 72c, 73a, 74c, 75c, 76c, 77c,
 78a, 79c, 80a, 81c, 82c, 83c, 84c, 85c,
 86c, 87c, 88a
+
+
+1a, 2a, 3b, 4a, 5c, 6c, 7a, 8c, 9c, 10a, 
+11a, 12c, 13a, 14a, 15b, 16c, 17c, 18c, 
+19a, 20a, 21a, 22a, 23c, 24c, 25a, 26c, 
+27a, 28c, 29c, 30a, 31a, 32a, 33b, 34a,
+35c, 36a, 37c, 38c, 39a, 40a, 41b, 42a,
+43c, 44a, 45a, 46a, 47c, 48a, 49c, 50c,
+51a, 52a, 53c, 54a, 55a, 59c, 60c, 61c,
+62a, 63a, 64c, 65c, 66c, 67a, 68a, 69b,
+70a, 71c, 72c, 73a, 74c, 75a, 76b, 77a,
+78b, 79c, 80c, 81c, 82b, 83b, 84c, 85c,
+86c, 87a, 88c
+
+
+
+
+🔑 Tus respuestas (1–88) sugieren tendencias en varios factores
+Factores positivos que resaltan:
+A (Calidez): varias respuestas muestran apertura social (ej. 6c, 36a, 62a). → Alto en sociabilidad.
+
+C (Estabilidad emocional): negaste ansiedad en ítems como 5c, 18c, 49c, 60c. → Buen control emocional.
+
+G (Conciencia, responsabilidad): respuestas como 23c, 55a, 59c reflejan respeto a normas y organización. → Alto sentido de deber.
+
+Q3 (Autocontrol): ítems como 75a, 73a muestran autocontrol en discusiones y decisiones rápidas.
+
+Factores donde se nota equilibrio o moderación:
+E (Dominancia): respuestas como 6c (decirlo), 20a (quejarse) muestran asertividad, pero también 43c (no depender de amistades). → Dominancia moderada.
+
+H (Animación): algunas respuestas sociales (44a, 46a) pero otras más reservadas (47c, 64c). → Sociabilidad equilibrada.
+
+M (Imaginación): 41b (soñar despierto intermedio), 67a (ideas poco usuales). → Creatividad moderada.
+
+Factores que podrían interpretarse como más bajos:
+O (Aprehensión): 44a (casi nunca preocuparse), 85c (no avergonzarse). → Baja ansiedad, lo cual es positivo.
+
+Q4 (Tensión): 25a (muy rara vez inquieto), 69b (ocasionalmente cuesta dormir). → Nivel bajo-medio de tensión.
+
+L (Sospecha): 38c (no dudar de franqueza), 63a (la mayoría acepta culpa). → Confianza en otros, bajo nivel de sospecha.
+
+📊 Perfil general con tus respuestas
+Sociable, abierto, cooperativo (alto A, H).
+
+Responsable y organizado (alto G, Q3).
+
+Estable emocionalmente, baja ansiedad (alto C, bajo O, bajo Q4).
+
+Moderadamente dominante y asertivo (E medio).
+
+Creativo y con apertura intelectual (M medio-alto).
+
+Confianza en los demás, baja suspicacia (L bajo).
