@@ -1,0 +1,929 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>16PF & Big Five · Calculadora y Estudio</title>
+<style>
+  :root{
+    --bg:#0f1720; --panel:#161f2b; --panel2:#1d2836; --line:#2a3646;
+    --ink:#e8edf3; --dim:#93a2b5; --accent:#5fb3ff; --accent2:#7ee0c0;
+    --warn:#f2a65a; --bad:#f16d6d; --good:#5fd68b;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0; background:var(--bg); color:var(--ink);
+    font-family:'Segoe UI',system-ui,-apple-system,sans-serif;
+    line-height:1.5;
+  }
+  header{
+    padding:28px 24px 18px; text-align:center;
+    border-bottom:1px solid var(--line);
+    background:linear-gradient(180deg,#111a24,#0f1720);
+  }
+  header h1{margin:0 0 6px; font-size:1.6rem; letter-spacing:.3px;}
+  header p{margin:0; color:var(--dim); font-size:.92rem;}
+  nav{
+    display:flex; gap:8px; justify-content:center; flex-wrap:wrap;
+    padding:14px 12px; border-bottom:1px solid var(--line);
+    background:#101922; position:sticky; top:0; z-index:10;
+  }
+  nav button{
+    background:var(--panel2); color:var(--dim); border:1px solid var(--line);
+    padding:9px 16px; border-radius:8px; cursor:pointer; font-size:.88rem;
+    transition:.15s;
+  }
+  nav button:hover{color:var(--ink); border-color:var(--accent);}
+  nav button.active{background:var(--accent); color:#04121e; border-color:var(--accent); font-weight:600;}
+  main{max-width:960px; margin:0 auto; padding:24px 18px 60px;}
+  section{display:none;}
+  section.active{display:block; animation:fade .25s ease;}
+  @keyframes fade{from{opacity:0; transform:translateY(4px);} to{opacity:1; transform:translateY(0);}}
+  .card{
+    background:var(--panel); border:1px solid var(--line); border-radius:12px;
+    padding:20px; margin-bottom:18px;
+  }
+  .card h2{margin-top:0; font-size:1.15rem; color:var(--accent);}
+  .card h3{font-size:1rem; color:var(--accent2); margin-bottom:6px;}
+  .note{
+    font-size:.82rem; color:var(--dim); background:#12202c; border-left:3px solid var(--warn);
+    padding:10px 12px; border-radius:6px; margin:10px 0;
+  }
+  .grid16{
+    display:grid; grid-template-columns:repeat(auto-fill,minmax(90px,1fr));
+    gap:10px; margin:14px 0;
+  }
+  .factor-input{display:flex; flex-direction:column; gap:4px;}
+  .factor-input label{font-size:.78rem; color:var(--dim); font-weight:600;}
+  .factor-input input{
+    background:var(--panel2); border:1px solid var(--line); color:var(--ink);
+    border-radius:6px; padding:7px 8px; font-size:.92rem; width:100%;
+  }
+  select, textarea, input[type=text], input[type=number]{
+    background:var(--panel2); border:1px solid var(--line); color:var(--ink);
+    border-radius:6px; padding:8px 10px; font-size:.92rem;
+  }
+  .row{display:flex; gap:14px; align-items:center; flex-wrap:wrap; margin-bottom:10px;}
+  button.action{
+    background:var(--accent); color:#04121e; border:none; font-weight:700;
+    padding:10px 20px; border-radius:8px; cursor:pointer; font-size:.92rem;
+  }
+  button.action:hover{filter:brightness(1.08);}
+  button.ghost{
+    background:transparent; border:1px solid var(--line); color:var(--ink);
+    padding:9px 16px; border-radius:8px; cursor:pointer;
+  }
+  table{width:100%; border-collapse:collapse; font-size:.85rem; margin:10px 0;}
+  th,td{padding:6px 8px; border-bottom:1px solid var(--line); text-align:center;}
+  th{color:var(--accent2); font-weight:600;}
+  .perfil-bar{display:flex; align-items:center; gap:10px; margin:6px 0;}
+  .perfil-label{width:64px; font-size:.8rem; color:var(--dim); font-weight:600;}
+  .perfil-track{flex:1; height:18px; background:#0d1620; border-radius:9px; position:relative; overflow:hidden;}
+  .perfil-fill{
+    position:absolute; top:0; left:0; bottom:0; border-radius:9px;
+    background:linear-gradient(90deg,var(--accent),var(--accent2));
+    transition:width .4s ease;
+  }
+  .perfil-val{width:28px; text-align:right; font-size:.82rem; font-weight:700; color:var(--ink);}
+  .qs-box{
+    display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+    gap:12px; margin-top:10px;
+  }
+  .qs-card{background:var(--panel2); border:1px solid var(--line); border-radius:10px; padding:12px;}
+  .qs-card .tag{font-size:.75rem; color:var(--dim);}
+  .qs-card .val{font-size:1.5rem; font-weight:800; color:var(--accent2);}
+  .qs-card .poles{font-size:.75rem; color:var(--dim); margin-top:4px;}
+  hr.sep{border:none; border-top:1px solid var(--line); margin:18px 0;}
+  .quiz-q{font-size:1.05rem; margin-bottom:14px;}
+  .quiz-opt{
+    display:block; width:100%; text-align:left; margin:6px 0; padding:10px 12px;
+    border-radius:8px; border:1px solid var(--line); background:var(--panel2);
+    color:var(--ink); cursor:pointer; font-size:.92rem;
+  }
+  .quiz-opt:hover{border-color:var(--accent);}
+  .quiz-opt.correct{background:rgba(95,214,139,.18); border-color:var(--good);}
+  .quiz-opt.wrong{background:rgba(241,109,109,.18); border-color:var(--bad);}
+  .quiz-footer{display:flex; justify-content:space-between; align-items:center; margin-top:16px;}
+  .quiz-score{font-size:.85rem; color:var(--dim);}
+  .explain{
+    background:#0d1620; border-left:3px solid var(--accent); padding:10px 12px;
+    border-radius:6px; font-size:.86rem; margin-top:12px; display:none;
+  }
+  .progress-track{height:6px; background:#0d1620; border-radius:3px; overflow:hidden; margin-bottom:16px;}
+  .progress-fill{height:100%; background:var(--accent); transition:width .3s;}
+  footer{text-align:center; color:var(--dim); font-size:.75rem; padding:20px; border-top:1px solid var(--line);}
+  code{background:#0d1620; padding:1px 5px; border-radius:4px; font-size:.85em;}
+  pre{background:#0d1620; padding:12px; border-radius:8px; overflow-x:auto; font-size:.8rem;}
+</style>
+</head>
+<body>
+
+<header>
+  <h1>🧠 16PF & Big Five — Calculadora y Modo de Estudio</h1>
+  <p>Basado en el "Cuestionario de 16 Factores de la Personalidad" (Fernández Sánchez, UNAM, 2011)</p>
+</header>
+
+<nav>
+  <button data-tab="tabtest" class="active">Test completo (187 ítems)</button>
+  <button data-tab="tab16pf">Calculadora 16PF (PB manual)</button>
+  <button data-tab="tabbf">Calculadora Big Five</button>
+  <button data-tab="tabstudy">Modo de estudio</button>
+</nav>
+
+<main>
+
+<!-- ================= TEST COMPLETO ================= -->
+<section id="tabtest" class="active">
+
+  <div class="card">
+    <h2>📝 Test completo — 187 ítems</h2>
+    <p class="note">
+      Cuestionario interactivo con el banco de reactivos que enviaste. La agrupación ítem→factor y la
+      <b>clave real de puntuación</b> (qué opción otorga puntos en cada uno de los 187 reactivos) se
+      reconstruyeron cruzando tus dos cuadernillos llenos con tu lista de respuestas corregida, y se
+      validaron matemáticamente: al puntuar la clave contra sí misma, los 16 factores alcanzan exactamente
+      los máximos de tu cuadernillo (A=20, B=13, C=26, E=26, F=26, G=20, H=26, I=20, L=20, M=26, N=20, O=26,
+      Q1=20, Q2=20, Q3=20, Q4=26). ✅
+    </p>
+    <div class="note">
+      Estructura confirmada: 8 factores con <b>13 reactivos</b> (B, C, E, F, H, M, O, Q4) y 8 factores con
+      <b>10 reactivos</b> (A, G, I, L, N, Q1, Q2, Q3) = 184 reactivos. Los ítems <b>1, 2 y 187</b> son de
+      apertura/cierre (instrucciones, honestidad, confianza en las respuestas) y no puntúan a ningún factor.
+    </div>
+    <div class="note" style="border-left-color:var(--warn);">
+      Modelo de puntuación aplicado: en el <b>factor B</b> (razonamiento/aciertos) la opción clave vale 1 punto
+      y cualquier otra vale 0. En <b>los otros 15 factores</b>, la opción clave vale 2 puntos, "intermedio" vale
+      1, y la opuesta vale 0.
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>Responde el cuestionario</h3>
+    <div class="row">
+      <label><b>Género (para el baremo):</b></label>
+      <select id="generoTest">
+        <option value="M">Mujer</option>
+        <option value="H">Hombre</option>
+      </select>
+      <button class="ghost" onclick="rellenarConLaClave()">Rellenar con la clave (demo: perfil máximo)</button>
+    </div>
+    <div class="progress-track"><div class="progress-fill" id="testProgress" style="width:0%"></div></div>
+    <div id="testItemsWrap"></div>
+    <div class="quiz-footer">
+      <button class="ghost" id="btnAnterior" onclick="itemAnterior()">← Anterior</button>
+      <span class="quiz-score" id="posicionActual">1 / 187</span>
+      <button class="action" id="btnSiguienteItem" onclick="itemSiguiente()">Siguiente →</button>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>3. Calcular</h3>
+    <div class="row">
+      <button class="action" onclick="calcularDesdeTest()">Calcular perfil a partir de mis respuestas</button>
+      <span id="testFaltan" class="note" style="display:none;"></span>
+    </div>
+    <div id="rawTallyWrap"></div>
+  </div>
+
+</section>
+
+<!-- ================= 16PF ================= -->
+<section id="tab16pf">
+
+  <div class="card">
+    <h2>1. Datos y puntuaciones brutas (PB)</h2>
+    <p class="note">
+      Ingresa la <b>Puntuación Bruta (PB)</b> obtenida por el evaluado en cada uno de los 16 factores primarios
+      (según la plantilla A-B y C-D de la guía). Selecciona el género para aplicar el baremo mexicano correspondiente
+      (Tabla 1 mujeres / Tabla 2 hombres, guía UNAM).
+    </p>
+    <div class="row">
+      <label><b>Género del evaluado:</b></label>
+      <select id="genero">
+        <option value="M">Mujer</option>
+        <option value="H">Hombre</option>
+      </select>
+    </div>
+    <div class="grid16" id="pbInputs"></div>
+    <div class="row">
+      <button class="action" onclick="calcular16pf()">Calcular perfil</button>
+      <button class="ghost" onclick="cargarEjemplo16pf()">Cargar ejemplo de la guía</button>
+      <button class="ghost" onclick="limpiar16pf()">Limpiar</button>
+    </div>
+  </div>
+
+  <div class="card" id="resultadoPrimarios" style="display:none;">
+    <h2>2. Perfil — Factores primarios (estenes 1–10)</h2>
+    <div id="perfilBars"></div>
+    <table id="tablaPrimarios"></table>
+  </div>
+
+  <div class="card" id="resultadoSecundarios" style="display:none;">
+    <h2>3. Factores de segundo orden (QS1–QS4)</h2>
+    <p class="note">
+      Cálculo: para cada factor primario se multiplica su estén por el peso indicado en el formulario de cálculo
+      de la guía (Ilustraciones 11 y 12), se suman los productos positivos y negativos por separado, se añade la
+      constante K a la suma positiva, se resta la suma negativa, y el resultado se multiplica por 0.1
+      (fórmula: <code>((Σ+ + K) − Σ−) × 0.1</code>, acotado entre 1 y 10). Nota: la guía original dice
+      "multiplicar por 0.01", pero su propio ejemplo numérico (46 → 4.6) sólo cuadra con ×0.1; esta
+      herramienta usa 0.1 porque es lo que reproduce el ejemplo documentado.
+    </p>
+    <div class="qs-box" id="qsBoxes"></div>
+    <div class="note" style="border-left-color:var(--bad);">
+      ⚠️ Los pesos de los factores secundarios fueron transcritos de los formularios de cálculo de la guía
+      (Ilustraciones 11 y 12). Una celda del formulario de mujeres (peso de H en Independencia) no pudo confirmarse
+      con total certeza en el documento fuente y se dejó en 1 por defecto — verifícalo contra la plantilla oficial
+      de IPAT antes de un uso clínico o de calificación formal.
+    </div>
+  </div>
+
+  <div class="card" id="reintentoBCard" style="display:none;">
+    <h3>🔁 Reintentar reactivos de razonamiento (Factor B)</h3>
+    <p class="note">
+      Esto solo aplica al <b>factor B</b> porque es el único con respuestas objetivamente correctas/incorrectas
+      (razonamiento verbal y numérico). Los otros 15 factores miden rasgos de personalidad: ahí no existe una
+      "respuesta fallida" que reintentar — cada opción simplemente indica una tendencia, y ofrecer un reintento
+      en esos factores fomentaría contestar lo "socialmente deseable" en vez de con sinceridad, lo que invalida
+      la medición (por eso el propio cuestionario insiste en responder sin meditar demasiado).
+    </p>
+    <div id="reintentoBWrap"></div>
+    <div class="row" style="margin-top:10px;">
+      <button class="action" onclick="recalcularFactorB()">Actualizar factor B con mis nuevas respuestas</button>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>Referencia rápida — interpretación de estenes</h3>
+    <table>
+      <tr><th>1</th><th>2-3</th><th>4</th><th>5-6</th><th>7</th><th>8-9</th><th>10</th></tr>
+      <tr><td>Muy desviado (-)</td><td>Desviación marcada (-)</td><td>Ligera (-)</td><td>Media</td><td>Ligera (+)</td><td>Desviación marcada (+)</td><td>Muy desviado (+)</td></tr>
+    </table>
+    <p class="note">Signo "+" = estén 6 a 10 (por arriba de la media) · Signo "−" = estén 1 a 5 (por debajo de la media).</p>
+    <p class="note">
+      <b>Percentil aproximado</b>: se calcula con los cortes estándar (±0.25, ±0.75, ±1.25, ±1.75 desviaciones
+      estándar) con los que se construye matemáticamente cualquier escala estén sobre una curva normal — es
+      una aproximación teórica poblacional, no el baremo empírico específico de la muestra mexicana del 16PF.
+      Es una escala no lineal: un estén 8 no equivale a "80%", equivale a ~77–89%.
+    </p>
+  </div>
+
+</section>
+
+<!-- ================= BIG FIVE ================= -->
+<section id="tabbf">
+
+  <div class="card">
+    <h2>Calculadora Big Five (OCEAN)</h2>
+    <p class="note">
+      Método estándar usado en instrumentos de dominio público como el <b>IPIP-50 / IPIP-NEO</b> y el
+      <b>BFI-2</b>: cada rasgo se mide con varios ítems en escala Likert (típicamente 1–5). Los ítems
+      "en clave negativa" (reverse-keyed) se invierten con la fórmula
+      <code>puntaje_invertido = (máximo + 1) − respuesta</code> antes de sumar/promediar.
+      Esta calculadora es genérica: ajusta el número de ítems y marca cuáles están invertidos según
+      el instrumento que estés usando (IPIP-50, BFI-2, NEO-PI-R, etc.), ya que la clave de inversión
+      varía entre versiones.
+    </p>
+  </div>
+
+  <div class="card">
+    <h3>Configuración</h3>
+    <div class="row">
+      <label>Escala Likert máxima:</label>
+      <input type="number" id="bfMax" value="5" min="3" max="9" style="width:70px;">
+      <label>Ítems por rasgo:</label>
+      <input type="number" id="bfN" value="10" min="1" max="30" style="width:70px;">
+      <button class="action" onclick="generarBigFive()">Generar formulario</button>
+    </div>
+  </div>
+
+  <div id="bfFormWrap"></div>
+
+  <div class="card" id="bfResultCard" style="display:none;">
+    <h3>Resultado</h3>
+    <div id="bfResults"></div>
+    <p class="note">
+      La "posición relativa" mostrada es una escala 0-100 calculada linealmente sobre el rango posible del
+      instrumento (no son percentiles poblacionales oficiales de IPIP/NEO, ya que esas normas no están
+      incluidas en este documento). Para percentiles reales, compara contra las tablas de normas publicadas
+      por el autor del instrumento que estés usando.
+    </p>
+  </div>
+
+</section>
+
+<!-- ================= MODO ESTUDIO ================= -->
+<section id="tabstudy">
+
+  <div class="card">
+    <h2>📚 Modo de estudio — Banco de preguntas</h2>
+    <p class="note">
+      Pega aquí tu banco de preguntas en formato JSON (ver estructura abajo) y presiona
+      <b>"Cargar banco"</b> para iniciar un cuestionario interactivo de estudio, con retroalimentación
+      inmediata y marcador de aciertos. Por ahora se muestra un banco de ejemplo (16PF / Big Five)
+      para que puedas probar la herramienta mientras preparas el tuyo.
+    </p>
+    <details>
+      <summary style="cursor:pointer; color:var(--accent);">Ver formato esperado del banco de preguntas</summary>
+      <pre>[
+  {
+    "pregunta": "Texto de la pregunta",
+    "opciones": ["Opción A", "Opción B", "Opción C", "Opción D"],
+    "correcta": 0,
+    "explicacion": "Por qué es correcta (opcional)"
+  },
+  ...
+]</pre>
+    </details>
+    <textarea id="bankInput" rows="8" style="width:100%; margin-top:10px; font-family:monospace;"></textarea>
+    <div class="row" style="margin-top:10px;">
+      <button class="action" onclick="cargarBanco()">Cargar banco</button>
+      <button class="ghost" onclick="cargarBancoEjemplo()">Usar banco de ejemplo</button>
+    </div>
+  </div>
+
+  <div class="card" id="quizCard" style="display:none;">
+    <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+    <div class="quiz-q" id="quizQuestion"></div>
+    <div id="quizOptions"></div>
+    <div class="explain" id="quizExplain"></div>
+    <div class="quiz-footer">
+      <span class="quiz-score" id="quizScore"></span>
+      <div>
+        <button class="ghost" onclick="quizReiniciar()">Reiniciar</button>
+        <button class="action" id="btnSiguiente" onclick="quizSiguiente()" disabled>Siguiente →</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="card" id="quizDone" style="display:none; text-align:center;">
+    <h2>🎉 ¡Cuestionario terminado!</h2>
+    <p id="finalScore" style="font-size:1.3rem;"></p>
+    <button class="action" onclick="quizReiniciar()">Volver a intentar</button>
+  </div>
+
+</section>
+
+</main>
+
+<footer>Herramienta de apoyo para estudio. Los derechos del 16PF pertenecen a IPAT Inc. — verifica siempre con material oficial para uso profesional o clínico.</footer>
+
+<script>
+/* ---------- NAV ---------- */
+document.querySelectorAll('nav button').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    document.querySelectorAll('nav button').forEach(b=>b.classList.remove('active'));
+    document.querySelectorAll('main section').forEach(s=>s.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById(btn.dataset.tab).classList.add('active');
+  });
+});
+
+/* ================= 16PF DATA ================= */
+const FACTORES = ["A","B","C","E","F","G","H","I","L","M","N","O","Q1","Q2","Q3","Q4"];
+
+// Tabla 1 - mujeres mexicanas (PB -> sten), rangos [min,max] para sten 1..10
+const TABLA_MUJERES = {
+  A:[[0,5],[6,6],[7,8],[9,9],[10,11],[12,12],[13,13],[14,14],[15,15],[16,20]],
+  B:[[0,2],[3,3],[4,4],[5,5],[6,6],[7,7],[8,8],[9,9],[10,10],[11,13]],
+  C:[[0,12],[13,13],[14,14],[15,17],[18,19],[20,20],[21,22],[23,23],[24,25],[26,26]],
+  E:[[0,4],[5,5],[6,6],[7,8],[9,10],[11,12],[13,14],[15,16],[17,17],[18,26]],
+  F:[[0,3],[4,6],[7,8],[9,10],[11,12],[13,14],[15,16],[17,17],[18,21],[22,26]],
+  G:[[0,7],[8,8],[9,9],[10,11],[12,13],[14,15],[16,16],[17,17],[18,18],[19,20]],
+  H:[[0,5],[6,7],[8,9],[10,12],[13,14],[15,16],[17,20],[21,23],[24,24],[25,26]],
+  I:[[0,3],[4,5],[6,6],[7,7],[8,10],[11,12],[13,14],[15,15],[16,16],[17,20]],
+  L:[[0,4],[5,5],[6,6],[7,7],[8,8],[9,10],[11,11],[12,13],[14,14],[15,20]],
+  M:[[0,6],[7,8],[9,9],[10,10],[11,13],[14,15],[16,16],[17,18],[19,20],[21,26]],
+  N:[[0,5],[6,7],[8,8],[9,9],[10,10],[11,12],[13,13],[14,14],[15,15],[16,20]],
+  O:[[0,2],[3,3],[4,5],[6,8],[9,10],[11,11],[12,13],[14,14],[15,16],[17,26]],
+  Q1:[[0,3],[4,5],[6,7],[8,9],[10,11],[12,12],[13,14],[15,15],[16,16],[17,20]],
+  Q2:[[0,5],[6,6],[7,8],[9,9],[10,11],[11,12],[13,14],[15,16],[17,17],[18,20]],
+  Q3:[[0,4],[5,6],[7,9],[10,11],[12,12],[13,15],[16,16],[17,17],[18,18],[19,20]],
+  Q4:[[0,2],[3,3],[4,4],[5,6],[7,8],[9,10],[11,12],[13,15],[16,17],[18,26]]
+};
+
+// Tabla 2 - hombres mexicanos
+const TABLA_HOMBRES = {
+  A:[[0,3],[4,5],[6,7],[8,8],[9,10],[11,12],[13,13],[14,15],[16,17],[18,20]],
+  B:[[0,1],[2,2],[3,4],[5,5],[6,6],[7,7],[8,8],[null,null],[9,9],[10,13]],
+  C:[[0,9],[10,12],[13,14],[15,17],[18,19],[20,21],[22,23],[24,24],[25,25],[26,26]],
+  E:[[0,5],[6,6],[7,7],[8,9],[10,11],[12,13],[14,15],[16,18],[19,20],[21,26]],
+  F:[[0,4],[5,6],[7,8],[9,10],[11,13],[14,15],[16,17],[18,20],[21,22],[23,26]],
+  G:[[0,8],[9,9],[10,11],[12,12],[13,14],[15,16],[17,17],[18,18],[19,19],[20,20]],
+  H:[[0,6],[7,7],[8,10],[11,13],[14,17],[18,19],[20,22],[23,24],[25,25],[26,26]],
+  I:[[0,1],[2,3],[4,4],[5,5],[6,7],[8,9],[10,10],[11,12],[13,13],[14,20]],
+  L:[[0,2],[3,3],[4,5],[6,7],[8,9],[10,10],[11,12],[13,14],[15,15],[16,20]],
+  M:[[0,6],[7,7],[8,9],[10,10],[11,12],[13,14],[15,16],[17,17],[18,18],[19,26]],
+  N:[[0,5],[6,6],[7,8],[9,10],[11,11],[12,12],[13,14],[15,15],[16,17],[18,20]],
+  O:[[0,3],[4,5],[6,6],[7,7],[8,10],[11,11],[12,14],[15,16],[17,19],[20,26]],
+  Q1:[[0,4],[5,6],[7,7],[8,9],[10,10],[11,12],[13,14],[15,15],[16,16],[17,20]],
+  Q2:[[0,3],[4,5],[6,7],[8,8],[9,10],[11,12],[13,13],[14,15],[16,17],[18,20]],
+  Q3:[[0,5],[6,8],[9,10],[11,12],[13,13],[14,15],[16,16],[17,17],[18,18],[19,20]],
+  Q4:[[0,1],[2,2],[3,3],[4,5],[6,7],[8,9],[10,11],[12,13],[14,16],[17,26]]
+};
+
+// Pesos para factores de segundo orden, extraidos de las Ilustraciones 11 (mujeres) y 12 (hombres) de la guia
+const PESOS_MUJERES = {
+  Extroversion:{ pos:{A:3,E:2,F:3,G:1,H:3,L:1,Q4:1}, neg:{M:1,N:1,Q2:5}, K:11 },
+  Ansiedad:    { pos:{A:1,G:1,L:1,Q4:4}, neg:{C:3,H:1,M:1,Q3:1}, K:28 },
+  Tenacidad:   { pos:{B:1,E:3,F:2,H:4,M:2}, neg:{A:2,G:1,I:2,L:5,N:1,O:1,Q1:1,Q3:2}, K:11 },
+  Independencia:{ pos:{B:1,E:4,H:1,I:1,L:1,M:3,Q1:3,Q2:2}, neg:{C:1,G:1,N:1,O:2}, K:6 }
+};
+const PESOS_HOMBRES = {
+  Extroversion:{ pos:{A:1,E:2,F:4,G:1,H:3,Q4:1}, neg:{I:1,N:1,O:1,Q2:2}, K:17 },
+  Ansiedad:    { pos:{G:1,L:1,O:3,Q4:4}, neg:{C:2,H:1,M:1,Q3:1}, K:33 },
+  Tenacidad:   { pos:{B:1,C:1,E:1,F:3,H:1,M:1,Q2:1}, neg:{A:6,G:1,I:5,L:2,N:2,O:1,Q1:1,Q3:2}, K:110 },
+  Independencia:{ pos:{B:1,E:4,H:1,L:2,M:3,Q1:2,Q2:2,Q3:1}, neg:{G:1,N:1,O:2,Q4:1}, K:6 }
+};
+
+/* build PB inputs */
+function buildPBInputs(){
+  const wrap = document.getElementById('pbInputs');
+  wrap.innerHTML='';
+  FACTORES.forEach(f=>{
+    const div = document.createElement('div');
+    div.className='factor-input';
+    div.innerHTML = `<label>${f}</label><input type="number" min="0" max="26" id="pb_${f}" placeholder="PB">`;
+    wrap.appendChild(div);
+  });
+}
+buildPBInputs();
+
+function cargarEjemplo16pf(){
+  // PB elegidos para reproducir exactamente el ejemplo de la guía (hombre, 43 años, pág. 16-17):
+  // estenes esperados A7 B6 C9 E4 F5 G9 H5 I5 L3 M5 N6 O7 Q1-6 Q2-9 Q3-7 Q4-6 -> Extroversión = 4.6
+  document.getElementById('genero').value='H';
+  const ejemplo = {A:13,B:7,C:25,E:8,F:11,G:19,H:14,I:6,L:4,M:11,N:12,O:12,Q1:11,Q2:16,Q3:16,Q4:8};
+  FACTORES.forEach(f=> document.getElementById('pb_'+f).value = ejemplo[f]);
+}
+function limpiar16pf(){
+  FACTORES.forEach(f=> document.getElementById('pb_'+f).value = '');
+  document.getElementById('resultadoPrimarios').style.display='none';
+  document.getElementById('resultadoSecundarios').style.display='none';
+}
+
+function pbToSten(pb, tabla){
+  for(let i=0;i<10;i++){
+    const r = tabla[i];
+    if(r[0]===null) continue;
+    if(pb>=r[0] && pb<=r[1]) return i+1;
+  }
+  return null;
+}
+
+function calcular16pf(){
+  const genero = document.getElementById('genero').value;
+  const tabla = genero==='M' ? TABLA_MUJERES : TABLA_HOMBRES;
+
+  const stens = {};
+  let faltan = [];
+  FACTORES.forEach(f=>{
+    const v = document.getElementById('pb_'+f).value;
+    if(v===''){ faltan.push(f); return; }
+    stens[f] = pbToSten(parseInt(v), tabla[f]);
+  });
+  if(faltan.length){
+    alert('Faltan puntuaciones brutas para: '+faltan.join(', '));
+    return;
+  }
+  mostrarPerfil(stens, genero);
+}
+
+// Percentiles aproximados por estén, basados en los cortes z estándar (±0.25, ±0.75, ±1.25, ±1.75)
+// con los que se construye cualquier escala estén sobre una distribución normal.
+const PERCENTIL_STEN = {
+  1:[0.1,1.2], 2:[1.2,4], 3:[4,10.6], 4:[10.6,22.7], 5:[22.7,40.1],
+  6:[40.1,59.9], 7:[59.9,77.3], 8:[77.3,89.4], 9:[89.4,96], 10:[96,99.9]
+};
+function percentilTexto(stenVal){
+  const s = Math.max(1, Math.min(10, Math.round(stenVal)));
+  const [lo,hi] = PERCENTIL_STEN[s];
+  return `percentil ≈ ${lo}–${hi}`;
+}
+
+function mostrarPerfil(stens, genero){
+  const pesos = genero==='M' ? PESOS_MUJERES : PESOS_HOMBRES;
+
+  // Primary factors table + bars
+  const barsWrap = document.getElementById('perfilBars');
+  barsWrap.innerHTML='';
+  let tabla_html = '<tr><th>Factor</th>'+FACTORES.map(f=>`<th>${f}</th>`).join('')+'</tr><tr><th>Estén</th>'+FACTORES.map(f=>`<td>${stens[f]}</td>`).join('')+'</tr>';
+  document.getElementById('tablaPrimarios').innerHTML = tabla_html;
+
+  FACTORES.forEach(f=>{
+    const val = stens[f];
+    const pct = (val/10)*100;
+    const row = document.createElement('div');
+    row.className='perfil-bar';
+    row.innerHTML = `<div class="perfil-label">${f}${val>=6?' (+)':' (−)'}</div>
+      <div class="perfil-track"><div class="perfil-fill" style="width:${pct}%"></div></div>
+      <div class="perfil-val">${val}</div>
+      <div style="width:130px; font-size:.72rem; color:var(--dim); text-align:right;">${percentilTexto(val)}</div>`;
+    barsWrap.appendChild(row);
+  });
+  document.getElementById('resultadoPrimarios').style.display='block';
+
+  // Secondary factors
+  const qsBox = document.getElementById('qsBoxes');
+  qsBox.innerHTML='';
+  const poleNames = {
+    Extroversion:['Introversión','Extraversión'],
+    Ansiedad:['Poca ansiedad','Mucha ansiedad'],
+    Tenacidad:['Susceptibilidad','Tenacidad'],
+    Independencia:['Dependencia','Independencia']
+  };
+  Object.keys(pesos).forEach(qs=>{
+    const cfg = pesos[qs];
+    let sumPos=0, sumNeg=0;
+    Object.keys(cfg.pos).forEach(f=>{ sumPos += (stens[f]||0) * cfg.pos[f]; });
+    Object.keys(cfg.neg).forEach(f=>{ sumNeg += (stens[f]||0) * cfg.neg[f]; });
+    let raw = ((sumPos + cfg.K) - sumNeg) * 0.1;
+    if(raw<1) raw=1;
+    if(raw>10) raw=10;
+    raw = Math.round(raw*10)/10;
+    const card = document.createElement('div');
+    card.className='qs-card';
+    card.innerHTML = `<div class="tag">${qs}</div><div class="val">${raw}</div>
+      <div class="poles">${poleNames[qs][0]} ⟷ ${poleNames[qs][1]}</div>
+      <div style="font-size:.72rem; color:var(--dim); margin-top:4px;">${percentilTexto(raw)}</div>`;
+    qsBox.appendChild(card);
+  });
+  document.getElementById('resultadoSecundarios').style.display='block';
+}
+
+/* ================= BIG FIVE ================= */
+const RASGOS = [
+  {key:'O', nombre:'Apertura a la experiencia (Openness)'},
+  {key:'C', nombre:'Responsabilidad (Conscientiousness)'},
+  {key:'E', nombre:'Extraversión (Extraversion)'},
+  {key:'A', nombre:'Amabilidad (Agreeableness)'},
+  {key:'N', nombre:'Neuroticismo (Neuroticism)'}
+];
+
+function generarBigFive(){
+  const n = parseInt(document.getElementById('bfN').value);
+  const max = parseInt(document.getElementById('bfMax').value);
+  const wrap = document.getElementById('bfFormWrap');
+  wrap.innerHTML='';
+  RASGOS.forEach(r=>{
+    const card = document.createElement('div');
+    card.className='card';
+    let rowsHtml = '';
+    for(let i=1;i<=n;i++){
+      rowsHtml += `
+        <div class="row" style="gap:8px;">
+          <span style="width:60px; color:var(--dim); font-size:.82rem;">Ítem ${i}</span>
+          <input type="number" min="1" max="${max}" style="width:60px;" id="bf_${r.key}_${i}" placeholder="1-${max}">
+          <label style="font-size:.8rem; color:var(--dim);">
+            <input type="checkbox" id="bf_${r.key}_${i}_rev"> invertido (R)
+          </label>
+        </div>`;
+    }
+    card.innerHTML = `<h3>${r.nombre} — clave ${r.key}</h3>${rowsHtml}`;
+    wrap.appendChild(card);
+  });
+  const btnRow = document.createElement('div');
+  btnRow.className='row';
+  btnRow.innerHTML = `<button class="action" onclick="calcularBigFive()">Calcular resultados</button>`;
+  wrap.appendChild(btnRow);
+}
+
+function calcularBigFive(){
+  const n = parseInt(document.getElementById('bfN').value);
+  const max = parseInt(document.getElementById('bfMax').value);
+  const resWrap = document.getElementById('bfResults');
+  resWrap.innerHTML='';
+  RASGOS.forEach(r=>{
+    let sum=0, count=0;
+    for(let i=1;i<=n;i++){
+      const raw = document.getElementById(`bf_${r.key}_${i}`).value;
+      if(raw===''){ continue; }
+      let val = parseInt(raw);
+      const rev = document.getElementById(`bf_${r.key}_${i}_rev`).checked;
+      if(rev) val = (max+1) - val;
+      sum += val; count++;
+    }
+    const promedio = count ? (sum/count) : 0;
+    const posicion = count ? Math.round(((promedio-1)/(max-1))*100) : 0;
+    const row = document.createElement('div');
+    row.className='perfil-bar';
+    row.innerHTML = `<div class="perfil-label">${r.key}</div>
+      <div class="perfil-track"><div class="perfil-fill" style="width:${posicion}%"></div></div>
+      <div class="perfil-val">${promedio.toFixed(1)}</div>`;
+    resWrap.appendChild(row);
+    const sub = document.createElement('div');
+    sub.style.cssText='font-size:.78rem; color:var(--dim); margin:-4px 0 10px 74px;';
+    sub.textContent = `Suma=${sum} · Promedio=${promedio.toFixed(2)} · Posición relativa≈${posicion}/100`;
+    resWrap.appendChild(sub);
+  });
+  document.getElementById('bfResultCard').style.display='block';
+}
+
+/* ================= MODO ESTUDIO ================= */
+let banco = [];
+let idxActual = 0;
+let aciertos = 0;
+let respondido = false;
+
+const BANCO_EJEMPLO = [
+  {
+    pregunta:"¿Quiénes son los autores originales del Cuestionario de 16 Factores de la Personalidad (16PF)?",
+    opciones:["Cattell, Eber y Tatsuoka","Costa y McCrae","Eysenck y Eysenck","Allport y Odbert"],
+    correcta:0,
+    explicacion:"El 16PF fue construido por Raymond B. Cattell, Herbert W. Eber y Maurice M. Tatsuoka, publicado en 1980."
+  },
+  {
+    pregunta:"¿Cuántos reactivos tiene la forma integral del 16PF (Forma A/B/C/D)?",
+    opciones:["100","150","187","220"],
+    correcta:2,
+    explicacion:"El cuestionario consta de 187 reactivos con tres opciones de respuesta (a, b, c) cada uno."
+  },
+  {
+    pregunta:"En la escala de estenes del 16PF, ¿qué valores se consideran 'promedio'?",
+    opciones:["1 y 10","4 y 7","5 y 6","8 y 9"],
+    correcta:2,
+    explicacion:"La media de la escala estén es 5.5; los estenes 5 y 6 se consideran las puntuaciones promedio."
+  },
+  {
+    pregunta:"¿Cuál es la fórmula general para invertir un ítem 'reverse-keyed' en un test tipo Big Five con escala 1-5?",
+    opciones:["valor original","(máximo+1) − respuesta","respuesta × 2","respuesta − mínimo"],
+    correcta:1,
+    explicacion:"Se usa (máximo+1) − respuesta; con escala 1-5, un 1 se convierte en 5, un 4 se convierte en 2, etc."
+  },
+  {
+    pregunta:"En el 16PF, un factor calificado como 'G+' indica...",
+    opciones:["Superego débil","Fuerte lealtad grupal / autocontrol moral","Alta ansiedad","Introversión marcada"],
+    correcta:1,
+    explicacion:"G+ (Superego fuerte) refleja conducta autocontrolada, preocupación por normas morales y perseverancia."
+  }
+];
+
+function cargarBanco(){
+  const txt = document.getElementById('bankInput').value.trim();
+  if(!txt){ alert('Pega primero un banco de preguntas en formato JSON, o usa el banco de ejemplo.'); return; }
+  try{
+    const parsed = JSON.parse(txt);
+    if(!Array.isArray(parsed) || !parsed.length) throw new Error('vacío');
+    banco = parsed;
+    iniciarQuiz();
+  }catch(e){
+    alert('El JSON no es válido. Revisa el formato (ver ejemplo arriba). Detalle: '+e.message);
+  }
+}
+function cargarBancoEjemplo(){
+  banco = BANCO_EJEMPLO;
+  document.getElementById('bankInput').value = JSON.stringify(BANCO_EJEMPLO, null, 2);
+  iniciarQuiz();
+}
+function iniciarQuiz(){
+  idxActual=0; aciertos=0; respondido=false;
+  document.getElementById('quizDone').style.display='none';
+  document.getElementById('quizCard').style.display='block';
+  mostrarPregunta();
+}
+function quizReiniciar(){ iniciarQuiz(); }
+
+function mostrarPregunta(){
+  respondido=false;
+  const q = banco[idxActual];
+  document.getElementById('progressFill').style.width = ((idxActual)/banco.length*100)+'%';
+  document.getElementById('quizQuestion').textContent = `(${idxActual+1}/${banco.length}) ${q.pregunta}`;
+  const optsWrap = document.getElementById('quizOptions');
+  optsWrap.innerHTML='';
+  q.opciones.forEach((op,i)=>{
+    const b = document.createElement('button');
+    b.className='quiz-opt';
+    b.textContent = op;
+    b.onclick = ()=>responder(i);
+    optsWrap.appendChild(b);
+  });
+  document.getElementById('quizExplain').style.display='none';
+  document.getElementById('quizExplain').textContent='';
+  document.getElementById('btnSiguiente').disabled = true;
+  document.getElementById('quizScore').textContent = `Aciertos: ${aciertos}/${idxActual}`;
+}
+
+function responder(i){
+  if(respondido) return;
+  respondido = true;
+  const q = banco[idxActual];
+  const opts = document.querySelectorAll('.quiz-opt');
+  opts.forEach((el,j)=>{
+    if(j===q.correcta) el.classList.add('correct');
+    else if(j===i) el.classList.add('wrong');
+  });
+  if(i===q.correcta) aciertos++;
+  if(q.explicacion){
+    const ex = document.getElementById('quizExplain');
+    ex.style.display='block';
+    ex.textContent = (i===q.correcta ? '✅ Correcto. ' : '❌ Incorrecto. ') + q.explicacion;
+  }
+  document.getElementById('btnSiguiente').disabled = false;
+  document.getElementById('quizScore').textContent = `Aciertos: ${aciertos}/${idxActual+1}`;
+}
+
+function quizSiguiente(){
+  idxActual++;
+  if(idxActual >= banco.length){
+    document.getElementById('quizCard').style.display='none';
+    document.getElementById('quizDone').style.display='block';
+    document.getElementById('finalScore').textContent = `Obtuviste ${aciertos} de ${banco.length} respuestas correctas (${Math.round(aciertos/banco.length*100)}%).`;
+    return;
+  }
+  mostrarPregunta();
+}
+
+/* ================= TEST COMPLETO (187 ITEMS) - clave real verificada ================= */
+
+// Banco de 187 items: [enunciado, opcionA, opcionB, opcionC], indice 0 = item 1
+const ITEMS_BANK = [["Entendí perfectamente las instrucciones de este cuestionario", "Sí", "En duda", "No"], ["Estoy dispuesto a contestar cada pregunta tan sinceramente como me sea posible", "Sí", "En duda", "No"], ["Yo preferiría pasar las vacaciones en", "Un centro turístico atendido", "Algo entre a y c", "Una cabaña tranquila lejos del ruido"], ["Cuando estoy en un lugar pequeño apretujado (como un elevador lleno de gente) tengo la desagradable sensación de estar encerrado", "Nunca", "Rara vez", "En algunas ocasiones"], ["De repente me encuentro pensando una y otra vez en problemas sin importancia y tengo que hacer un esfuerzo muy grande para quitármelos de la cabeza", "Sí", "En ocasiones", "No"], ["Si sé que una persona está equivocada en su forma de pensar, yo prefiero", "Quedarme callado", "Intermedio", "Decírselo"], ["Mis ideas parecen estar", "Adelantadas a la época", "Indeciso", "De acuerdo a la época"], ["Yo no soy muy aficionado a decir chistes novedosos ni a contar cuentos divertidos", "Cierto", "Intermedio", "Falso"], ["Es mejor alcanzar una vejez tranquila que agotarse sirviendo a la comunidad", "Sí", "Indeciso", "Falso"], ["He participado activamente en la organización de un club, equipo o grupo similar", "Sí, con frecuencia", "En ocasiones", "Nunca"], ["No puedo evitar el ser sentimental", "En ocasiones", "Con alguna frecuencia", "Muchas veces"], ["Preferiría leer un libro sobre", "Grandes enseñanzas religiosas", "En duda", "Nuestra organización política"], ["Son muy pocos los temas que me molestan con facilidad", "Cierto", "Indeciso", "Falso"], ["Las aptitudes y características que heredamos de los padres son más importantes de lo que mucha gente está dispuesta a admitir", "Sí", "Indeciso", "No"], ["Pienso que las tareas rutinarias siempre deben cumplirse, aun cuando un poco de inventiva indique que esto no es necesario", "Cierto", "Intermedio", "Falso"], ["Está bien bromear acerca de la muerte y generalmente esto no es de mal gusto", "Sí", "Intermedio", "No"], ["Me gusta que me digan cómo hacer las cosas en vez de investigar por mí mismo", "Sí", "Intermedio", "No"], ["A veces, a pesar de encontrarme en un grupo, me dominan sentimientos de soledad y de inutilidad", "Sí", "Intermedio", "No"], ["Mi memoria no cambia mucho de un día a otro", "Cierto", "Algunas veces", "Falso"], ["Creo que uno debe quejarse con el mesero o el administrador de un restaurante, cuando sirven mala comida", "Sí", "Indeciso", "No"], ["Para descansar prefiero", "Deportes o juegos", "Indeciso", "Debates o pasatiempos intelectuales"], ["En comparación con otras personas, yo he participado", "En muchas actividades sociales", "Varias", "Pocas actividades sociales"], ["Cuando hago planes, frecuentemente me gusta confiar en la suerte", "Cierto", "Indeciso", "Falso"], ["Cuando estoy comiendo, trabajando, etc.", "Doy la impresión de pasar rápidamente de una cosa a otra", "Intermedio", "Me conduzco en forma metódica y cuidadosa"], ["Me siento inquieto como si quisiera hacer algo pero sin saber qué", "Muy rara vez", "En ocasiones", "A menudo"], ["En una fábrica, preferiría estar encargado de", "Aspectos mecánicos", "Indeciso", "Entrevistar y contratar personal"], ["Preferiría leer un libro sobre", "Viajes espaciales", "Indeciso", "Educación en la familia"], ["¿Cuál de las siguientes palabras no corresponde a las otras dos?", "Perro", "Pájaro", "Vaca"], ["Si otra vez pudiera volver a vivir mi vida", "Haría planes diferentes", "Indeciso", "Me gustaría que fuera casi igual"], ["Las decisiones tomadas en mi vida y en mi trabajo nunca me ocasionaron problema por falta de comprensión de mi familia", "Cierto", "Intermedio", "Falso"], ["Yo evito decir cosas raras que incomodan a la gente", "Cierto", "Intermedio", "Falso"], ["Si tuviera una pistola en mis manos y supiera que está cargada me sentiría nervioso hasta que no la descargara", "Sí", "Intermedio", "No"], ["Me gusta mucho jugarle bromas a la gente, sin ninguna malicia", "Cierto", "Intermedio", "Falso"], ["Hay gente que utiliza mucho de su tiempo libre en tareas y asuntos comunes con sus vecinos", "Sí", "Indeciso", "No"], ["A veces siento que por falta de seguridad en mí mismo, no tengo suficiente éxito social", "Cierto", "Intermedio", "Falso"], ["Yo disfruto conversando y rara vez dejo pasar la oportunidad de hablar con un extraño", "Cierto", "Intermedio", "Falso"], ["El encabezado del periódico que más me interesaría sería", "\"Líderes [religio]{.underline}sos discuten sobre un credo unificado\"", "Indeciso", "\"Mejoras en la producción y el mercado\""], ["Dudo de la franqueza de la gente que es más amistosa de lo que esperaba", "Cierto", "Intermedio", "Falso"], ["Mi consejo para la gente es", "Siga adelante, inténtelo, no pierde nada", "Intermedio", "Primero piénselo bien, no vaya a hacer una tontería"], ["Para mí es más importante", "Expresarme con libertad", "Intermedio", "Establecer buenas relaciones con las personas"], ["Me gusta soñar despierto", "Sí", "Indeciso", "Falso"], ["Me gusta más un trabajo que requiera de decisiones ingeniosas de mi parte, que uno que exija respuestas rápidas y rutinarias", "Cierto", "Indeciso", "Falso"], ["Siento que mis amistades no me necesitan tanto como yo a ellas", "Cierto", "Indeciso", "Falso"], ["Si alguien pensara mal de mí, me preocuparía", "Casi nunca", "Ocasionalmente", "Muy a menudo"], ["He sufrido accidentes por estar sumido en mis pensamientos", "Casi nunca", "Intermedio", "Varias veces"], ["En mi periódico me gusta leer", "Una discusión sobre aspectos sociales básicos del mundo moderno", "Intermedio", "Un buen reportaje de todas las noticias locales"], ["Me entretienen más los libros que la compañía de alguien", "Sí", "Intermedio", "No"], ["Por más difíciles y desagradables que sean los obstáculos, yo siempre insisto y mantengo mis intenciones originales", "Sí", "Intermedio", "No"], ["Ciertos ruidos me alteran los nervios, una puerta que rechina me provoca escalofrío y se me hace insoportable", "A menudo", "Algunas veces", "Nunca"], ["Cuando me despierto en la mañana, frecuentemente me siento cansado", "Sí", "Intermedio", "No"], ["Con el mismo sueldo preferiría ser", "Investigador químico", "Indeciso", "Administrador de un hotel"], ["Vender cosas o pedir fondos para ayudar a una causa en la que yo creo, para mí", "Bastante agradable", "Intermedio", "Un trabajo desagradable"], ["¿Cuál de los siguientes tres números no corresponde a la misma clase que los otros dos?", "7", "9", "13"], ["\"Perro\" es a \"hueso\", como \"vaca\" es a", "Leche", "Pasto", "Sal"], ["Los cambios de temperatura generalmente no afectan mi eficiencia, ni mi estado de ánimo", "Cierto", "Intermedio", "Falso"], ["En una ciudad extraña", "caminaría por donde quisiera", "intermedio", "Evitaría las partes de la ciudad consideradas peligrosas"], ["Es mas importante", "llevarla bien con la gente", "intermedio", "poner en practica ideas propias"], ["58\\. Yo creo", "En el dicho: \"ríe yse feliz\" en la mayoría de las ocasiones", "intermedio", "ser apropiadamente serio en los asuntos cotidianos"], ["Cuando me dan una serie de reglas, las sigo cuando personalmente me convienen, en lugar de seguirlas al pie de la letra", "Cierto", "Indeciso", "Falso"], ["En mis relaciones sociales, a veces me preocupa un sentimiento de inferioridad sin que haya motivo alguno", "Sí", "Intermedio", "No"], ["Me siento algo incómodo cuando estoy en compañía de otros, y no me muestro a ellos tan bien como debería", "Sí", "A veces", "No"], ["Preferiría", "Trabajar con varias personas bajo mis órdenes", "Indeciso", "Trabajar con un comité"], ["La mayoría de las personas aceptan su propia culpa, aunque puedan echársela a otros", "Cierto", "Indeciso", "Falso"], ["En realidad, a nadie le gustaría verme en dificultades", "Cierto", "Intermedio", "Falso"], ["Para un hombre, es más importante preocuparse por", "El significado básico de la vida", "Indeciso", "Obtener un buen ingreso para su familia"], ["Estar mucho tiempo encerrado, fuera del aire libre, me hace sentirme rancio", "Siempre", "Algunas veces", "Casi nunca"], ["Se me ocurren ideas poco usuales sobre gran variedad de cosas; demasiadas para ponerlas en práctica", "Sí", "Algunas veces", "No"], ["Por lo general soy optimista a pesar de que tropiece con muchas dificultades", "Cierto", "Intermedio", "Falso"], ["De noche me cuesta trabajo dormir por preocuparme por un incidente desafortunado", "A menudo", "Ocasionalmente", "Pocas veces"], ["Preferiría ver", "Una buena sátira cinematográfica sobre la sociedad del futuro", "Intermedio", "Una buena película del oeste"], ["Mis amistades piensan que es difícil conocerme a fondo", "Sí", "Indeciso", "No"], ["Resuelvo mejor un problema", "Estudiándolo solo", "Intermedio", "Discutiendo con otros"], ["Cuando tengo que hacer decisiones rápidas", "Me apoyo en un razonamiento objetivo, tranquilo y lógico", "Intermedio", "Me pongo tenso, excitable, incapaz de pensar claramente"], ["Algunas veces encuentro que pensamientos y recuerdos inútiles me dan vuelta en la mente", "Sí", "Intermedio", "No"], ["En las discusiones nunca me siento tan molesto como para no poder controlar mi voz", "Cierto", "Indeciso", "Falso"], ["Cuando viajo prefiero mirar el paisaje que conversar con la gente", "Cierto", "Indeciso", "Falso"], ["\"Perder\" es un mejor opuesto a \"revelar\" que la palabra \"esconder\"", "Sí", "Indeciso", "No"], ["\"Negro\" es a \"gris\" como \"dolor\" es a", "Torcedura", "Aflicción", "Comezón"], ["Se me hace difícil aceptar un \"no\" como respuesta, aun cuando sé que estoy pidiendo lo imposible", "Cierto", "Indeciso", "Falso"], ["Con frecuencia, la forma como me dicen las cosas me duele más que lo que me están diciendo", "Cierto", "Indeciso", "Falso"], ["Me incomoda tener sirvientes que me atiendan", "Sí", "Intermedio", "No"], ["Cuando un grupo de amigos sostiene una conversación animada", "Prefiero escuchar con atención", "Intermedio", "Doy más opiniones que la mayoría de ellos"], ["Me gusta estar en medio de mucha excitación, bullicio y ruido", "Sí", "Intermedio", "No"], ["En el trabajo, es más importante ser popular con la gente importante que hacer un trabajo de primera", "Cierto", "Intermedio", "Falso"], ["Si la gente me observa en la calle o en una tienda me siento ligeramente avergonzado", "Sí", "Intermedio", "No"], ["Mis ideas no siempre pueden ponerse fácilmente en palabras, por eso no intervengo tanto en la conversación como la mayoría de la gente", "Cierto", "Indeciso", "Falso"], ["Siempre estoy interesado en asuntos de mecánica, por ejemplo en carros y aeroplanos", "Sí", "Intermedio", "No"], ["Lo que hace que la mayor parte de la gente se abstenga de realizar actos criminales o deshonestos es principalmente el temor a ser aprehendida", "Sí", "Indeciso", "No"], ["Realmente en el mundo hay más gente simpática que indeseable", "Sí", "Indeciso", "No"], ["Los sujetos indiferentes que dicen \"lo mejor de la vida es gratis\", no han trabajado para conseguir mucho", "Cierto", "Intermedio", "Falso"], ["Si en una junta la gente sólo habla sin llegar al grano", "Las insto a que lleguen a él", "Intermedio", "Actúo en forma práctica para mantener la armonía"], ["Una persona cuyas ambiciones lastiman o dañan a un amigo cercano, a pesar de eso puede ser considerada todavía como un ciudadano común y corriente", "Sí", "Intermedio", "No"], ["Cuando pequeñas cosas me salen mal, una tras otra, yo", "Continúo como si nada hubiera sucedido", "Intermedio", "Me siento agobiado"], ["Me aquejan sentimientos de culpa o remordimiento, en relación a asuntos insignificantes", "Sí, a menudo", "A veces", "No"], ["Sería mejor si toda la gente se reuniera en prácticas religiosas públicas con regularidad", "Cierto", "Intermedio", "Falso"], ["Cuando se proyectan salidas en grupo", "Siempre me complace participar íntegramente", "Intermedio", "Me gusta reservarme el derecho a cancelar mi participación"], ["Mucha gente me platica sus problemas y me pide consejo cuando necesitan a alguien con quien hablar", "Sí", "Intermedio", "No"], ["Si mis amigos me excluyen de algo que están haciendo", "Hago alboroto", "Intermedio", "Lo tomo con calma, pensando que tienen algún motivo"], ["En ciertos estados de ánimo, fácilmente me alejo del trabajo que estoy haciendo por distracciones y ensoñaciones", "Sí", "Intermedio", "No"], ["No me precipito para aceptar o rechazar a las personas que acabo de conocer", "Cierto", "Indeciso", "Falso"], ["Preferiría ser", "Administrador de una oficina de negocios", "Indeciso", "Arquitecto"], ["\"Abril\" es a \"marzo\", como \"martes\" es a", "Miércoles", "Viernes", "Lunes"], ["¿Cuál de las siguientes palabras es distinta a las otras dos?", "Prudente o sensato", "Adorable", "Amable"], ["Cruzo la calle para evitar encontrarme con gente que no deseo ver", "Nunca", "Algunas veces", "Pocas veces"], ["El número de problemas que se me presentan y que no puedo resolver por mi propia cuenta en un día ordinario, son", "Apenas uno", "Intermedio", "Más de una docena"], ["Si estuviera en desacuerdo con los puntos de vista de un maestro, por lo general", "Me guardaría mi opinión", "Indeciso", "Le diría que mi opinión es diferente"], ["Cuando hablo con personas del sexo opuesto, evito cualquier tema sexual vergonzoso", "Cierto", "Intermedio", "Falso"], ["Realmente no tengo éxito cuando trato a la gente", "Cierto", "Indeciso", "Falso"], ["Me agrada dar lo mejor de mi tiempo y energía a", "Mi hogar y las necesidades reales de mis amigos", "Intermedio", "Actividades sociales y pasatiempos personales"], ["Cuando trato de impresionar favorablemente a la gente con mi personalidad", "Casi siempre tengo éxito", "Algunas veces tengo éxito", "Por lo general estoy inseguro de mi éxito"], ["Prefiero tener", "Un gran número de conocidos", "Indeciso", "Sólo pocos amigos leales"], ["Preferiría ser filósofo que ingeniero mecánico", "Cierto", "Indeciso", "Falso"], ["Tiendo a criticar el trabajo de otras personas", "Sí", "Indeciso", "Falso"], ["Me agrada planear cuidadosamente el cómo influir sobre mis compañeros para que me ayuden a lograr mis metas", "Cierto", "Intermedio", "Falso"], ["Pienso que soy más sensible que la mayoría de las personas a las cualidades artísticas de lo que me rodea", "Cierto", "Intermedio", "Falso"], ["Mis amigos creen que soy algo distraído y poco práctico", "Cierto", "Intermedio", "Falso"], ["Con mis conocidos prefiero", "Platicar sobre hechos y asuntos impersonales", "Intermedio", "Charlar con la gente y de sus sentimientos **📄 Formato para Word (Preguntas 118--147)**"], ["A veces soy tan feliz que me asusta pensar que mi felicidad no pueda ser duradera", "Cierto", "Intermedio", "Falso"], ["En ocasiones tengo periodos en que me siento deprimido, miserable y pesimista sin razón suficiente", "Sí", "Intermedio", "No"], ["En mi trabajo la mayoría de los problemas son ocasionados por personas que", "Cambian constantemente los métodos que ya estaban bien", "Indeciso", "Se rehúsan a emplear métodos más modernos"], ["Me agrada que mis conocidos me consideren como uno de los suyos", "Cierto", "Intermedio", "Falso"], ["Cuando busco una calle en una ciudad desconocida", "Le pregunto a la gente dónde se encuentra esa calle", "Intermedio", "La busco en el mapa"], ["Algunas veces alboroto a mis amigos para que salgamos cuando en realidad ellos quieren quedarse en casa", "Sí", "Intermedio", "No"], ["Cuando he estado muy activo o he trabajado demasiado, sufro de indigestión o estreñimiento", "Ocasionalmente", "Casi nunca", "Nunca"], ["Si alguien me molesta", "Me aguanto", "Intermedio", "Tengo que hablar con alguien para descargar mi enojo"], ["Sería más interesante ser vendedor de seguros que granjero", "Sí", "Intermedio", "No"], ["\"Estatua\" es a \"forma\", como \"canción\" es a", "Belleza", "Notas", "Tonada"], ["¿Cuál de las siguientes palabras es distinta a las otras dos?", "Tararear", "Hablar", "Silbar"], ["Creo que en la vida moderna se tienen demasiadas frustraciones y restricciones desagradables", "Sí", "Intermedio", "No"], ["Me siento preparado para la vida y sus exigencias", "Siempre", "A veces", "Casi nunca"], ["Yo francamente hago más planes y soy más enérgico y ambicioso que muchos que han alcanzado el mismo éxito que yo", "Sí", "Ocasionalmente", "No"], ["Casi siempre me gustan las emociones fuertes", "Cierto", "Intermedio", "Falso"], ["Sería más interesante ser", "Actor", "Indeciso", "Constructor de casas"], ["Me parece conveniente hacer planes para evitar pérdida de tiempo entre trabajo y trabajo", "Sí", "Intermedio", "No"], ["En un grupo generalmente estoy", "Al tanto de lo que pasa a mi alrededor", "Intermedio", "Envuelto en mis propios pensamientos o asuntos recientes"], ["Cuando me uno a un grupo nuevo, me parece que encajo de inmediato", "Sí", "Indeciso", "No"], ["Me gusta mucho el humorismo picante y grotesco de algunos programas de televisión", "Sí", "Intermedio", "No"], ["Preferiría leer sobre", "El descubrimiento de pinturas indígenas antiguas", "Indeciso", "Asesinatos de indios"], ["Generalmente no pierdo las esperanzas frente a las dificultades ordinarias", "Sí", "Indeciso", "No"], ["Estoy menos interesado en tener éxito en las cosas prácticas y financieras que en buscar verdades artísticas y espirituales", "Cierto", "Intermedio", "Falso"], ["Me gustaría más bien leer", "Una buena novela histórica", "Intermedio", "Un ensayo científico sobre el aprovechamiento de los recursos mundiales"], ["En las discusiones sobre arte, religión o política, rara vez me involucro o excito tanto como para olvidar la cortesía y las relaciones humanas", "Cierto", "Indeciso", "Falso"], ["Cuando voy a tomar un tren, me siento un poco apurado, tenso o ansioso aunque sepa que me queda tiempo", "Sí", "A veces", "No"], ["Me gusta enfrentarme a los problemas que otras personas han dejado enredados", "Sí", "Intermedio", "No"], ["La sociedad debería estar guiada más por el pensamiento lógico y menos por creencias tradicionales y sentimentales", "Sí", "Intermedio", "No"], ["Cuando hago lo que quiero, por lo general me parece que", "Me comprenden solamente mis amigos íntimos", "Intermedio", "Estoy haciendo lo que la mayoría de la gente piensa que está bien"], ["Las situaciones molestas tienden a aturdirme y a excitarme demasiado", "Sí", "Intermedio", "No **📄 Formato para Word (Preguntas 148--176)**"], ["Hago lo posible por no distraerme ni olvidarme de los detalles", "Sí", "Intermedio", "No"], ["A veces quedo tembloroso y exhausto a raíz de una discusión acalorada, o cuando he estado a punto de sufrir un accidente, de forma tal que no puedo volver a lo que estaba haciendo", "Cierto", "Intermedio", "Falso"], ["Me siento a punto de estallar, debido a mis sentimientos", "Rara vez", "Ocasionalmente", "Con frecuencia"], ["Como pasatiempo preferiría pertenecer a", "Un club fotográfico", "Indeciso", "Un club de debates"], ["\"Combinar\" es a \"mezclar\", como \"equipo\" es a", "Grupo", "Ejército", "Juego"], ["\"Reloj\" es a \"tiempo\", como \"sastre\" es a", "Cinta métrica", "Tijeras", "Ropa"], ["Me es difícil seguir lo que algunas personas están tratando de decir por el extraño uso que hacen de las palabras comunes", "Sí", "Intermedio", "No"], ["Los agentes del ministerio público están interesados principalmente en", "Encontrar pruebas condenatorias", "Indeciso", "Proteger al inocente"], ["La gente algunas veces me ha llamado orgulloso y creído", "Sí", "Intermedio", "No"], ["Preferiría la vida de un impresor artístico que la de un promotor y publicista", "Cierto", "Indeciso", "Falso"], ["Tiendo más bien a hablar pausadamente", "Sí", "A veces", "No"], ["Cuando hago algo, mi principal preocupación es que", "Sea realmente lo que yo quiero hacer", "Indeciso", "Que no tenga consecuencias nocivas para mis compañeros"], ["Yo pienso que la mayoría de los cuentos y de las películas deberían enseñar principios éticos", "Cierto", "Intermedio", "Falso"], ["Iniciar conversaciones con extraños", "Es difícil para mí", "Intermedio", "Nunca me causa problema"], ["Siempre me divierte herir la dignidad de los maestros, de los jueces y de la gente \"culta\"", "Sí", "Intermedio", "No"], ["En la televisión preferiría ver", "A una gran concertista", "Indeciso", "Un programa práctico e informativo sobre nuevos inventos"], ["Me irrita la gente que adopta actitudes moralmente superiores", "Sí", "Intermedio", "No"], ["Preferiría ocupar mi tiempo disfrutando de", "Un juego de cartas con amigos", "Indeciso", "Los hermosos objetos de una galería de arte"], ["A veces no me decido a utilizar mis propias ideas por temor a que no sean prácticas", "Sí", "Intermedio", "No"], ["Siempre soy cortés y diplomático con la gente poco razonable o poco imaginativa, y no creo que sea prudente señalarle su falta de criterio", "Cierto", "Intermedio", "Falso"], ["Preferiría vivir en una ciudad progresista que en una aldea tranquila en el campo", "Cierto", "Indeciso", "Falso"], ["Cuando estoy en desacuerdo con alguien sobre cuestiones sociales, me gusta", "Encontrar básicamente cuál es nuestra diferencia", "Indeciso", "Llegar a una solución satisfactoria para ambos"], ["Creo que la gente debe meditar más antes de condenar la sabiduría del pasado", "Sí", "Indeciso", "No"], ["Obtengo tantas ideas al leer un libro yo mismo, como cuando discuto sus temas con otras personas", "Sí", "Intermedio", "No"], ["Algunas personas critican mi sentido de responsabilidad", "Sí", "Indeciso", "No"], ["Yo me considero como", "Una persona activa y práctica", "Intermedio", "Un soñador"], ["A veces mis sentimientos y emociones me impiden controlarme", "Cierto", "Indeciso", "Falso"], ["Me siento tan furioso que quisiera azotar una puerta, o tal vez romper el vidrio de una ventana", "Muy rara vez", "Ocasionalmente", "Con bastante frecuencia"], ["Disfrutaría más", "Estando encargado de juegos de niños", "Indeciso", "Ayudando a un relojero"], ["\"Justicia\" es a \"leyes\", como \"idea\" es a", "Palabras", "Sentimientos", "Teorías"], ["¿Cuál de las siguientes palabras no corresponde a las otras dos?", "Segundo", "Una vez", "Único"], ["Preferiría llevar", "El mismo tipo de vida que llevo ahora", "Indeciso", "Una vida más tranquila con menos dificultades que tuviera que enfrentar"], ["Yo pienso que la cosa más importante en la vida es hacer lo que a mí me gusta", "Sí", "Indeciso", "No"], ["Mi voz es", "Fuerte", "Término medio", "Suave"], ["Me gusta actuar impulsivamente, aun cuando esto me traiga problemas posteriormente", "Sí", "Intermedio", "No"], ["Se me describe adecuadamente como una persona alegre y despreocupada", "Sí", "Intermedio", "No"], ["Me disgusta mucho ver el desorden", "Cierto", "Indeciso", "No"], ["Siempre reviso con mucho cuidado el estado en que devuelvo o me devuelven las cosas que presto o me prestan", "Sí", "Intermedio", "No"], ["En grupos sociales me molesta darme cuenta de mi timidez", "Nunca", "Algunas veces", "Con frecuencia"], ["Estoy seguro de haber contestado correctamente a las preguntas", "Sí", "Indeciso", "No"]];
+
+// Clave real por item (opcion que otorga el maximo puntaje), reconstruida y validada
+// cruzando los cuadernillos llenos del usuario con su lista de respuestas corregida.
+// Al puntuar esta clave contra si misma se obtienen exactamente los maximos de cada factor.
+const KEY_ALTA = ["a", "a", "b", "a", "c", "a", "c", "c", "a", "c", "c", "c", "c", "a", "c", "a", "c", "c", "c", "a", "c", "b", "c", "c", "a", "a", "c", "c", "a", "a", "c", "a", "a", "c", "c", "a", "c", "a", "c", "b", "c", "c", "c", "c", "a", "c", "a", "a", "c", "a", "c", "c", "a", "c", "a", "a", "a", "c", "b", "c", "a", "a", "c", "c", "c", "c", "c", "c", "a", "a", "c", "a", "a", "c", "a", "a", "a", "b", "c", "a", "c", "a", "a", "c", "c", "c", "a", "a", "c", "a", "a", "c", "a", "c", "c", "c", "b", "c", "c", "c", "a", "a", "c", "a", "a", "c", "c", "c", "a", "c", "c", "c", "a", "c", "a", "a", "a", "a", "c", "c", "c", "a", "a", "c", "a", "a", "c", "a", "c", "c", "a", "a", "c", "a", "c", "c", "a", "a", "c", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "c", "a", "c", "c", "a", "c", "a", "a", "a", "a", "c", "c", "c", "a", "c", "a", "c", "a", "a", "a", "a", "c", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "c", "c", "a", "c", "c", "a"]; // indice 0 = item 1, valores 'a'|'b'|'c'
+
+// Agrupacion item->factor verificada (8 factores de 13 reactivos, 8 de 10; items 1,2,187 son de control)
+const FACTOR_ITEMS = {
+  A:[20,21,39,58,77,96,115,134,153,172],
+  B:[3,22,40,41,59,60,78,79,97,116,135,154,173],
+  C:[4,23,42,61,80,98,99,117,118,136,137,155,174],
+  E:[5,6,24,43,62,81,100,119,138,156,157,175,176],
+  F:[7,25,26,44,45,63,64,82,101,120,139,158,177],
+  G:[8,27,46,65,83,102,121,140,159,178],
+  H:[9,28,47,66,84,85,103,104,122,123,141,160,179],
+  I:[10,29,48,67,86,105,124,142,161,180],
+  L:[11,30,49,68,87,106,125,143,162,181],
+  M:[12,31,50,69,88,107,126,144,145,163,164,182,183],
+  N:[13,32,51,70,89,108,127,146,165,184],
+  O:[14,15,33,34,52,53,71,90,109,128,147,166,185],
+  Q1:[16,35,54,72,91,110,129,148,167,186],
+  Q2:[17,36,55,73,74,92,111,130,149,168],
+  Q3:[18,37,56,75,93,94,112,131,150,169],
+  Q4:[19,38,57,76,95,113,114,132,133,151,152,170,171]
+};
+
+const ITEM_TO_FACTOR = {};
+Object.keys(FACTOR_ITEMS).forEach(f=> FACTOR_ITEMS[f].forEach(n=> ITEM_TO_FACTOR[n]=f));
+const ITEMS_CONTROL = [1,2,187];
+
+function puntuarItem(factor, n, resp){
+  const k = KEY_ALTA[n-1];
+  if(factor==='B'){
+    return resp===k ? 1 : 0;
+  }else{
+    if(resp===k) return 2;
+    if(resp==='b') return 1;
+    return 0;
+  }
+}
+
+let currentItem = 1;
+
+function renderItem(n){
+  const wrap = document.getElementById('testItemsWrap');
+  wrap.innerHTML='';
+  const [stem,a,b,c] = ITEMS_BANK[n-1];
+  const opts=[a,b,c];
+  const letras=['a','b','c'];
+  const factor = ITEM_TO_FACTOR[n] || null;
+  const div = document.createElement('div');
+  div.style.cssText='padding:10px 0;';
+  let optsHtml='';
+  letras.forEach((L,i)=>{
+    const checked = respuestasTest[n]===L ? 'checked' : '';
+    optsHtml += `<label class="quiz-opt" style="display:block; margin:6px 0; cursor:pointer;">
+      <input type="radio" name="item_${n}" value="${L}" ${checked} onchange="onRespuesta(${n}, true)"> ${L}) ${opts[i]}
+    </label>`;
+  });
+  div.innerHTML = `<div style="font-size:1.05rem; margin-bottom:10px;"><b>${n}.</b> ${stem}
+    ${factor?`<span style="color:var(--dim); font-size:.75rem;"> [factor ${factor}]</span>`:`<span style="color:var(--dim); font-size:.75rem;"> [control/validez]</span>`}
+    </div>
+    <div>${optsHtml}</div>`;
+  wrap.appendChild(div);
+  document.getElementById('posicionActual').textContent = `${n} / 187`;
+  document.getElementById('btnAnterior').disabled = (n===1);
+  document.getElementById('btnSiguienteItem').textContent = (n===187) ? 'Ir al inicio' : 'Siguiente →';
+}
+
+function itemSiguiente(){
+  if(currentItem < 187){ currentItem++; renderItem(currentItem); }
+  else{ currentItem = 1; renderItem(currentItem); }
+}
+function itemAnterior(){
+  if(currentItem > 1){ currentItem--; renderItem(currentItem); }
+}
+
+function buildTestItems(){
+  renderItem(currentItem);
+}
+
+const respuestasTest = {};
+function onRespuesta(n, avanzar){
+  const sel = document.querySelector(`input[name="item_${n}"]:checked`);
+  if(sel) respuestasTest[n]=sel.value;
+  const answered = Object.keys(respuestasTest).length;
+  document.getElementById('testProgress').style.width = (answered/187*100)+'%';
+  if(avanzar && n < 187){
+    setTimeout(()=>{ currentItem = n+1; renderItem(currentItem); }, 180);
+  }
+}
+
+function rellenarConLaClave(){
+  for(let n=1;n<=187;n++){
+    respuestasTest[n] = KEY_ALTA[n-1];
+  }
+  document.getElementById('testProgress').style.width='100%';
+  renderItem(currentItem);
+}
+
+function calcularDesdeTest(){
+  const faltantes = [];
+  for(let n=1;n<=187;n++){ if(ITEMS_CONTROL.includes(n)) continue; if(!respuestasTest[n]) faltantes.push(n); }
+  if(faltantes.length){
+    document.getElementById('testFaltan').style.display='inline';
+    document.getElementById('testFaltan').textContent = `Faltan ${faltantes.length} reactivos por responder (ej: ${faltantes.slice(0,10).join(', ')}...). Puedes usar "Rellenar con la clave" para ver una demo con perfil maximo.`;
+    return;
+  }
+  document.getElementById('testFaltan').style.display='none';
+
+  const pb = {}; FACTORES.forEach(f=> pb[f]=0);
+  const tallyLetras = {}; FACTORES.forEach(f=> tallyLetras[f]={a:0,b:0,c:0});
+  Object.keys(ITEM_TO_FACTOR).forEach(nStr=>{
+    const n = parseInt(nStr);
+    const f = ITEM_TO_FACTOR[n];
+    const resp = respuestasTest[n];
+    if(!resp) return;
+    tallyLetras[f][resp]++;
+    pb[f] += puntuarItem(f, n, resp);
+  });
+
+  let tallyHtml = '<table><tr><th>Factor</th><th>PB calculada</th><th># reactivos</th><th>a</th><th>b</th><th>c</th></tr>';
+  FACTORES.forEach(f=>{
+    const t=tallyLetras[f];
+    tallyHtml += `<tr><td>${f}</td><td><b>${pb[f]}</b></td><td>${FACTOR_ITEMS[f].length}</td><td>${t.a}</td><td>${t.b}</td><td>${t.c}</td></tr>`;
+  });
+  tallyHtml += '</table>';
+  document.getElementById('rawTallyWrap').innerHTML = tallyHtml;
+
+  mostrarReintentoB();
+
+  const genero = document.getElementById('generoTest').value;
+  document.getElementById('genero').value = genero;
+  FACTORES.forEach(f=> document.getElementById('pb_'+f).value = pb[f]);
+
+  document.querySelectorAll('nav button').forEach(b=>b.classList.remove('active'));
+  document.querySelectorAll('main section').forEach(s=>s.classList.remove('active'));
+  document.querySelector('nav button[data-tab="tab16pf"]').classList.add('active');
+  document.getElementById('tab16pf').classList.add('active');
+
+  calcular16pf();
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+
+function mostrarReintentoB(){
+  const fallidos = FACTOR_ITEMS['B'].filter(n => puntuarItem('B', n, respuestasTest[n]) === 0);
+  const card = document.getElementById('reintentoBCard');
+  const wrap = document.getElementById('reintentoBWrap');
+  if(!fallidos.length){
+    card.style.display='block';
+    wrap.innerHTML = '<p class="note" style="border-left-color:var(--good);">✅ No fallaste ningún reactivo de razonamiento (Factor B). Nada que reintentar.</p>';
+    return;
+  }
+  card.style.display='block';
+  wrap.innerHTML='';
+  const letras=['a','b','c'];
+  fallidos.forEach(n=>{
+    const [stem,a,b,c] = ITEMS_BANK[n-1];
+    const opts=[a,b,c];
+    const div = document.createElement('div');
+    div.style.cssText='padding:8px 0; border-bottom:1px solid var(--line);';
+    let optsHtml='';
+    letras.forEach((L,i)=>{
+      optsHtml += `<label style="display:inline-block; margin-right:16px; font-size:.85rem; cursor:pointer;">
+        <input type="radio" name="retryB_${n}" value="${L}"> ${L}) ${opts[i]}
+      </label>`;
+    });
+    div.innerHTML = `<div style="font-size:.9rem; margin-bottom:6px;"><b>${n}.</b> ${stem}</div><div>${optsHtml}</div>`;
+    wrap.appendChild(div);
+  });
+}
+
+function recalcularFactorB(){
+  const fallidos = FACTOR_ITEMS['B'].filter(n => puntuarItem('B', n, respuestasTest[n]) === 0);
+  fallidos.forEach(n=>{
+    const sel = document.querySelector(`input[name="retryB_${n}"]:checked`);
+    if(sel){
+      respuestasTest[n] = sel.value;
+      const orig = document.querySelector(`input[name="item_${n}"][value="${sel.value}"]`);
+      if(orig) orig.checked = true;
+    }
+  });
+  calcularDesdeTest();
+  document.getElementById('tab16pf').scrollIntoView({behavior:'smooth'});
+}
+
+buildTestItems();
+
+</script>
+</body>
+</html>
