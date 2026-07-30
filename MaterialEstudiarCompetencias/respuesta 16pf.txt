@@ -19,7 +19,7 @@ src/.../persistence/repository/GanPlantillaRepositoryImplTest.java
 27a, 28c, 29c, 30a, 31a, 32a, 33b, 34a,
 35c, 36a, 37c, 38c, 39a, 40a, 41b, 42a,
 43c, 44a, 45a, 46a, 47c, 48a, 49c, 50c,
-51a, 52a, 53c, 54a, 55a, 59c, 60c, 61c,
+51a, 52a, 53c, 54a, 55a, 56a, 57b, 58c, 59c, 60c, 61c,
 62a, 63a, 64c, 65c, 66c, 67a, 68a, 69b,
 70a, 71c, 72c, 73a, 74c, 75a, 76b, 77a,
 78b, 79c, 80c, 81c, 82b, 83b, 84c, 85c,
