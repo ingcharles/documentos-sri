@@ -1,0 +1,362 @@
+    const QB_REST_SOAP = [
+      {
+        id: "rs-01", cat: "rest-soap", type: "teoria", diff: "Básico",
+        q: "¿Cuál es una característica fundamental de una arquitectura REST según sus principios originales?",
+        opts: [
+          "El servidor mantiene el estado completo de la sesión del cliente entre solicitudes",
+          "Cada solicitud debe contener toda la información necesaria; comunicación sin estado",
+          "El intercambio de datos solo puede realizarse en formato XML, nunca en otro",
+          "El uso del protocolo SOAP resulta obligatorio como capa de transporte"
+        ], correct: 1,
+        exp: "Uno de los principios clave de REST es 'stateless': el servidor no conserva contexto de sesión entre solicitudes; cada solicitud debe ser autocontenida (incluyendo autenticación, parámetros necesarios, etc.), lo que favorece la escalabilidad horizontal."
+      },
+
+      {
+        id: "rs-02", cat: "rest-soap", type: "teoria", diff: "Intermedio",
+        q: "¿Cuál es la diferencia clave entre los métodos HTTP PUT y POST en el diseño de una API REST?",
+        opts: [
+          "PUT es idempotente y reemplaza un recurso conocido; POST no lo es",
+          "En la práctica, POST siempre resulta más rápido de procesar que PUT",
+          "PUT es un verbo pensado exclusivamente para eliminar recursos existentes",
+          "No existe ninguna diferencia semántica real entre ambos métodos HTTP"
+        ], correct: 0,
+        exp: "PUT se define como idempotente: invocarlo N veces con el mismo cuerpo debe dejar el recurso en el mismo estado que invocarlo una sola vez (semántica de 'reemplazar en esta URI'). POST no garantiza idempotencia y se asocia comúnmente a la creación de un nuevo recurso, donde el servidor puede asignar la URI resultante."
+      },
+
+      {
+        id: "rs-03", cat: "rest-soap", type: "practica", diff: "Intermedio",
+        q: `Un cliente solicita un recurso que no existe:
+<pre class="code-block">GET /api/contribuyentes/999999
+HTTP/1.1 404 Not Found
+Content-Type: application/json
+
+{"error": "Contribuyente no encontrado"}</pre>
+¿Qué indica correctamente el código de estado HTTP 404 en este contexto?`,
+        opts: [
+          "Que ocurrió un error interno del servidor al procesar la solicitud",
+          "Que no se encontró ningún recurso con el identificador solicitado",
+          "Que el cliente carece de permisos suficientes para ese recurso",
+          "Que la solicitud original fue redirigida hacia otra URL"
+        ], correct: 1,
+        exp: "404 Not Found es un código de la familia 4xx (errores del cliente) que indica específicamente que el servidor no encontró ningún recurso correspondiente al identificador solicitado; es distinto de 401/403 (autenticación/autorización) o 500 (error del servidor)."
+      },
+
+      {
+        id: "rs-04", cat: "rest-soap", type: "teoria", diff: "Básico",
+        q: "¿Qué código de estado HTTP es más apropiado para indicar que un recurso fue creado exitosamente mediante POST?",
+        opts: ["200 OK", "201 Created", "204 No Content", "301 Moved Permanently"], correct: 1,
+        exp: "201 Created comunica explícitamente que la solicitud tuvo éxito y como resultado se creó un nuevo recurso; suele acompañarse de la cabecera Location con la URI del recurso recién creado. 200 OK es más genérico y no transmite esa semántica específica de creación."
+      },
+
+      {
+        id: "rs-05", cat: "rest-soap", type: "teoria", diff: "Intermedio",
+        q: "¿Cuál es una diferencia estructural fundamental entre un servicio SOAP y uno REST?",
+        opts: [
+          "SOAP exige un mensaje XML estricto y contrato WSDL; REST es más flexible",
+          "REST resulta siempre más lento que SOAP en cualquier escenario posible",
+          "SOAP, a diferencia de REST, no puede transportarse sobre el protocolo HTTP",
+          "Toda API REST requiere obligatoriamente un archivo WSDL para funcionar"
+        ], correct: 0,
+        exp: "SOAP (Simple Object Access Protocol) exige un formato de mensaje XML normado (con un 'envelope' que contiene header y body) y suele describirse formalmente con WSDL. REST es un estilo arquitectónico basado en recursos/URIs y verbos HTTP, más flexible en cuanto a formato de representación (JSON, XML, etc.) y sin un estándar de contrato obligatorio como WSDL."
+      },
+
+      {
+        id: "rs-06", cat: "rest-soap", type: "practica", diff: "Intermedio",
+        q: `Se define un recurso con JAX-RS:
+<pre class="code-block">@Path("/contribuyentes")
+public class ContribuyenteResource {
+    @GET
+    @Path("/{ruc}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response obtener(@PathParam("ruc") String ruc) {
+        Contribuyente c = servicio.buscarPorRuc(ruc);
+        if (c == null) return Response.status(404).build();
+        return Response.ok(c).build();
+    }
+}</pre>
+¿Qué indica @Produces(MediaType.APPLICATION_JSON) en este endpoint?`,
+        opts: [
+          "Que este endpoint únicamente acepta solicitudes enviadas en formato JSON",
+          "Que la respuesta de este método se serializará con el tipo de contenido JSON",
+          "Que el método exige, sin excepción, autenticación mediante JWT",
+          "Que el recurso devuelto se cachea automáticamente en el navegador cliente"
+        ], correct: 1,
+        exp: "@Produces especifica el/los tipo(s) de medio (Content-Type) que el método puede generar en su respuesta; en este caso, indica que el cuerpo de la respuesta HTTP se serializará como JSON. @Consumes, en cambio, especificaría el tipo de contenido que el método acepta como entrada."
+      },
+
+      {
+        id: "rs-07", cat: "rest-soap", type: "teoria", diff: "Avanzado",
+        q: "¿Qué es HATEOAS (Hypermedia As The Engine Of Application State) en el contexto de REST?",
+        opts: [
+          "Un protocolo pensado específicamente para autenticar servicios de tipo REST",
+          "Un principio por el que la API incluye enlaces a las acciones/recursos siguientes",
+          "Un formato de serialización binaria propuesto como alternativa directa a JSON",
+          "Una extensión que solo tiene sentido dentro del propio protocolo SOAP clásico"
+        ], correct: 1,
+        exp: "HATEOAS propone que las respuestas de una API REST 'verdaderamente RESTful' incluyan enlaces a acciones o recursos relacionados (por ejemplo, un enlace a 'cancelar' dentro de la representación de un pedido), permitiendo que el cliente navegue la API dinámicamente en lugar de codificar rutas fijas de antemano."
+      },
+
+      {
+        id: "rs-08", cat: "rest-soap", type: "teoria", diff: "Básico",
+        q: "¿Qué elemento describe formalmente las operaciones, mensajes y tipos de datos de un servicio web SOAP, permitiendo generar clientes automáticamente?",
+        opts: ["JSON Schema", "WSDL", "YAML", "Swagger UI"], correct: 1,
+        exp: "WSDL es un documento XML que describe formalmente un servicio SOAP: sus operaciones disponibles, los mensajes de entrada/salida y los tipos de datos involucrados, permitiendo que herramientas generen automáticamente clases cliente (stubs) para consumir el servicio."
+      },
+
+      {
+        id: "rs-09", cat: "rest-soap", type: "practica", diff: "Intermedio",
+        q: `Se recibe la siguiente solicitud sin token de autenticación válido:
+<pre class="code-block">GET /api/declaraciones/2026
+HTTP/1.1 401 Unauthorized
+WWW-Authenticate: Bearer</pre>
+¿Qué diferencia semántica existe entre responder 401 Unauthorized y 403 Forbidden en un escenario como este?`,
+        opts: [
+          "Son sinónimos entre sí; ambos comunican exactamente la misma situación",
+          "401 indica falta de autenticación válida; 403 indica falta de permisos",
+          "En cualquier flujo, un 403 siempre debe anteceder a un posible 401",
+          "El código 401 solo se usa en SOAP, y el 403 únicamente en APIs REST"
+        ], correct: 1,
+        exp: "401 Unauthorized (nombre históricamente confuso) realmente señala un problema de autenticación: el cliente no proporcionó credenciales válidas. 403 Forbidden indica que el servidor sí identificó al cliente pero rechaza la solicitud por falta de autorización/permisos sobre ese recurso concreto."
+      },
+
+      {
+        id: "rs-10", cat: "rest-soap", type: "teoria", diff: "Intermedio",
+        q: "¿Por qué se considera importante versionar una API REST pública (por ejemplo, /api/v1/... o mediante cabeceras)?",
+        opts: [
+          "Porque la especificación HTTP exige incluir una versión en toda URL",
+          "Para poder evolucionar la API sin romper a los clientes que ya la consumen",
+          "Porque JSON, como formato, no puede representar datos sin versión explícita",
+          "Porque incluir una versión mejora de forma automática el rendimiento"
+        ], correct: 1,
+        exp: "Versionar permite introducir cambios incompatibles (breaking changes) en una nueva versión de la API mientras se sigue dando soporte a clientes que consumen versiones anteriores, evitando romper integraciones existentes de forma abrupta."
+      },
+
+      {
+        id: "rs-11", cat: "rest-soap", type: "practica", diff: "Avanzado",
+        q: `Se analiza un mensaje SOAP recibido:
+<pre class="code-block">&lt;soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"&gt;
+  &lt;soap:Header&gt;
+    &lt;auth:Token xmlns:auth="urn:sri:auth"&gt;abc123&lt;/auth:Token&gt;
+  &lt;/soap:Header&gt;
+  &lt;soap:Body&gt;
+    &lt;ConsultarRucRequest&gt;&lt;ruc&gt;1790000000001&lt;/ruc&gt;&lt;/ConsultarRucRequest&gt;
+  &lt;/soap:Body&gt;
+&lt;/soap:Envelope&gt;</pre>
+¿Qué diferencia de propósito hay entre soap:Header y soap:Body en este mensaje?`,
+        opts: [
+          "Ninguna; ambos contienen los mismos datos, duplicados solo por seguridad",
+          "Header transporta metadatos (auth); Body lleva la carga útil de la operación",
+          "El elemento soap:Body es opcional y siempre puede omitirse sin problema",
+          "soap:Header solo admite texto plano, nunca XML anidado dentro de sí"
+        ], correct: 1,
+        exp: "El Header de un mensaje SOAP transporta información complementaria/metadatos (autenticación, transacciones, trazabilidad), mientras que el Body obligatorio contiene el mensaje de negocio real: en este caso la solicitud ConsultarRucRequest con el RUC a consultar."
+      },
+
+      {
+        id: "rs-12", cat: "rest-soap", type: "teoria", diff: "Básico",
+        q: "¿Qué método HTTP se asocia convencionalmente con la operación de eliminar un recurso en una API REST?",
+        opts: ["GET", "DELETE", "OPTIONS", "HEAD"], correct: 1,
+        exp: "DELETE es el verbo HTTP semánticamente asociado a eliminar el recurso identificado por la URI; GET se reserva para lectura (no debería tener efectos secundarios), OPTIONS describe las capacidades del recurso y HEAD es como GET pero sin cuerpo de respuesta."
+      },
+
+      {
+        id: "rs-13", cat: "rest-soap", type: "teoria", diff: "Intermedio",
+        q: "¿Qué ventaja ofrece JSON frente a XML como formato típico de intercambio en servicios REST modernos?",
+        opts: [
+          "El estándar REST exige JSON de forma obligatoria y prohíbe usar XML",
+          "JSON suele ser más compacto y liviano de parsear que XML",
+          "XML es incapaz de representar arreglos u objetos anidados dentro de sí",
+          "Los mensajes JSON no pueden transmitirse a través del protocolo HTTPS"
+        ], correct: 1,
+        exp: "REST no impone un formato específico, pero JSON se popularizó por su sintaxis compacta y su mapeo natural a estructuras de datos de la mayoría de lenguajes modernos, con menor overhead de parseo que XML; sin embargo, XML conserva ventajas en escenarios que requieren validación estricta de esquemas (XSD) o espacios de nombres complejos."
+      },
+
+      {
+        id: "rs-14", cat: "rest-soap", type: "practica", diff: "Intermedio",
+        q: `Un cliente envía dos veces por error la misma solicitud debido a un timeout de red:
+<pre class="code-block">PUT /api/contribuyentes/45
+{"razonSocial": "Comercial ABC S.A."}</pre>
+Si el endpoint respeta correctamente la semántica REST de PUT, ¿qué debería ocurrir al recibir la solicitud duplicada?`,
+        opts: [
+          "Se crearían dos contribuyentes distintos, ambos con el mismo RUC",
+          "El estado final sería el mismo tras la segunda ejecución, por idempotencia",
+          "La segunda solicitud debería rechazarse de forma automática con error 500",
+          "El servidor debería ignorar por completo la segunda solicitud sin responder"
+        ], correct: 1,
+        exp: "La idempotencia de PUT garantiza que aplicar la misma actualización varias veces produce el mismo estado final que aplicarla una sola vez; esto hace que reintentar una solicitud PUT ante fallos de red (como un timeout) sea seguro, a diferencia de reintentar un POST no idempotente."
+      },
+
+      {
+        id: "rs-15", cat: "rest-soap", type: "teoria", diff: "Avanzado",
+        q: "¿Qué rol cumple la cabecera HTTP 'Accept' en la negociación de contenido (content negotiation) de una API REST?",
+        opts: [
+          "Le indica al servidor si debe aceptar o rechazar la conexión TCP entrante",
+          "Comunica qué tipo de medio prefiere el cliente recibir como respuesta",
+          "Define el tamaño máximo permitido para el cuerpo de la solicitud enviada",
+          "Es una cabecera que solo tiene efecto en solicitudes POST, nunca en GET"
+        ], correct: 1,
+        exp: "La cabecera Accept, enviada por el cliente, expresa su preferencia sobre el formato de representación deseado para la respuesta. Un servicio REST bien diseñado puede inspeccionarla para decidir si serializar la misma información como JSON, XML u otro formato soportado, sin necesidad de exponer endpoints distintos por formato."
+      },
+      {
+        id: "rs-16", cat: "rest-soap", type: "teoria", diff: "Intermedio",
+        q: "¿Qué problema de seguridad del navegador busca controlar CORS (Cross-Origin Resource Sharing) en una API REST?",
+        opts: [
+          "Cifra automáticamente todo el tráfico HTTP entre cliente y servidor",
+          "Controla si un origen distinto puede llamar a la API, según lo autorizado",
+          "Reemplaza casi por completo la necesidad de autenticación en la API",
+          "Solo afecta a solicitudes de tipo SOAP, nunca a las de REST"
+        ], correct: 1,
+        exp: "Por la política de mismo origen del navegador, JavaScript ejecutado en un dominio no puede, por defecto, llamar libremente a una API de otro dominio. CORS es el mecanismo mediante el cual el servidor declara explícitamente (con cabeceras Access-Control-Allow-Origin, entre otras) qué orígenes externos tienen permitido consumir su API desde el navegador."
+      },
+      {
+        id: "rs-17", cat: "rest-soap", type: "practica", diff: "Avanzado",
+        q: `Un cliente solicita eliminar un recurso que ya no existe:
+<pre class="code-block">DELETE /api/contribuyentes/45
+(el contribuyente 45 ya fue eliminado previamente)</pre>
+Si el endpoint respeta la idempotencia esperada de DELETE, ¿qué comportamiento es más consistente con ese principio?`,
+        opts: [
+          "Lanzar siempre un error 500, dado que el recurso ya no existe más",
+          "Responder con algo coherente (404 o 204), sin efectos secundarios",
+          "Crear nuevamente el recurso con los datos que tenía antes de eliminarse",
+          "Eliminar además, por error, algún otro contribuyente al azar"
+        ], correct: 1,
+        exp: "La idempotencia de DELETE implica que repetir la misma operación no debe cambiar el resultado final más allá de la primera vez: el recurso queda ausente tanto si se elimina una vez como varias. La forma exacta de responder (404 o 204) puede variar según el diseño, pero no debe producir efectos secundarios inesperados ni errores que rompan esa garantía."
+      },
+
+      {
+        id: "rs-18", cat: "rest-soap", type: "teoria", diff: "Básico",
+        q: "¿Qué indica un código de estado HTTP 304 (Not Modified) en respuesta a una solicitud GET condicional?",
+        opts: [
+          "Que el servidor tuvo un error interno al procesar esa solicitud específica",
+          "Que el recurso no cambió; el cliente puede reutilizar su copia cacheada localmente",
+          "Que el recurso solicitado fue movido permanentemente a otra URL distinta",
+          "Que el cliente debe reintentar la solicitud más tarde por saturación del servidor"
+        ], correct: 1,
+        exp: "304 se usa junto con cabeceras de caché condicional (If-None-Match/ETag o If-Modified-Since); si el recurso no cambió desde la versión que el cliente ya tiene cacheada, el servidor responde 304 sin cuerpo, ahorrando ancho de banda al indicar que la copia local sigue siendo válida."
+      },
+
+      {
+        id: "rs-19", cat: "rest-soap", type: "practica", diff: "Intermedio",
+        q: `Un equipo decide versionar su API incluyendo la versión en la URL:
+<pre class="code-block">GET /api/v1/contribuyentes/45
+GET /api/v2/contribuyentes/45</pre>
+Frente a versionar mediante una cabecera personalizada (por ejemplo, Accept-Version: v2), ¿qué ventaja práctica ofrece este enfoque basado en la URL?`,
+        opts: [
+          "Es imposible de implementar en un servidor real, solo funciona en teoría",
+          "Es más explícito y fácil de probar desde el navegador, sin cabeceras adicionales",
+          "Solo funciona con el protocolo SOAP, nunca con servicios REST reales",
+          "Elimina por completo la necesidad de mantener compatibilidad entre versiones"
+        ], correct: 1,
+        exp: "Versionar en la URL hace explícita y visible la versión consumida, facilitando pruebas rápidas (basta pegar la URL en un navegador) y el cacheo por parte de proxies intermedios. Versionar por cabecera mantiene URLs más 'limpias' pero exige que cada cliente configure esa cabecera correctamente, siendo menos evidente para pruebas manuales."
+      },
+
+      {
+        id: "rs-20", cat: "rest-soap", type: "teoria", diff: "Avanzado",
+        q: "¿Qué añade WS-Security a un mensaje SOAP estándar en cuanto a seguridad?",
+        opts: [
+          "Reemplaza completamente HTTP por un protocolo de transporte propietario cifrado",
+          "Extensiones para firmar y/o cifrar partes del mensaje, y transportar tokens en el XML",
+          "Convierte automáticamente cualquier mensaje SOAP en un JSON equivalente",
+          "Solo permite autenticación básica HTTP, sin ningún otro mecanismo adicional"
+        ], correct: 1,
+        exp: "WS-Security es un estándar que extiende el sobre SOAP para incluir mecanismos de seguridad a nivel de mensaje: firma digital XML (integridad), cifrado XML (confidencialidad) y tokens de seguridad (usuario/contraseña, certificados X.509, SAML) embebidos en el propio Header SOAP, independientemente del canal de transporte usado."
+      },
+
+      {
+        id: "rs-21", cat: "rest-soap", type: "teoria", diff: "Intermedio",
+        q: "¿Qué diferencia semántica tiene el método HTTP PATCH frente a PUT en una API REST?",
+        opts: [
+          "PATCH modifica el recurso parcialmente; PUT lo reemplaza por completo",
+          "PATCH y PUT son sinónimos exactos, intercambiables sin ningún cambio de comportamiento",
+          "PATCH solo puede usarse para crear recursos nuevos, nunca para modificar existentes",
+          "PUT no permite enviar ningún cuerpo en la solicitud, a diferencia de PATCH"
+        ], correct: 0,
+        exp: "PUT está pensado para reemplazar el recurso completo con la representación enviada (si se omite un campo, típicamente se interpreta como que debe eliminarse o quedar en su valor por defecto). PATCH aplica una modificación parcial, enviando solo los campos que cambian, sin afectar el resto del recurso."
+      },
+
+      {
+        id: "rs-22", cat: "rest-soap", type: "practica", diff: "Avanzado",
+        q: `Una API expone un recurso con enlaces relacionados:
+<pre class="code-block">{
+  "id": 45, "estado": "PENDIENTE",
+  "_links": {
+    "self": { "href": "/api/tramites/45" },
+    "cancelar": { "href": "/api/tramites/45/cancelar" }
+  }
+}</pre>
+¿Qué principio de diseño REST ilustra la sección _links de esta respuesta?`,
+        opts: [
+          "Statelessness: la respuesta no depende de ningún estado guardado en el servidor",
+          "HATEOAS: incluye enlaces que indican al cliente qué acciones puede realizar a continuación",
+          "Content negotiation: permite elegir entre distintos formatos de respuesta",
+          "Idempotencia: garantiza que repetir la solicitud no cambia el resultado"
+        ], correct: 1,
+        exp: "HATEOAS propone que las respuestas incluyan enlaces a acciones o recursos relacionados (aquí, 'cancelar'), permitiendo que el cliente navegue la API dinámicamente según el estado actual del recurso, en lugar de tener hardcodeadas todas las rutas posibles de antemano."
+      },
+
+      {
+        id: "rs-23", cat: "rest-soap", type: "teoria", diff: "Intermedio",
+        q: "¿Qué representa un elemento &lt;soap:Fault&gt; dentro de la respuesta de un servicio SOAP?",
+        opts: [
+          "Un dato adicional de negocio incluido junto al resultado exitoso normal",
+          "La estructura estándar con la que SOAP reporta un error, con código y descripción",
+          "Un mecanismo exclusivo de compresión del mensaje XML completo",
+          "Una configuración de seguridad definida por el estándar WS-Security"
+        ], correct: 1,
+        exp: "soap:Fault es el elemento normado dentro del Body de la respuesta SOAP para comunicar errores: incluye típicamente un código (faultcode), una descripción legible (faultstring) y opcionalmente detalles adicionales, siendo el equivalente SOAP a un código de error HTTP en una API REST."
+      },
+
+      {
+        id: "rs-24", cat: "rest-soap", type: "teoria", diff: "Básico",
+        q: "¿Qué diferencia hay entre las cabeceras HTTP Content-Type y Accept en una solicitud REST?",
+        opts: [
+          "Content-Type describe el cuerpo enviado; Accept indica lo que se prefiere recibir",
+          "Ambas cabeceras cumplen exactamente la misma función y son intercambiables",
+          "Accept solo puede usarse en solicitudes GET, nunca en POST ni PUT",
+          "Content-Type define el tamaño máximo permitido del cuerpo enviado"
+        ], correct: 0,
+        exp: "Content-Type documenta el formato del cuerpo que efectivamente se está enviando en esa solicitud (por ejemplo, application/json en un POST). Accept, en cambio, es una preferencia sobre el formato deseado para la respuesta, que el servidor puede usar para decidir cómo serializar su contenido."
+      },
+
+      {
+        id: "rs-25", cat: "rest-soap", type: "teoria", diff: "Intermedio",
+        q: "Según RFC 9110 (HTTP Semantics), ¿cuáles de los métodos GET, POST, PUT y DELETE están clasificados oficialmente como 'idempotentes'?",
+        opts: [
+          "GET, PUT y DELETE son idempotentes; POST no lo es",
+          "Únicamente GET es idempotente; los otros tres no lo son bajo ninguna circunstancia",
+          "Los cuatro métodos están clasificados como idempotentes según la RFC",
+          "Solo POST y DELETE están clasificados como idempotentes; GET y PUT no"
+        ], correct: 0,
+        exp: "Según la tabla de propiedades de métodos de RFC 9110, GET, PUT y DELETE son idempotentes (repetir la misma solicitud produce el mismo efecto en el servidor que ejecutarla una sola vez), mientras que POST no tiene esa garantía: repetir un POST puede crear múltiples recursos o duplicar un efecto."
+      },
+
+      {
+        id: "rs-26", cat: "rest-soap", type: "teoria", diff: "Avanzado",
+        q: "Según RFC 9110, ¿qué significa exactamente que un método HTTP sea clasificado como 'safe' (seguro)?",
+        opts: [
+          "Que no causa ningún efecto observable sobre el estado del servidor más allá de un registro",
+          "Que la solicitud viaja obligatoriamente cifrada mediante TLS",
+          "Que el método no puede fallar nunca con un código de error 4xx o 5xx",
+          "Que el método requiere autenticación obligatoria antes de poder ejecutarse"
+        ], correct: 0,
+        exp: "Según RFC 9110, un método 'safe' es aquel cuya semántica es principalmente de solo lectura: el cliente no solicita, y no debería esperar, ningún cambio de estado en el servidor por realizar la solicitud. Esto permite que agentes automatizados (como robots de indexación) invoquen métodos safe (GET, HEAD) sin considerar que eso implica responsabilidad por posibles efectos secundarios."
+      },
+
+      {
+        id: "rs-27", cat: "rest-soap", type: "practica", diff: "Intermedio",
+        q: `Un cliente reintenta automáticamente una solicitud tras un timeout de red:
+<pre class="code-block">DELETE /api/tramites/78
+(la primera solicitud sí llegó al servidor, pero la respuesta se perdió en la red)</pre>
+Según la clasificación de RFC 9110, ¿por qué es seguro que el cliente reintente automáticamente este DELETE sin verificar antes el estado del recurso?`,
+        opts: [
+          "Porque DELETE es idempotente: repetirlo no cambia el resultado final más allá de la primera vez",
+          "Porque DELETE está clasificado como un método 'safe', sin ningún efecto sobre el servidor",
+          "Porque HTTP garantiza que un DELETE nunca puede perder su respuesta en la red",
+          "Porque los reintentos automáticos están prohibidos por la especificación para cualquier método"
+        ], correct: 0,
+        exp: "DELETE es idempotente según RFC 9110: el efecto de ejecutarlo una vez es el mismo que ejecutarlo varias veces (el recurso queda eliminado en ambos casos). Por eso reintentar automáticamente un DELETE tras una falla de red incierta es una práctica segura, a diferencia de reintentar un POST no idempotente, que podría duplicar una operación."
+      }
+    ];
+
+    /* ---- 9. Servidores de aplicación --------------------------------------- */
+    const QB_SERVIDORES = [
