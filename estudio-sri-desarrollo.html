@@ -1921,8 +1921,8 @@ new Base();</pre>
         q: "¿Qué permite declarar un método static dentro de una interfaz, como 'static int sumar(int a, int b)'?",
         opts: [
           "Convierte automáticamente la interfaz en una clase abstracta equivalente",
-          "Agrupa una utilidad relacionada dentro de la propia interfaz, invocable como NombreInterfaz.metodo(), sin heredarse a las clases implementadoras",
-          "Obliga a que todas las clases implementadoras sobrescriban ese método",
+          "Agrupa una utilidad invocable como Interfaz.metodo(), sin heredarse a las implementadoras",
+          "Obliga a que todas las clases implementadoras sobrescriban ese método static",
           "Solo puede invocarse desde dentro de un método default de la misma interfaz"
         ], correct: 1,
         exp: "Los métodos static de una interfaz (Java 8+) son utilidades asociadas al tipo, invocables directamente como Interfaz.metodo(); a diferencia de los default, no se heredan como comportamiento de instancia en las clases implementadoras, similar a los métodos static de una clase."
@@ -1938,8 +1938,8 @@ enum TipoTransaccion implements Gravable {
 }</pre>
 ¿Qué técnica ilustra que cada constante del enum sobrescriba calcularImpuesto() con un cuerpo distinto?`,
         opts: [
-          "Un cuerpo de constante específico (constant-specific class body), donde cada constante actúa como una subclase anónima del enum",
-          "Una sobrecarga de métodos entre las dos constantes del enum",
+          "Un cuerpo de constante específico, donde cada constante actúa como una subclase anónima",
+          "Una sobrecarga de métodos entre las dos constantes declaradas del enum",
           "Un error de compilación, ya que los enum no pueden implementar interfaces",
           "El uso obligatorio de reflexión para invocar el método correcto en tiempo de ejecución"
         ], correct: 0,
@@ -1951,9 +1951,9 @@ enum TipoTransaccion implements Gravable {
         q: "¿Qué diferencia hay entre sobrescribir equals() y simplemente heredar la implementación por defecto de Object?",
         opts: [
           "No hay ninguna diferencia real en ningún escenario práctico",
-          "Object.equals() compara referencias (mismo objeto en memoria); una sobrescritura personalizada puede comparar por contenido/valor lógico, considerando iguales a dos instancias distintas con los mismos datos",
+          "Object.equals() compara referencias; una versión propia puede comparar por contenido lógico",
           "equals() heredado de Object siempre lanza una excepción al invocarse",
-          "Solo las clases abstractas pueden sobrescribir equals() válidamente"
+          "Solo las clases abstractas pueden sobrescribir equals() de forma válida"
         ], correct: 1,
         exp: "La implementación de Object.equals() equivale a '==': solo es true si ambas referencias apuntan exactamente al mismo objeto. Sobrescribirlo permite definir igualdad por valor (por ejemplo, dos Punto con las mismas coordenadas x/y), esencial para que la clase se comporte correctamente en colecciones y comparaciones de negocio."
       },
@@ -1980,7 +1980,7 @@ Si riesgoso() lanza una RuntimeException y no existe ningún bloque catch, ¿qu�
         id: "jc-76", cat: "java-core", type: "teoria", diff: "Avanzado",
         q: "¿Qué patrón describe 'envolver' una excepción checked dentro de una unchecked, como en 'throw new RuntimeException(\"mensaje\", excepcionOriginal)'?",
         opts: [
-          "Exception chaining (encadenamiento de causas), preservando la excepción original como 'cause' mientras se relanza un tipo que no obliga a declarar throws en la firma",
+          "Exception chaining: preserva la excepción original como 'cause' de la relanzada",
           "Un anti-patrón sin ningún propósito válido, siempre prohibido en buenas prácticas",
           "Una forma de eliminar por completo el stack trace original del error",
           "El único mecanismo disponible para registrar errores en un archivo de log"
@@ -1999,9 +1999,9 @@ Si riesgoso() lanza una RuntimeException y no existe ningún bloque catch, ¿qu�
 ¿Qué es este bloque 'public Rango { ... }' sin paréntesis dentro del record?`,
         opts: [
           "Un método más, llamado igual que el record por convención de nombres",
-          "Un constructor compacto: valida o normaliza los componentes antes de que se asignen automáticamente a los campos finales",
+          "Un constructor compacto: valida los componentes antes de asignarlos a los campos",
           "Un bloque de inicialización estático que se ejecuta solo una vez por clase",
-          "Una sobrecarga alternativa del constructor canónico con distinta cantidad de parámetros"
+          "Una sobrecarga alternativa con distinta cantidad de parámetros al canónico"
         ], correct: 1,
         exp: "Un constructor compacto (sin lista de parámetros explícita) permite validar o transformar los parámetros de entrada antes de que el compilador los asigne automáticamente a los campos del record; si no se reasignan explícitamente, se usan los valores de los parámetros ya (potencialmente) validados."
       },
@@ -2011,8 +2011,8 @@ Si riesgoso() lanza una RuntimeException y no existe ningún bloque catch, ¿qu�
         q: "¿Qué relación debe cumplirse entre equals() y hashCode() según el contrato de Object, cuando ambos se sobrescriben?",
         opts: [
           "No existe ninguna relación exigida entre ambos métodos, son independientes",
-          "Si dos objetos son iguales según equals(), deben producir el mismo valor de hashCode(); lo inverso no es obligatorio",
-          "hashCode() debe llamar internamente a equals() en su implementación",
+          "Objetos iguales según equals() deben producir el mismo hashCode(); lo inverso no es obligatorio",
+          "hashCode() debe llamar internamente a equals() en su propia implementación",
           "Solo uno de los dos métodos puede sobrescribirse válidamente por clase"
         ], correct: 1,
         exp: "El contrato de Object exige que objetos iguales (equals() true) tengan el mismo hashCode(), para que estructuras basadas en hash (HashMap, HashSet) funcionen correctamente. Lo contrario no se exige: dos objetos distintos pueden compartir el mismo hashCode() (colisión) sin ser iguales."
@@ -2029,7 +2029,7 @@ Si riesgoso() lanza una RuntimeException y no existe ningún bloque catch, ¿qu�
 ¿Qué riesgo concreto introduce que compareTo() considere 'iguales' (retorno 0) productos con igual precio, mientras equals() los considera distintos?`,
         opts: [
           "Ningún riesgo real; ambos métodos son completamente independientes en la práctica",
-          "Un TreeSet&lt;Producto&gt; puede tratar como duplicados (y descartar) productos con el mismo precio pero distinto nombre, ya que TreeSet usa compareTo() en vez de equals() para determinar unicidad",
+          "Un TreeSet puede tratar como duplicados y descartar productos con el mismo precio",
           "El programa no compilará mientras exista esa inconsistencia entre ambos métodos",
           "compareTo() dejará de funcionar y lanzará una excepción en cualquier comparación"
         ], correct: 1,
@@ -2041,11 +2041,206 @@ Si riesgoso() lanza una RuntimeException y no existe ningún bloque catch, ¿qu�
         q: "¿Qué hace el método toString() heredado de Object cuando no se sobrescribe en una clase propia?",
         opts: [
           "Lanza una excepción UnsupportedOperationException al invocarse sin sobrescribir",
-          "Retorna una cadena con el nombre de la clase y un código hash en hexadecimal, poco útil para depuración legible",
-          "Retorna siempre la cadena vacía sin ninguna información adicional",
-          "Convierte automáticamente el objeto a formato JSON legible"
+          "Retorna el nombre de la clase junto a un código hash en hexadecimal, poco legible",
+          "Retorna siempre la cadena vacía, sin ninguna información adicional",
+          "Convierte automáticamente el objeto a un formato JSON legible"
         ], correct: 1,
         exp: "La implementación por defecto de Object.toString() produce algo como 'NombreClase@1a2b3c4d' (nombre completo de la clase + '@' + hashCode en hexadecimal), rara vez útil para depuración; por eso se recomienda sobrescribirlo con información relevante del estado del objeto."
+      },
+
+      {
+        id: "jc-81", cat: "java-core", type: "practica", diff: "Avanzado",
+        q: `Se intenta agregar un sonido a listas de distinto tipo genérico:
+<pre class="code-block">public static void addSound(List&lt;? super String&gt; list) {
+    list.add("quack");
+}
+List&lt;String&gt; strings = new ArrayList&lt;&gt;();
+List&lt;Object&gt; objects = new ArrayList&lt;&gt;();
+addSound(strings);
+addSound(objects);</pre>
+¿Por qué compila esta llamada con dos tipos de lista distintos, y qué impediría usar en su lugar List&lt;? extends Object&gt;?`,
+        opts: [
+          "El comodín inferior admite String o cualquier supertipo, seguro para insertar",
+          "List&lt;? extends Object&gt; también compilaría exactamente igual, sin ninguna diferencia",
+          "El método solo compila porque ambas variables se declararon con var en vez de un tipo",
+          "List&lt;? super String&gt; en realidad prohíbe cualquier llamada a add() en el método"
+        ], correct: 0,
+        exp: "Un lower bound (? super String) garantiza que la lista es de String o de algún supertipo, así que agregar un String siempre es seguro. Un upper bound (? extends Object) solo garantiza que se puede leer como Object, pero no permite add() de forma segura porque el tipo real concreto de la lista es desconocido para el compilador."
+      },
+
+      {
+        id: "jc-82", cat: "java-core", type: "practica", diff: "Avanzado",
+        q: `Se declara la siguiente variable con un comodín inferior anidado en una jerarquía:
+<pre class="code-block">List&lt;? super IOException&gt; excepciones = new ArrayList&lt;Exception&gt;();
+excepciones.add(new Exception());     // línea A
+excepciones.add(new IOException());   // línea B</pre>
+¿Qué ocurre en cada línea marcada?`,
+        opts: [
+          "Línea A no compila (Exception es supertipo de IOException); línea B sí compila",
+          "Ambas líneas compilan sin problema, ya que super acepta cualquier tipo relacionado",
+          "Ninguna de las dos compila, porque ese comodín inferior no permite ningún add()",
+          "La línea A compila y la línea B no, exactamente al revés de lo esperado"
+        ], correct: 0,
+        exp: "Con List&lt;? super IOException&gt;, el compilador solo garantiza que puede agregarse IOException o cualquier subtipo suyo (como FileNotFoundException), ya que el tipo real de la lista podría ser tan específico como List&lt;IOException&gt;. Exception es un supertipo de IOException, no un subtipo, por lo que agregarlo no es seguro y no compila."
+      },
+
+      {
+        id: "jc-83", cat: "java-core", type: "practica", diff: "Intermedio",
+        q: `Se declaran dos formas de combinar dos Strings:
+<pre class="code-block">BiFunction&lt;String, String, String&gt; b1 = String::concat;
+BiFunction&lt;String, String, String&gt; b2 = (s, toAdd) -&gt; s.concat(toAdd);
+System.out.println(b1.apply("baby ", "chick"));</pre>
+¿Qué imprime este código y qué representan los tres parámetros de tipo de BiFunction&lt;T, U, R&gt;?`,
+        opts: [
+          "\"baby chick\"; T y U son las entradas, R es el tipo del resultado de apply()",
+          "\"chick baby \"; T, U y R representan tres parámetros de entrada distintos",
+          "No compila, ya que BiFunction solo admite referencias a método, nunca lambdas",
+          "\"baby chick\"; T, U y R son en realidad tipos de excepción que el método lanza"
+        ], correct: 0,
+        exp: "BiFunction&lt;T, U, R&gt; declara el método R apply(T t, U u): toma dos parámetros de tipos T y U, y retorna un valor de tipo R. Aquí los tres son String. String::concat, invocado como b1.apply(\"baby \", \"chick\"), equivale a \"baby \".concat(\"chick\"), produciendo \"baby chick\"."
+      },
+
+      {
+        id: "jc-84", cat: "java-core", type: "teoria", diff: "Intermedio",
+        q: "¿Qué relación de herencia existe entre BinaryOperator&lt;T&gt; y BiFunction&lt;T, U, R&gt;?",
+        opts: [
+          "BinaryOperator&lt;T&gt; extiende BiFunction&lt;T, T, T&gt;, forzando un único tipo T",
+          "BinaryOperator y BiFunction son interfaces independientes, sin relación de herencia",
+          "BiFunction extiende BinaryOperator, siendo esta la interfaz más general de las dos",
+          "BinaryOperator solo puede aplicarse a tipos primitivos, nunca a tipos de referencia"
+        ], correct: 0,
+        exp: "BinaryOperator&lt;T&gt; es un caso especializado de BiFunction donde los dos parámetros de entrada y el valor de retorno comparten el mismo tipo T (por ejemplo, sumar dos enteros y devolver un entero); por eso BinaryOperator&lt;T&gt; extiende BiFunction&lt;T, T, T&gt; en lugar de declarar su propio método apply() desde cero."
+      },
+
+      {
+        id: "jc-85", cat: "java-core", type: "practica", diff: "Intermedio",
+        q: `Se define un método utilitario con un comodín superior:
+<pre class="code-block">public static void imprimirLista(List&lt;? extends Number&gt; lista) {
+    lista.add(10); // línea marcada
+}</pre>
+¿Por qué la línea marcada no compila?`,
+        opts: [
+          "Porque el compilador no conoce el subtipo exacto de la lista, así que solo permite null",
+          "Porque el método debería llamarse obligatoriamente 'agregar' en vez de 'imprimirLista'",
+          "Porque Number no es una interfaz funcional válida para usarse con comodines",
+          "Porque el literal 10 nunca puede autoboxearse dentro de un comodín superior"
+        ], correct: 0,
+        exp: "Con List&lt;? extends Number&gt;, el compilador solo sabe que el tipo real es 'algún subtipo de Number', pero no cuál exactamente; podría ser List&lt;Integer&gt; o List&lt;Double&gt;. Como agregar un int (autoboxeado a Integer) podría violar el tipo real de la lista, el compilador rechaza cualquier add() salvo el de null, que es compatible con cualquier tipo de referencia."
+      },
+
+      {
+        id: "jc-86", cat: "java-core", type: "teoria", diff: "Básico",
+        q: "¿Cuándo es apropiado usar un comodín no acotado (List<?>) como tipo de un parámetro de método?",
+        opts: [
+          "Cuando el método solo necesita leer, como consultar el tamaño o recorrer en modo lectura",
+          "Cuando se necesita insertar elementos de cualquier tipo dentro de esa lista sin restricción",
+          "Nunca debería usarse en código real; solo es válido en exámenes de certificación",
+          "Únicamente cuando la lista está garantizada a ser de tipo List&lt;Object&gt;"
+        ], correct: 0,
+        exp: "List<?> es útil cuando el método no necesita conocer ni depender del tipo concreto de elementos, por ejemplo para obtener size() o iterar leyendo cada elemento como Object; como con cualquier tipo desconocido, no se permite insertar elementos (salvo null), ya que el compilador no puede garantizar la seguridad de tipos."
+      },
+
+      {
+        id: "jc-87", cat: "java-core", type: "practica", diff: "Intermedio",
+        q: `Se consulta información de un archivo con NIO.2:
+<pre class="code-block">System.out.print(Files.isDirectory(Path.of("/canino/pelo.jpg")));
+System.out.print(Files.isSymbolicLink(Path.of("/canino/coyote")));</pre>
+Si /canino/coyote es un enlace simbólico que apunta a un directorio existente, ¿qué imprime cada llamada?`,
+        opts: [
+          "isDirectory() puede dar true si resuelve a un directorio; isSymbolicLink() da true igual",
+          "isDirectory() siempre devuelve false para cualquier enlace simbólico, sin excepciones",
+          "isSymbolicLink() lanza una excepción si el enlace no apunta a un archivo regular",
+          "Ambos métodos ignoran por completo los enlaces simbólicos y solo evalúan archivos reales"
+        ], correct: 0,
+        exp: "isDirectory() e isRegularFile() pueden devolver true para un enlace simbólico, siempre que ese enlace resuelva efectivamente a un directorio o archivo regular respectivamente. isSymbolicLink() responde exclusivamente si la ruta es en sí un enlace simbólico, sin importar si el destino al que apunta existe o no."
+      },
+
+      {
+        id: "jc-88", cat: "java-core", type: "teoria", diff: "Intermedio",
+        q: "¿Qué diferencia clave existe entre la clase File tradicional y las capacidades que ofrece NIO.2 (Files/Path) para detectar enlaces simbólicos?",
+        opts: [
+          "File carece de método para detectar enlaces simbólicos; NIO.2 sí lo ofrece con isSymbolicLink()",
+          "File puede detectar enlaces con isSymbolicLink(); NIO.2 carece de esa capacidad por completo",
+          "Ambas API ofrecen exactamente las mismas capacidades para trabajar con enlaces simbólicos",
+          "Files.isSymbolicLink() solo existe en sistemas operativos Windows, no en Linux"
+        ], correct: 0,
+        exp: "La clase File clásica no expone ningún método para saber si una ruta es un enlace simbólico. NIO.2 (introducida para superar limitaciones de File) sí lo permite explícitamente con Files.isSymbolicLink(Path), una de las razones por las que se recomienda NIO.2 para trabajo más completo con el sistema de archivos."
+      },
+
+      {
+        id: "jc-89", cat: "java-core", type: "practica", diff: "Avanzado",
+        q: `Se listan archivos de un directorio filtrando por extensión:
+<pre class="code-block">try (DirectoryStream&lt;Path&gt; dirStream =
+        Files.newDirectoryStream(path, "*.{txt,java}")) {
+    for (Path p : dirStream) System.out.println(p);
+}</pre>
+¿Por qué DirectoryStream se declara dentro de un try-with-resources, a diferencia de una simple List devuelta por otros métodos de listado?`,
+        opts: [
+          "Porque implementa AutoCloseable: mantiene abierto un recurso que debe liberarse tras usarlo",
+          "Porque el patrón *.{txt,java} solo es válido dentro de un bloque try-with-resources",
+          "Porque Files.newDirectoryStream() nunca puede asignarse a una variable local declarada con var",
+          "Porque DirectoryStream, a diferencia de una List, no permite recorrerse con un bucle for-each"
+        ], correct: 0,
+        exp: "A diferencia de métodos que devuelven una List ya completamente cargada en memoria, DirectoryStream mantiene un recurso del sistema operativo abierto mientras se itera perezosamente el contenido del directorio; por eso implementa AutoCloseable y debe cerrarse explícitamente (idealmente con try-with-resources) para liberar ese recurso subyacente."
+      },
+
+      {
+        id: "jc-90", cat: "java-core", type: "practica", diff: "Intermedio",
+        q: `Se obtiene un mensaje traducido según el idioma del usuario:
+<pre class="code-block">var us = Locale.of("en", "US");
+var france = Locale.of("fr", "FR");
+var rb = ResourceBundle.getBundle("Zoo", us);
+System.out.println(rb.getString("hello"));</pre>
+¿Qué papel cumple el segundo argumento (us) en ResourceBundle.getBundle("Zoo", us)?`,
+        opts: [
+          "Determina qué archivo .properties específico usar para resolver las claves",
+          "Define el nombre físico de la carpeta donde se guardan todos los archivos .properties",
+          "Especifica el tipo de codificación de caracteres que tendrá el archivo de propiedades",
+          "Es un parámetro puramente informativo sin ningún efecto sobre qué archivo se carga"
+        ], correct: 0,
+        exp: "ResourceBundle.getBundle(nombreBase, locale) usa el Locale proporcionado para localizar el archivo de propiedades más específico disponible que coincida con ese idioma/región (siguiendo una convención de nombres como Zoo_en_US.properties), retrocediendo hacia archivos más generales si no encuentra una coincidencia exacta."
+      },
+
+      {
+        id: "jc-91", cat: "java-core", type: "teoria", diff: "Básico",
+        q: "¿Qué diferencia hay entre invocar ResourceBundle.getBundle(\"nombre\") y ResourceBundle.getBundle(\"nombre\", locale)?",
+        opts: [
+          "La primera usa el Locale por defecto de la JVM; la segunda usa el Locale dado",
+          "Ambas formas son exactamente equivalentes y siempre cargan el mismo archivo de propiedades",
+          "La primera forma solo funciona para el idioma inglés, sin excepción",
+          "La segunda forma ignora por completo el nombre base indicado como primer argumento"
+        ], correct: 0,
+        exp: "La sobrecarga de un solo argumento usa el Locale por defecto configurado en la JVM en ese momento, útil cuando no se necesita elegir explícitamente el idioma. La sobrecarga de dos argumentos permite fijar un Locale específico distinto del predeterminado, típico cuando el idioma del usuario se conoce por otra vía (preferencias, cabecera HTTP, etc.)."
+      },
+
+      {
+        id: "jc-92", cat: "java-core", type: "practica", diff: "Intermedio",
+        q: `Se analiza (parsea) un mismo texto numérico bajo dos configuraciones regionales distintas:
+<pre class="code-block">String s = "40.45";
+var en = NumberFormat.getInstance(Locale.US);
+System.out.println(en.parse(s));
+var fr = NumberFormat.getInstance(Locale.FRANCE);
+System.out.println(fr.parse(s));</pre>
+¿Por qué ambas líneas imprimen resultados distintos a partir del mismo String de entrada?`,
+        opts: [
+          "En US el punto es separador decimal (40.45); en Francia no, y el parseo se detiene antes (40)",
+          "Porque NumberFormat.parse() lanza una excepción en cualquier configuración distinta de Locale.US",
+          "Porque ambas líneas en realidad imprimen exactamente el mismo valor numérico 40.45",
+          "Porque Locale.FRANCE no permite parsear ningún tipo de número, solo formatearlo"
+        ], correct: 0,
+        exp: "En el formato numérico de Estados Unidos, el punto es el separador decimal, así que \"40.45\" se interpreta completo. En el formato francés, el separador decimal es la coma, no el punto; al encontrar un carácter que no reconoce como parte del número, parse() se detiene ahí, devolviendo solo la porción interpretada como número válido (40)."
+      },
+
+      {
+        id: "jc-93", cat: "java-core", type: "teoria", diff: "Intermedio",
+        q: "¿Por qué se recomienda evitar el tipo double para representar montos de dinero en una aplicación real, según las buenas prácticas usuales para manejo de moneda?",
+        opts: [
+          "Porque double es punto flotante binario y acumula errores de precisión; se prefiere BigDecimal",
+          "Porque el tipo double no puede formatearse nunca con NumberFormat.getCurrencyInstance()",
+          "Porque double solo admite valores positivos, sin poder representar montos negativos o reembolsos",
+          "Porque Java prohíbe declarar variables double dentro de clases relacionadas con transacciones financieras"
+        ], correct: 0,
+        exp: "Los valores double se representan en punto flotante binario, que no puede expresar exactamente muchas fracciones decimales comunes (como 0.1), acumulando pequeños errores de redondeo en operaciones repetidas; para dinero se prefiere BigDecimal (precisión decimal exacta) o enteros en la unidad más pequeña de la moneda (centavos), evitando esa imprecisión."
       }
     ];
 
@@ -2464,7 +2659,7 @@ Suponiendo que el archivo Validador.java existe y compiló correctamente en otra
 ¿Qué tipo de información adicional expone esta opción frente a una compilación estándar sin -Xlint?`,
         opts: [
           "Convierte todas las advertencias existentes en errores que detienen la compilación",
-          "Muestra advertencias específicas (uso de APIs marcadas @Deprecated, operaciones genéricas no verificadas) que normalmente el compilador oculta o resume",
+          "Muestra advertencias específicas (APIs deprecadas, genéricos sin verificar) normalmente resumidas",
           "Genera automáticamente documentación Javadoc para cada clase compilada",
           "Reduce el tiempo total de compilación al omitir la verificación de tipos"
         ], correct: 1,
@@ -2503,11 +2698,64 @@ Suponiendo que el archivo Validador.java existe y compiló correctamente en otra
         q: "¿Para qué se utiliza comúnmente la variable de entorno JAVA_OPTS (o CATALINA_OPTS en Tomcat) al arrancar una aplicación Java?",
         opts: [
           "Para especificar la ruta del código fuente original de la aplicación",
-          "Para pasar argumentos de configuración a la JVM al arrancar (memoria, propiedades del sistema, opciones de GC), sin modificar el script de arranque en sí",
+          "Para pasar argumentos de arranque a la JVM (memoria, propiedades, GC) sin tocar el script",
           "Para definir las credenciales de acceso a la base de datos de forma segura",
           "Para listar las dependencias externas que el proyecto necesita descargar"
         ], correct: 1,
         exp: "JAVA_OPTS (o su equivalente específico como CATALINA_OPTS) es una convención para inyectar parámetros de arranque de la JVM (como -Xmx, -Dpropiedad=valor, opciones del recolector de basura) mediante una variable de entorno, evitando modificar directamente los scripts de arranque del servidor o la aplicación."
+      },
+
+      {
+        id: "jt-36", cat: "jdk-tools", type: "teoria", diff: "Avanzado",
+        q: "¿Qué efecto tiene declarar 'requires transitive' en lugar de un simple 'requires' dentro de module-info.java, como en 'requires transitive zoo.animal.feeding;' dentro del módulo zoo.animal.care?",
+        opts: [
+          "Quien requiera zoo.animal.care obtiene acceso automático también a zoo.animal.feeding",
+          "Hace que zoo.animal.feeding deje de ser accesible incluso dentro del propio módulo",
+          "Convierte automáticamente zoo.animal.feeding en un módulo 'open' para reflexión",
+          "Solo afecta el orden de compilación de los módulos, sin cambiar la visibilidad entre ellos"
+        ], correct: 0,
+        exp: "'requires transitive' propaga la dependencia: cualquier módulo que dependa de zoo.animal.care queda automáticamente obligado a tener también acceso a zoo.animal.feeding, sin necesidad de declarar 'requires zoo.animal.feeding' por su cuenta. Sin 'transitive', cada módulo llamador tendría que declarar explícitamente esa dependencia adicional."
+      },
+
+      {
+        id: "jt-37", cat: "jdk-tools", type: "practica", diff: "Avanzado",
+        q: `Se declara un módulo con la directiva opens:
+<pre class="code-block">module zoo.animal.talks {
+    opens zoo.animal.talks.schedule;
+    opens zoo.animal.talks.media to zoo.staff;
+}</pre>
+¿Qué diferencia hay entre las dos formas de opens usadas en este módulo?`,
+        opts: [
+          "La primera abre reflexión a cualquiera; la segunda la restringe solo a zoo.staff",
+          "Ambas líneas tienen exactamente el mismo efecto, solo cambia el nombre del paquete",
+          "opens sin 'to' significa que el paquete queda completamente inaccesible para cualquier módulo",
+          "opens ... to solo puede usarse junto con la palabra clave exports en la misma línea"
+        ], correct: 0,
+        exp: "La directiva opens habilita el acceso por reflexión a un paquete en tiempo de ejecución. Sin la cláusula 'to', cualquier módulo puede usar reflexión sobre ese paquete; con 'to nombreModulo', ese privilegio queda restringido exclusivamente al módulo indicado (aquí, zoo.staff), sin afectar a los demás."
+      },
+
+      {
+        id: "jt-38", cat: "jdk-tools", type: "teoria", diff: "Intermedio",
+        q: "¿Qué diferencia hay entre usar la directiva 'opens' y declarar el módulo completo como 'open module' en module-info.java?",
+        opts: [
+          "'opens' abre paquetes uno por uno; 'open module' abre todos a la vez, y no se combinan",
+          "Son exactamente sinónimos, y ambas formas pueden mezclarse libremente sin restricción",
+          "'open module' solo aplica a módulos que no exportan ningún paquete",
+          "'opens' habilita reflexión para todo el módulo, mientras que 'open module' restringe paquete por paquete"
+        ], correct: 0,
+        exp: "'opens paquete;' abre paquetes individuales para reflexión, uno por directiva. 'open module nombre { }' abre automáticamente todos los paquetes del módulo a la vez; precisamente por eso, un módulo declarado como 'open' no puede además incluir directivas 'opens' sueltas dentro (sería redundante y no compila)."
+      },
+
+      {
+        id: "jt-39", cat: "jdk-tools", type: "teoria", diff: "Avanzado",
+        q: "¿Qué papel cumple la clase ServiceLoader dentro del sistema de módulos de Java (JPMS)?",
+        opts: [
+          "Localiza en tiempo de ejecución las implementaciones disponibles de un servicio dado",
+          "Compila automáticamente todos los módulos declarados en un proyecto multi-módulo",
+          "Reemplaza por completo la necesidad de declarar la directiva 'requires' en module-info.java",
+          "Solo puede usarse fuera del sistema de módulos, en aplicaciones basadas en classpath clásico"
+        ], correct: 0,
+        exp: "ServiceLoader implementa el patrón de descubrimiento de servicios: un módulo declara 'uses Interfaz' para consumir un servicio y otro declara 'provides Interfaz with Implementacion' para ofrecerlo; ServiceLoader.load(Interfaz.class) localiza en tiempo de ejecución las implementaciones disponibles, desacoplando al consumidor de conocer qué módulo concreto las provee."
       }
     ];
 
@@ -3137,7 +3385,7 @@ System.out.println(pila.peek());</pre>
         q: "¿Qué ventaja ofrece ListIterator sobre un Iterator común al recorrer una List?",
         opts: [
           "ListIterator solo puede usarse con listas ordenadas por número",
-          "ListIterator permite recorrer en ambas direcciones y también reemplazar (set) o insertar elementos durante la iteración, no solo eliminarlos",
+          "ListIterator recorre en ambas direcciones y permite reemplazar o insertar durante la iteración",
           "Iterator es más rápido que ListIterator en cualquier escenario posible",
           "ListIterator no puede usarse dentro de un bucle while tradicional"
         ], correct: 1,
@@ -3162,7 +3410,7 @@ System.out.println(potencias);</pre>
         q: "¿Para qué se usa típicamente la operación intermedia peek() en un pipeline de Stream?",
         opts: [
           "Para eliminar del stream los elementos que cumplan cierta condición",
-          "Para inspeccionar (por ejemplo, con fines de depuración) cada elemento a medida que pasa por el pipeline, sin modificar el stream ni consumirlo",
+          "Para inspeccionar cada elemento a medida que pasa por el pipeline, sin modificarlo",
           "Para forzar la ejecución inmediata de todo el pipeline sin operación terminal",
           "Para ordenar los elementos según su posición original antes de continuar"
         ], correct: 1,
@@ -3178,11 +3426,199 @@ lista.add("cuatro");</pre>
 ¿Qué línea de este código lanza una excepción en tiempo de ejecución, y por qué?`,
         opts: [
           "lista.set(0, \"UNO\"), porque Arrays.asList() produce una lista completamente inmutable",
-          "lista.add(\"cuatro\"), porque Arrays.asList() retorna una lista de tamaño fijo respaldada por un arreglo, que permite modificar elementos existentes pero no cambiar su tamaño",
+          "lista.add(\"cuatro\"), porque esa lista tiene tamaño fijo y no admite cambiar su tamaño",
           "Ninguna línea falla; ambas operaciones son completamente válidas sobre esa lista",
           "Ambas líneas fallan, ya que Arrays.asList() no permite ninguna modificación"
         ], correct: 1,
         exp: "Arrays.asList() retorna una lista de tamaño fijo respaldada directamente por un arreglo: set() sí funciona porque solo reemplaza un elemento existente, pero add() intenta cambiar el tamaño, lo cual esa implementación no soporta, lanzando UnsupportedOperationException."
+      },
+
+      {
+        id: "cs-50", cat: "collections-streams", type: "practica", diff: "Avanzado",
+        q: `Se recorre un HashMap eliminando elementos dentro del propio bucle:
+<pre class="code-block">var datos = new HashMap&lt;String, Integer&gt;();
+datos.put("pinguino", 1);
+datos.put("flamenco", 2);
+for (String clave : datos.keySet())
+    datos.remove(clave);</pre>
+Si se reemplaza únicamente el tipo de datos por ConcurrentHashMap, ¿qué cambia en el comportamiento de este bucle?`,
+        opts: [
+          "Deja de lanzar ConcurrentModificationException, ya que su iterador se mantiene consistente",
+          "El comportamiento es idéntico en ambos casos, ya que ambas clases manejan la iteración igual",
+          "El bucle deja de eliminar cualquier elemento, dejando el mapa completamente intacto",
+          "Se lanza una excepción de compilación al usar ConcurrentHashMap dentro de un for-each"
+        ], correct: 0,
+        exp: "Con un HashMap normal, eliminar durante la iteración de keySet() invalida el iterador y provoca ConcurrentModificationException en la segunda vuelta del bucle. Las clases concurrentes como ConcurrentHashMap mantienen el acceso ordenado de lectura/escritura, de modo que el iterador refleja consistentemente el estado del mapa incluso cuando se elimina un elemento durante el propio recorrido."
+      },
+
+      {
+        id: "cs-51", cat: "collections-streams", type: "teoria", diff: "Intermedio",
+        q: "¿En qué situación se recomienda usar una clase concurrente de colección (como ConcurrentHashMap) en lugar de su equivalente no concurrente?",
+        opts: [
+          "Cuando varios hilos modifican la colección fuera de un bloque o método sincronizado",
+          "Únicamente cuando la colección va a contener menos de diez elementos en total",
+          "Solo cuando la aplicación se ejecuta en un único hilo, sin ningún tipo de concurrencia real",
+          "Nunca es necesario si la colección se declara como variable final"
+        ], correct: 0,
+        exp: "Siempre que varios hilos puedan modificar una colección compartida sin estar protegidos por sincronización externa, conviene usar la versión concurrente correspondiente; sin ella, el acceso simultáneo puede lanzar excepciones o, peor, corromper silenciosamente la estructura de datos. Si la colección es inmutable, en cambio, no hace falta ninguna variante concurrente."
+      },
+
+      {
+        id: "cs-52", cat: "collections-streams", type: "practica", diff: "Intermedio",
+        q: `Se usa una clase atómica para contar de forma segura entre hilos:
+<pre class="code-block">private AtomicInteger contadorOvejas = new AtomicInteger(0);
+private void incrementarYReportar() {
+    System.out.print(contadorOvejas.incrementAndGet() + " ");
+}</pre>
+¿Qué garantiza el uso de AtomicInteger frente a usar simplemente un campo int con contadorOvejas++?`,
+        opts: [
+          "Que incrementar y leer ocurre como una operación indivisible, sin intercalarse con otro hilo",
+          "Que el valor del contador nunca podrá superar Integer.MAX_VALUE bajo ninguna circunstancia",
+          "Que incrementAndGet() se ejecuta automáticamente en un hilo separado del resto del programa",
+          "Que el campo deja de necesitar inicializarse explícitamente en el constructor de la clase"
+        ], correct: 0,
+        exp: "Las clases del paquete java.util.concurrent.atomic garantizan que operaciones como incrementAndGet() se ejecuten atómicamente: ningún otro hilo puede leer o modificar el valor a mitad de la operación. Un int con ++ ordinario no ofrece esa garantía, ya que esa operación se descompone en varios pasos separables (leer, sumar, escribir)."
+      },
+
+      {
+        id: "cs-53", cat: "collections-streams", type: "teoria", diff: "Avanzado",
+        q: "¿Qué propósito cumple la clase CyclicBarrier al coordinar varios hilos que ejecutan tareas por etapas?",
+        opts: [
+          "Hace que los hilos se esperen hasta llegar todos a la barrera, y luego avancen juntos",
+          "Bloquea permanentemente a todos los hilos involucrados hasta que la aplicación finaliza por completo",
+          "Ejecuta automáticamente las tareas de todos los hilos en un orden estrictamente secuencial, uno tras otro",
+          "Sirve exclusivamente para medir cuánto tiempo tarda en ejecutarse un bloque de código concurrente"
+        ], correct: 0,
+        exp: "CyclicBarrier se construye con un número de partes esperadas; cada hilo llama a await() al llegar a ese punto, y todos quedan bloqueados hasta que la cantidad configurada de hilos haya llamado a await(), momento en el que todos continúan simultáneamente, útil para sincronizar fases de un trabajo dividido entre varios trabajadores (por ejemplo, no dejar entrar animales a un recinto hasta que termine de limpiarse por completo)."
+      },
+
+      {
+        id: "cs-54", cat: "collections-streams", type: "teoria", diff: "Intermedio",
+        q: "¿Qué caracteriza específicamente a las clases 'CopyOnWrite' (como CopyOnWriteArrayList) dentro de las colecciones concurrentes de Java?",
+        opts: [
+          "Copian toda la estructura interna en cada modificación, dejando la lectura libre de bloqueo",
+          "Impiden por completo cualquier operación de escritura una vez creada la instancia inicial",
+          "Solo pueden almacenar tipos primitivos autoboxeados, nunca objetos complejos",
+          "Ordenan automáticamente sus elementos según su hashCode() al insertarlos"
+        ], correct: 0,
+        exp: "Las clases CopyOnWrite generan una copia nueva del arreglo subyacente cada vez que ocurre una modificación (add, remove, set), dejando la estructura original intacta para quienes la estén leyendo concurrentemente; esto favorece lecturas muy frecuentes con escrituras poco frecuentes, ya que cada escritura tiene el costo de copiar toda la estructura."
+      },
+
+      {
+        id: "cs-55", cat: "collections-streams", type: "practica", diff: "Intermedio",
+        q: `Se filtra un stream de nombres:
+<pre class="code-block">Stream&lt;String&gt; s = Stream.of("monkey", "gorilla", "bonobo");
+s.filter(x -&gt; x.startsWith("m"))
+    .forEach(System.out::print);</pre>
+¿Qué imprime este código?`,
+        opts: ["monkey", "monkeygorillabonobo", "gorillabonobo", "Nada, porque filter() consume el stream"],
+        correct: 0,
+        exp: "filter() retorna un nuevo Stream conservando solo los elementos que cumplen el Predicate dado; de los tres nombres, solo 'monkey' comienza con 'm'. forEach() es la operación terminal que recorre e imprime ese único elemento restante."
+      },
+
+      {
+        id: "cs-56", cat: "collections-streams", type: "practica", diff: "Avanzado",
+        q: `Se usa peek() para depurar un pipeline:
+<pre class="code-block">var stream = Stream.of("black bear", "brown bear", "grizzly");
+long total = stream.filter(s -&gt; s.startsWith("g"))
+    .peek(System.out::println)
+    .count();
+System.out.println(total);</pre>
+En algunas versiones de la JVM, este código puede imprimir solo "1" sin mostrar "grizzly" antes. ¿Por qué peek() puede no llegar a ejecutarse aquí?`,
+        opts: [
+          "Porque peek() solo funciona con streams generados por Stream.iterate(), no por Stream.of()",
+          "Porque count() puede optimizar el pipeline y calcular el tamaño sin recorrer realmente cada elemento, saltándose así las operaciones intermedias previas",
+          "Porque filter() ya consume el stream antes de que peek() reciba algún elemento",
+          "Porque System.out.println() dentro de peek() siempre se descarta por diseño del lenguaje"
+        ], correct: 1,
+        exp: "peek() es una operación intermedia que solo se ejecuta cuando la operación terminal realmente recorre cada elemento. Cuando la JVM detecta que puede determinar el conteo sin necesidad de iterar uno por uno (una optimización de count()), las operaciones intermedias previas como peek() pueden no dispararse, un comportamiento documentado que sorprende a quienes usan peek() solo para depurar."
+      },
+
+      {
+        id: "cs-57", cat: "collections-streams", type: "teoria", diff: "Intermedio",
+        q: "¿Qué diferencia hay entre la operación intermedia peek() y la operación terminal forEach(), dado que ambas reciben un Consumer como argumento?",
+        opts: [
+          "Son idénticas en todo sentido; peek() es solo un alias histórico de forEach()",
+          "peek() retorna el mismo stream para seguir encadenando operaciones; forEach() es terminal y no retorna nada, cerrando el pipeline",
+          "forEach() solo puede usarse con streams de tipo primitivo (IntStream, LongStream)",
+          "peek() modifica permanentemente los elementos del stream antes de continuar"
+        ], correct: 1,
+        exp: "peek() puede pensarse como una versión intermedia de forEach(): ejecuta la acción dada sobre cada elemento pero retorna el stream original para poder seguir encadenando más operaciones. forEach(), en cambio, es una operación terminal: consume el stream y no retorna nada, terminando el pipeline."
+      },
+
+      {
+        id: "cs-58", cat: "collections-streams", type: "practica", diff: "Intermedio",
+        q: `Se reduce un stream sin especificar identidad:
+<pre class="code-block">BinaryOperator&lt;Integer&gt; op = (a, b) -&gt; a * b;
+Stream&lt;Integer&gt; vacio = Stream.empty();
+Stream&lt;Integer&gt; unElemento = Stream.of(3);
+Stream&lt;Integer&gt; tresElementos = Stream.of(3, 5, 6);
+
+vacio.reduce(op).ifPresent(System.out::println);
+unElemento.reduce(op).ifPresent(System.out::println);
+tresElementos.reduce(op).ifPresent(System.out::println);</pre>
+¿Qué se imprime en total?`,
+        opts: ["Nada, luego 3, luego 90", "0, luego 3, luego 90", "Nada, luego nada, luego 90", "1, luego 3, luego 90"],
+        correct: 0,
+        exp: "reduce(BinaryOperator) sin identidad retorna un Optional<T>: si el stream está vacío, el Optional queda vacío (ifPresent no imprime nada); si tiene un solo elemento, ese elemento se retorna sin aplicar el operador (imprime 3); con varios elementos, el acumulador los combina (3*5*6=90)."
+      },
+
+      {
+        id: "cs-59", cat: "collections-streams", type: "practica", diff: "Básico",
+        q: `Se calcula un promedio que puede no existir:
+<pre class="code-block">Optional&lt;Double&gt; opt = calcularPromedio();
+if (opt.isPresent()) {
+    System.out.println(opt.get());
+}</pre>
+Si calcularPromedio() retorna un Optional vacío, ¿qué ocurre al ejecutar este código?`,
+        opts: [
+          "Se lanza NoSuchElementException al evaluar isPresent()",
+          "isPresent() retorna false, por lo que el bloque if no se ejecuta y no se imprime nada",
+          "get() retorna null automáticamente dentro del if",
+          "El programa no compila porque Optional no puede usarse con if"
+        ], correct: 1,
+        exp: "isPresent() simplemente indica si el Optional contiene un valor, sin lanzar ninguna excepción; retorna false cuando está vacío, por lo que el cuerpo del if (que llama a get()) nunca se ejecuta. Si se llamara a get() directamente sobre un Optional vacío, sí se lanzaría NoSuchElementException."
+      },
+
+      {
+        id: "cs-60", cat: "collections-streams", type: "practica", diff: "Intermedio",
+        q: `Se simplifica el patrón isPresent()/get() con ifPresent():
+<pre class="code-block">Optional&lt;Double&gt; opt = calcularPromedio();
+opt.ifPresent(System.out::println);</pre>
+¿Qué diferencia de comportamiento tiene ifPresent(Consumer) frente al patrón if (opt.isPresent()) { ... opt.get() ... }?`,
+        opts: [
+          "Ninguna diferencia real; solo cambia la cantidad de líneas de código escritas",
+          "ifPresent() expresa la misma lógica en una sola llamada: ejecuta el Consumer únicamente si hay valor presente, sin necesidad de un bloque if explícito ni de llamar a get() por separado",
+          "ifPresent() lanza una excepción si el Optional está vacío, a diferencia del patrón con if",
+          "ifPresent() solo puede usarse con Optional<String>, nunca con otros tipos genéricos"
+        ], correct: 1,
+        exp: "ifPresent(Consumer) encapsula la comprobación y el acceso al valor en una sola operación: si el Optional contiene un valor, invoca el Consumer con ese valor; si está vacío, simplemente no hace nada, sin lanzar excepción, evitando el patrón repetitivo de comprobar con isPresent() y luego extraer con get()."
+      },
+
+      {
+        id: "cs-61", cat: "collections-streams", type: "practica", diff: "Intermedio",
+        q: `Se define un valor por defecto ante un Optional vacío:
+<pre class="code-block">Optional&lt;Double&gt; opt = calcularPromedio();
+System.out.println(opt.orElseGet(() -&gt; Math.random()));</pre>
+¿Qué diferencia clave existe entre usar orElseGet(Supplier) aquí y usar orElse(Math.random())?`,
+        opts: [
+          "orElse(Math.random()) evalúa esa expresión siempre, tenga o no valor el Optional; orElseGet(() -> Math.random()) solo invoca el Supplier cuando el Optional realmente está vacío",
+          "Ambas formas son exactamente equivalentes en todos los casos posibles",
+          "orElseGet() solo acepta valores literales, nunca expresiones ni lambdas",
+          "orElse() lanza una excepción de compilación si se le pasa una llamada a método"
+        ], correct: 0,
+        exp: "orElse(T) recibe un valor ya calculado como argumento, por lo que esa expresión se evalúa siempre (incluso si el Optional tiene valor y el resultado se descarta). orElseGet(Supplier) solo invoca el Supplier de forma perezosa cuando el Optional está vacío, evitando cálculos innecesarios o costosos cuando sí hay un valor presente."
+      },
+
+      {
+        id: "cs-62", cat: "collections-streams", type: "practica", diff: "Intermedio",
+        q: `Se exige un valor o se lanza una excepción:
+<pre class="code-block">Optional&lt;Double&gt; opt = calcularPromedio();
+System.out.println(opt.orElseThrow());</pre>
+Si el Optional está vacío, ¿qué excepción lanza orElseThrow() sin argumentos, según la tabla de métodos de Optional?`,
+        opts: ["IllegalStateException", "NoSuchElementException", "NullPointerException", "UnsupportedOperationException"],
+        correct: 1,
+        exp: "orElseThrow() sin argumentos lanza NoSuchElementException cuando el Optional está vacío (el mismo comportamiento que get(), pero con un nombre más expresivo). La sobrecarga orElseThrow(Supplier) permite en cambio lanzar una excepción personalizada construida por ese Supplier."
       }
     ];
 
@@ -3480,7 +3916,7 @@ config.setIdleTimeout(300000);</pre>
 ¿Qué información adicional aporta BatchUpdateException frente a una SQLException genérica?`,
         opts: [
           "Indica únicamente el mensaje de error de la última sentencia del lote",
-          "Expone, con getUpdateCounts(), cuántas filas afectó cada sentencia que sí llegó a ejecutarse antes del fallo, permitiendo saber qué parte del lote tuvo éxito",
+          "getUpdateCounts() revela cuántas filas afectó cada sentencia ya ejecutada antes del fallo",
           "Revierte automáticamente toda la transacción sin intervención del desarrollador",
           "Convierte automáticamente el lote fallido en sentencias individuales reintentables"
         ], correct: 1,
@@ -3491,7 +3927,7 @@ config.setIdleTimeout(300000);</pre>
         id: "jd-22", cat: "jdbc", type: "teoria", diff: "Intermedio",
         q: "¿Qué habilita crear un Statement/PreparedStatement con el tipo TYPE_SCROLL_INSENSITIVE en lugar del tipo por defecto (TYPE_FORWARD_ONLY)?",
         opts: [
-          "Permite recorrer el ResultSet hacia adelante y hacia atrás, y saltar a una fila específica, en lugar de solo avanzar secuencialmente una vez",
+          "Permite recorrer el ResultSet hacia atrás o saltar a una fila específica",
           "Aumenta automáticamente la velocidad de todas las consultas ejecutadas",
           "Es un requisito obligatorio para poder usar PreparedStatement con parámetros",
           "Convierte cada fila del resultado en un objeto serializable por defecto"
@@ -3506,7 +3942,7 @@ config.setIdleTimeout(300000);</pre>
 ¿Qué representa el segmento 'thin' dentro de esta URL específica de Oracle?`,
         opts: [
           "El nombre de usuario que se usará para autenticarse en la base de datos",
-          "El tipo de driver JDBC de Oracle a utilizar (el driver 'thin', escrito puramente en Java, sin dependencias nativas del cliente Oracle)",
+          "El tipo de driver JDBC de Oracle: el driver 'thin', escrito 100% en Java, sin cliente nativo",
           "El tamaño máximo permitido para el pool de conexiones",
           "El nivel de aislamiento de transacción por defecto de esa conexión"
         ], correct: 1,
@@ -3517,12 +3953,95 @@ config.setIdleTimeout(300000);</pre>
         id: "jd-24", cat: "jdbc", type: "teoria", diff: "Básico",
         q: "¿Cuál es la diferencia principal entre obtener una conexión con DriverManager.getConnection() y con un DataSource inyectado por el servidor?",
         opts: [
-          "DriverManager crea una nueva conexión física en cada llamada; un DataSource gestionado por el servidor típicamente entrega conexiones de un pool ya establecido, reutilizándolas",
+          "DriverManager abre una conexión nueva cada vez; un DataSource reutiliza conexiones de un pool",
           "Ambos mecanismos son exactamente equivalentes en rendimiento y comportamiento",
           "DataSource solo puede usarse con bases de datos NoSQL, nunca relacionales",
           "DriverManager requiere JNDI obligatoriamente para poder funcionar"
         ], correct: 0,
         exp: "DriverManager.getConnection() abre una conexión física nueva en cada invocación, con el costo asociado. Un DataSource respaldado por un pool (gestionado por el servidor de aplicaciones) entrega conexiones ya abiertas y las devuelve al pool al cerrarse, evitando ese costo repetido en aplicaciones de alto tráfico."
+      },
+
+      {
+        id: "jd-25", cat: "jdbc", type: "practica", diff: "Intermedio",
+        q: `Se invoca un procedimiento almacenado sin parámetros que retorna un ResultSet:
+<pre class="code-block">String sql = "{call read_e_names()}";
+try (CallableStatement cs = conn.prepareCall(sql);
+     ResultSet rs = cs.executeQuery()) {
+    while (rs.next()) {
+        System.out.println(rs.getString(3));
+    }
+}</pre>
+¿Qué diferencia hay entre crear este objeto con prepareCall() en lugar de prepareStatement()?`,
+        opts: [
+          "prepareCall() se usa para procedimientos ({call nombre(...)}); prepareStatement() para SQL normal",
+          "Ambos métodos son intercambiables y producen exactamente el mismo tipo de objeto resultante",
+          "prepareCall() solo puede usarse si el procedimiento no retorna ningún ResultSet",
+          "prepareStatement() es la única forma válida de invocar un procedimiento almacenado en JDBC"
+        ], correct: 0,
+        exp: "Connection.prepareCall() crea específicamente un CallableStatement, diseñado para invocar procedimientos almacenados con la sintaxis {call procedimiento(...)}; prepareStatement() crea un PreparedStatement para sentencias SQL parametrizadas normales (SELECT/INSERT/UPDATE/DELETE), sin ese soporte especial para llamadas a procedimientos."
+      },
+
+      {
+        id: "jd-26", cat: "jdbc", type: "practica", diff: "Avanzado",
+        q: `Se invoca un procedimiento que devuelve un valor mediante un parámetro OUT:
+<pre class="code-block">var sql = "{?= call magic_number(?) }";
+try (var cs = conn.prepareCall(sql)) {
+    cs.registerOutParameter(1, Types.INTEGER);
+    cs.execute();
+    System.out.println(cs.getInt("num"));
+}</pre>
+¿Qué ocurre si se omite la llamada a cs.registerOutParameter(1, Types.INTEGER) antes de execute()?`,
+        opts: [
+          "El driver no sabrá interpretar el valor de salida, y cs.getInt(\"num\") fallará",
+          "El procedimiento se ejecuta igual, ya que registerOutParameter() es completamente opcional",
+          "El signo ?= al inicio del SQL hace innecesario registrar el parámetro de salida en el código Java",
+          "Java infiere automáticamente el tipo del parámetro de salida a partir del nombre del procedimiento"
+        ], correct: 0,
+        exp: "Para cada parámetro OUT o INOUT de un CallableStatement es obligatorio llamar a registerOutParameter(), indicando su posición (o nombre) y tipo SQL; esto permite que JDBC sepa cómo interpretar el valor devuelto por el procedimiento. Sin ese registro, el driver no puede exponer correctamente ese valor de salida al código Java."
+      },
+
+      {
+        id: "jd-27", cat: "jdbc", type: "practica", diff: "Avanzado",
+        q: `Se invoca un procedimiento con un parámetro que sirve de entrada y de salida a la vez:
+<pre class="code-block">var sql = "{call double_number(?)}";
+try (var cs = conn.prepareCall(sql)) {
+    cs.setInt(1, 8);
+    cs.registerOutParameter(1, Types.INTEGER);
+    cs.execute();
+    System.out.println(cs.getInt("num"));
+}</pre>
+¿Por qué este parámetro requiere tanto setInt() como registerOutParameter(), a diferencia de un parámetro puramente IN o puramente OUT?`,
+        opts: [
+          "Porque INOUT combina ambos requisitos: setInt() para la entrada, registerOutParameter() para la salida",
+          "Porque setInt() y registerOutParameter() en realidad configuran dos parámetros distintos del procedimiento",
+          "Porque double_number() requiere obligatoriamente dos signos de interrogación en el SQL, no uno solo",
+          "Porque INOUT es en realidad un error de sintaxis, y el ejemplo no compilaría en la práctica"
+        ], correct: 0,
+        exp: "Un parámetro INOUT actúa simultáneamente como IN y como OUT: requiere setInt() para enviar el valor de entrada (el 8) y registerOutParameter() para poder leer después el valor modificado que el procedimiento retorna, cumpliendo así los requisitos de ambos tipos de parámetro a la vez."
+      },
+
+      {
+        id: "jd-28", cat: "jdbc", type: "teoria", diff: "Intermedio",
+        q: "¿Qué diferencia de comportamiento existe entre un parámetro IN y uno OUT respecto a la obligación de llamar a registerOutParameter() en un CallableStatement?",
+        opts: [
+          "IN solo necesita un setter como setInt(); OUT exige siempre registerOutParameter()",
+          "Ambos tipos de parámetro requieren exactamente los mismos pasos de configuración",
+          "Un parámetro IN siempre requiere registerOutParameter(), y un parámetro OUT nunca lo necesita",
+          "Ninguno de los dos tipos de parámetro necesita configuración adicional más allá de declarar el signo de interrogación"
+        ], correct: 0,
+        exp: "Según los requisitos de cada tipo de parámetro en un CallableStatement: IN solo exige fijar su valor de entrada (por ejemplo con setInt()) y nunca requiere registerOutParameter(); OUT, al no recibir valor de entrada, no necesita un setter, pero sí exige siempre registrarse con registerOutParameter() para poder leerse después de ejecutar el procedimiento."
+      },
+
+      {
+        id: "jd-29", cat: "jdbc", type: "teoria", diff: "Avanzado",
+        q: "¿Qué representa la constante ResultSet.TYPE_FORWARD_ONLY al crear un Statement o PreparedStatement?",
+        opts: [
+          "Que el cursor solo avanza hacia adelante, sin poder retroceder ni saltar de posición",
+          "Que la consulta solo puede ejecutarse una única vez durante toda la vida de la conexión",
+          "Que el ResultSet resultante se ordena automáticamente en sentido ascendente por su clave primaria",
+          "Que el driver JDBC ejecutará la consulta en un hilo separado del hilo principal de la aplicación"
+        ], correct: 0,
+        exp: "TYPE_FORWARD_ONLY es el tipo de ResultSet por defecto en JDBC: su cursor solo puede moverse hacia adelante con next(), una fila cada vez, sin soportar operaciones como previous() o absolute(n). Para navegación bidireccional se necesita en cambio TYPE_SCROLL_INSENSITIVE o TYPE_SCROLL_SENSITIVE al crear el Statement."
       }
     ];
 
@@ -3865,7 +4384,7 @@ public class Factura {
         q: "Entre los tipos de CascadeType (PERSIST, MERGE, REMOVE, ALL), ¿qué distingue específicamente a CascadeType.REMOVE?",
         opts: [
           "Propaga únicamente la operación persist() hacia las entidades asociadas",
-          "Propaga la eliminación: al borrar la entidad padre, también se eliminan las entidades hijas asociadas por esa relación",
+          "Propaga la eliminación: borrar el padre elimina también sus entidades hijas asociadas",
           "Sincroniza cambios de estado sin eliminar ni crear ningún registro nuevo",
           "Solo tiene efecto sobre relaciones @ManyToOne, nunca sobre @OneToMany"
         ], correct: 1,
@@ -3887,7 +4406,7 @@ public class Producto {
 ¿Qué logra la anotación @Transient sobre getPrecioFinal()?`,
         opts: [
           "Marca el método como el punto de entrada obligatorio para todas las consultas",
-          "Indica que ese valor calculado no debe mapearse como columna de la tabla ni persistirse en la base de datos",
+          "Indica que ese valor calculado no debe mapearse ni persistirse como columna",
           "Convierte el método en el nuevo identificador (clave primaria) de la entidad",
           "Obliga a recalcular ese valor automáticamente cada vez que se hace commit"
         ], correct: 1,
@@ -3899,7 +4418,7 @@ public class Producto {
         q: "¿Qué ventaja ofrece la Criteria API de JPA frente a escribir JPQL como texto plano para construir consultas dinámicas?",
         opts: [
           "Ejecuta las consultas directamente en la base de datos sin pasar por el proveedor JPA",
-          "Permite construir consultas de forma programática y con verificación de tipos en tiempo de compilación, útil cuando los criterios de filtrado varían según condiciones de negocio",
+          "Construye consultas de forma programática con verificación de tipos en compilación",
           "Solo puede usarse para operaciones de eliminación masiva de registros",
           "Reemplaza por completo la necesidad de declarar entidades anotadas con @Entity"
         ], correct: 1,
@@ -3915,11 +4434,192 @@ List&lt;Contribuyente&gt; resultado = q.getResultList();</pre>
 ¿Por qué podría preferirse createNativeQuery() sobre JPQL en este caso específico?`,
         opts: [
           "Porque JPQL no permite ejecutar ningún tipo de SELECT bajo ninguna circunstancia",
-          "Porque ROWNUM es una construcción específica de Oracle sin equivalente directo en JPQL portable; la consulta nativa permite aprovechar sintaxis propia del motor cuando se necesita",
+          "Porque ROWNUM es propio de Oracle, sin equivalente directo en JPQL estándar portable",
           "Porque las consultas nativas se ejecutan siempre más rápido que cualquier JPQL",
           "Porque createNativeQuery() es la única forma de mapear resultados a una entidad"
         ], correct: 1,
         exp: "JPQL es portable entre motores de base de datos y no conoce construcciones propietarias como ROWNUM (Oracle) o LIMIT (otros motores, aunque JPA moderno ofrece setMaxResults() como alternativa portable). createNativeQuery() permite escribir SQL específico del motor cuando se necesita una característica no expresable en JPQL estándar, a costa de perder portabilidad."
+      },
+
+      {
+        id: "or-28", cat: "orm", type: "practica", diff: "Avanzado",
+        q: `Se anota una colección para mitigar el problema N+1:
+<pre class="code-block">@Entity
+public class Contribuyente {
+    @Id private Long id;
+    @OneToMany(mappedBy = "contribuyente")
+    @BatchSize(size = 20)
+    private List&lt;Declaracion&gt; declaraciones;
+}</pre>
+Al recorrer 50 contribuyentes y acceder a sus declaraciones, ¿cómo cambia el número de consultas SQL con @BatchSize(size = 20) frente a no usar esa anotación?`,
+        opts: [
+          "Agrupa la carga de proxies pendientes en lotes de hasta 20 usando cláusulas IN",
+          "Elimina por completo cualquier consulta adicional, cargando todo en la consulta original",
+          "Cambia el tipo de asociación de LAZY a EAGER de forma permanente para toda la entidad",
+          "Solo tiene efecto si la colección se declara además como @Transient"
+        ], correct: 0,
+        exp: "Según la documentación oficial de Hibernate, @BatchSize especifica un tamaño máximo de lote para la carga diferida de una entidad o colección: en lugar de una consulta SQL por cada proxy no inicializado, Hibernate agrupa varios usando una cláusula IN, reduciendo el problema N+1 de N consultas a aproximadamente N/tamaño_lote consultas."
+      },
+
+      {
+        id: "or-29", cat: "orm", type: "teoria", diff: "Intermedio",
+        q: "Según la documentación de Hibernate, ¿cuál es la diferencia principal entre una Session normal y una StatelessSession?",
+        opts: [
+          "No mantiene caché de primer nivel ni dirty checking; opera directo contra la base de datos",
+          "StatelessSession solo puede usarse para operaciones de lectura, nunca para INSERT o UPDATE",
+          "Ambas son idénticas; StatelessSession es solo un alias histórico de Session",
+          "StatelessSession requiere obligatoriamente deshabilitar la caché de segundo nivel de toda la aplicación"
+        ], correct: 0,
+        exp: "Una StatelessSession de Hibernate opera a un nivel más bajo: no tiene contexto de persistencia (caché de primer nivel), no aplica dirty checking automático ni cascadas, y cada operación (insert/update/delete) se traduce directamente en la sentencia SQL correspondiente, útil para procesos batch de alto volumen donde el overhead de una Session completa no se justifica."
+      },
+
+      {
+        id: "or-30", cat: "orm", type: "teoria", diff: "Intermedio",
+        q: "¿Qué controla el modo de descarga (FlushMode) de una sesión de Hibernate, y qué diferencia hay entre AUTO y COMMIT?",
+        opts: [
+          "AUTO puede sincronizar antes de una consulta afectada; COMMIT solo al confirmar la transacción",
+          "FlushMode controla exclusivamente la frecuencia de backups automáticos de la base de datos",
+          "COMMIT sincroniza los cambios en cada línea de código ejecutada, sin excepción",
+          "AUTO y COMMIT son sinónimos exactos en todas las versiones de Hibernate"
+        ], correct: 0,
+        exp: "El FlushMode determina cuándo Hibernate sincroniza el estado en memoria con la base de datos. AUTO (el valor por defecto histórico) puede disparar un flush automático antes de una consulta si detecta cambios pendientes relevantes para esa consulta; COMMIT pospone la sincronización hasta el commit de la transacción, evitando flushes intermedios."
+      },
+
+      {
+        id: "or-31", cat: "orm", type: "practica", diff: "Intermedio",
+        q: `Se declara una relación bidireccional entre Factura y DetalleFactura:
+<pre class="code-block">@Entity
+public class DetalleFactura {
+    @ManyToOne
+    @JoinColumn(name = "factura_id")
+    private Factura factura;
+}
+@Entity
+public class Factura {
+    @OneToMany(mappedBy = "factura")
+    private List&lt;DetalleFactura&gt; detalles;
+}</pre>
+¿Por qué se considera que DetalleFactura es el lado 'propietario' (owning side) de esta relación y Factura el lado inverso?`,
+        opts: [
+          "Porque DetalleFactura contiene el atributo mappedBy, que indica quién controla la relación",
+          "El lado que declara @JoinColumn es el propietario; mappedBy solo referencia esa relación",
+          "El propietario se determina alfabéticamente por el nombre de la clase, no por la anotación",
+          "En JPA no existe ningún concepto de lado propietario en relaciones bidireccionales"
+        ], correct: 1,
+        exp: "En una relación bidireccional JPA, el lado propietario es el que define la columna de clave foránea física mediante @JoinColumn; es el que Hibernate usa para generar los INSERT/UPDATE de esa relación. El lado inverso (con mappedBy) es solo de lectura respecto a la relación: modificarlo sin actualizar también el lado propietario no persiste el cambio."
+      },
+
+      {
+        id: "or-32", cat: "orm", type: "teoria", diff: "Básico",
+        q: "Según la especificación Jakarta Persistence, ¿qué determina el atributo generationType.SEQUENCE en @GeneratedValue?",
+        opts: [
+          "Que el identificador se genera mediante un objeto SEQUENCE consultado antes de insertar",
+          "Que el identificador se genera concatenando campos de texto de la entidad",
+          "Que la clave primaria se calcula solo en el cliente Java, sin consultar la base de datos",
+          "Que el identificador se reutiliza automáticamente tras eliminar una fila"
+        ], correct: 0,
+        exp: "GenerationType.SEQUENCE delega la generación del identificador a un objeto SEQUENCE del motor de base de datos (ampliamente soportado por Oracle), que el proveedor JPA consulta (normalmente con NEXTVAL) para obtener el próximo valor antes de insertar la nueva fila."
+      },
+
+      {
+        id: "or-33", cat: "orm", type: "teoria", diff: "Avanzado",
+        q: "¿Qué diferencia hay entre el ciclo de vida 'detached' y 'removed' de una entidad JPA?",
+        opts: [
+          "detached se desconectó del contexto; removed fue marcada para eliminarse de la base",
+          "Ambos estados son sinónimos exactos según la especificación Jakarta Persistence",
+          "removed significa que la entidad nunca fue guardada en la base de datos",
+          "detached solo aplica a entidades que aún no tienen identificador asignado"
+        ], correct: 0,
+        exp: "Una entidad pasa a 'detached' cuando el EntityManager que la gestionaba se cierra o se llama a detach()/clear(), perdiendo el seguimiento automático de cambios pero sin afectar su fila en la base de datos. Una entidad 'removed' fue marcada explícitamente con remove() y su fila correspondiente se eliminará físicamente al confirmarse la transacción."
+      },
+
+      {
+        id: "or-34", cat: "orm", type: "practica", diff: "Intermedio",
+        q: `Se define una jerarquía de herencia con estrategia JOINED:
+<pre class="code-block">@Entity
+@Inheritance(strategy = InheritanceType.JOINED)
+public class Documento { @Id private Long id; }
+
+@Entity
+public class Factura extends Documento { private double monto; }</pre>
+¿Cómo organiza JOINED las tablas físicas de esta jerarquía, a diferencia de SINGLE_TABLE?`,
+        opts: [
+          "Crea una tabla por cada clase concreta de la jerarquía, sin ninguna relación entre ellas",
+          "Una tabla para los campos comunes y otra por subclase, unidas por la misma clave primaria",
+          "Ignora por completo la jerarquía y almacena todo en una única tabla, igual que SINGLE_TABLE",
+          "Requiere obligatoriamente que Documento sea una interfaz, no una clase abstracta"
+        ], correct: 1,
+        exp: "JOINED normaliza la jerarquía en varias tablas relacionadas: una para los campos comunes de la superclase, y una tabla adicional por cada subclase que contiene únicamente sus campos específicos, enlazadas por la misma clave primaria; recuperar una Factura completa implica un JOIN entre ambas tablas, a diferencia del enfoque de una sola tabla ancha de SINGLE_TABLE."
+      },
+
+      {
+        id: "or-35", cat: "orm", type: "teoria", diff: "Intermedio",
+        q: "¿Qué papel cumple la interfaz EntityListener (junto con anotaciones como @PrePersist o @PostLoad) en el ciclo de vida de una entidad JPA?",
+        opts: [
+          "Ejecuta lógica de callback en momentos del ciclo de vida, sin mezclarla en la lógica de negocio",
+          "Reemplaza por completo la necesidad de declarar un EntityManager en la aplicación",
+          "Solo puede usarse en entidades marcadas como @Embeddable, nunca en @Entity",
+          "Convierte automáticamente la entidad en de solo lectura tras su primera carga"
+        ], correct: 0,
+        exp: "Un EntityListener (o los callbacks del ciclo de vida declarados directamente en la entidad) permite ejecutar código en puntos definidos del ciclo de vida JPA, como @PrePersist (antes de un INSERT) o @PostLoad (tras cargar la entidad), útil por ejemplo para auditoría automática de fechas de creación/modificación sin duplicar esa lógica en cada servicio."
+      },
+
+      {
+        id: "or-36", cat: "orm", type: "practica", diff: "Avanzado",
+        q: `Se define una consulta de actualización masiva:
+<pre class="code-block">int actualizados = em.createQuery(
+    "UPDATE Contribuyente c SET c.estado = 'INACTIVO' WHERE c.ultimoAcceso &lt; :fecha")
+    .setParameter("fecha", fechaLimite)
+    .executeUpdate();</pre>
+¿Qué particularidad tiene un UPDATE ejecutado con executeUpdate() en JPQL respecto al contexto de persistencia (caché de primer nivel) ya cargado en memoria?`,
+        opts: [
+          "Actualiza automáticamente cualquier entidad Contribuyente ya cargada en el contexto actual",
+          "Afecta la base de datos por SQL, pero no sincroniza las entidades ya cargadas en memoria",
+          "Lanza una excepción si existe alguna entidad Contribuyente ya cargada en la sesión",
+          "Convierte automáticamente la consulta en una operación por lotes sin configuración adicional"
+        ], correct: 1,
+        exp: "Las operaciones JPQL bulk (UPDATE/DELETE con executeUpdate()) se traducen directamente a SQL contra la base de datos, sin pasar por el ciclo normal de gestión de entidades; por eso no actualizan automáticamente las instancias que ya estaban cargadas en el contexto de persistencia, pudiendo dejarlas con datos obsoletos hasta que se recarguen explícitamente."
+      },
+
+      {
+        id: "or-37", cat: "orm", type: "teoria", diff: "Básico",
+        q: "¿Qué anotación de Bean Validation (integrable con JPA) se usa para asegurar que un campo de una entidad no sea nulo antes de persistirse?",
+        opts: ["@NotNull", "@Transient", "@Embedded", "@Version"],
+        correct: 0,
+        exp: "@NotNull (de la especificación Bean Validation, jakarta.validation.constraints) marca un campo como obligatorio; los proveedores JPA modernos suelen integrar automáticamente estas validaciones antes de ejecutar operaciones de persistencia, lanzando una excepción si se viola la restricción."
+      },
+
+      {
+        id: "or-38", cat: "orm", type: "teoria", diff: "Avanzado",
+        q: "¿Qué diferencia hay entre los modos de acceso 'FIELD' y 'PROPERTY' que Hibernate puede usar para leer/escribir los atributos de una entidad?",
+        opts: [
+          "FIELD accede a los campos por reflexión; PROPERTY usa los getter/setter declarados",
+          "FIELD solo puede usarse con tipos primitivos, nunca con objetos",
+          "PROPERTY obliga a que todos los campos de la entidad sean públicos",
+          "Ambos modos son idénticos en comportamiento, solo cambia el nombre de configuración"
+        ], correct: 0,
+        exp: "El modo de acceso se determina típicamente por dónde se colocan las anotaciones (sobre el campo o sobre el getter). En FIELD, Hibernate lee/escribe los atributos directamente vía reflexión, ignorando getters/setters; en PROPERTY, pasa por esos métodos, lo que permite ejecutar validaciones o transformaciones adicionales dentro de ellos al leer o escribir el valor."
+      },
+
+      {
+        id: "or-39", cat: "orm", type: "practica", diff: "Intermedio",
+        q: `Se configura una relación de un solo elemento embebido opcional:
+<pre class="code-block">@Embeddable
+public class Direccion { private String calle; private String ciudad; }
+
+@Entity
+public class Contribuyente {
+    @Id private Long id;
+    @Embedded private Direccion direccion;
+}</pre>
+Si direccion es null al persistir un nuevo Contribuyente, ¿qué ocurre con las columnas calle y ciudad en la tabla?`,
+        opts: [
+          "Se lanza una excepción obligatoriamente, ya que @Embedded no permite valores null",
+          "Ambas columnas quedan con valor NULL en la fila recién insertada",
+          "Se crea automáticamente una fila vacía adicional en una tabla separada para Direccion",
+          "El identificador de la entidad Contribuyente se genera como null en ese caso"
+        ], correct: 1,
+        exp: "Un componente @Embeddable no tiene tabla propia: sus atributos se mapean como columnas adicionales de la tabla del que lo contiene. Si la referencia @Embedded es null al persistir, esas columnas simplemente quedan NULL en la fila insertada, sin generar ninguna excepción ni tabla adicional."
       }
     ];
 
@@ -4296,7 +4996,7 @@ END;</pre>
         q: "¿Para qué se utiliza el paquete DBMS_OUTPUT (con PUT_LINE) durante el desarrollo de bloques PL/SQL?",
         opts: [
           "Para insertar registros de auditoría directamente en una tabla del esquema",
-          "Para imprimir mensajes de depuración en el búfer de salida, visibles en la consola del cliente SQL (con SET SERVEROUTPUT ON habilitado)",
+          "Para imprimir mensajes de depuración en el búfer, visibles en la consola del cliente SQL",
           "Para exportar el resultado de una consulta a un archivo CSV",
           "Para enviar notificaciones por correo electrónico desde la base de datos"
         ], correct: 1,
@@ -4313,7 +5013,7 @@ END;</pre>
 ¿Qué propósito cumple el parámetro de tipo SYS_REFCURSOR en este procedimiento?`,
         opts: [
           "Define el número máximo de filas que la consulta puede devolver",
-          "Permite devolver al llamador (por ejemplo, código Java vía JDBC) un conjunto de resultados completo, no un único valor escalar como los parámetros OUT tradicionales",
+          "Permite devolver al llamador un conjunto de resultados completo, no un valor escalar",
           "Obliga a que el procedimiento se ejecute como una transacción autónoma",
           "Convierte automáticamente el procedimiento en una función con retorno"
         ], correct: 1,
@@ -4325,7 +5025,7 @@ END;</pre>
         q: "¿Para qué se usa PRAGMA EXCEPTION_INIT en la declaración de una excepción PL/SQL, como en 'PRAGMA EXCEPTION_INIT(mi_excepcion, -2291)'?",
         opts: [
           "Para definir el mensaje de texto exacto que mostrará la excepción",
-          "Para asociar un nombre de excepción declarado por el usuario a un código de error Oracle específico (como -2291, violación de clave foránea), permitiendo capturarlo con WHEN mi_excepcion en vez de un WHEN OTHERS genérico",
+          "Asocia un nombre propio a un código de error Oracle, capturable con un WHEN específico",
           "Para deshabilitar por completo esa excepción durante la ejecución",
           "Para registrar automáticamente la excepción en una tabla de auditoría"
         ], correct: 1,
@@ -4340,11 +5040,104 @@ EXECUTE IMMEDIATE 'SELECT COUNT(*) FROM ' || v_tabla INTO v_total;</pre>
 ¿Qué caso de uso justifica recurrir a EXECUTE IMMEDIATE en lugar de una sentencia SQL estática embebida?`,
         opts: [
           "Es obligatorio siempre que se use la palabra clave SELECT en PL/SQL",
-          "Cuando el nombre del objeto (tabla, columna) o la estructura de la sentencia se determina solo en tiempo de ejecución, como una tabla particionada por año",
+          "Cuando el nombre del objeto se determina solo en tiempo de ejecución, no antes",
           "Únicamente para mejorar el rendimiento de consultas ya conocidas de antemano",
           "Es la única forma de ejecutar sentencias DDL desde un bloque PL/SQL"
         ], correct: 1,
         exp: "SQL dinámico (EXECUTE IMMEDIATE) es necesario cuando la sentencia no puede conocerse completamente en tiempo de compilación, por ejemplo cuando el nombre de la tabla depende de una variable calculada en tiempo de ejecución, algo que el SQL estático embebido en PL/SQL no permite parametrizar directamente para identificadores de objeto."
+      },
+
+      {
+        id: "pl-27", cat: "plsql", type: "teoria", diff: "Intermedio",
+        q: "Según el Oracle PL/SQL Language Reference, ¿en qué situación exacta se lanza la excepción predefinida NO_DATA_FOUND?",
+        opts: [
+          "Cuando una sentencia SELECT INTO no devuelve ninguna fila coincidente",
+          "Cuando una sentencia SELECT INTO devuelve más de una fila coincidente",
+          "Cuando se intenta dividir un número entre cero dentro del bloque",
+          "Cuando se viola una restricción de clave única al insertar un registro"
+        ], correct: 0,
+        exp: "Según la documentación oficial de Oracle, NO_DATA_FOUND se lanza automáticamente cuando una sentencia SELECT INTO no encuentra ninguna fila que coincida con la condición. El caso de más de una fila corresponde a TOO_MANY_ROWS, la división entre cero a ZERO_DIVIDE, y la violación de unicidad a DUP_VAL_ON_INDEX."
+      },
+
+      {
+        id: "pl-28", cat: "plsql", type: "practica", diff: "Avanzado",
+        q: `Se maneja explícitamente una violación de restricción única:
+<pre class="code-block">BEGIN
+    INSERT INTO contribuyente (ruc, razon_social) VALUES ('1790000000001', 'Empresa X');
+EXCEPTION
+    WHEN DUP_VAL_ON_INDEX THEN
+        DBMS_OUTPUT.PUT_LINE('El RUC ya está registrado');
+END;</pre>
+Según el Oracle PL/SQL Language Reference, ¿cuándo se lanza específicamente DUP_VAL_ON_INDEX?`,
+        opts: [
+          "Cuando un INSERT o UPDATE guarda un valor duplicado en una columna con índice único",
+          "Cuando el nombre de la tabla referenciada no existe en el esquema actual",
+          "Cuando se intenta leer una columna que no fue declarada en el SELECT",
+          "Cuando la transacción actual excede el tiempo máximo configurado por el DBA"
+        ], correct: 0,
+        exp: "DUP_VAL_ON_INDEX (código de error ORA-00001) se lanza cuando un INSERT o UPDATE viola una restricción de índice único, intentando almacenar un valor que ya existe en una columna restringida a valores únicos, como el RUC en una tabla de contribuyentes."
+      },
+
+      {
+        id: "pl-29", cat: "plsql", type: "teoria", diff: "Avanzado",
+        q: "Según la documentación oficial de Oracle sobre tipos de colección PL/SQL, ¿qué caracteriza específicamente a una tabla anidada (nested table) frente a un varray?",
+        opts: [
+          "Nested table no tiene tamaño máximo y puede quedar 'sparse'; varray tiene tamaño fijo y es densa",
+          "Un varray puede persistirse como columna de tabla; una nested table nunca puede almacenarse así",
+          "Ambos tipos son idénticos en Oracle; solo cambia la palabra clave usada para declararlos",
+          "Una nested table solo puede contener tipos numéricos, nunca cadenas de texto ni objetos"
+        ], correct: 0,
+        exp: "Según la documentación de Oracle, un varray declara un tamaño máximo fijo y mantiene sus elementos de forma densa (sin huecos). Una nested table no tiene límite máximo declarado y puede volverse 'sparse' (con huecos en los índices) tras eliminar elementos; ambos tipos, a diferencia de las tablas asociativas (index-by), sí pueden almacenarse como columnas de una tabla de base de datos."
+      },
+
+      {
+        id: "pl-30", cat: "plsql", type: "practica", diff: "Intermedio",
+        q: `Se declara una tabla asociativa (associative array) indexada por texto:
+<pre class="code-block">DECLARE
+    TYPE t_saldos IS TABLE OF NUMBER INDEX BY VARCHAR2(20);
+    v_saldos t_saldos;
+BEGIN
+    v_saldos('CONTRIB-45') := 1500;
+    v_saldos('CONTRIB-99') := 2300;
+END;</pre>
+Según la documentación de Oracle, ¿qué caracteriza a este tipo de colección frente a un nested table o un varray?`,
+        opts: [
+          "Es la única que puede indexarse por un tipo distinto a un entero secuencial, como VARCHAR2",
+          "Es la única que puede almacenarse físicamente como columna de una tabla de base de datos",
+          "Es la única que exige declarar un tamaño máximo fijo antes de usarla",
+          "Es la única que no puede declararse dentro de un bloque PL/SQL anónimo"
+        ], correct: 0,
+        exp: "Las tablas asociativas (index-by tables) permiten indexar por cualquier tipo escalar, incluyendo cadenas de texto como en este ejemplo, a diferencia de nested tables y varrays que usan índices numéricos. A cambio, según la documentación de Oracle, solo existen en memoria PL/SQL y no pueden almacenarse como columna de una tabla física."
+      },
+
+      {
+        id: "pl-31", cat: "plsql", type: "teoria", diff: "Intermedio",
+        q: "Según el Oracle PL/SQL Language Reference, ¿qué diferencia hay entre las excepciones VALUE_ERROR e INVALID_NUMBER?",
+        opts: [
+          "VALUE_ERROR cubre errores aritméticos/tamaño en general; INVALID_NUMBER solo conversión a número",
+          "Ambas excepciones son sinónimos exactos, documentadas con el mismo código de error",
+          "INVALID_NUMBER solo puede ocurrir dentro de un cursor explícito, nunca en una asignación directa",
+          "VALUE_ERROR únicamente se aplica a operaciones con fechas, nunca con números"
+        ], correct: 0,
+        exp: "Según la documentación de Oracle, VALUE_ERROR es una excepción más general para errores aritméticos, de conversión o de tamaño (por ejemplo, asignar una cadena muy larga a una variable con longitud restringida). INVALID_NUMBER es más específica: se lanza cuando una conversión a NUMBER falla porque la cadena de origen no representa un literal numérico válido."
+      },
+
+      {
+        id: "pl-32", cat: "plsql", type: "practica", diff: "Básico",
+        q: `Se recorre un cursor con un bucle FOR implícito:
+<pre class="code-block">BEGIN
+    FOR fila IN (SELECT ruc, razon_social FROM contribuyente WHERE estado = 'ACTIVO') LOOP
+        DBMS_OUTPUT.PUT_LINE(fila.ruc || ' - ' || fila.razon_social);
+    END LOOP;
+END;</pre>
+¿Qué ventaja ofrece este cursor FOR loop implícito frente a declarar y manejar manualmente OPEN, FETCH y CLOSE?`,
+        opts: [
+          "Abre, recorre y cierra el cursor automáticamente, sin gestionar esas tres operaciones a mano",
+          "Ejecuta la consulta una sola vez para todas las filas combinadas en un único registro",
+          "Solo puede usarse con tablas que tengan menos de 1000 registros en total",
+          "Requiere declarar previamente el cursor en la sección DECLARE, a diferencia de OPEN/FETCH/CLOSE"
+        ], correct: 0,
+        exp: "El cursor FOR loop implícito simplifica el patrón más común de recorrido: declara automáticamente el registro fila con la forma de las columnas seleccionadas, abre el cursor, itera fila por fila y lo cierra automáticamente al finalizar (o ante una excepción), evitando el código repetitivo de gestionar manualmente OPEN/FETCH/CLOSE."
       }
     ];
 
@@ -4666,7 +5459,7 @@ public class SubirServlet extends HttpServlet {
         id: "sj-22", cat: "servlets-jsp", type: "teoria", diff: "Intermedio",
         q: "¿Qué diferencia existe entre RequestDispatcher.include() y RequestDispatcher.forward()?",
         opts: [
-          "include() inserta la salida del recurso destino dentro de la respuesta actual y retorna el control al recurso original; forward() delega por completo el control, sin volver al original",
+          "include() inserta la salida del destino y retorna el control; forward() delega todo sin volver",
           "Ambos métodos producen exactamente el mismo resultado final en el navegador",
           "forward() solo puede usarse entre dos JSP, nunca entre un servlet y un JSP",
           "include() cambia la URL visible en el navegador, a diferencia de forward()"
@@ -4683,7 +5476,7 @@ response.addCookie(preferencia);</pre>
 ¿Qué controla setMaxAge(60 * 60 * 24 * 30) en esta cookie?`,
         opts: [
           "El número máximo de solicitudes en las que puede usarse esa cookie",
-          "El tiempo (en segundos, aquí 30 días) que el navegador debe conservar la cookie antes de descartarla automáticamente",
+          "El tiempo en segundos (aquí 30 días) que el navegador conserva la cookie antes de expirarla",
           "El tamaño máximo en bytes permitido para el valor de la cookie",
           "El dominio exacto donde la cookie será válida"
         ], correct: 1,
@@ -4702,12 +5495,64 @@ response.addCookie(preferencia);</pre>
         id: "sj-25", cat: "servlets-jsp", type: "teoria", diff: "Avanzado",
         q: "¿Qué es un ataque de 'session fixation' y qué contramedida común se aplica al autenticar un usuario?",
         opts: [
-          "Un atacante fuerza a la víctima a usar un identificador de sesión conocido de antemano, para luego secuestrarla una vez autenticada; la contramedida es regenerar el identificador de sesión inmediatamente tras el login",
+          "El atacante fuerza un ID de sesión conocido; la defensa es regenerarlo tras el login",
           "Un atacante bloquea por completo la creación de nuevas sesiones en el servidor",
           "Un atacante intercepta contraseñas mediante fuerza bruta contra el formulario de login",
           "Un atacante explota una vulnerabilidad de inyección SQL en la tabla de sesiones"
         ], correct: 0,
         exp: "En session fixation, el atacante induce a la víctima a usar un ID de sesión que él mismo ya conoce (por ejemplo, vía un enlace manipulado); si la aplicación no cambia ese ID tras autenticarse, el atacante puede usar el mismo ID para acceder ya autenticado. La defensa estándar es invalidar la sesión anterior y generar un nuevo ID inmediatamente después del login exitoso."
+      },
+
+      {
+        id: "sj-26", cat: "servlets-jsp", type: "teoria", diff: "Intermedio",
+        q: "Según la especificación Jakarta Servlet, ¿cuál es el estado actual de la interfaz SingleThreadModel, pensada para garantizar que un servlet procese una sola solicitud a la vez?",
+        opts: [
+          "Deprecada desde Servlet 2.4, y no soluciona todos los problemas de concurrencia existentes",
+          "Es el mecanismo recomendado actualmente para manejar concurrencia en servlets modernos",
+          "Fue eliminada por completo del paquete jakarta.servlet en la versión 6.0",
+          "Solo puede aplicarse a servlets que extienden GenericServlet, nunca a HttpServlet"
+        ], correct: 0,
+        exp: "SingleThreadModel está deprecada desde Servlet 2.4 y la propia documentación advierte que no resuelve todos los problemas de concurrencia: aunque garantiza que el método service() de una instancia no se ejecute en paralelo, variables static o atributos compartidos (como los de HttpSession) siguen siendo accesibles concurrentemente desde múltiples hilos."
+      },
+
+      {
+        id: "sj-27", cat: "servlets-jsp", type: "teoria", diff: "Básico",
+        q: "Según la especificación Jakarta Servlet, ¿qué garantiza el contenedor respecto a las llamadas a init() y destroy() durante el ciclo de vida de un servlet?",
+        opts: [
+          "Ambos se invocan una sola vez: init() antes de atender solicitudes, destroy() al retirar el servlet",
+          "init() se invoca antes de cada solicitud individual recibida por el servlet",
+          "destroy() se invoca automáticamente cada vez que ocurre una excepción no controlada",
+          "El contenedor no garantiza ningún orden particular entre init() y las llamadas a service()"
+        ], correct: 0,
+        exp: "Según la especificación, el contenedor invoca init() una única vez tras construir la instancia, y solo llama a service() (que despacha a doGet/doPost, etc.) después de que init() haya completado exitosamente. destroy() también se invoca una única vez, al retirar esa instancia de servicio, permitiendo liberar recursos."
+      },
+
+      {
+        id: "sj-28", cat: "servlets-jsp", type: "practica", diff: "Intermedio",
+        q: `Se declara un filtro con dispatcher types específicos:
+<pre class="code-block">@WebFilter(urlPatterns = "/reportes/*",
+    dispatcherTypes = { DispatcherType.REQUEST, DispatcherType.FORWARD })
+public class AuditoriaFilter implements Filter { ... }</pre>
+Según la especificación Jakarta Servlet, ¿qué controla el atributo dispatcherTypes de @WebFilter?`,
+        opts: [
+          "En qué tipos de despacho (directo, forward, include, error) debe aplicarse ese filtro",
+          "El orden numérico exacto en que se ejecutará este filtro respecto a otros filtros configurados",
+          "El número máximo de solicitudes concurrentes que el filtro puede procesar",
+          "El tiempo máximo en milisegundos que el filtro puede tardar en ejecutarse"
+        ], correct: 0,
+        exp: "dispatcherTypes indica en qué escenarios de despacho (REQUEST para solicitudes directas del cliente, FORWARD, INCLUDE, ERROR, ASYNC) el contenedor debe invocar el filtro, además del patrón de URL; en este ejemplo, el filtro se aplica tanto a solicitudes directas como a las que llegan vía RequestDispatcher.forward()."
+      },
+
+      {
+        id: "sj-29", cat: "servlets-jsp", type: "teoria", diff: "Avanzado",
+        q: "Según la especificación Jakarta Servlet, ¿qué diferencia hay entre context.getRequestDispatcher(ruta) (del ServletContext) y request.getRequestDispatcher(ruta) (del HttpServletRequest) en cuanto a la resolución de la ruta indicada?",
+        opts: [
+          "context exige ruta absoluta desde '/'; request admite además rutas relativas al recurso actual",
+          "Ambos métodos producen exactamente el mismo RequestDispatcher en cualquier caso",
+          "request.getRequestDispatcher() solo puede usarse dentro de un JSP, nunca en un servlet",
+          "context.getRequestDispatcher() únicamente funciona con recursos ubicados fuera de WEB-INF"
+        ], correct: 0,
+        exp: "Según la especificación, ServletContext.getRequestDispatcher() requiere una ruta que comience con '/' e interpreta esa ruta como absoluta dentro del contexto de la aplicación. HttpServletRequest.getRequestDispatcher() es más flexible: además de rutas absolutas, admite rutas relativas al recurso que está procesando la solicitud actual."
       }
     ];
 
@@ -4980,7 +5825,7 @@ Frente a versionar mediante una cabecera personalizada (por ejemplo, Accept-Vers
         id: "rs-21", cat: "rest-soap", type: "teoria", diff: "Intermedio",
         q: "¿Qué diferencia semántica tiene el método HTTP PATCH frente a PUT en una API REST?",
         opts: [
-          "PATCH aplica una modificación parcial del recurso; PUT reemplaza el recurso completo con la representación enviada",
+          "PATCH modifica el recurso parcialmente; PUT lo reemplaza por completo",
           "PATCH y PUT son sinónimos exactos, intercambiables sin ningún cambio de comportamiento",
           "PATCH solo puede usarse para crear recursos nuevos, nunca para modificar existentes",
           "PUT no permite enviar ningún cuerpo en la solicitud, a diferencia de PATCH"
@@ -5001,7 +5846,7 @@ Frente a versionar mediante una cabecera personalizada (por ejemplo, Accept-Vers
 ¿Qué principio de diseño REST ilustra la sección _links de esta respuesta?`,
         opts: [
           "Statelessness: la respuesta no depende de ningún estado guardado en el servidor",
-          "HATEOAS: la respuesta incluye hipermedios (enlaces) que indican al cliente qué acciones relacionadas puede realizar a continuación, sin que deba conocerlas de antemano",
+          "HATEOAS: incluye enlaces que indican al cliente qué acciones puede realizar a continuación",
           "Content negotiation: permite elegir entre distintos formatos de respuesta",
           "Idempotencia: garantiza que repetir la solicitud no cambia el resultado"
         ], correct: 1,
@@ -5013,7 +5858,7 @@ Frente a versionar mediante una cabecera personalizada (por ejemplo, Accept-Vers
         q: "¿Qué representa un elemento &lt;soap:Fault&gt; dentro de la respuesta de un servicio SOAP?",
         opts: [
           "Un dato adicional de negocio incluido junto al resultado exitoso normal",
-          "La estructura estándar con la que SOAP reporta que ocurrió un error al procesar la solicitud, incluyendo un código y una descripción del fallo",
+          "La estructura estándar con la que SOAP reporta un error, con código y descripción",
           "Un mecanismo exclusivo de compresión del mensaje XML completo",
           "Una configuración de seguridad definida por el estándar WS-Security"
         ], correct: 1,
@@ -5024,12 +5869,51 @@ Frente a versionar mediante una cabecera personalizada (por ejemplo, Accept-Vers
         id: "rs-24", cat: "rest-soap", type: "teoria", diff: "Básico",
         q: "¿Qué diferencia hay entre las cabeceras HTTP Content-Type y Accept en una solicitud REST?",
         opts: [
-          "Content-Type describe el formato del cuerpo que el cliente está enviando; Accept indica el formato que el cliente prefiere recibir en la respuesta",
+          "Content-Type describe el cuerpo enviado; Accept indica lo que se prefiere recibir",
           "Ambas cabeceras cumplen exactamente la misma función y son intercambiables",
           "Accept solo puede usarse en solicitudes GET, nunca en POST ni PUT",
           "Content-Type define el tamaño máximo permitido del cuerpo enviado"
         ], correct: 0,
         exp: "Content-Type documenta el formato del cuerpo que efectivamente se está enviando en esa solicitud (por ejemplo, application/json en un POST). Accept, en cambio, es una preferencia sobre el formato deseado para la respuesta, que el servidor puede usar para decidir cómo serializar su contenido."
+      },
+
+      {
+        id: "rs-25", cat: "rest-soap", type: "teoria", diff: "Intermedio",
+        q: "Según RFC 9110 (HTTP Semantics), ¿cuáles de los métodos GET, POST, PUT y DELETE están clasificados oficialmente como 'idempotentes'?",
+        opts: [
+          "GET, PUT y DELETE son idempotentes; POST no lo es",
+          "Únicamente GET es idempotente; los otros tres no lo son bajo ninguna circunstancia",
+          "Los cuatro métodos están clasificados como idempotentes según la RFC",
+          "Solo POST y DELETE están clasificados como idempotentes; GET y PUT no"
+        ], correct: 0,
+        exp: "Según la tabla de propiedades de métodos de RFC 9110, GET, PUT y DELETE son idempotentes (repetir la misma solicitud produce el mismo efecto en el servidor que ejecutarla una sola vez), mientras que POST no tiene esa garantía: repetir un POST puede crear múltiples recursos o duplicar un efecto."
+      },
+
+      {
+        id: "rs-26", cat: "rest-soap", type: "teoria", diff: "Avanzado",
+        q: "Según RFC 9110, ¿qué significa exactamente que un método HTTP sea clasificado como 'safe' (seguro)?",
+        opts: [
+          "Que no causa ningún efecto observable sobre el estado del servidor más allá de un registro",
+          "Que la solicitud viaja obligatoriamente cifrada mediante TLS",
+          "Que el método no puede fallar nunca con un código de error 4xx o 5xx",
+          "Que el método requiere autenticación obligatoria antes de poder ejecutarse"
+        ], correct: 0,
+        exp: "Según RFC 9110, un método 'safe' es aquel cuya semántica es principalmente de solo lectura: el cliente no solicita, y no debería esperar, ningún cambio de estado en el servidor por realizar la solicitud. Esto permite que agentes automatizados (como robots de indexación) invoquen métodos safe (GET, HEAD) sin considerar que eso implica responsabilidad por posibles efectos secundarios."
+      },
+
+      {
+        id: "rs-27", cat: "rest-soap", type: "practica", diff: "Intermedio",
+        q: `Un cliente reintenta automáticamente una solicitud tras un timeout de red:
+<pre class="code-block">DELETE /api/tramites/78
+(la primera solicitud sí llegó al servidor, pero la respuesta se perdió en la red)</pre>
+Según la clasificación de RFC 9110, ¿por qué es seguro que el cliente reintente automáticamente este DELETE sin verificar antes el estado del recurso?`,
+        opts: [
+          "Porque DELETE es idempotente: repetirlo no cambia el resultado final más allá de la primera vez",
+          "Porque DELETE está clasificado como un método 'safe', sin ningún efecto sobre el servidor",
+          "Porque HTTP garantiza que un DELETE nunca puede perder su respuesta en la red",
+          "Porque los reintentos automáticos están prohibidos por la especificación para cualquier método"
+        ], correct: 0,
+        exp: "DELETE es idempotente según RFC 9110: el efecto de ejecutarlo una vez es el mismo que ejecutarlo varias veces (el recurso queda eliminado en ambos casos). Por eso reintentar automáticamente un DELETE tras una falla de red incierta es una práctica segura, a diferencia de reintentar un POST no idempotente, que podría duplicar una operación."
       }
     ];
 
@@ -5044,7 +5928,7 @@ Frente a versionar mediante una cabecera personalizada (por ejemplo, Accept-Vers
           "JBoss EAP, a diferencia de Tomcat, no puede ejecutar aplicaciones basadas en Servlets",
           "Tomcat es un producto pensado para funcionar únicamente en sistemas Windows"
         ], correct: 1,
-        exp: "Tomcat implementa el contenedor de Servlets/JSP (y WebSocket), siendo más ligero y enfocado en la capa web. JBoss EAP (Enterprise Application Platform) es el servidor de aplicaciones Jakarta EE completo de Red Hat, con soporte comercial, construido sobre el proyecto de código abierto WildFly: comparte su mismo núcleo, subsistemas y CLI, pero certificado y respaldado para entornos productivos exigentes (como los de una institución pública), a diferencia de WildFly, que es la versión comunitaria sin soporte comercial. Además de la capa web, soporta EJB, JMS, transacciones distribuidas (JTA), CDI, seguridad avanzada, entre otras especificaciones empresariales."
+        exp: "Tomcat implementa el contenedor de Servlets/JSP (y WebSocket), siendo más ligero y enfocado en la capa web. JBoss EAP (Enterprise Application Platform) es el servidor de aplicaciones Jakarta EE completo de Red Hat, con soporte comercial, certificado y respaldado para entornos productivos exigentes (como los de una institución pública). Además de la capa web, soporta EJB, JMS, transacciones distribuidas (JTA), CDI, seguridad avanzada, entre otras especificaciones empresariales."
       },
 
       {
@@ -5276,7 +6160,7 @@ Con el 'deployer' de escaneo automático activo por defecto, ¿qué sucede tras 
 
       {
         id: "sv-19", cat: "servidores", type: "teoria", diff: "Intermedio",
-        q: "¿Qué papel cumple mod_cluster (u otro balanceador consciente de aplicaciones) frente a un clúster de instancias de JBoss EAP/WildFly?",
+        q: "¿Qué papel cumple mod_cluster (u otro balanceador consciente de aplicaciones) frente a un clúster de instancias de JBoss EAP?",
         opts: [
           "Compila el código de la aplicación antes de distribuirlo a cada nodo del clúster",
           "Distribuye solicitudes entre nodos activos y retira del balanceo los caídos o saturados",
@@ -5303,21 +6187,21 @@ DataSource ds = (DataSource) ctx.lookup("java:/jdbc/SRIDS");</pre>
 
       {
         id: "sv-21", cat: "servidores", type: "teoria", diff: "Básico",
-        q: "¿Qué es Undertow en el contexto de WildFly/JBoss EAP?",
+        q: "¿Qué es Undertow en el contexto de JBoss EAP?",
         opts: [
           "Un lenguaje de scripting para automatizar despliegues por consola",
-          "El motor web ligero basado en NIO que WildFly usa para servlets y websockets",
+          "El motor web ligero basado en NIO que JBoss EAP usa para servlets y websockets",
           "Una base de datos embebida usada exclusivamente para pruebas locales",
           "Un cliente de línea de comandos alternativo al propio jboss-cli.sh"
         ], correct: 1,
-        exp: "Undertow es el servidor web embebido (basado en NIO, de alto rendimiento y bajo consumo de memoria) que WildFly utiliza como subsistema 'undertow' para atender solicitudes HTTP, servlets y websockets, en reemplazo de implementaciones más antiguas usadas en versiones previas de JBoss."
+        exp: "Undertow es el servidor web embebido (basado en NIO, de alto rendimiento y bajo consumo de memoria) que JBoss EAP utiliza como subsistema 'undertow' para atender solicitudes HTTP, servlets y websockets, en reemplazo de implementaciones más antiguas usadas en versiones anteriores."
       },
 
       {
         id: "sv-22", cat: "servidores", type: "teoria", diff: "Intermedio",
         q: "¿Qué es una 'Valve' en la arquitectura interna de Apache Tomcat?",
         opts: [
-          "Un componente que se inserta en la cadena de procesamiento de solicitudes, ejecutando lógica antes/después de que lleguen al servlet, similar en espíritu a un Filter pero a nivel del contenedor",
+          "Un componente insertado en la cadena de procesamiento, similar a un Filter de contenedor",
           "Un tipo especial de datasource exclusivo de Tomcat",
           "El nombre del archivo de configuración principal de Tomcat",
           "Un mecanismo de cifrado de contraseñas para el realm de autenticación"
@@ -5336,7 +6220,7 @@ DataSource ds = (DataSource) ctx.lookup("java:/jdbc/SRIDS");</pre>
 ¿Qué ventaja aporta declarar el DataSource así, en lugar de que la aplicación cree sus propias conexiones con DriverManager?`,
         opts: [
           "Ninguna ventaja real; ambos enfoques son exactamente equivalentes en Tomcat",
-          "Tomcat administra el pool de conexiones centralizadamente, y la aplicación solo hace un lookup JNDI, desacoplándose de los detalles físicos de la base de datos",
+          "Tomcat administra el pool centralizadamente; la aplicación solo hace un lookup JNDI",
           "Obliga a que la aplicación se reinicie cada vez que cambia la contraseña de la base de datos",
           "Solo permite abrir una única conexión activa a la vez para toda la aplicación"
         ], correct: 1,
@@ -5348,11 +6232,54 @@ DataSource ds = (DataSource) ctx.lookup("java:/jdbc/SRIDS");</pre>
         q: "¿Por qué es importante aplicar 'patches' (parches acumulativos, CP) periódicos a una instalación de JBoss EAP en producción?",
         opts: [
           "Porque sin ellos la aplicación deja de compilar automáticamente cada mes",
-          "Porque incluyen correcciones de seguridad, estabilidad y compatibilidad acumuladas, manteniendo el servidor dentro del soporte oficial de Red Hat sin necesitar actualizar a una versión mayor completa",
+          "Porque acumulan correcciones de seguridad, manteniendo el soporte oficial de Red Hat",
           "Porque cambian por completo la API de Jakarta EE que usa la aplicación desplegada",
           "Porque eliminan automáticamente todas las aplicaciones previamente desplegadas"
         ], correct: 1,
         exp: "Los Cumulative Patches (CP) de JBoss EAP entregan correcciones de seguridad y bugs ya validadas por Red Hat sin forzar un salto de versión mayor (que sí podría introducir cambios de compatibilidad), permitiendo mantener el servidor seguro y dentro del ciclo de soporte oficial con un impacto controlado sobre las aplicaciones ya desplegadas."
+      },
+
+      {
+        id: "sv-25", cat: "servidores", type: "teoria", diff: "Intermedio",
+        q: "En Tomcat, si un <Context> no define su propio elemento <Realm>, ¿qué Realm utiliza esa aplicación web?",
+        opts: [
+          "No queda protegida por ningún Realm y rechaza toda solicitud automáticamente",
+          "Hereda el Realm configurado en el Host o Engine que la contiene",
+          "Tomcat genera un UserDatabaseRealm temporal solo para esa sesión activa",
+          "Debe declarar obligatoriamente su propio Realm o el servidor no arranca"
+        ], correct: 1,
+        exp: "Según la documentación oficial de Tomcat, un contenedor Engine, Host o Context admite como máximo un Realm; si un Context no declara el suyo, hereda automáticamente el Realm asociado al Host o Engine que lo contiene, sin necesidad de repetir la configuración en cada aplicación."
+      },
+
+      {
+        id: "sv-26", cat: "servidores", type: "teoria", diff: "Avanzado",
+        q: "¿Qué diferencia principal separa a DataSourceRealm de JDBCRealm en Tomcat para autenticar contra una base de datos relacional?",
+        opts: [
+          "JDBCRealm no puede usarse nunca con Oracle, solo con bases de datos MySQL",
+          "DataSourceRealm usa un pool JNDI; JDBCRealm mantiene una sola conexión directa",
+          "DataSourceRealm almacena las credenciales en un archivo XML cargado en memoria",
+          "JDBCRealm cifra automáticamente las contraseñas y DataSourceRealm no lo hace"
+        ], correct: 1,
+        exp: "Según la guía oficial de Realm de Tomcat, JDBCRealm abre una única conexión JDBC sincronizada (no recomendada en producción y deprecada desde Tomcat 10) mientras que DataSourceRealm consulta la base de datos a través de una DataSource JNDI, aprovechando su pool de conexiones y permitiendo autenticaciones concurrentes."
+      },
+
+      {
+        id: "sv-27", cat: "servidores", type: "practica", diff: "Intermedio",
+        q: `Un administrador copia sri-tramites.war a la carpeta:
+<pre class="code-block">$JBOSS_HOME/standalone/deployments/</pre>
+con el deployment scanner activo por defecto. ¿Cada cuánto revisa el scanner esa carpeta buscando cambios, según la configuración estándar de JBoss EAP?`,
+        opts: [
+          "Cada 5 segundos", "Cada 60 segundos", "Solo al reiniciar el servidor", "Cada 24 horas"
+        ], correct: 0,
+        exp: "Según la documentación de JBoss EAP, el deployment scanner revisa por defecto el directorio standalone/deployments cada 5 segundos en configuración standalone, detectando y desplegando automáticamente nuevo contenido (WAR, EAR, JAR) sin reiniciar el servidor."
+      },
+
+      {
+        id: "sv-28", cat: "servidores", type: "teoria", diff: "Básico",
+        q: "¿Qué archivo usa por defecto UserDatabaseRealm en Tomcat para almacenar usuarios, contraseñas y roles?",
+        opts: ["web.xml", "server.xml", "conf/tomcat-users.xml", "context.xml"],
+        correct: 2,
+        exp: "UserDatabaseRealm carga sus credenciales desde un recurso JNDI UserDatabase respaldado típicamente por conf/tomcat-users.xml, cargando ese archivo en memoria al arrancar y manteniéndolo así hasta que Tomcat se detiene."
       }
     ];
 
@@ -5601,8 +6528,8 @@ dependencies {
         q: "¿Qué caracteriza a un 'skinny WAR' frente a un WAR tradicional que incluye todas sus dependencias en WEB-INF/lib?",
         opts: [
           "Un skinny WAR omite el archivo web.xml por completo",
-          "Un skinny WAR excluye deliberadamente las librerías ya provistas por el servidor o compartidas externamente, quedando más liviano y dependiendo de que el servidor las exponga en su classpath",
-          "Un skinny WAR solo puede desplegarse en modo domain de WildFly",
+          "Excluye deliberadamente librerías ya provistas por el servidor, quedando más liviano",
+          "Un skinny WAR solo puede desplegarse en modo domain de JBoss EAP",
           "Un skinny WAR nunca puede contener archivos JSP, solo servlets compilados"
         ], correct: 1,
         exp: "Un 'skinny WAR' deliberadamente no empaqueta ciertas dependencias (por ejemplo, un driver JDBC ya instalado como módulo del servidor), reduciendo su tamaño y facilitando actualizaciones centralizadas de esas librerías compartidas, a costa de requerir que el servidor de destino las tenga correctamente configuradas de antemano."
@@ -5620,7 +6547,7 @@ dependencies {
 ¿Qué logra ubicar comunes-utils.jar en la carpeta lib/ raíz del EAR, en lugar de duplicarlo dentro de cada WAR?`,
         opts: [
           "Impide que cualquiera de los WAR internos pueda usar esa librería",
-          "La hace disponible para todos los módulos del EAR desde un único lugar, evitando duplicar el JAR (y su posible desincronización de versiones) en cada WAR por separado",
+          "La comparte entre todos los módulos del EAR, evitando duplicarla en cada WAR",
           "Convierte automáticamente esa librería en un módulo EJB independiente",
           "Obliga a recompilar ambos WAR cada vez que se actualiza esa librería"
         ], correct: 1,
@@ -5632,11 +6559,53 @@ dependencies {
         q: "¿Qué convención de versionado semántico representa correctamente un artefacto Maven marcado como SNAPSHOT, como en 2.3.0-SNAPSHOT?",
         opts: [
           "Una versión final y estable, lista para publicarse en un repositorio de releases",
-          "Una versión en desarrollo activo, potencialmente inestable, que Maven puede volver a descargar/actualizar automáticamente aunque el número de versión no cambie",
+          "Una versión en desarrollo activo, que Maven puede volver a descargar aunque el número no cambie",
           "Un artefacto que solo puede compilarse en el sistema operativo Windows",
           "Un artefacto que ya no recibirá ningún cambio futuro bajo ninguna circunstancia"
         ], correct: 1,
         exp: "El sufijo -SNAPSHOT indica una versión en desarrollo activo: Maven la trata de forma especial, revisando periódicamente el repositorio remoto por una versión más reciente con el mismo identificador, a diferencia de una versión de release (sin SNAPSHOT), que una vez publicada se considera inmutable."
+      },
+
+      {
+        id: "we-21", cat: "empaquetado", type: "practica", diff: "Intermedio",
+        q: `Un pom.xml padre declara:
+<pre class="code-block">&lt;dependencyManagement&gt;
+    &lt;dependencies&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;junit&lt;/groupId&gt;
+            &lt;artifactId&gt;junit&lt;/artifactId&gt;
+            &lt;version&gt;4.13.2&lt;/version&gt;
+        &lt;/dependency&gt;
+    &lt;/dependencies&gt;
+&lt;/dependencyManagement&gt;</pre>
+Un módulo hijo agrega esa dependencia solo con &lt;groupId&gt;junit&lt;/groupId&gt;&lt;artifactId&gt;junit&lt;/artifactId&gt;, sin &lt;version&gt;. ¿Qué ocurre?`,
+        opts: [
+          "Falla la compilación por no declarar una versión explícita en el módulo hijo",
+          "Maven toma automáticamente la versión 4.13.2 heredada del padre",
+          "dependencyManagement no tiene efecto si no se repite en cada módulo hijo",
+          "Se descarga la última versión disponible de JUnit en Maven Central"
+        ], correct: 1,
+        exp: "Según la documentación oficial de Maven, dependencyManagement solo declara versiones disponibles sin agregarlas al proyecto; cuando un módulo hijo sí declara la dependencia (sin especificar versión), Maven completa automáticamente la versión heredada del bloque dependencyManagement del padre, centralizando esa decisión en un solo lugar."
+      },
+
+      {
+        id: "we-22", cat: "empaquetado", type: "teoria", diff: "Básico",
+        q: "Dentro del ciclo de vida por defecto de Maven, ¿qué fase se ejecuta inmediatamente después de 'test' y antes de 'verify'?",
+        opts: ["validate", "compile", "package", "install"],
+        correct: 2,
+        exp: "El orden oficial del ciclo de vida 'default' de Maven es: validate, compile, test, package, verify, install, deploy. Ejecutar una fase implica correr automáticamente todas las anteriores, por lo que 'mvn package' compila y prueba antes de empaquetar."
+      },
+
+      {
+        id: "we-23", cat: "empaquetado", type: "teoria", diff: "Intermedio",
+        q: "¿Qué diferencia principal existe entre las fases 'verify' e 'install' del ciclo de vida por defecto de Maven?",
+        opts: [
+          "Ambas fases son idénticas y solo cambia el nombre del comando invocado",
+          "verify valida pruebas de integración sobre el paquete; install lo copia al repositorio local",
+          "install ejecuta las pruebas unitarias y verify solo compila sin probar nada",
+          "verify sube el artefacto a un repositorio remoto compartido por todo el equipo"
+        ], correct: 1,
+        exp: "Según el ciclo de vida oficial de Maven, verify corre y valida los resultados de cualquier prueba de integración configurada sobre el paquete ya generado; install va un paso más allá y copia ese artefacto verificado al repositorio local (~/.m2), disponible como dependencia para otros proyectos en la misma máquina."
       }
     ];
 
@@ -5644,14 +6613,14 @@ dependencies {
     const QB_SEGURIDAD = [
       {
         id: "se-01", cat: "seguridad", type: "teoria", diff: "Intermedio",
-        q: "¿Qué es Elytron en el contexto de JBoss EAP/WildFly?",
+        q: "¿Qué es Elytron en el contexto de JBoss EAP?",
         opts: [
           "Un lenguaje de programación alternativo a Java, soportado únicamente por JBoss EAP",
           "El subsistema unificado que centraliza autenticación, autorización y SSL/TLS",
           "Un servidor de bases de datos embebido que trae el servidor por defecto",
           "Un plugin de Maven pensado exclusivamente para compilar proyectos Java"
         ], correct: 1,
-        exp: "Elytron es el framework de seguridad moderno compartido por WildFly y JBoss EAP (la distribución empresarial de Red Hat construida sobre WildFly), que unifica la configuración de autenticación, autorización, SSL/TLS, almacenes de credenciales (credential stores) y mapeo de roles/identidades, reemplazando gradualmente al subsistema de seguridad heredado (legacy/PicketBox)."
+        exp: "Elytron es el framework de seguridad moderno de JBoss EAP, que unifica la configuración de autenticación, autorización, SSL/TLS, almacenes de credenciales (credential stores) y mapeo de roles/identidades, reemplazando gradualmente al subsistema de seguridad heredado (legacy/PicketBox)."
       },
 
       {
@@ -5928,7 +6897,7 @@ if (jwt.getExpiresAt().isBefore(Instant.now())) {
 ¿Por qué es importante validar explícitamente la expiración (exp) del token, incluso si su firma ya fue verificada como válida?`,
         opts: [
           "No es necesario; una firma válida ya garantiza automáticamente que el token no expiró",
-          "Porque la firma solo garantiza que el contenido no fue alterado, no que siga vigente en el tiempo; un token robado pero aún firmado correctamente seguiría siendo aceptado si no se revisa su expiración",
+          "Porque la firma certifica integridad, no vigencia: un token robado seguiría siendo aceptado",
           "Porque los tokens JWT nunca incluyen información de expiración por especificación",
           "Porque validar la expiración reemplaza por completo la necesidad de verificar la firma"
         ], correct: 1,
@@ -5939,7 +6908,7 @@ if (jwt.getExpiresAt().isBefore(Instant.now())) {
         id: "se-23", cat: "seguridad", type: "teoria", diff: "Avanzado",
         q: "En Keycloak, ¿qué diferencia hay entre un cliente configurado como 'confidential' y uno configurado como 'public'?",
         opts: [
-          "Un cliente confidential posee un secreto (client secret) que debe mantenerse protegido en el backend, apropiado para aplicaciones servidor; un cliente public no maneja secreto, pensado para aplicaciones que corren en el navegador o el dispositivo del usuario",
+          "confidential guarda un secreto protegido en el backend; public no maneja secreto",
           "Ambos tipos de cliente son idénticos en Keycloak, solo cambia la etiqueta visual",
           "Un cliente public solo puede usarse para servicios SOAP, nunca para REST",
           "Un cliente confidential no puede integrarse con el flujo Authorization Code"
@@ -5952,7 +6921,7 @@ if (jwt.getExpiresAt().isBefore(Instant.now())) {
         q: "¿Qué representa una solicitud 'preflight' OPTIONS que el navegador envía automáticamente antes de ciertas solicitudes cross-origin?",
         opts: [
           "Una solicitud que el desarrollador debe programar manualmente en cada llamada AJAX",
-          "Una verificación previa que el navegador realiza para consultar al servidor si la solicitud real (con su método y cabeceras) será permitida según la política CORS, antes de enviarla efectivamente",
+          "Verifica con el servidor si la solicitud real será permitida según la política CORS",
           "Un mecanismo exclusivo para autenticar usuarios mediante certificados",
           "Una solicitud que reemplaza por completo a la solicitud real posterior"
         ], correct: 1,
@@ -5964,11 +6933,75 @@ if (jwt.getExpiresAt().isBefore(Instant.now())) {
         q: "¿Qué protege la cabecera de respuesta HTTP Strict-Transport-Security (HSTS)?",
         opts: [
           "Cifra automáticamente el cuerpo de la respuesta con una clave adicional",
-          "Indica al navegador que, para ese dominio, solo debe conectarse mediante HTTPS durante un período determinado, incluso si el usuario escribe http:// explícitamente",
+          "Fuerza al navegador a usar solo HTTPS con ese dominio durante un tiempo determinado",
           "Bloquea por completo cualquier solicitud proveniente de otro dominio distinto",
           "Define el tiempo máximo de vida de las cookies de sesión emitidas"
         ], correct: 1,
         exp: "HSTS le indica al navegador que recuerde forzar HTTPS para ese dominio durante el tiempo especificado, incluso ante intentos explícitos de conexión por HTTP, mitigando ataques de degradación de protocolo (downgrade) o de intermediario que intentan interceptar la primera conexión insegura."
+      },
+
+      {
+        id: "se-26", cat: "seguridad", type: "teoria", diff: "Básico",
+        q: "Según el listado oficial OWASP Top 10 (edición 2021), ¿qué categoría de riesgo ocupa la posición A01, la más crítica de la lista?",
+        opts: [
+          "Broken Access Control (control de acceso deficiente)",
+          "Cryptographic Failures (fallas criptográficas)",
+          "Injection (inyección de código)",
+          "Security Misconfiguration (configuración de seguridad incorrecta)"
+        ], correct: 0,
+        exp: "En la edición 2021 del OWASP Top 10, A01:2021-Broken Access Control subió a la primera posición como el riesgo más crítico y frecuente, relacionado con fallas que permiten a un usuario acceder a datos o funciones fuera de los límites que debería tener autorizados."
+      },
+
+      {
+        id: "se-27", cat: "seguridad", type: "teoria", diff: "Intermedio",
+        q: "Según la documentación oficial de Keycloak, ¿qué diferencia hay entre un 'realm role' y un 'client role'?",
+        opts: [
+          "realm role es global en todo el realm; client role está acotado a una aplicación específica",
+          "Ambos tipos de rol son idénticos en Keycloak, solo cambia la etiqueta visual en la consola",
+          "Un client role solo puede asignarse a grupos, nunca directamente a usuarios individuales",
+          "Un realm role únicamente puede usarse en el flujo de autenticación SAML, nunca en OpenID Connect"
+        ], correct: 0,
+        exp: "Según la documentación de Keycloak, los realm roles son roles globales visibles en todo el realm, útiles para permisos organizacionales amplios. Los client roles pertenecen a un cliente (aplicación) específico y, salvo que se habilite 'Full Scope Allowed', no se filtran automáticamente hacia los tokens de otras aplicaciones, favoreciendo un principio de menor privilegio."
+      },
+
+      {
+        id: "se-28", cat: "seguridad", type: "practica", diff: "Avanzado",
+        q: `En Keycloak se define un rol compuesto:
+<pre class="code-block">Rol "supervisor-tramites" (compuesto)
+   incluye -> "aprobar-tramite"
+   incluye -> "consultar-reportes"</pre>
+Según la documentación de Keycloak, ¿qué ocurre cuando se asigna el rol compuesto "supervisor-tramites" a un usuario?`,
+        opts: [
+          "Obtiene también los roles incluidos, de forma recursiva si esos roles son compuestos a su vez",
+          "El usuario solo recibe el rol como etiqueta visual, sin heredar ningún permiso adicional asociado",
+          "Los roles incluidos deben asignarse manualmente por separado, aunque el rol compuesto ya esté asignado",
+          "El rol compuesto solo funciona correctamente si el usuario también pertenece a un grupo con el mismo nombre"
+        ], correct: 0,
+        exp: "Según la documentación oficial de Keycloak, un rol compuesto es un rol que tiene uno o más roles adicionales asociados; al asignar el rol compuesto a un usuario, este obtiene automáticamente también los roles asociados a esa composición, y esa herencia es recursiva si alguno de esos roles es a su vez compuesto de otros."
+      },
+
+      {
+        id: "se-29", cat: "seguridad", type: "teoria", diff: "Avanzado",
+        q: "Según la documentación de JBoss EAP Elytron, ¿qué papel cumple un 'credential-store' dentro del subsistema Elytron?",
+        opts: [
+          "Almacena de forma cifrada credenciales sensibles, evitando dejarlas en texto plano en la config",
+          "Reemplaza por completo la necesidad de configurar un security-realm en Elytron",
+          "Solo puede usarse para almacenar certificados TLS, nunca contraseñas de aplicación",
+          "Se genera automáticamente al arrancar el servidor y no requiere ninguna configuración"
+        ], correct: 0,
+        exp: "Según la documentación de JBoss EAP, un credential-store almacena de forma cifrada credenciales sensibles (como la contraseña de un datasource o la clave secreta usada para cifrar un realm de filesystem), permitiendo referenciarlas desde la configuración del servidor sin exponerlas en texto plano dentro de standalone.xml u otros archivos."
+      },
+
+      {
+        id: "se-30", cat: "seguridad", type: "teoria", diff: "Intermedio",
+        q: "Según OWASP, ¿en qué categoría del Top 10 2021 se ubican las fallas de autenticación e identificación, como gestión débil de sesiones o credenciales expuestas?",
+        opts: [
+          "A07:2021-Identification and Authentication Failures",
+          "A03:2021-Injection",
+          "A05:2021-Security Misconfiguration",
+          "A09:2021-Security Logging and Monitoring Failures"
+        ], correct: 0,
+        exp: "A07:2021-Identification and Authentication Failures agrupa problemas relacionados con la confirmación de la identidad del usuario, autenticación y gestión de sesiones, como permitir contraseñas débiles, exponer identificadores de sesión en la URL, o no invalidar sesiones correctamente tras el cierre de sesión o cambios de credenciales."
       }
     ];
 
@@ -6200,11 +7233,47 @@ public Response health() {
         q: "¿Qué busca resolver el 'muestreo' (sampling) de logs en sistemas de altísimo volumen de tráfico?",
         opts: [
           "Eliminar por completo cualquier registro de nivel ERROR de la aplicación",
-          "Registrar solo una fracción representativa de los eventos (por ejemplo, 1 de cada 100 solicitudes exitosas), reduciendo el volumen y costo de almacenamiento sin perder visibilidad estadística del comportamiento general",
+          "Registrar solo una fracción representativa de eventos, reduciendo volumen sin perder visibilidad",
           "Cifrar los logs para que solo el equipo de seguridad pueda leerlos",
           "Convertir automáticamente todos los logs a un formato binario comprimido"
         ], correct: 1,
         exp: "En sistemas con volúmenes extremos de tráfico, registrar el 100% de los eventos puede ser prohibitivamente costoso en almacenamiento y procesamiento. El muestreo registra solo una fracción configurable de eventos 'normales' (manteniendo, por ejemplo, el 100% de los errores), preservando visibilidad estadística útil sin el costo de guardar cada evento individual."
+      },
+
+      {
+        id: "lg-18", cat: "logging", type: "teoria", diff: "Intermedio",
+        q: "Según el manual oficial de Log4j2, ¿qué controla específicamente una SizeBasedTriggeringPolicy dentro de un RollingFileAppender?",
+        opts: [
+          "Dispara la rotación del archivo de log al alcanzar un tamaño configurado (por ejemplo, \"100k\")",
+          "Dispara la rotación únicamente según una expresión cron configurada en el appender",
+          "Cifra el contenido del archivo de log una vez alcanzado cierto tamaño límite",
+          "Elimina automáticamente los logs cuyo tamaño total supere el límite indicado"
+        ], correct: 0,
+        exp: "El manual oficial de Log4j2 documenta SizeBasedTriggeringPolicy como una de las políticas de disparo de un RollingFileAppender: cuando el archivo activo alcanza el tamaño configurado, se dispara la rotación (rollover). Para disparar por fecha/hora en su lugar, existe TimeBasedTriggeringPolicy o CronTriggeringPolicy."
+      },
+
+      {
+        id: "lg-19", cat: "logging", type: "teoria", diff: "Básico",
+        q: "Según la documentación oficial de SLF4J, ¿qué es un 'binding' (o 'provider' desde la versión 2.0)?",
+        opts: [
+          "El archivo de configuración XML que define el formato de cada mensaje de log",
+          "El jar que conecta la fachada SLF4J con una implementación concreta, como Logback",
+          "Una anotación que marca qué clases pueden generar mensajes de log",
+          "El nivel mínimo de severidad configurado para toda la aplicación"
+        ], correct: 1,
+        exp: "SLF4J es una fachada: el código de la aplicación programa contra su API, y un binding (llamado 'provider' desde SLF4J 2.0.0) es el jar que enlaza esa fachada con la implementación real elegida en tiempo de despliegue; cambiar de framework de logging implica solo reemplazar ese jar de binding, sin tocar el código fuente."
+      },
+
+      {
+        id: "lg-20", cat: "logging", type: "practica", diff: "Intermedio",
+        q: `Un equipo migra manualmente su configuración de Log4j 1.x a Log4j2, cambiando appenders del tipo antiguo RollingFileAppender por su equivalente en la nueva versión. Según la documentación de migración de Apache, ¿qué elemento es obligatorio declarar dentro del nuevo RollingFileAppender de Log4j2 para definir el nombre del archivo tras cada rotación?`,
+        opts: [
+          "filePattern, junto con al menos una Policy que dispare la rotación",
+          "Solo basta con fileName; filePattern es un atributo opcional sin efecto real",
+          "layout, ya que determina por sí solo el nombre del archivo rotado",
+          "Ninguno; Log4j2 genera nombres de archivo aleatorios automáticamente"
+        ], correct: 0,
+        exp: "Según el manual oficial de Log4j2, un RollingFileAppender requiere fileName (el archivo activo), filePattern (el patrón para nombrar los archivos ya rotados, por ejemplo con fecha o índice) y al menos una Policy dentro del elemento Policies que determine cuándo disparar esa rotación."
       }
     ];
 
@@ -6494,29 +7563,6 @@ contador.iniciar();</pre>
       },
 
       {
-        id: "js-20", cat: "javascript", type: "practica", diff: "Intermedio",
-        q: `Se define una clase con sintaxis ES6:
-<pre class="code-block">class Empleado {
-    #salario;
-    constructor(nombre, salario) {
-        this.nombre = nombre;
-        this.#salario = salario;
-    }
-    getSalario() { return this.#salario; }
-}
-const e = new Empleado("Ana", 1200);
-console.log(e.salario);</pre>
-¿Qué imprime console.log(e.salario) y por qué?`,
-        opts: [
-          "1200, porque #salario es accesible directamente con ese nombre desde fuera",
-          "undefined, porque #salario es privado y no existe una propiedad pública 'salario'",
-          "Un error de sintaxis, porque las clases no pueden declarar campos privados en JS",
-          "\"Ana\", porque salario se confunde con el campo nombre en la salida"
-        ], correct: 1,
-        exp: "El prefijo # declara un campo verdaderamente privado (no accesible ni siquiera con corchetes o Object.keys) desde fuera de la clase. Como no existe ninguna propiedad pública 'salario' (solo el privado '#salario' y el método público getSalario()), e.salario simplemente es undefined, sin lanzar error."
-      },
-
-      {
         id: "js-21", cat: "javascript", type: "practica", diff: "Intermedio",
         q: `Se combinan dos arreglos usando el operador spread:
 <pre class="code-block">const a = [1, 2, 3];
@@ -6577,7 +7623,7 @@ console.log(contador.get("visitas"), contador.size);</pre>
 ¿Qué papel cumple el bloque try/catch alrededor de las llamadas await en esta función?`,
         opts: [
           "No tiene ningún efecto real, ya que await ignora las excepciones lanzadas",
-          "Captura cualquier rechazo de las promesas esperadas con await (fallo de red, error al parsear JSON), tratándolo como una excepción síncrona común",
+          "Captura cualquier rechazo de las promesas esperadas con await como una excepción normal",
           "Convierte automáticamente la función en síncrona, eliminando la necesidad de await",
           "Solo funciona si fetch() se ejecuta desde un archivo de tipo módulo ES"
         ], correct: 1,
@@ -6613,7 +7659,7 @@ console.log(suma(1, 2, 3));</pre>
 ¿Qué papel cumple Array.from(arguments) en este código?`,
         opts: [
           "Elimina los argumentos duplicados antes de sumarlos",
-          "Convierte el objeto 'arguments' (similar a un arreglo, pero sin sus métodos) en un arreglo real, habilitando el uso de reduce()",
+          "Convierte 'arguments' (array-like, sin métodos de Array) en un arreglo real, con reduce()",
           "Ordena los argumentos de mayor a menor antes de procesarlos",
           "Solo funciona si la función se declara con arrow function"
         ], correct: 1,
@@ -6625,11 +7671,48 @@ console.log(suma(1, 2, 3));</pre>
         q: "¿Por qué usar JSON.parse(JSON.stringify(objeto)) como técnica de 'deep clone' tiene limitaciones importantes?",
         opts: [
           "Es la técnica más rápida posible y no tiene ninguna limitación real conocida",
-          "Pierde valores no representables en JSON (funciones, undefined, Date se convierte en string, referencias circulares lanzan error), a diferencia de un clonado estructurado real",
+          "Pierde funciones, undefined, y falla ante Date o referencias circulares en el objeto",
           "Solo funciona correctamente con arreglos, nunca con objetos anidados",
           "Requiere obligatoriamente que el objeto original esté congelado con Object.freeze()"
         ], correct: 1,
         exp: "JSON.stringify() omite funciones y propiedades undefined, convierte instancias de Date en cadenas de texto (perdiendo el tipo Date real), y falla con TypeError ante referencias circulares. Para clonados profundos más robustos existen alternativas como structuredClone() (nativo en navegadores modernos) o librerías especializadas."
+      },
+
+      {
+        id: "js-28", cat: "javascript", type: "teoria", diff: "Intermedio",
+        q: "Según MDN, ¿qué diferencia esencial hay entre Array.prototype.map() y Array.prototype.forEach()?",
+        opts: [
+          "map() retorna undefined siempre; forEach() retorna el arreglo transformado",
+          "map() construye y retorna un nuevo arreglo; forEach() siempre retorna undefined",
+          "forEach() no puede recibir una función flecha como argumento callback",
+          "Ambos métodos modifican el arreglo original directamente, en el mismo lugar"
+        ], correct: 1,
+        exp: "Según la documentación de MDN, map() invoca el callback por cada elemento y construye un nuevo arreglo con los valores retornados, siendo encadenable. forEach() ejecuta el callback por sus efectos secundarios y siempre retorna undefined, por lo que no debe encadenarse esperando un resultado."
+      },
+
+      {
+        id: "js-29", cat: "javascript", type: "teoria", diff: "Intermedio",
+        q: "Según la documentación de la Web Storage API en MDN, ¿qué diferencia el alcance de sessionStorage frente a localStorage?",
+        opts: [
+          "sessionStorage se comparte entre todas las pestañas del mismo origen, igual que localStorage",
+          "sessionStorage es exclusivo de su pestaña y se borra al cerrarla; localStorage no expira",
+          "localStorage se borra automáticamente al recargar la página, a diferencia de sessionStorage",
+          "Ambos mecanismos se sincronizan automáticamente entre distintos orígenes del sitio"
+        ], correct: 1,
+        exp: "MDN documenta que sessionStorage mantiene un área separada por pestaña (compartida solo con sus iframes del mismo origen) que se elimina al cerrar esa pestaña; localStorage, en cambio, se comparte entre todas las pestañas del mismo origen y no tiene fecha de expiración, hasta que se borre explícitamente."
+      },
+
+      {
+        id: "js-30", cat: "javascript", type: "practica", diff: "Básico",
+        q: `Se guarda una preferencia del usuario:
+<pre class="code-block">localStorage.setItem("tema", "oscuro");
+console.log(localStorage.getItem("tema"));
+localStorage.removeItem("tema");
+console.log(localStorage.getItem("tema"));</pre>
+¿Qué imprime cada console.log?`,
+        opts: ['"oscuro" y luego null', '"oscuro" y luego "oscuro"', "undefined y luego null", '"oscuro" y luego una cadena vacía'],
+        correct: 0,
+        exp: "getItem() retorna el valor almacenado como string ('oscuro'); tras removeItem(), esa clave deja de existir en el Storage, y getItem() retorna null (no undefined ni cadena vacía) para claves inexistentes, según la especificación de la Web Storage API."
       }
     ];
 
@@ -7058,7 +8141,7 @@ git rebase feature/reporte-anual</pre>
         id: "ti-36", cat: "ti-general", type: "teoria", diff: "Intermedio",
         q: "¿Qué diferencia principal existe entre Kanban y Scrum como marcos de trabajo ágil?",
         opts: [
-          "Kanban visualiza y limita el trabajo en curso sobre un flujo continuo, sin iteraciones de duración fija; Scrum organiza el trabajo en Sprints de duración fija con roles y eventos predefinidos",
+          "Kanban limita el flujo continuo sin iteraciones fijas; Scrum organiza Sprints con roles definidos",
           "Ambos marcos son exactamente idénticos, solo cambia el nombre del tablero usado",
           "Kanban exige obligatoriamente un Scrum Master como rol central del equipo",
           "Scrum no permite visualizar el trabajo en un tablero de ningún tipo"
@@ -7071,7 +8154,7 @@ git rebase feature/reporte-anual</pre>
         q: "¿Qué busca controlar un límite de WIP (Work In Progress) en un tablero Kanban?",
         opts: [
           "El presupuesto total asignado al proyecto durante todo el año",
-          "La cantidad máxima de tareas que pueden estar simultáneamente 'en curso' en una columna, evitando que el equipo empiece más trabajo del que puede completar de forma efectiva",
+          "La cantidad máxima de tareas simultáneas 'en curso' en una columna del tablero",
           "El número de miembros que puede tener el equipo de desarrollo",
           "La cantidad de commits permitidos por día en el repositorio"
         ], correct: 1,
@@ -7082,7 +8165,7 @@ git rebase feature/reporte-anual</pre>
         id: "ti-38", cat: "ti-general", type: "teoria", diff: "Intermedio",
         q: "¿Qué propósito cumple una 'Definition of Done' (Definición de Terminado) acordada por el equipo?",
         opts: [
-          "Establece criterios objetivos y compartidos que un incremento debe cumplir para considerarse realmente completo, evitando ambigüedad sobre si algo está 'listo' o solo parcialmente hecho",
+          "Establece criterios compartidos que un incremento debe cumplir para considerarse completo",
           "Define el presupuesto máximo permitido para cada tarea individual",
           "Reemplaza por completo la necesidad de realizar pruebas antes de entregar",
           "Es un documento legal firmado únicamente entre el cliente y la gerencia"
@@ -7095,7 +8178,7 @@ git rebase feature/reporte-anual</pre>
         q: "¿Qué es el OWASP Top 10 y para qué se usa comúnmente en el desarrollo de software?",
         opts: [
           "Una certificación profesional obligatoria para desarrolladores de aplicaciones web",
-          "Un listado de referencia, actualizado periódicamente, con las categorías de riesgos de seguridad más críticos y comunes en aplicaciones web, usado como guía para priorizar controles de seguridad",
+          "Un listado con las categorías de riesgos de seguridad más críticos en aplicaciones web",
           "Un framework de JavaScript para construir interfaces de usuario",
           "Un estándar exclusivo para configurar bases de datos NoSQL"
         ], correct: 1,
@@ -7107,7 +8190,7 @@ git rebase feature/reporte-anual</pre>
         q: "¿Qué representa el concepto de 'deuda técnica' en un proyecto de software?",
         opts: [
           "El costo económico exacto de las licencias de software utilizadas",
-          "El costo futuro implícito de mantenimiento adicional que se acumula al optar por soluciones rápidas o subóptimas en el presente, en lugar de la mejor solución posible, similar a una deuda financiera que genera 'intereses' en forma de mayor esfuerzo futuro",
+          "El costo futuro de mantenimiento que se acumula al optar por soluciones rápidas hoy",
           "El presupuesto pendiente de pago a los proveedores de infraestructura",
           "El número de bugs reportados que aún no han sido corregidos"
         ], correct: 1,
@@ -7118,12 +8201,155 @@ git rebase feature/reporte-anual</pre>
         id: "ti-41", cat: "ti-general", type: "teoria", diff: "Básico",
         q: "¿Cuál es el propósito principal de una revisión de código (code review) antes de integrar un cambio?",
         opts: [
-          "Detectar errores, mejorar la calidad y compartir conocimiento del código entre el equipo antes de que el cambio se integre a la rama principal",
+          "Detectar errores y compartir conocimiento del código antes de integrar el cambio",
           "Medir exclusivamente cuántas líneas de código escribió cada desarrollador",
           "Reemplazar por completo la necesidad de pruebas automatizadas",
           "Es un trámite administrativo sin ningún efecto real sobre la calidad del código"
         ], correct: 0,
         exp: "El code review busca detectar defectos y problemas de diseño temprano, mantener consistencia con los estándares del equipo, y difundir conocimiento del código entre varios miembros (reduciendo el riesgo de que solo una persona entienda cierta parte del sistema), complementando -no reemplazando- a las pruebas automatizadas."
+      },
+
+      {
+        id: "ti-42", cat: "ti-general", type: "teoria", diff: "Intermedio",
+        q: "Según la Guía Scrum oficial (2020), ¿qué diferencia de propósito existe entre la Revisión de Sprint (Sprint Review) y la Retrospectiva de Sprint?",
+        opts: [
+          "Ambos eventos tienen exactamente el mismo propósito, solo cambia el nombre",
+          "La Revisión ajusta el Product Backlog con interesados; la Retrospectiva mejora al equipo",
+          "La Retrospectiva se hace con interesados externos y la Revisión solo con el equipo",
+          "La Revisión ocurre antes del Sprint y la Retrospectiva después de varios Sprints"
+        ], correct: 1,
+        exp: "La Guía Scrum define la Sprint Review como el espacio donde el equipo y los interesados inspeccionan el resultado del Sprint y adaptan el Product Backlog según lo aprendido; la Retrospectiva, en cambio, es interna al equipo y busca planificar mejoras de calidad y efectividad en cómo trabajan (personas, procesos, herramientas)."
+      },
+
+      {
+        id: "ti-43", cat: "ti-general", type: "teoria", diff: "Intermedio",
+        q: "Según OWASP Top 10:2021, ¿qué representa específicamente la categoría A03 (Injection)?",
+        opts: [
+          "Fallas al aplicar controles de acceso que permiten actuar fuera de los permisos",
+          "Datos no confiables interpretados como comando o consulta, ejecutando acciones no previstas",
+          "Uso de componentes de software desactualizados o con vulnerabilidades conocidas",
+          "Configuración de seguridad incompleta o dejada con valores por defecto"
+        ], correct: 1,
+        exp: "OWASP Top 10:2021 define A03:2021 – Injection como la categoría donde entrada no confiable (por ejemplo, en una consulta SQL o un comando del sistema) se interpreta como código ejecutable, permitiendo acciones no autorizadas; A01 corresponde a Broken Access Control y A06 a Vulnerable and Outdated Components, categorías distintas."
+      },
+
+      {
+        id: "ti-44", cat: "ti-general", type: "practica", diff: "Intermedio",
+        q: `Un desarrollador tiene cambios sin confirmar en su rama y necesita cambiar temporalmente a otra rama para atender una urgencia:
+<pre class="code-block">git stash
+git checkout otra-rama
+# ... atiende la urgencia ...
+git checkout rama-original
+git stash pop</pre>
+Según la documentación oficial de Git, ¿qué logra este flujo con git stash/git stash pop?`,
+        opts: [
+          "Elimina permanentemente los cambios sin confirmar antes de cambiar de rama",
+          "Guarda los cambios pendientes en una pila y los reaplica después, al volver",
+          "Crea automáticamente un commit con los cambios pendientes en la rama actual",
+          "Sincroniza esos cambios inmediatamente con el repositorio remoto compartido"
+        ], correct: 1,
+        exp: "git stash guarda el estado actual del árbol de trabajo (modificaciones no confirmadas) en una pila interna y restaura un árbol de trabajo limpio, permitiendo cambiar de rama sin perder ese progreso; git stash pop recupera y reaplica el último stash guardado sobre la rama activa en ese momento."
+      },
+
+      {
+        id: "ti-45", cat: "ti-general", type: "teoria", diff: "Básico",
+        q: "Según el modelo de servicios en la nube (IaaS/PaaS/SaaS), ¿en cuál de estos modelos el proveedor gestiona tanto el sistema operativo como el runtime de la aplicación, dejando al cliente enfocarse solo en el código y los datos?",
+        opts: ["IaaS", "PaaS", "On-premise tradicional", "Virtualización pura sin proveedor"],
+        correct: 1,
+        exp: "En PaaS (Platform as a Service), el proveedor administra la infraestructura, el sistema operativo y el entorno de ejecución (runtime, middleware), dejando que el cliente se concentre en desplegar y mantener su propio código; en IaaS, en cambio, el cliente sigue siendo responsable del sistema operativo hacia arriba."
+      },
+
+      {
+        id: "ti-46", cat: "ti-general", type: "teoria", diff: "Básico",
+        q: "Según la Scrum Guide oficial, ¿de qué es responsable específicamente el Scrum Master dentro del equipo?",
+        opts: [
+          "De asignar tareas individuales a cada miembro del equipo de desarrollo",
+          "De establecer Scrum tal como se define en la guía, ayudando al equipo, al Product Owner y a la organización a comprenderlo y aplicarlo",
+          "De maximizar el valor del producto resultante del trabajo del equipo",
+          "De aprobar el presupuesto final asignado a cada Sprint"
+        ], correct: 1,
+        exp: "La Scrum Guide define al Scrum Master como responsable de 'establecer Scrum tal como se define en la Guía de Scrum', sirviendo al equipo de desarrollo (eliminando impedimentos, facilitando eventos), al Product Owner (técnicas de gestión del backlog) y a la organización (liderando la adopción de Scrum). No asigna tareas ni gestiona presupuesto directamente."
+      },
+
+      {
+        id: "ti-47", cat: "ti-general", type: "teoria", diff: "Intermedio",
+        q: "Según la Scrum Guide, ¿cuál es la responsabilidad central del Product Owner?",
+        opts: [
+          "Maximizar el valor del producto resultante del trabajo del equipo Scrum",
+          "Facilitar el Daily Scrum y eliminar impedimentos técnicos del equipo",
+          "Escribir el código de todas las funcionalidades priorizadas en el Sprint",
+          "Definir cuántas horas debe trabajar cada desarrollador por día"
+        ], correct: 0,
+        exp: "La Scrum Guide es explícita: el Product Owner es 'responsable de maximizar el valor del producto resultante del trabajo del equipo Scrum', lo cual logra gestionando y ordenando el Product Backlog. La guía también aclara que el Product Owner es una sola persona, no un comité."
+      },
+
+      {
+        id: "ti-48", cat: "ti-general", type: "practica", diff: "Intermedio",
+        q: `Un equipo Scrum discute dónde registrar una nueva funcionalidad solicitada por el área de fiscalización, que aún no se ha decidido implementar en ningún Sprint concreto.
+¿Dónde correspondería registrar ese elemento según la Scrum Guide?`,
+        opts: [
+          "En el Sprint Backlog, ya que ahí van todos los elementos de trabajo pendientes",
+          "En el Product Backlog, la lista ordenada y emergente de todo lo que se necesita para mejorar el producto",
+          "En el acta de la Daily Scrum de ese día",
+          "En el Definition of Done del equipo"
+        ], correct: 1,
+        exp: "El Product Backlog es, según la Scrum Guide, 'una lista emergente y ordenada de lo que se necesita para mejorar el producto', y la única fuente de trabajo del equipo. El Sprint Backlog, en cambio, contiene solo los elementos ya seleccionados específicamente para el Sprint en curso, junto con el Sprint Goal y el plan de entrega."
+      },
+
+      {
+        id: "ti-49", cat: "ti-general", type: "teoria", diff: "Intermedio",
+        q: "¿Qué tres elementos componen el Sprint Backlog según la Scrum Guide?",
+        opts: [
+          "El presupuesto del Sprint, la lista de riesgos y el cronograma detallado",
+          "El Sprint Goal (por qué), los elementos del Product Backlog seleccionados (qué) y el plan para entregar el incremento (cómo)",
+          "Solo la lista de bugs reportados durante el Sprint anterior",
+          "El acta de la reunión de planificación firmada por el Product Owner"
+        ], correct: 1,
+        exp: "La Scrum Guide define el Sprint Backlog como compuesto por tres elementos: el Sprint Goal (el porqué del Sprint), los elementos del Product Backlog seleccionados para ese Sprint (el qué) y un plan accionable para entregar el incremento (el cómo); en conjunto forman 'una imagen altamente visible y en tiempo real del trabajo' que el equipo planea realizar."
+      },
+
+      {
+        id: "ti-50", cat: "ti-general", type: "practica", diff: "Básico",
+        q: `Un equipo Scrum trabaja en Sprints de un mes de duración. Según los límites de tiempo (timeboxes) definidos en la Scrum Guide, ¿cuál es la duración máxima recomendada para la Sprint Retrospective en ese caso?`,
+        opts: ["Un máximo de tres horas", "Un máximo de ocho horas", "Un máximo de treinta minutos", "No tiene ningún límite de tiempo definido"],
+        correct: 0,
+        exp: "La Scrum Guide fija la Sprint Retrospective con un timebox máximo de tres horas para un Sprint de un mes (proporcionalmente menor en Sprints más cortos), destinada a inspeccionar cómo transcurrió el Sprint en cuanto a personas, procesos, herramientas y la Definition of Done, planificando mejoras."
+      },
+
+      {
+        id: "ti-51", cat: "ti-general", type: "teoria", diff: "Avanzado",
+        q: "Según la Scrum Guide, ¿cuál es el propósito específico de la Sprint Review, a diferencia de la Sprint Retrospective?",
+        opts: [
+          "Ambos eventos tienen exactamente el mismo propósito y son intercambiables",
+          "Inspeccionar el resultado (el incremento) del Sprint junto a los interesados y determinar adaptaciones futuras del producto; la Retrospective, en cambio, mira hacia adentro del propio equipo y su forma de trabajar",
+          "Asignar las tareas del siguiente Sprint a cada desarrollador de forma individual",
+          "Aprobar formalmente el presupuesto del siguiente trimestre del proyecto"
+        ], correct: 1,
+        exp: "La Sprint Review se centra en inspeccionar el incremento resultante junto a los stakeholders y ajustar el rumbo del producto (con un timebox máximo de cuatro horas en un Sprint de un mes). La Sprint Retrospective, en cambio, examina hacia adentro cómo trabajó el equipo (personas, procesos, herramientas) para planificar mejoras internas."
+      },
+
+      {
+        id: "ti-52", cat: "ti-general", type: "teoria", diff: "Intermedio",
+        q: "En Kanban, ¿qué provoca directamente que un equipo limite explícitamente su Work In Progress (WIP)?",
+        opts: [
+          "Elimina por completo la necesidad de cualquier reunión de coordinación del equipo",
+          "Genera un sistema 'pull': el equipo solo toma trabajo nuevo cuando el WIP actual cae por debajo del límite establecido, en lugar de empujar trabajo sin control",
+          "Obliga a que todos los elementos del tablero tengan exactamente la misma prioridad",
+          "Reemplaza automáticamente la necesidad de un Product Backlog ordenado"
+        ], correct: 1,
+        exp: "Limitar el WIP convierte el flujo de trabajo en un sistema 'pull' (de arrastre): el equipo solo comienza un nuevo elemento cuando hay capacidad disponible (el WIP bajó del límite fijado), en contraste con un sistema 'push' donde el trabajo se asigna sin considerar la capacidad real del equipo en cada etapa del tablero."
+      },
+
+      {
+        id: "ti-53", cat: "ti-general", type: "teoria", diff: "Avanzado",
+        q: "Entre las métricas de flujo (flow metrics) usadas en Kanban, ¿qué mide específicamente el 'Cycle Time'?",
+        opts: [
+          "El número total de elementos que hay actualmente en el tablero, sin importar su etapa",
+          "El tiempo transcurrido desde que un elemento de trabajo inicia hasta que finaliza",
+          "El presupuesto total consumido por el equipo durante todo el trimestre",
+          "El número de reuniones diarias realizadas durante el mes en curso"
+        ], correct: 1,
+        exp: "El Cycle Time es una de las métricas de flujo fundamentales en Kanban: mide el tiempo transcurrido entre que un elemento de trabajo comienza a procesarse y el momento en que se completa, siendo un indicador clave de la velocidad real del equipo para entregar valor de forma predecible."
       }
     ];
 
