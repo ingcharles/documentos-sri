@@ -1,0 +1,20 @@
+module.exports = [
+['"ListIterator recorre en ambas direcciones y permite reemplazar/insertar en la iteración"', '"ListIterator recorre ambas direcciones y permite reemplazar/insertar en la iteración"'],
+['"lista.add(\\"cuatro\\"), porque esa lista tiene tamaño fijo, no redimensionable"', '"lista.add(\\"cuatro\\"), porque esa lista tiene tamaño fijo"'],
+['"Se lanza una excepción de compilación al usar ConcurrentHashMap en un for-each"', '"Se lanza un error de compilación al usar ConcurrentHashMap en un for-each"'],
+['"Solo cuando la aplicación se ejecuta en un único hilo, sin concurrencia real"', '"Solo cuando la aplicación corre en un único hilo, sin concurrencia real"'],
+['"Que el campo deja de necesitar inicializarse explícitamente en el constructor"', '"Que el campo ya no necesita inicializarse en el constructor"'],
+['"Hace que los hilos esperen hasta llegar todos a la barrera, y avancen juntos"', '"Hace que los hilos esperen a llegar todos a la barrera, y avancen juntos"'],
+['"Sirve exclusivamente para medir cuánto tarda un bloque de código concurrente"', '"Sirve solo para medir cuánto tarda un bloque de código concurrente"'],
+['"Copian la estructura interna en cada modificación, dejando la lectura sin bloqueo"', '"Copian la estructura en cada modificación; la lectura queda sin bloqueo"'],
+['"peek() retorna el stream para encadenar; forEach() es terminal, cierra el pipeline"', '"peek() retorna el stream para encadenar; forEach() es terminal y cierra"'],
+['"Se lanza NoSuchElementException en tiempo de ejecución al evaluar isPresent()"', '"Se lanza NoSuchElementException en ejecución al evaluar isPresent()"'],
+['"ifPresent() lanza una excepción si el Optional está vacío, a diferencia del if"', '"ifPresent() lanza excepción si el Optional está vacío, a diferencia del if"'],
+['"HashSet: sin orden; LinkedHashSet: preserva inserción; TreeSet: orden natural/Comparator"', '"HashSet: sin orden; LinkedHashSet: preserva orden; TreeSet: orden natural"'],
+['"Solo TreeSet permite iterar sus elementos; los otros dos no ofrecen iterador"', '"Solo TreeSet permite iterar; los otros dos no ofrecen iterador"'],
+['"HashMap: sin orden; LinkedHashMap: preserva inserción; TreeMap: ordena claves"', '"HashMap: sin orden; LinkedHashMap: preserva orden; TreeMap: ordena claves"'],
+['"Hashtable es sincronizada, sin null en claves/valores; se prefiere ConcurrentHashMap"', '"Hashtable es sincronizada, sin null; hoy se prefiere ConcurrentHashMap"'],
+['"Hashtable admite claves null igual que HashMap, pero es más rápida en accesos concurrentes"', '"Hashtable admite null igual que HashMap, pero es más rápida en concurrencia"'],
+['"Hashtable y HashMap son sinónimos exactos desde Java 5, sin diferencia de implementación"', '"Hashtable y HashMap son sinónimos desde Java 5, sin diferencia real"'],
+['"Hashtable solo puede almacenar valores de tipo String, a diferencia de HashMap"', '"Hashtable solo admite valores tipo String, a diferencia de HashMap"']
+];
