@@ -1,0 +1,1047 @@
+Free Questions on Oracle Certified Associate, Java SE 8 Programmer (OCAJP 8) – 1Z0-808
+Java / By Abilesh Premkumar
+This article helps you in the preparation for Oracle Certified Associate Java SE 8 Programmer certification exam. If you are new to java programming, then this is the best Java certification for beginners. By going through these free sample questions on Java SE 8 [1Z0-808] exam, you will be able to learn in detail about the exam objectives.
+
+By learning these Oracle Certified Associate Java SE 8 Programmer exam questions, you can face the actual exam with full confidence. We also provide detailed explanations to every question and answer which enriches your Java domain knowledge as well.
+
+Ok. Let’s start Learning!
+
+Table of Contents
+Domain: Handling Exceptions
+Domain: Handling Exceptions
+Domain : Working with Methods and Encapsulation
+Domain: Using Operators and Decision Constructs
+Domain : Using Loop Constructs
+Domain : Working with Inheritance
+Domain : Creating and Using Arrays
+Domain : Handling Exceptions
+Domain : Java Basics
+Domain : Using Operators and Decision Constructs
+Domain : Creating and Using Arrays
+Domain : Working with Inheritance
+Domain : Working With Java Data Types
+Domain : Handling Exceptions
+Domain : Working with Inheritance
+Domain : Working with Methods and Encapsulation
+Domain : Creating and Using Arrays
+Domain : Using Operators and Decision Constructs
+Domain : Working with Inheritance
+Domain : Creating and Using Arrays
+Domain : Handling Exceptions
+Domain : Working with Selected classes from the Java API
+Domain : Using Operators and Decision Constructs
+Domain : Working With Java Data Types
+Domain : Working with Methods and Encapsulation
+Summary
+Domain: Handling Exceptions
+Q1: What will be the result of the below-given code?
+public class Test5 {
+    public static void main(String[] args) {
+        double a = 1, b = 0, c = 2; // 1
+    double mod1 = a % b, mod2 = b % c; // 2
+    double result = mod1 > mod2 ? mod1 : mod2; // 3
+    System.out.println(result);
+    }
+}
+
+A. Compiler error
+B. Arithmetic Exception
+C. Prints 0.0
+D. Prints NaN
+E. Prints 1.0
+F. Prints 2.0
+
+Correct Answer: C
+
+Explanation
+
+If we try to find the mod of a floating-point number with zero, NaN is returned. In Java, “NaN” stands for “Not a Number” and NaN constants of both float and double types. As the result of 1 %, 0 is NaN, the value of mod1 is NaN. The remainder of 0 by 2 is 0 itself, here the value of mod2 is returned as 0.0 as it is of type double. As mod1 is not greater than mod2, the value of the result variable will be mod2 itself. Hence, 0.0 is printed.
+
+So Option C is correct and the others are incorrect.
+As the code compiles fine, Option A is incorrect.
+
+If the numbers were integers instead of floating-point numbers, ArithmeticException would have been thrown instead of “Nan”. Hence, option B is incorrect.
+
+ 
+
+Domain: Handling Exceptions
+Q2: Which of the following will create an appropriate catch block for this given try block?
+try { int x = Integer.parseInt(“one”); }
+
+A. ClassCastException
+B. IllegalStateException
+C. IllegalArgumentException
+D. ExceptionInInitializerError
+E. ArrayIndexOutOfBoundsException
+
+Correct Answer: C 
+
+Explanation
+
+Integer.parseInt can throw a NumberFormatException, and IllegalArgumentException is its superclass (i.e., a broader exception), so we can use it here. Hence, option C is correct.
+Option A is incorrect since the ClassCastException is thrown to indicate that the code has attempted to cast an object to a subclass of which it is not an instance.
+Option D is incorrect since the ExceptionInInitializerError is thrown to indicate that an exception occurred during evaluation of a static initializer or the initializer for a static variable.
+IllegalStateException is thrown when java environment or Java application is not in an appropriate state for the requested operation. So, option B is incorrect.
+
+Reference: http://docs.oracle.com/javase/tutorial/essential/exceptions/catch.html
+
+ 
+
+Domain : Working with Methods and Encapsulation
+Q3 : What will be the output of this program code?
+
+    public class Whiz {
+
+                 public static void main(int [ ] i) {
+
+                                 System.out.print(“main1”);
+
+                 }
+
+                 public static void main(String… c) {
+
+                                 System.out.print(“main2”);
+
+                 }
+
+                 public static void main(String c) {
+
+                                 System.out.print(“main3”);
+
+               }
+
+  }
+
+A. Main1
+B. Main2
+C. Main3
+D. An Error is thrown at the runtime, stating that, Main method not found in class Whiz
+E. Compilation fails
+
+Correct Answer: B
+
+Explanation
+
+The signature of the main method must take one form of the following two forms;
+
+public static void main(String[] args) or public static void main(String… args)
+
+And it can also be a final.
+
+JVM calls main method. When JVM calls main method, it passes a zero length String array if there are no command line arguments passed when running program. So, main method defined at line 5 to 7 will be called. The starting point of a program is the main method; it simply means that the program starts to execute statements which are located inside the main method. So, here “main2” will be printed. Therefore, option B is correct.
+Options A and C are incorrect as they are not the main method. They are just overloaded versions of the main method and it is legal.
+Option D is incorrect as there will be no error thrown as the code has the main method.
+Option E is incorrect as the code compiles successfully.
+
+Reference: http://docs.oracle.com/javase/tutorial/getStarted/application/index.html
+
+ 
+
+Domain: Using Operators and Decision Constructs
+Q4 : Which of the following is true?
+
+    public class Whiz {
+
+      public static void main(String args [ ]) {
+
+                   int y = 5;
+
+               if (false && y++==11)
+
+                             System.out.print(y);
+
+                     else if(true || –y==4)
+
+                             System.out.print(y);
+
+                     else( y==5){}
+
+          }
+
+  }
+
+A. The output will be 6
+B. The output will be 4
+C. The output will be 5
+D. There is no output
+E. Compilation fails
+
+Correct Answer: E
+
+Explanation
+
+The code fails due to error on line 11 because we can’t use a conditional clause with else. So, option E is correct.
+
+If we modify line 11 to “else{}” then the code will compile and the first if test “y++==11” will not be checked as we use here &&. So it’ll not print “y” at that time. But “else if’s first condition is true it won’t check “—y==4” and it’ll print the value of “y”. Since the value of “y” hasn’t changed the output will be 5. So, the answer would be option C.
+
+Reference: http://docs.oracle.com/javase/tutorial/java/nutsandbolts/if.html
+
+ 
+
+Domain : Using Loop Constructs
+Q5 : Which of the following will compile successfully?
+
+A. for ( int j = 0, int k = 5; j < k; k– ) ;
+B. for ( ; ; System.out.print(“a”) ) ; 
+C. for ( );
+D. for ( int k = 10; k–; k > 0 ) ;
+
+Correct Answer: B
+
+Explanation
+
+The general syntax of the for loop is;
+
+ for(initialization; Boolean expression; update){ /* Statements */ }
+
+Option B is correct as it is displaying the correct syntax. While creating for loops, all three blocks are optional, it simply means that we can skip initialization, boolean expression, or update statements.
+
+It is allowed to write print statements inside the increment/ decrement part of for loop. The above code compiles fine. As there is no condition to break execution, it becomes an infinite loop.
+
+Try it:
+
+public class Test {
+
+public static void main(String[] args) {
+
+for (;; System.out.print(“a”));
+
+}
+
+}
+
+Option A is incorrect. It is invalid to  declare data type two times. It should be  for( int j = 0, k = 5; j < k; k– ) ; 
+Option C is incorrect as we should use “;” for separating three statements.
+Option D is incorrect because the boolean expression and update statement is in the wrong place.
+
+Reference: http://docs.oracle.com/javase/tutorial/java/nutsandbolts/for.html
+
+ 
+
+Domain : Working with Inheritance
+Q6 : What will be the output of this program?
+
+        public class Whiz {
+
+            public static void main(String args [ ] ) {
+
+                         Move.print();
+
+               }
+
+        }       
+
+               interface Move {
+
+                         public static void main(String [ ] args) {
+
+                                   System.out.println(“Move”);
+
+                         }
+
+                         public static void print(){ }
+
+               }
+
+A. Move
+B. No output
+C. Compilation fails due to an error at line 4
+D. Compilation fails due to an error at line 8
+E. Compilation fails due to multiple errors
+
+Correct Answer: B
+
+Explanation
+
+Since Java 8, static methods are allowed in interfaces. main() is a static method. Hence, main() is allowed in interfaces. So, the code compiles successfully. While using Move.print(), the main method in Move interface doesn’t execute. So, option B is correct.
+
+Reference: http://docs.oracle.com/javase/tutorial/java/IandI/abstract.html 
+
+ 
+
+Domain : Creating and Using Arrays
+Q7 : What will be the output of this program?
+
+       public class Whiz{
+
+        public static void main(String[] args) {
+
+         int [][]ints = new int[3][2];
+
+          ints[0] = new int[3];
+
+          ints[2] = {1,2,3};
+
+           System.out.print(ints[0].length + ints[2].length);
+
+                    }
+
+   }                         
+
+A. 4
+B. 5
+C. 6
+D. An ArrayIndexOutOfBoundsException is thrown
+E. Compilation fails
+
+Correct Answer: E
+
+Explanation
+
+This code fails to compile due to an error at line 7, because the array constants can only be used in initializers. So, we can’t use “{1,2,3}” at line 7.
+
+Reference: http://docs.oracle.com/javase/tutorial/java/nutsandbolts/arrays.html
+
+ 
+
+Domain : Handling Exceptions
+Q8 : What will be the output of this program?
+
+       class Whiz {
+
+              public static void main(String args[ ]) {
+
+                        try {
+
+                                  new Whiz().meth();
+
+                        } catch(ArithmeticException e) {
+
+                                  System.out.print(“Arithmetic”);
+
+                        } finally {
+
+                                  System.out.print(“final 1”);
+
+                        } catch(Exception e) {
+
+                                  System.out.print(“Exception”);
+
+                        } finally {
+
+                                  System.out.print(“final 2”);
+
+                        }
+
+              }
+
+               
+
+             public void meth()throws  ArithmeticException {
+
+                      for(int x = 0; x < 5; x++) {
+
+                            int y = (int) 5/x;
+
+                            System.out.print(x);
+
+                      }
+
+             }
+
+   }
+
+A. Arithmetic final 1
+B. Exception final 2
+C. Arithmetic final 2
+D. Exception
+E. Compilation fails
+
+Correct Answer: E
+
+Explanation
+
+You can’t have multiple finally clauses. In this code, the first finally clause causes the end of the try clause. So, other catch clause appeared like a catch clause without a try clause, so compilation fails.
+
+Reference: http://docs.oracle.com/javase/tutorial/essential/exceptions/catch.html
+
+ 
+
+Domain : Java Basics
+Q9 : which of the following statement compiles successfully?
+A. final int / array[] = {1,2,3};
+B. final int // array[] = {1,2,3};
+C. final int   /**   */  array[] =   {1,2,3} ;
+D. All of the above
+E. None of the above
+
+Correct Answer: C
+
+Explanation
+
+We can have following comments in java
+
+/* text */        –          The compiler ignores everything from /* to */.
+
+// text               –          The compiler ignores everything from // to the end of the line.
+
+/** documentation */  
+
+This is a documentation comment and in general, it’s called doc comment. The JDK javadoc tool uses doc comments when preparing automatically generated documentation.
+
+Option C is correct since it doesn’t affect the complete statement.
+Option A is incorrect since using / for comments is invalid in java.
+Option B is incorrect since because of // the statement will be incomplete.
+
+Reference: https://docs.oracle.com/javase/tutorial/getStarted/application/index.html
+
+ 
+
+Domain : Using Operators and Decision Constructs
+Q10 : What will be the output of this program?
+
+       public class Whiz {
+
+                    public static void main(String [ ] args) {
+
+                                    int x = 1;
+
+                                    int y = 10;
+
+                                   
+
+                                    if((x*=3) == y) {
+
+                                                    System.out.println(y);
+
+                                    } else {
+
+                                                    System.out.println(x);
+
+                                }
+
+                }
+
+   }
+
+A. 1
+B. 3
+C. 10
+D. Compilation fails due to an error at line 6
+E. Compilation fails due to multiple errors
+
+Correct Answer: B
+
+Explanation
+
+At line 6, we have used parentheses to change the value of x. Inside the parentheses, we have used assignment operator which will result in x multiplied by 3. But the condition of the if block won’t be true since the value of y, is 10. Hence, else block executes and print 3, so option B is correct.
+
+Reference: http://docs.oracle.com/javase/tutorial/java/nutsandbolts/if.html
+
+ 
+
+Domain : Creating and Using Arrays
+Q11 : What will be the output of this program?
+
+class Whiz {
+
+       public static void main(String args[]) {
+
+                new Whiz().iterator(new int [ ]{10,12,13});
+
+       }
+
+       void iterator(int [ ]i) {
+
+                for(int x=0;x<i.length;System.out.print(i[x] + ” “))x++;            
+
+       }
+
+}
+
+A. 10 12 13
+B. 12 13
+C. 10 12
+D. 12 13 followed by an exception
+E. Compilation fails
+
+Correct Answer: D
+
+Explanation
+
+We have passed the anonymous array to the iterator method which uses a for loop to iterate through array elements and print them. In given for loop, we have used the printing statement in update part and we have done the increment part inside the loop. So, in the first iteration, it will increase the value of x and then print the second element. But when it does two iteration value of x will become 3, so in final iteration trying to access element will index position 3, will result in an exception. Hence, option D is correct.
+
+Reference: http://docs.oracle.com/javase/tutorial/java/nutsandbolts/for.html
+
+ 
+
+Domain : Working with Inheritance
+Q12 : Which of the following are the benefits of collections over arrays?
+
+A. We can add objects to collections, not to arrays
+B. Collections take up less memory than Arrays
+C. Collections are always thread-safe, while arrays are not
+D. Collections can grow dynamically, while arrays cannot
+
+Correct Answer: D
+
+Explanation
+
+Collections grow and shrink dynamically, whereas arrays are of a fixed size. 
+
+Objects can be added to arrays if the object added is an instance of the declared type of the array. Hence, option A is incorrect.
+It is not possible to say that collections take less memory or more memory than arrays. Hence, option B is also incorrect.
+All collections are not thread-safe. We need to add a synchronization code to ensure thread safety. Hence, option C is also incorrect.
+
+References: https://docs.oracle.com/javase/tutorial/collections/intro/index.html, https://docs.oracle.com/javase/8/docs/api/java/sql/Statement.html#executeQuery-java.lang.String-
+
+ 
+
+Domain : Working With Java Data Types
+Q13 : How many objects are eligible for GC (Garbage Collector) when line 10 is reached?
+
+class Wrap {
+
+      Double d = 10.0;
+
+      int x = 10; //primitive variable
+
+      int [ ] s = new int[10];
+
+}
+
+public class Whiz {
+
+      public static void main(String [] args){
+
+               Wrap w =new Wrap();
+
+               w = null;
+
+         //here
+
+}
+
+}
+
+A. 1
+B. 2
+C. 3
+D. 4
+E. Compilation fails
+
+Correct Answer: C
+
+Explanation
+
+At line 8, we have created a wrap instance. In that wrapper, there are two objects, one is an array of ints and other is a Double. “x” is a primitive variable. 
+
+So, making w reference null will result in Wrap object unreachable and also its enclosing two objects. Hence, total three objects eligible for GC. Hence, option C is correct.
+
+Important:
+
+“args” is not null. It refers to zero length string array if we won’t pass any command line arguments.
+
+class Test {
+
+public static void main(String[] args) {
+
+System.out.println(args.length);
+
+} }
+
+Output: 0
+
+Since args is not null, it is not eligible for garbage collection.
+
+Reference: http://docs.oracle.com/javase/tutorial/java/javaOO/usingobject.html
+
+ 
+
+Domain : Handling Exceptions
+Q14 : Given the following set of classes:
+class A extends Exception {}
+class B extends A {}
+class C extends B {}
+What is the correct sequence of catch blocks for the following try block?
+try {
+int i = Integer.parseInt(args[0]);
+if (i == 0) {
+throw new A();
+} else if (i == 1) {
+throw new C();
+}
+else if (i == 2) {
+throw new B();
+}
+else
+throw new Exception();
+}
+// Add catch blocks here
+
+A. Catch Exception, A, B, and C in that order
+B. Catch Exception, C, B, and A in that order
+C. Catch A, B, C, and Exception in that order
+D. Catch C, B, A, and Exception in that order
+E. The order does not matter
+
+Correct Answer: D
+
+Explanation
+
+All the catch blocks corresponding to a try block must be ordered from most specific to most general in the inheritance hierarchy, i.e. catch for NullPointerException must be placed before the catch for Exception because NullPointerException is a subtype of Exception.
+In the given code, C derives from B, B from A, and A from Exception. Hence, C should be positioned first, followed by B, then A, and finally Exception.
+As the right order is C, B, A, and then Exception, option D is correct and the other options are incorrect.
+
+The catch blocks will be as below
+
+catch (C c) {
+
+System.out.println(“C”);
+
+} catch (B b) {
+
+System.out.println(“B”);
+
+} catch (A a) {
+
+System.out.println(“A”);
+
+} catch (Exception e) {
+
+System.out.println(“E”);
+
+}
+
+Reference: https://docs.oracle.com/javase/tutorial/essential/exceptions/catch.html
+
+ 
+
+Domain : Working with Inheritance
+Q15 : Which will compile successfully when inserted at line 3?
+
+abstract interface Movable{
+
+             int x = 10;
+
+               //insert code here
+
+             void run();
+
+ }
+
+A. private int x = 10;
+B. abstract int i = 5;
+C. final static float  c = 6.0;
+D. final short s=10;
+E. None of the above
+
+Correct Answer: D
+
+Explanation
+
+Option A is incorrect since at line 2 we already defined a variable calls ‘x’ so we can’t have another variable with the same name in the same scope. Also, the private variables are not allowed in interfaces.
+Option B is incorrect as an abstract modifier is not valid for a variable.
+Option C is incorrect since float literal should be ended with ‘f’ when it has decimal points.
+Option D is correct as we can assign int literal within the range of -32768 – 32767 to a short.
+
+Reference: http://docs.oracle.com/javase/tutorial/java/nutsandbolts/variables.html
+
+ 
+
+Domain : Working with Methods and Encapsulation
+Q16 : What will be the output of this program?
+
+class Whiz{
+
+final int i;
+
+              public static void main(String args[]){
+
+                             Whiz s= new Whiz();
+
+                             System.out.println( “i = “+s.i);
+
+             }
+
+}
+
+A. Prints i = 0
+B. Prints i = 1
+C. Prints i = Null
+D. Runtime Exception is thrown
+E. Compile-time Error
+
+Correct Answer: E
+
+Explanation
+
+The compiler complains “variable i has not been initialized in the default constructor”. A final variable is equivalent to a constant entity in java. Once it is initialized it may not be changed. But, it has to be initialized at the time of declaration. It can be initialized in 3 ways.
+
+A final variable is initialized at the time of declaration
+
+final int i=100;
+
+It can be initialized in the constructor
+
+Whiz(){i=100;}
+
+It can be initialized in instance block of initialization
+
+Reference: http://docs.oracle.com/javase/tutorial/java/nutsandbolts/variables.html
+
+ 
+
+Domain : Creating and Using Arrays
+Q17 : Which of the following can be used to iterate through all elements of this array?
+             double [] dlbs = {1,5.1,2.0,7};
+
+A. for(double d : double dlbs[]){ }
+B. for(double d ; dlbs){ }
+C. for(dbs ; dlbs){ }
+D. for(dbs : double dlbs){ }
+E. for(double d : dlbs){ }
+
+Correct Answer: E
+
+Explanation
+
+Syntax for enhanced for loop is
+
+for([data type] [name] : [array or collection name])
+
+So in given options, only E follows correct syntax.
+
+Options A, C, and D are incorrect as it is invalid syntax in collection name area. Option B is incorrect because we need to use a colon, not the semi-colon.
+
+Reference: http://docs.oracle.com/javase/tutorial/java/nutsandbolts/for.html
+
+ 
+
+Domain : Using Operators and Decision Constructs
+Q18 : Consider this given program code and choose the correct option.
+
+  class Whiz {
+
+         public static void main(String args[ ]) {
+
+              final int i = 0;
+
+                   final int j;
+
+                   j=2;
+
+              int x= (int)(Math.random() * 3);
+
+              switch(x) {
+
+                        case i : {System.out.print(“A”);}
+
+                             case 1: System.out.print(“B”);break;
+
+                    case j : System.out.print(“C”);
+
+                   }
+
+         }
+
+   } 
+
+Note: Math.random() * 3 will assign value 0,1 or  2.x  .
+
+A. The output will be A
+B. The output will be AB
+C. The output will be B
+D. The output will be BC
+E. Compilation fails
+
+Correct Answer: E
+
+Explanation
+
+A case constant must be a compile-time constant. Here integer j is not a compile time constant.
+
+Reference: http://docs.oracle.com/javase/tutorial/java/nutsandbolts/switch.html
+
+ 
+
+Domain : Working with Inheritance
+Q19 : What will be the output of this program?
+
+class MainClass{
+
+             MainClass(){ System.out.print(“MainClass “);                        }         
+
+}
+
+class SubClass extends MainClass{
+
+             {System.out.print(“I “);}
+
+             static{System.out.print(“S “);}
+
+             SubClass(int i){
+
+                         this();
+
+                         System.out.print(“SubClass “);
+
+             }
+
+    SubClass(){
+
+                             super();
+
+                             System.out.print(“SubClass “);
+
+             }
+
+ }
+
+public class SubSubClass extends SubClass{
+
+             SubSubClass(String s){
+
+                             super();
+
+                             System.out.print(“SubSubClass “);
+
+             }
+
+             public static void main(String [] args){
+
+                         new SubSubClass(“ABC”);
+
+             }
+
+ }
+
+A. MainClass S I SubClass SubSubClass
+B. S MainClass I SubClass SubSubClass
+C. S MainClass I SubClass SubClass SubSubClass
+D. SubSubClass SubClass S I MainClass
+E. Compilation fails
+
+Correct Answer: B
+
+Explanation
+
+To get the correct answer, you should know, Static initialization blocks run once when the class is first loaded. Instance initialization blocks run every time a new instance is created. They run after all super-constructors and before the constructor’s code have run.
+
+Here first ‘S’ will be printed as the static block executes when the class is loading,  then at line 23 when the instance of SubSubClass is created, last super class constructor in the class hierarchy which is MainClass will be executed and print “MainClass”. When it comes to next subclass it will first execute non-static code block and then its constructor, so “I” and “SubClass” will print. Finally, the SubSubclass constructor will execute and print ‘SubSubClass’. Hence, option B is correct.
+
+Reference: http://docs.oracle.com/javase/tutorial/java/javaOO/arguments.html
+
+ 
+
+Domain : Creating and Using Arrays
+Q20 : Which of the following will print 4 as the output when inserted at line 4?
+
+ public class Whizlab{
+
+            public static void main(String[] args) {
+
+                            int [][]array = {{},{1,2,3}, {4,5}};
+
+                            // insert here
+
+            }
+
+       }
+
+A. System.out.print(array[2][2]);
+B. System.out.print(array[1][2]);
+C. System.out.print(array[3][2]);
+D. System.out.print(array[2][0]);
+E. System.out.print(array[2][1]);
+
+Correct Answer: D
+
+Explanation
+
+Array indexes are started from 0. So, we can summarize the array content as follows:
+
+array[0] > empty array
+
+array[1] > {1,2,3} > array[1][0] = 1 …
+
+array[2] > {4,5} > array[2][0] = 4 …
+
+So, to get an expected output, we need to access the first element of the third one-dimensional array. So, it should be array[2][0], hence option D is correct.
+
+Reference: http://docs.oracle.com/javase/tutorial/java/nutsandbolts/arrays.html
+
+ 
+
+Domain : Handling Exceptions
+Q21 : What will be the output of this program?  java  Whizlab  10
+
+class Whizlab {      
+
+      public static void main(String args[]) {               
+
+                try {
+
+                        System.out.println(args[0]);
+
+              }catch (ArrayIndexOutOfBoundsException | ArithmeticException | NullPointerException e) {
+
+                        if (e instanceof ArrayIndexOutOfBoundsException) {
+
+                                        e = new ArrayIndexOutOfBoundsException(“Out of bounds”);
+
+                        } else if(e instanceof NullPointerException) {
+
+                                            e = new NullPointerException(“Null Value”);
+
+                          } else {
+
+                                            e = new ArithmeticException(“Arithmetic”);
+
+                          }
+
+                          System.out.println(e.getMessage());
+
+}     
+
+    }
+
+    }
+
+A. Null
+B. Null Value
+C. Arithmetic
+D. Out of bounds
+E. Arithmetic Null
+F. Compilation fails
+
+Correct Answer: F
+
+Explanation
+
+When we are using the multi catch block, the exception variable is implicitly final, therefore we cannot assign the variable to different value within the catch block. So, here trying to assign different exceptions to exception variable results a compile time error; hence option F is correct.
+
+References: http://www.oracle.com/technetwork/articles/java/java7exceptions-486908.html, https://docs.oracle.com/javase/specs/jls/se7/html/jls-14.html#jls-14.20 
+
+ 
+
+Domain : Working with Selected classes from the Java API
+Q22 : What will be the output of this program?
+
+public class Whizlab{
+
+   public static void main(String [ ] args){ 
+
+               StringBuilder sb = new StringBuilder(“Whiz”);
+
+               sb = sb.append(“lab”);
+
+               sb.append(‘s’);
+
+               sb.setLength(7);
+
+               System.out.println(sb);
+
+   } 
+
+}   
+
+A. Whizlabs
+B. Whizlab
+C. Whiz
+D. Whizla
+E. Does not compile
+F. An Exception will be thrown
+
+Correct Answer: B
+
+Explanation
+
+StringBuilder is a mutable sequence of characters, which means that any changes made to it will be reflected in the instance. In line 4, assigning the modified instance to the reference variable is not necessary as the changes will take effect even if the assignment does not happen. 
+
+Here, the first and second append statements will append “lab” and then “s” to the sequence “Whiz”. Hence, in line 6, the StringBuilder instance will hold ‘Whizlabs’ as content. After that, the setLength() call will trim the letters after the 7th character. So the final output is ‘Whizlab’.
+
+So, Option B is correct and the other options are incorrect.
+The code compiles fine since the append() method also returns a StringBuilder. Hence, option E is incorrect.
+
+Reference: https://docs.oracle.com/javase/8/docs/api/java/lang/StringBuilder.html
+
+ 
+
+Domain : Using Operators and Decision Constructs
+Q23 : What will be the output of this program?
+
+class Whizlab{
+
+             public static void main(String [] args){
+
+                   int y=10;
+
+                   int x = 10;
+
+                   if(x!=10 && y++==1);
+
+                   if(y==11 | ++x==11) y+=10;
+
+                                   System.out.print(y);
+
+             }
+
+}
+
+A. 11
+B. 10
+C. 20
+D. 21
+E. Compilation fails
+
+Correct Answer: C
+
+Explanation
+
+At line 5, y++ won’t execute as x!=10 is false (A short circuit is used). But at the next line ++x=11 so y+=10; will execute and make y=20.
+
+Reference: http://docs.oracle.com/javase/tutorial/java/nutsandbolts/operators.html
+
+ 
+
+Domain : Working With Java Data Types
+Q24 : Which of the following will compile without errors?
+
+A. short s = 10000;
+B. float f = 2.0;
+C. int n = “hello”.length();
+D. long l = 0.0/10;
+E. long m = “hello”.length;
+
+Correct Answers: A and C
+
+Explanation
+
+The short data type is a 16-bit signed two’s complement integer. It has a minimum value of -32,768 and a maximum value of 32,767 (inclusive). When the 100000 is assigned to short type, a narrowing conversion happens. Hence, option A is correct.
+A floating-point literal is of type double by default. Hence, it cannot be assigned to a float variable without casting, hence option B will cause a compiler error. So it is incorrect.
+In option C, the length() method of String is invoked to get the number of characters in the String. Hence, option C is also correct.
+The division of 0.0 by 10 results in a double value, which cannot be assigned to a long variable without casting, hence option D will cause a compiler error. So it is incorrect.
+Option E is incorrect because length is a method of String and it cannot be invoked without parenthesis.
+
+Reference: https://docs.oracle.com/javase/tutorial/java/nutsandbolts/datatypes.html
+
+ 
+
+Domain : Working with Methods and Encapsulation
+Q25 : Which of the following are the correct syntax to overload the method on line 4? (Choose three options)
+…
+
+public void greet(String greeting) {
+
+/* more codes */
+
+}
+
+…
+
+A. public String greet() {//more codes}
+B. public void greet(String greeting, String name) {}
+C. public void greet(Object greeting) {}
+D. private void greet(String greeting) {}
+E. private String greet(String greet) {} 
+
+Correct Answers: A, B and C
+
+Explanation 
+
+Method overloading is determined by the number and type of the arguments and not by the return type or access or non-access modifiers.
+
+Options A, B, and C are correct because the argument is different in all these three methods.
+Option D is incorrect because the argument is the same. Changing the access modifier has no impact on overloading.
+Option E is incorrect because the type and number of argument/s are the same. Changing the return type or the access modifier has no impact on overloading.

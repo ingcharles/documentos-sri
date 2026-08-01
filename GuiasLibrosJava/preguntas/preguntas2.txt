@@ -1,0 +1,951 @@
+Free Questions on Oracle Certified Professional, Java SE 8 Programmer (OCPJP 8) (1Z0 809)
+Java / By Pavan Gumaste
+The Oracle Certified Professional, Java SE 8 Programmer Certification exam (1Z0-809) requires you to have a practical understanding and Hands-on experience with Java SE8 version. The prerequisite for this certification is the completion of the Oracle Certified Associate(OCA) certification.
+
+In this article, we provide Java SE 8 Programmer certification 1Z0-809 free test questions. These 1Z0-809 exam questions are for your easy assessment of the certification exam, and to give you an idea on the pattern of the questions that could be asked in the actual exam.
+
+Table of Contents
+Domain : Java Class Design
+Domain : Building Database Applications with JDBC
+Domain : Exceptions and Assertions
+Domain : Generics and Collections
+Domain : Java Class Design
+Domain : Java Concurrency
+Domain : Java Class Design
+Domain : Building Database Applications with JDBC
+Domain : Exceptions and Assertions
+Domain : Generics and Collections
+Domain : Java Class Design
+Domain : Java Concurrency
+Domain : Java File I/O (NIO.2)
+Domain : Building Database Applications with JDBC
+Domain : Exceptions and Assertions
+Domain : Generics and Collections
+Domain : Java Concurrency
+Domain : Java File I/O (NIO.2)
+Domain : Java Stream API
+Domain : Generics and Collections
+Domain : Java Concurrency
+Domain : Generics and Collections
+Domain : Generics and Collections
+Domain : Java File I/O (NIO.2)
+Domain : Java Stream API
+Summary
+Domain : Java Class Design
+Q1 : Given
+       interface Switchable{
+                    void sw(int i);
+       }
+       abstract class Switch{
+                    abstract void sw(int i);
+       }
+       class It _ _ _ _ _ _ _ _ _ _ _ _ _{
+       
+                   public void sw(int i){}
+    
+                public static void main(String []arg){
+                                System.out.print(“A”);
+                }
+   }
+ Which is true? 
+A. At line 7 extending the abstract class “Switch” is more  appropriate than implementing the interface “Switchable”
+B. At line 7 implementing the interface “Switchable” is more  appropriate than extending the abstract class  “Switch” 
+C. At line 7 implementing the interface or extending the interface won’t give us any advantage over another
+D. Since the both the interface and the abstract class are abstract, both of them will provide same flexibility
+E. Implementing or extending will fail this code from compiling
+
+Correct Answer: B
+
+Explanation
+
+B is correct as in this code both the interface and the abstract class provide same functionality  to class “It” but implementing the interface is preferable as it allows “It” class to extend another class when needed.
+A is incorrect as if we extends the abstract class then we can’t extend another class if needed.
+C and D are incorrect as in this case, interface clearly provides us more flexibility over abstract class.
+E is incorrect as we have correctly overload the “sw()” method at line 9.
+
+Reference: http://docs.oracle.com/javase/tutorial/java/IandI/usinginterface.html
+
+ 
+
+Domain : Building Database Applications with JDBC
+Q2 : Which of the following isolation level will block all kind of reads on a row until the transaction is committed?
+A. TRANSACTION_READ_COMMITTED
+B. TRANSACTION_READ_UNCOMMITTED
+C. TRANSACTION_ REPEATABLE_READ
+D. TRANSACTION_SERIALIZABLE
+E. TRANSACTION_READ
+
+Correct Answer: D
+
+Explanation
+
+Refer to the following table about the Isolation Level provided in the oracle reference site.
+
+Isolation Level	Transactions	Dirty Reads	Non-Repeatable Reads	Phantom Reads
+TRANSACTION_NONE	Not supported	Not applicable	Not applicable	Not applicable
+TRANSACTION_READ_COMMITTED	Supported	Prevented	Allowed	Allowed
+TRANSACTION_READ_UNCOMMITTED	Supported	Allowed	Allowed	Allowed
+TRANSACTION_REPEATABLE_READ	Supported	Prevented	Prevented	Allowed
+TRANSACTION_SERIALIZABLE	Supported	Prevented	Prevented	Prevented
+According to above table it is clear that the isolation level “TRANSACTION_SERIALIZABLE” will block all kind of reads on a row until the transaction is committed. So the correct option is D.
+
+Reference: http://docs.oracle.com/javase/tutorial/jdbc/basics/transactions.html
+
+ 
+
+Domain : Exceptions and Assertions
+Q3 : Consider following three statements (select true statements ) .
+A try with resources statement without a catch block requires a finally block.
+A try with resources statement without a finally block requires a catch block.
+A try with resources statement with only one statement can omit the {}
+A. Only I
+B. Only III
+C. Only I and II
+D. Only II and III
+E. None of above
+
+Correct Answer: E
+
+Explanation
+
+Option E is correct since the all given three statements are false. A try-with-resources statement does not require a catch or finally block where a traditional try statement requires at least one of the two. Even with one statement it is manadory to have {} with try with resources.
+
+Reference: https://docs.oracle.com/javase/tutorial/essential/exceptions/tryResourceClose.html
+
+ 
+
+Domain : Generics and Collections
+Q4 : Given
+       import java.util.*;
+       import java.util.function.Predicate;
+       
+       public class Whizlab{
+        
+        public static void main(String[] args){
+        
+               List<Integer> numbers = new ArrayList<>();
+                
+        numbers.add(10);
+       numbers.add(11);
+        numbers.add(13);
+        numbers.add(19);
+        numbers.add(5);
+                               
+                Predicate<Integer> predit = p -> p > 10; 
+                               
+                numbers.stream().filter(predit);
+                               
+                System.out.println(numbers);
+    }
+   }
+What is the output?
+[10, 5]
+[11,  13, 19]
+[10, 11, 13, 19, 5]
+Compilation fails due to error at line 16
+Compilation fails due to error at line 18
+
+Correct Answer: C
+
+Explanation
+
+java.util.function.Predicate interface defines an abstract method named test(T t) that accepts an object of generic type T and returns a boolean primitive.  At line 16, we have passed valid lambda expression which takes an Integer object in and return true if it is greater than 10.
+
+At line 18 ,  we called stream method on numbers so it will become a stream, then we invoke filter method by passing the created predicate. But there is no any terminal operation after filter method. Streams are lazy because intermediate operations are not evaluated unless terminal operation is invoked.  Streams never make changes to the source object. So output contains all values of the list, hence option C is correct.
+
+Reference: http://docs.oracle.com/javase/tutorial/collections/streams/parallelism.html#laziness
+
+ 
+
+Domain : Java Class Design
+Q5 : Given
+       public class Whiz{
+        
+                    static int x;
+                   
+                    public static void main(String[] args){
+                                    Whiz w1 = new Whiz ();
+                                    Whiz w2 = new Whiz ();
+                                    Whiz w3 = new Whiz ();
+                                    w1.method();
+                               w2.method();
+                                w3.method();
+                }
+               
+                public void method(){
+                                while(++x<3){
+                                            System.out.print(“A”);
+                                }
+                }
+   }                         
+What is the output?
+A. AAAAAA
+B. AA
+C. No output
+D. Compilation fails due to error on line 15
+E. Compilation fails due to multiple errors
+
+Correct Answer: B
+
+Explanation
+
+Static variable x” at line 3 has default value “0” as we have not given any specific value. So when the “method()” invokes first time using “w1” object reference, while loop executes and will print “A” twice and final value of the variable “x” is 3. Since the variable “x” is static every other object share same value of the variable “x”. So when w1 and w2 objects try invoke method(), while loop wouldn’t invoke because x is already reached to 3.
+
+Reference: http://docs.oracle.com/javase/tutorial/java/javaOO/classvars.html
+
+ 
+
+Domain : Java Concurrency
+Q6 : Which of the followings are true? 
+A. There is no different between Callable’s “call()” method and Runnable’s “run()”method
+B. Callable’s “call()” method allows to return some value while Runnable’s “run()” doesn’t
+C. Callable is a class while Runnable is an interface
+D. Both the Callable and Runnable interfaces have only one method
+E. Both Callable’s “call()” method and Runnable’s “run()” methods can’t be overridden to throw checked exception when necessary
+
+Correct Answers: B and D
+
+Explanation
+
+Option B is correct as the Callable’s “call()” method allows it to return some value.
+Option D is correct as both the Callable and Runnable interfaces have only one method. The Callable interface has only the “call()” method and the Runnable interface only got the “run()” method.
+Option A is incorrect as there are different between Callable’s “call()” method and Runnable’s “run()”method. Callable’s “call()” method can return a value and it also can throw exceptions while Runnable’s “run()”method doesn’t.
+Option C is incorrect as the Callable is an interface like the Runnable.
+Option E is incorrect as the Callable’s “call()” method can be overridden to throw checked exception when necessary.
+
+Reference: http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/Callable.html
+
+ 
+
+Domain : Java Class Design
+Q7 : Given
+       public class Whiz{
+              public static void main(String[] args){
+                              I2.print();       
+                              I1.print();       
+              }
+       }
+        
+       interface I1{
+              public static void print(){
+                          System.out.print(“1”);
+          }
+   }
+    
+   interface I2 extends I1{      
+          public static void print(){
+                          System.out.print(“2”);
+          }
+   }
+What is the output?
+A. 11
+B. 22
+C. 12
+D. 21
+E. Compilation fails
+
+Correct Answer: D
+
+Explanation
+
+Static methods in interfaces are not inherited so there is no problem in defining new static method with same name in I2. Hence output will be 2 and 1. So option D is correct.
+
+Reference: https://docs.oracle.com/javase/tutorial/java/IandI/defaultmethods.html
+
+ 
+
+Domain : Building Database Applications with JDBC
+Q8 : You are asked to establish a connection to a MySql database in the “localhost”, called “School”. You are given the password as “abcd” and the user name as the “admin”.
+Which of the following connection URL / arguments can be passed to getConnection method of DriverManager ?
+A. “jdbc:mysql://localhost:3306/School?”+”user=admin&password=abcd” 
+B. “jdbc:mysql://School:3306?user=admin&password=abcd”
+C. “jdbc:mysql://localhost:3306/School”,”abcd”,”admin”  
+D. “jdbc:mysql://School:3306/localhost?user=admin&password=abcd”
+E. “jdbc:mysql://:3306/School”,”admin”, “abcd”  
+
+Correct Answers: A and E
+
+Explanation
+
+getConnection method of DriverManager class is overloaded. 
+
+public static Connection getConnection(String url) throws SQLException
+
+public static Connection getConnection(String url, Properties info) throws SQLException
+
+public static Connection getConnection(String url,String user, String password) throws SQLException
+
+jdbc:mysql://[host][:port]/[database][?property1][=value1]…
+
+Host – The host name where MySQL server is running. Default is 127.0.0.1 – the IP address of localhost.
+
+Port – The port number where MySQL is listening for connection. Default is 3306.
+
+Database – The name of an existing database on MySQL server. If not specified, the connection starts no current database.
+
+Property – The name of a supported connection properties. “user” and “password” are 2 most important properties.
+
+Value – The value for the specified connection property.
+
+According to given scenario, host should be localhost, database should be school, user name should be “admin” and the password should be “abcd”.
+
+Option A is correct as it follows correct format and pass the parameters in correct order.
+Option E is correct as when we don’t specify  the host name default host will be 127.0.0.1 which is for localhost.
+Option B and D are incorrect as we have passed the “School” as the host name.
+Option C is incorrect as password and user name are in incorrect order.
+
+References: http://docs.oracle.com/javase/tutorial/jdbc/overview/index.html, http://www.oracle.com/technetwork/java/overview-141217.html
+
+ 
+
+Domain : Exceptions and Assertions
+Q9 : Given ( assertions are enabled )
+       public class Whizlab{
+                    public static void main(String[] args) {
+                                    int j = 9;
+                                   assert(++j > 7): “Error”;
+                                    assert(j==12): j;
+                                    assert(++j > 8): System.out.println(j);
+                                  
+                    }
+       }
+What is the output?
+A. 8
+B. 9
+C. Compilation fails due to line 5
+D. Compilation fails due to line 6
+E. Compilation fails due to multiple errors
+
+Correct Answer: D
+
+Explanation
+
+Option D Is correct as the code fails to compile only due to line 6. When an assert statement has two expressions, the second expression must return a value. The only two-expression assert statement that doesn’t return a value is on line 6.
+
+Reference: http://docs.oracle.com/javase/7/docs/technotes/guides/language/assert.html
+
+ 
+
+Domain : Generics and Collections
+Q10 : Given
+import java.util.ArrayList;
+import java.util.List;
+ 
+public class Whiz{
+            
+             public static void main(String[] args){
+                             List list = new ArrayList();
+                             list.add(“1”);
+                             list.add(“2”);
+                             list.add(“3”);
+                             list.add(“4”);
+                            
+                             System.out.println(list.set(3,”3”));
+             }
+}  
+What is the output?
+A. 4
+B. 3
+C. -1
+D. An Exception is thrown
+E. Compilation fails
+
+Correct Answer: A
+
+Explanation
+
+We have used ArrayList class set method at line 13,
+
+public E set(int index, E element)
+
+This method replaces the element at the specified position in this list with the specified element, and returns the element which is removed. So in this case 4 will be returned since 4 is located in the position we are going to remove. So option A is correct.
+
+Reference: http://docs.oracle.com/javase/tutorial/collections/interfaces/List.html
+
+ 
+
+Domain : Java Class Design
+Q11 : Given
+       public class Pro {
+        
+                    static int i;
+                   
+                    public static void main(String[] args){
+                                    Pro p1 = new Pro();
+                                    Pro p2 = new Pro();
+                                    Pro p3 = new Pro();
+                                    p1.method();
+                                p2.method();
+                                p3.method();
+                }
+               
+               public void method(){
+                                while(++i<3){
+                                System.out.print(“A”);
+                                }
+                }
+   }                         
+What is the output?
+A. AAAAAA
+B. AA
+C. No output
+D. Compilation fails due to error on line 15
+E. Compilation fails due to multiple errors
+
+Correct Answer: B
+
+Explanation
+
+Static variable “i” at line 3 has default value “0” as we have not given any specific value. So when the “method()” invokes first time using “p1” object reference, while loop executes and will print “A” twice. Since the variable “i” is static “p2” and “p3” objects sees variable “i” with value larger than 3, so when using “p2” and “p3” for invoking the “method()”, while loop will not execute.
+
+The output only contains two “A”s as explained above, so option B is correct.
+Option A is incorrect, it would be correct if the variable “i” was a instance variable.
+Options D and E are incorrect as the code compiles fine. 
+
+Reference: http://docs.oracle.com/javase/tutorial/java/javaOO/classvars.html
+
+ 
+
+Domain : Java Concurrency
+Q12 : Given
+       import java.util.concurrent.atomic.*;
+       public class Whizlab{
+        
+        private static class CStore implements Runnable{
+                    int x=1;
+        private AtomicInteger cps = new AtomicInteger(10);
+       
+                    public void run(){
+                                    while(x > 0){
+                                                try{
+                                                                Thread.sleep(500);
+                                                }catch(Exception e){
+                                                               System.out.print(e);
+                                                }
+                                                synchronized(this){
+                                                                x = cps.decrementAndGet();
+                                                }
+                               System.out.print(cps);
+                                }
+                }
+    }
+    
+    public static void main(String args[]){
+                CStore cs = new CStore();
+   
+                                Thread th1 = new Thread(cs);
+                                Thread th2 = new Thread(cs);               
+                                th1.start();
+                                th2.start();
+       }
+   }
+Which of the following could be an output?
+A. Always 9876543210
+B. Might be 9876543210-1
+C. An Exception
+D. Never ending loop
+E. Compilation fails
+
+Correct Answer: B
+
+Explanation
+
+Since Java 1.5 the java language provides atomic variables, e.g. AtomicInteger or AtomicLong which provide methods like getAndDecrement(), getAndIncrement() and getAndSet() which are atomic. Before the inception of the Java SE 5 atomic classes, programmers were forced to write synchronized code blocks around multithreaded objects. These synchronized blocks are inefficient and an added burden on the developer. The java.util.concurrent.atomic package relieved this burden by providing atomic equivalents to primitive types as well as object references.
+
+Here, we have created a static class called “CStore” and it has implemented the Runnable interface. In this class we have created an AtomicInteger of value 10. Using a while loop and the AtomicInteger class “decrementAndGet()” method, we have tried to print the numbers from 10 to 0 in a reverse order in the overridden “run()” method.
+
+AtomicInteger class’ “decrementAndGet()”method will cause the reduction 1 from the current value of the AtomicInteger variable and return the reduced value. So in this code, in every iterate of the while loop, that returning value of the AtomicInteger class’ “decrementAndGet()”method will be assigned to the variable “x”.
+
+Both th1 and th2 are working on same “cs” object. In the every iteration of while loop, one thread invokes the run it’ll go to sleep mode for 500ms after checking the current value of the variable “x”. When the value of the “x” equal to 1 both threads see that x>0, so both threads will reduce 1 from the current value of the “x”, so the output will contain -1. So the option B is correct.
+
+Here using applying the synchronization at line 15 is not needed as the “cps” is an AtomicInteger and the method “decrementAndGet()” perform an atomic operation. We could avoid the -1, if we synchronized the checking of the value of the “x” at line 9. So we can see that, even with Atomic variables. Memory consistence errors are still possible.
+
+Other options are incorrect based on above logic.
+
+References: http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/atomic/AtomicInteger.html, http://docs.oracle.com/javase/tutorial/essential/concurrency/atomicvars.html
+
+ 
+
+Domain : Java File I/O (NIO.2)
+Q13 : Given :
+    import java.io.IOException;
+    import java.nio.file.*;
+    import java.nio.file.attribute.*;
+    import java.util.regex.Pattern;
+    public class Mat{
+    static boolean f;
+                public static void main(String []args)throws IOException{
+                            Path path = Paths.get(“I:\\whizlabs”);
+                                FileVisitor<Path> searcher = new Search();
+                                Files.walkFileTree(path, searcher);
+                    if(!f)System.out.print(“No matches”);
+            }
+            private static final class Search extends SimpleFileVisitor<Path> {
+                                public FileVisitResult postVisitDirectory(Path dir, IOException e)throws IOException {
+                                                Pattern p = Pattern.compile(“…”);
+                                                PathMatcher pm = FileSystems.getDefault().getPathMatcher(“glob:…”);
+                                                if(pm.matches(dir.getFileName())){
+                                                                System.out.println(dir);
+                                                                f=true;
+                                                }
+                                                return FileVisitResult.CONTINUE;
+                                }
+                }
+   }
+Note: assume that the I:\whizlabs actually exists and contain files and directories and you have enough permission.
+Which is the result?
+A. Completion succeeds and “No matches” will be printed as the output
+B. Completion succeeds and prints only the paths of the “whizlabs” directory and its subdirectories
+C. Completion succeeds and prints only the paths of the subdirectories of the “whizlabs” directory which contains only three letters for directory name
+D. An exception will be thrown at the runtime
+E. Compilation fails
+
+Correct Answer: A
+
+Explanation
+
+We can use “java.nio.file.PathMatcher” interface to perform match operations on paths. To have a “PathMatcher”, we can use the “getPathMatcher()” method in the “java.nio.file.FileSystem” class. We should pass a String to the method and that String work as the pattern for matching operations. We can use “regex” syntax or “glob” syntax for matching, when we pass the pattern, using the “regex:” prefix, we indicates that we are passing the “regex” syntax. If we pass “glob” syntax, then we use the “glob:” prefix to the pattern.
+
+We can use the “wakFileTree()” method combining with the “PathMatcher” to recursively perform path matching operations.
+
+Option A is correct as the “wakFileTree()” method visit all the files and subdirectories of the given file root, the “postVisitDirectory ()” method is invoked after the all entries are visited. Then the method compares the current directory with the “PathMatcher”. As we have passed the glob syntax “…”, there will be no matching path because not like with regex syntax, with glob syntax, “.” has no special meaning so this glob syntax only matches with a names which are created with three “.”.
+Option B and C are incorrect as explained above.
+Option D is incorrect as we have given that the directory actually exists and we have enough permission.
+Option E is incorrect as code compiles fine.
+
+References: http://docs.oracle.com/javase/tutorial/essential/io/find.html, http://docs.oracle.com/javase/8/docs/api/java/nio/file/FileSystem.html#getPathMatcher(java.lang.String)
+
+ 
+
+Domain : Building Database Applications with JDBC
+Q14 : Given
+       import java.sql.*;
+       public class Pro{
+        
+        public static void main(String []args)throws SQLException{
+                    DBConnect dc = new DBConnect();
+                    dc.insert(6,”Martha”,”Kent”,”2012-10-10″);
+        }
+       }
+        
+       class DBConnect{
+              private Connection con;
+           private Statement stm;
+              private ResultSet rs;
+   
+             public DBConnect(){
+                     // Assume: A connection object and a Statement object are successfully created in     this constructor.
+             }
+   
+             public void insert(int id, String fname, String lname, String date)throws SQLException{
+    try{
+                String query = “INSERT INTO users VALUES( null , ‘” + fname + “‘, ‘”+lname+ “‘, ‘”+date+”‘)”;
+            stm.executeQuery (query);
+                   }finally{
+                            con.close();
+                   }
+            }
+    }
+Note: You can consider given table as the “users” table. And consider the ID can be auto increment.Users Table JavaWhich of the following is true?
+A. A new record will be added as follows:Users Table JavaB. A new record will be added as follows:C. Code will run without any exception but no record will be added
+D. Compilation fails due to error at line 22
+E. An exception will be thrown at runtime
+
+Correct Answer: E
+
+Explanation
+
+Option E is correct as a SQLException is thrown at runtime. INSERT is a data manipulation statement (DML). In this code, trying to execute DML statement using the “executeQuery()” method will cause the SQLException. To execute such a query, we should have used the “execute()” method or the “executeUpdate()” method. So line 22, will cause an exception.
+
+If we used “execute()” method or the “executeUpdate()”  method, the output could be B. Because ID can be auto increment, passing “null” to ID won’t cause any problem. If we pass null, it will automatically choose a suitable value.
+
+References: http://docs.oracle.com/javase/tutorial/jdbc/basics/processingsqlstatements.html, http://docs.oracle.com/javase/8/docs/api/java/sql/ResultSet.html
+
+ 
+
+Domain : Exceptions and Assertions
+Q15 : Given
+        class Whizlab{
+         
+                 public static void main(String args[]){
+                                 int x = 10, y = 0;
+                                 try{
+                                                 int c = x/y;
+                                 }
+                                 catch(IllegalArgumentException | NullPointerException e){
+                                                 System.out.print(“Multi”);
+                               }
+                               catch(Exception e){
+                                               System.out.print(“Exc”);
+                               }
+               }
+      }                                                                                                                                
+Which is the output?
+A. No output
+B. Multi
+C. Exc
+D. An uncaught exception will be thrown
+E. Compilation fails
+
+Correct Answer: C
+
+Explanation
+
+Option C is correct as at line 6, an ArithmeticException is thrown but it couldn’t be caught by the multiple exception catch box so the exception is passed to the catch box at line 11, so “Exc” will be printed.
+Option A is incorrect as an ArithmeticException is thrown at the runtime.
+Option B is incorrect as the ArithmeticException couldn’t be caught by the multiple exception catch box.
+Option D is incorrect as there is no uncaught exception
+Option E is incorrect as code compiles fine.
+
+Reference: http://docs.oracle.com/javase/tutorial/essential/exceptions/catch.html
+
+ 
+
+Domain : Generics and Collections
+Q16 : Consider
+             class Whizlab<Double> { }
+Which of the following is valid initialization of the class Whizlab?
+A. Whizlab<> my = new Whizlab<>();
+B. Whizlab<int> my = new Whizlab<>();
+C. Whizlab<String>  my = new Whizlab<>();
+D. Whizlab<>  my = new Whizlab(); 
+E. None of above
+
+Correct Answer: C
+
+Explanation
+
+A generic class is defined with the following format:
+
+class name { /* … */ }
+
+The type parameter section, delimited by angle brackets (<>), follows the class name. It specifies the type parameters (also called type variables) T1, T2, …, and Tn.
+
+So in given statement we have use Double as the type name, but note that it is not the type of the generic. Hence here when we initialize we can use any valid type like given in option C.
+
+Options B and D incorrect since we can’t use primitive type as generic
+
+Reference: https://docs.oracle.com/javase/tutorial/java/generics/types.html
+
+ 
+
+Domain : Java Concurrency
+Q17 : Given the following method :
+  public Long compute() {
+                         
+        if (high – low <= MAX) {
+ 
+          long sum = 0;
+ 
+          for (int i = low; i < high; ++i)
+                       sum += array[i];
+                  return sum;
+          } else {
+                int mid = low + (high – low) / 2;
+                Sum left  = new Sum(array, low, mid);
+                Sum right = new Sum(array, mid, high);
+                long rightAns = right.compute();
+                left.fork();
+                long leftAns  = left.join();
+                return leftAns + rightAns;
+          }
+  }                  
+Which of the following statements is true?
+A. Code fragment shows the appropriate way of using the Fork-Join
+B. Code fragment doesn’t show the appropriate way of using the Fork-Join
+C. Code fragment will fail the compilation due to error on line 17
+D. None of above
+
+Correct Answer: B
+
+Explanation
+
+Option B is correct as we have called “compute()” method recursively before calling the “fork()” method so if we used this order then we would have no parallelism since this computes the “right” before starting to compute left. So this is not the appropriate way of using the Fork-Join.
+Option C is incorrect as calling these methods in any order won’t cause any compile time error.
+
+Reference: http://docs.oracle.com/javase/tutorial/essential/concurrency/forkjoin.html
+
+ 
+
+Domain : Java File I/O (NIO.2)
+Q18 : Given
+import java.nio.file.*;
+import java.io.IOException;
+import java.util.*;
+    class Whizlab{
+    public static void main(String [] args)throws IOException{
+                Path path = Paths.get(“..\\myfile.txt”);
+               
+         }
+   }
+Which, inserted independently at line 7, will compile and produce the owner of the “myfile.txt” as the output?
+I. Map<String, Object> mp = new HashMap();
+   mp = Files.readAttributes(path, “*” );
+   System.out.print(mp.get(“owner”));
+II. BasicFileAttributes at = Files.readAttributes(path, BasicFileAttributes.class);
+    System.out.print(at.owner ());
+III. System.out.print(Files.getOwner (path));
+A. Only I
+B. Only I and II
+C. Only III
+D. None
+E. All
+
+Correct Answer: C
+
+Explanation
+
+Option C is correct as only the code fragment III will compiles and produces the expected output.
+
+The code fragment I, is incorrect as there is one overloaded version of java.nio.file.Files class’ “readAttributes()” method which takes path object and a string (and a LinkOption  but it’s optional).  By using it we can have a Map of basic-file-attributes. We can specify which basic-file-attributes we need to retrieve, by using the String argument. Here we have passed “owner”, hoping that,it will return a map object only containing the owners name of the file which path object referring but the “owner” attribute is not an one of basic-file-attributes so the output will be “null” as there is no key called “owner” in the returning map.
+
+Other version of the java.nio.file.Files class’ “readAttributes()” will cause compilation fails as there is no method called “owner()” in the “BasicFileAttributes”.
+
+References: http://docs.oracle.com/javase/tutorial/essential/io/fileAttr.html, http://docs.oracle.com/javase/8/docs/api/java/nio/file/Files.html, http://docs.oracle.com/javase/8/docs/api/java/nio/file/attribute/BasicFileAttributes.html
+
+ 
+
+Domain : Java Stream API
+Q19 : Given
+       import java.util.Optional;
+        
+       public class Whizlab{
+                    public static void main(String[] args){
+                                    Optional<Integer> ops = Optional.of(new Integer(10));
+                                    ops.filter(x -> Integer.compare(12, x) > 0).ifPresent(System.out::print);
+                                    System.out.println(ops.get());             
+                    }
+       }
+What is the output?
+A. 10
+B. 1010
+C. Optional[10]
+D. A NoSuchElementException
+E. Compilation fails
+
+Correct Answer: B
+
+Explanation
+
+At line 5 we have created an instance of optional with an Integer wrapper. Then at line 6 invoking the filter method by passing “x -> Integer.compare(12, x) > 0” as the predicate will not filter that optional element hence when the invoking ifPresent there is valid element inside the optional. So it will execute the consumer of the ifPresent method which is printing statement. So 10 will be printed then at line 7 get method will return the element of Optional hence again 10 will be printed. Hence option B is correct.
+
+Reference: https://docs.oracle.com/javase/8/docs/api/java/util/Optional.html
+
+ 
+
+Domain : Generics and Collections
+Q20 : If we add Enum constants to a tree set what will be the order in which they will be maintained?
+A. Insertion order
+B. Order in which constants are declared
+C. Reverse  sorting  order
+D. Won’t maintain any order
+
+Correct Answer: B
+
+Explanation
+
+Enum implements Comparable via the natural order of the enum (the order in which the values are declared), so if we add enum to a sorted collection like tree set it will maintain the order in which constants are declared. Hence option B is correct.
+
+Reference: https://docs.oracle.com/javase/tutorial/java/javaOO/enum.html
+
+ 
+
+Domain : Java Concurrency
+Q21 : Given
+    import java.util.concurrent.locks.*;
+    import java.util.concurrent.*;
+    import java.util.*;
+    class Whizlab{
+    
+    static class Task1 implements Callable<Integer>{
+                public Integer call(){
+                                return  1;
+                }
+    }
+   static class Task2 implements Callable<Integer>{
+               public Integer call(){
+                                return 2;
+                }
+    }
+    static class Task3 implements Callable<Double>{
+                public Double call(){
+                                return 3.0;
+                }
+    }
+    public static void main(String []args)throws Exception{
+                final ExecutorService pool = Executors.newFixedThreadPool(2);
+                List<Callable<Integer>> cal = new ArrayList<>();
+               
+                cal.add(new Task2());
+                cal.add(new Task1());
+                               
+                System.out.print(pool.invokeAny(cal));
+                pool.shutdownNow();
+    }
+   }
+Which is true about the above code? 
+A. Compilation fails
+B. An exception will be thrown at runtime
+C. Only 1 or 2 will be printed as the output
+D. Only 2 will be printed as the output
+E. 2 1 Will be printed as the output
+
+Correct Answer: C
+
+Explanation
+
+In this code, we have created three Callable objects (Task1, Task2, Task3). Then we have created a FixedThreadPool with two threads. This type of pool always has a specified number of threads running; if a thread is somehow terminated while it is still in use, it is automatically replaced with a new thread. Tasks are submitted to the pool via an internal queue. Then we have added Task2 and Task1 to a ArrayList. The invokeAny() method takes a collection of Callable objects, or subinterfaces of Callable. Invoking this method does not return a Future, but returns the result of one of the Callable objects. You have no guarantee about which of the Callable’s results you get. So in this code invoking the “invokeAny()” method at line 28, will return 1 or 2 but not both. So the answer is C.
+
+Options D and E are incorrect as explained above.
+Option A is incorrect as the code compiles fine.
+
+References: http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/ExecutorService.html, http://docs.oracle.com/javase/tutorial/essential/concurrency/exinter.html
+
+ 
+
+Domain : Generics and Collections
+Q22 : Given
+ import java.util.ArrayList;
+ import java.util.List;
+    
+ public class Whiz{
+        public static void main(String[] args){
+              List<Integer> ints = new ArrayList<>();
+         
+              ints.add(1);
+              ints.add(2);   
+                  ints.add(3);
+                  ints.replaceAll(i -> i/2);                           
+              System.out.println(ints.stream().distinct().count());
+         }
+   }
+What is the output?
+A. 1
+B. 2
+C. 3
+D. An exception is thrown
+E. Compilation fails
+
+Correct Answer: B
+
+Explanation
+
+The replaceAll method of the List interface replaces each element of this list with the result of applying the operator to that element.
+
+ default void replaceAll(UnaryOperator operator)
+
+ The default implementation is equivalent to, for this list:
+
+final ListIterator li = list.listIterator();
+
+while (li.hasNext()) {
+
+li.set(operator.apply(li.next()));
+
+}
+
+So here we have passed UnaryOperator to divide elements by 2 and then assigned them to each position, hence it will result in a list to contain, 0, 1 and 1. At line 12 invoking distinct will remove duplicate 1 so count will be 2. Hence option B is correct.
+
+Reference: http://docs.oracle.com/javase/tutorial/collections/interfaces/List.html
+
+ 
+
+Domain : Generics and Collections
+Q23 : Given
+    import java.util.Map;
+    import java.util.TreeMap;
+    
+    public class Whizlab{
+               
+                public static void main(String args[]){
+                                Map<String, Integer> tmap =  new TreeMap<>();
+                                tmap.put(“ab”,1);
+                                tmap.put(“abc”,2);
+                                tmap.put(“abcd”,3);
+                                tmap.replaceAll( (k,v) -> (int)k.charAt(v) );
+                                System.out.println(tmap.values());
+                }
+   } 
+What is the output?
+A. [1, 2, 3]
+B. [98, 98, 98]
+C. [98, 99, 100]
+D. An Exception
+E. Compilation fails
+
+Correct Answer: C
+
+Explanation
+
+Java 8 introduced a new method called replaceAll in the Map interface. It replaces each entry’s value with the result of invoking the given function on that entry until all entries have been processed or the function throws an exception. Exceptions thrown by the function are related to the caller.
+
+public void replaceAll(BiFunction function)
+
+So here at line 11 we have passed BiFunction to get the char at index of value from the key string and then to return the ascii value of the char. So in this case values will be replaced with their keys char value of the given position. SO option C is correct.
+
+Reference: http://docs.oracle.com/javase/8/docs/api/java/util/TreeMap.html
+
+ 
+
+Domain : Java File I/O (NIO.2)
+Q24 : Given :
+    import java.nio.file.*;
+    import java.io.*;
+    import java.nio.file.attribute.*;
+    
+    class NIO{
+            public static void main(String [] args)throws IOException{
+                        Path path = Paths.get(“..\\myfile.txt”);
+                        //
+            }
+      }
+Note: assume that the myfile.txt actually exists and code runs on a windows flat form and the” myfile.txt” file is already marked as read only and you have enough permission to do any operation on the file.
+Which, inserted independently at line 9, will compile and produce the group owner of the file.of the “myfile.txt” as the output?
+I. PosixFileAttributes pa =  Files.readAttributes(path, PosixFileAttributes.class);            System.out.print(pa.group().getName());
+
+II. PosixFileAttributes pa =  Files.readAttributes(path, PosixFileAttributes.class); System.out.print(pa.group());
+
+A. Only I will cause a compile time error
+B. Only II will cause a compile time error
+C. Both will cause compile time error
+D. None of the above is true
+
+Correct Answer: D
+
+Explanation
+
+Option D is correct as “PosixFileAttributes” are only supported on file systems that support the Posix family standards. But windows is a dos file system. In this code trying to use PosixFileAttributes on a dos file system causes an “UnsupportedOperationException ” at the runtime. So other options are incorrect.
+
+If this code runs on a unix file system then the code fragment I will produce the expected output.
+
+References: http://docs.oracle.com/javase/8/docs/api/java/nio/file/attribute/PosixFileAttributes.html, http://docs.oracle.com/javase/tutorial/essential/io/fileAttr.html
+
+ 
+
+Domain : Java Stream API
+Q25 : Given
+    import java.util.stream.IntStream;
+    
+    public class Whiz{
+    
+    public static void main(String[] args){
+    
+                IntStream ints = IntStream.of(3,2,1,5,3,4,5);                  
+                System.out.print(ints.filter(e -> e>3).distinct().average().getAsDouble());
+    }
+   }
+What is the output?
+A. 5.0
+B. 4.0
+C. 4.5
+D. 3.28
+E. Compilation fails due to error at line 8
+
+Correct Answer: C
+
+Explanation
+
+First at line 7, we have created an IntStream with duplicated values. At line 8 we have used a filter to get a stream which contains only values greater than 3. Calling distinct will remove all duplicated values in the stream, so finally when average calls only 4 and 5 are remaining. So the result average will be 9 divided by 2 ( = 4.50). Since we use getAsDouble, the whole number with fraction part will be printed, hence option C is correct.
+
+Options A and D are incorrect as it is not the average.
+Option B is incorrect as we get the double value.
