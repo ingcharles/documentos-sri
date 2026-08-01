@@ -6090,9 +6090,9 @@ jshell&gt; /imports</pre>
         q: "¿Cuál es la diferencia esencial entre List, Set y Map en el Java Collections Framework?",
         opts: [
           "List admite duplicados y respeta el orden; Map guarda pares clave-valor",
-          "Las tres interfaces son en realidad idénticas; solo cambia el nombre elegido",
-          "Set admite elementos duplicados, mientras que List, por definición, no lo permite",
-          "Map, por diseño interno, solo puede almacenar valores que sean de tipo String"
+          "Las tres interfaces son idénticas; solo cambia el nombre elegido",
+          "Set admite duplicados, mientras que List no lo permite",
+          "Map solo puede almacenar valores de tipo String"
         ], correct: 0,
         exp: "List es una secuencia ordenada que admite elementos repetidos; Set modela un conjunto matemático sin duplicados; Map asocia claves únicas a valores, sin extender la interfaz Collection."
       },
@@ -6101,10 +6101,10 @@ jshell&gt; /imports</pre>
         id: "cs-02", cat: "collections-streams", type: "teoria", diff: "Intermedio",
         q: "¿Cuál es la diferencia práctica más relevante entre ArrayList y LinkedList?",
         opts: [
-          "ArrayList da O(1) por índice; LinkedList da O(1) en extremos, O(n) por índice",
+          "ArrayList: O(1) por índice; LinkedList: O(1) en extremos, O(n) por índice",
           "LinkedList, a diferencia de ArrayList, no permite almacenar elementos nulos",
           "ArrayList únicamente puede usarse con tipos primitivos ya autoboxeados",
-          "No existe ninguna diferencia real de rendimiento entre ambas en ningún escenario"
+          "No existe diferencia real de rendimiento entre ambas en ningún caso"
         ], correct: 0,
         exp: "ArrayList respalda los datos en un arreglo, por lo que get(i) es O(1) pero insertar/eliminar en medio implica desplazar elementos. LinkedList usa nodos enlazados: insertar/eliminar en los extremos es O(1), pero acceder por índice requiere recorrer la lista, O(n)."
       },
@@ -6118,7 +6118,7 @@ Set&lt;String&gt; s3 = new TreeSet&lt;&gt;();
 for (String x : new String[]{"b","a","c"}) { s1.add(x); s2.add(x); s3.add(x); }</pre>
 ¿Qué orden de iteración es previsible para cada estructura?`,
         opts: [
-          "Los tres conjuntos terminan iterando siempre exactamente en el orden b, a, c",
+          "Los tres conjuntos terminan iterando siempre en el orden b, a, c",
           "s1 no garantiza orden; s2 preserva inserción; s3 ordena naturalmente",
           "s3 (TreeSet) preserva el orden de inserción y s2 ordena alfabéticamente",
           "HashSet siempre termina ordenando alfabéticamente, igual que TreeSet"
@@ -6130,10 +6130,10 @@ for (String x : new String[]{"b","a","c"}) { s1.add(x); s2.add(x); s3.add(x); }<
         id: "cs-04", cat: "collections-streams", type: "teoria", diff: "Intermedio",
         q: "¿Qué diferencia existe entre implementar Comparable&lt;T&gt; y usar un Comparator&lt;T&gt; externo?",
         opts: [
-          "Comparable fija el orden natural en la clase; Comparator define criterios externos",
-          "Comparator, por restricción del lenguaje, solo puede aplicarse sobre tipos numéricos",
-          "Comparable y Comparator son, en la práctica, la misma interfaz según la versión de Java",
-          "Comparator no admite combinarse ni encadenarse con ningún otro criterio adicional"
+          "Comparable fija el orden natural; Comparator define criterios externos",
+          "Comparator solo puede aplicarse sobre tipos numéricos",
+          "Comparable y Comparator son, en la práctica, la misma interfaz",
+          "Comparator no admite combinarse ni encadenarse con otro criterio"
         ], correct: 0,
         exp: "Comparable se implementa dentro de la clase para definir su orden natural (compareTo). Comparator se define aparte (a menudo como lambda) y permite múltiples estrategias de orden para el mismo tipo, incluso encadenarlas con thenComparing()."
       },
@@ -6148,7 +6148,7 @@ for (String s : lista) {
 ¿Qué ocurre al ejecutarlo?`,
         opts: [
           "Se elimina \"b\" sin inconvenientes y el bucle continúa con normalidad",
-          "Lanza ConcurrentModificationException al modificar la lista durante el for-each",
+          "Lanza ConcurrentModificationException al modificar la lista en el for-each",
           "No compila, ya que List.of() genera siempre una lista de solo lectura",
           "Termina eliminando todo el contenido completo de la lista original"
         ], correct: 1,
@@ -6186,8 +6186,8 @@ System.out.println(inventario.get("lapiz") + " " + inventario.get("borrador"));<
         opts: [
           "Una forma breve de implementar una interfaz funcional de un solo método",
           "Una clase especial pensada para reemplazar a todas las clases abstractas",
-          "Un tipo de colección optimizada específicamente para operaciones matemáticas",
-          "Una anotación reservada de forma exclusiva para pruebas unitarias del proyecto"
+          "Un tipo de colección optimizada para operaciones matemáticas",
+          "Una anotación reservada exclusivamente para pruebas unitarias"
         ], correct: 0,
         exp: "Una lambda (parametros) -> cuerpo es azúcar sintáctico para implementar de forma concisa una interfaz funcional (como Runnable, Comparator o las de java.util.function), sin necesidad de una clase anónima completa."
       },
@@ -6249,10 +6249,10 @@ List&lt;String&gt; resultado = nombres.stream()
         id: "cs-13", cat: "collections-streams", type: "teoria", diff: "Intermedio",
         q: "¿Para qué sirve la clase Optional&lt;T&gt; introducida en Java 8?",
         opts: [
-          "Para reemplazar casi por completo el mecanismo de excepciones dentro de Java",
+          "Para reemplazar casi por completo el mecanismo de excepciones",
           "Para representar explícitamente la posible ausencia de un valor",
           "Para optimizar de forma automática el rendimiento general de los streams",
-          "Para poder declarar atributos marcados como opcionales dentro de una interfaz"
+          "Para declarar atributos marcados como opcionales en una interfaz"
         ], correct: 1,
         exp: "Optional envuelve un valor que puede o no estar presente, comunicando en la propia firma del método que el resultado podría faltar, y ofreciendo métodos como isPresent(), orElse() o map() para manejar ese caso sin arriesgar un NullPointerException no controlado."
       },
@@ -6284,10 +6284,10 @@ long pares = numeros.parallelStream()
         .count();</pre>
 ¿Qué aspecto debe considerarse principalmente al usar parallelStream() en lugar de stream()?`,
         opts: [
-          "parallelStream() siempre resulta más rápido, sin excepción, sea cual sea el tamaño",
-          "Reparte el trabajo entre hilos del ForkJoinPool común, con cierto overhead de coordinación",
-          "No puede combinarse en absoluto con operaciones como filter() o count() del stream",
-          "Garantiza, en todo caso, el mismo orden de procesamiento que un stream secuencial"
+          "parallelStream() siempre es más rápido, sin importar el tamaño",
+          "Reparte el trabajo entre hilos del ForkJoinPool común, con overhead",
+          "No puede combinarse con operaciones como filter() o count()",
+          "Garantiza el mismo orden de procesamiento que un stream secuencial"
         ], correct: 1,
         exp: "parallelStream() reparte el trabajo en varios hilos (usualmente del ForkJoinPool común), lo cual añade overhead de coordinación; para colecciones pequeñas o pipelines con efectos secundarios/orden dependiente, un stream secuencial suele ser igual o más eficiente y más predecible."
       },
@@ -6296,10 +6296,10 @@ long pares = numeros.parallelStream()
         id: "cs-17", cat: "collections-streams", type: "teoria", diff: "Intermedio",
         q: "¿Qué diferencia hay entre una referencia a método (method reference) como String::toUpperCase y una lambda equivalente s -> s.toUpperCase()?",
         opts: [
-          "Son formas alternativas del mismo comportamiento; la referencia es más concisa",
+          "Son formas alternativas del mismo comportamiento; la referencia es concisa",
           "Las referencias a método solamente pueden aplicarse sobre métodos estáticos",
-          "Las lambdas, a diferencia de las referencias, no pueden usarse dentro de streams",
-          "Una referencia a método siempre se ejecuta antes que cualquier lambda equivalente"
+          "Las lambdas, a diferencia de las referencias, no pueden usarse en streams",
+          "Una referencia a método se ejecuta antes que cualquier lambda"
         ], correct: 0,
         exp: "Una referencia a método es simplemente una notación abreviada para una lambda que ya existe como método; String::toUpperCase equivale exactamente a s -> s.toUpperCase(), y ambas pueden usarse indistintamente como implementación de la interfaz funcional correspondiente."
       },
@@ -6314,9 +6314,9 @@ for (var item : lista) {
 }</pre>
 ¿Qué es correcto afirmar sobre var en este contexto?`,
         opts: [
-          "Convierte la variable en un tipo dinámico, como en JavaScript, mutable con el tiempo",
-          "Permite inferencia de tipo local en tiempo de compilación, sin tipado dinámico",
-          "var, por restricción de la sintaxis, solo puede usarse con tipos primitivos simples",
+          "Convierte la variable en un tipo dinámico, como en JavaScript",
+          "Permite inferencia de tipo local en compilación, sin tipado dinámico",
+          "var solo puede usarse con tipos primitivos simples",
           "var no puede emplearse, bajo ninguna circunstancia, dentro de un for-each"
         ], correct: 1,
         exp: "var no es tipado dinámico: el compilador infiere el tipo concreto a partir del inicializador en tiempo de compilación y ese tipo queda fijo; es solo azúcar sintáctico para evitar repetir el tipo explícito en declaraciones locales."
@@ -6326,9 +6326,9 @@ for (var item : lista) {
         id: "cs-19", cat: "collections-streams", type: "teoria", diff: "Avanzado",
         q: "¿Por qué los streams de Java se consideran de evaluación 'perezosa' (lazy)?",
         opts: [
-          "Porque las operaciones intermedias no se ejecutan hasta invocar una operación terminal",
-          "Porque, por diseño, siempre esperan varios segundos antes de procesar cualquier dato",
-          "Porque únicamente están pensados para funcionar sobre colecciones que ya están vacías",
+          "Porque las intermedias no se ejecutan hasta invocar una operación terminal",
+          "Porque, por diseño, esperan varios segundos antes de procesar los datos",
+          "Porque solo están pensados para colecciones que ya están vacías",
           "Porque requieren marcarse explícitamente como 'lazy' mediante una anotación"
         ], correct: 0,
         exp: "Las operaciones intermedias solo configuran el pipeline (se registran, pero no procesan datos); la ejecución real ocurre de golpe cuando se invoca una operación terminal, lo que permite optimizaciones como cortocircuitar (por ejemplo, con findFirst() o limit())."
@@ -6350,9 +6350,9 @@ System.out.println(nums);</pre>
         id: "cs-21", cat: "collections-streams", type: "teoria", diff: "Intermedio",
         q: "¿Por qué existen versiones especializadas de Stream para tipos primitivos, como IntStream, LongStream y DoubleStream?",
         opts: [
-          "Porque Stream&lt;Integer&gt; resulta completamente inútil para cualquier operación numérica",
-          "Para evitar el autoboxing y exponer operaciones numéricas (sum, average, max) propias",
-          "Porque solo esas versiones especializadas admiten trabajar con expresiones lambda",
+          "Porque Stream&lt;Integer&gt; resulta inútil para operaciones numéricas",
+          "Para evitar autoboxing y exponer operaciones numéricas (sum, average, max)",
+          "Porque solo esas versiones admiten trabajar con expresiones lambda",
           "Porque el Stream&lt;T&gt; genérico carece por completo del método filter()"
         ], correct: 1,
         exp: "IntStream/LongStream/DoubleStream trabajan directamente con valores primitivos, evitando el overhead de convertir a sus envoltorios (Integer, Long, Double) en cada elemento, y añaden métodos numéricos especializados como sum(), average(), max() y min() que no existen en el Stream&lt;T&gt; genérico."
@@ -6381,7 +6381,7 @@ System.out.println(promedio.getAsDouble());</pre>
         q: "¿Qué representa OptionalInt, OptionalLong y OptionalDouble frente al Optional&lt;T&gt; genérico?",
         opts: [
           "Versiones especializadas de Optional para primitivos, sin autoboxing",
-          "Clases completamente distintas, sin ninguna relación conceptual real con Optional",
+          "Clases completamente distintas, sin relación conceptual con Optional",
           "Tipos que únicamente existían en versiones de Java anteriores a la 8",
           "Tipos que solo pueden llegar a declararse dentro de un bloque try-catch"
         ], correct: 0,
@@ -6399,10 +6399,10 @@ List&lt;Integer&gt; plano = grupos.stream()
 System.out.println(plano);</pre>
 ¿Qué diferencia hay entre usar flatMap(List::stream) y usar map(List::stream) en este caso?`,
         opts: [
-          "No existe ninguna diferencia; ambos producirían exactamente el mismo resultado final",
+          "No existe diferencia; ambos producirían exactamente el mismo resultado",
           "map() dejaría un stream de streams; flatMap() los combina en uno continuo",
-          "flatMap(), a diferencia de map(), elimina automáticamente los elementos repetidos",
-          "map() solamente puede llegar a aplicarse sobre listas compuestas de tipos primitivos"
+          "flatMap(), a diferencia de map(), elimina los elementos repetidos",
+          "map() solo puede aplicarse sobre listas de tipos primitivos"
         ], correct: 1,
         exp: "map() aplicaría List::stream a cada sublista, generando un stream de streams (Stream&lt;Stream&lt;Integer&gt;&gt;), que no es lo que se busca. flatMap() en cambio toma cada stream resultante y los concatena en un único stream plano, produciendo directamente [1, 2, 3, 4, 5, 6]."
       },
@@ -6418,7 +6418,7 @@ int maximo = valores.stream()
 System.out.println(maximo);</pre>
 ¿Qué papel cumple .orElse(0) al final del pipeline?`,
         opts: [
-          "Simplemente suma 0 al valor máximo que fue encontrado dentro del stream completo",
+          "Suma 0 al valor máximo encontrado dentro del stream",
           "max() retorna OptionalInt; orElse(0) provee un valor por defecto",
           "Ordena la lista completa de menor a mayor antes de calcular el máximo",
           "Envuelve el resultado final en un valor de tipo Integer en lugar de int"
@@ -6430,10 +6430,10 @@ System.out.println(maximo);</pre>
         id: "cs-26", cat: "collections-streams", type: "teoria", diff: "Intermedio",
         q: "Además de Function, Predicate, Supplier y Consumer, ¿qué propósito cumple la interfaz funcional UnaryOperator&lt;T&gt;?",
         opts: [
-          "Es, en la práctica, idéntica a Supplier&lt;T&gt;; solo cambia el nombre elegido",
+          "Es, en la práctica, idéntica a Supplier&lt;T&gt;; cambia el nombre",
           "Especializa Function&lt;T,T&gt;, con entrada y salida del mismo tipo",
-          "Solo puede usarse en operaciones que trabajen con valores de tipo BigDecimal",
-          "Representa, en cambio, una operación que ni recibe ni retorna ningún valor útil"
+          "Solo puede usarse con valores de tipo BigDecimal",
+          "Representa una operación que ni recibe ni retorna ningún valor útil"
         ], correct: 1,
         exp: "UnaryOperator&lt;T&gt; extiende Function&lt;T,T&gt;, fijando que el tipo de retorno sea igual al tipo de entrada; es común en operaciones de transformación 'in-place' conceptual, como en List.replaceAll(UnaryOperator&lt;T&gt;), donde cada elemento se reemplaza por el resultado de aplicarle la función."
       },
@@ -6455,7 +6455,7 @@ System.out.println(positivoYPar.test(6));</pre>
         id: "cs-28", cat: "collections-streams", type: "teoria", diff: "Básico",
         q: "¿Qué operación de IntStream permite generar rápidamente una secuencia de enteros consecutivos, como en IntStream.range(0, 5)?",
         opts: [
-          "Genera 0,1,2,3,4 (incluye inicio, excluye final); rangeClosed incluiría el 5",
+          "Genera 0,1,2,3,4 (incluye inicio, excluye fin); rangeClosed incluye el 5",
           "Genera, en cambio, un único valor numérico tomado al azar entre 0 y 5",
           "Genera siempre un IntStream vacío cuando el primer argumento vale 0",
           "Solo puede emplearse dentro de un bucle for clásico, no como stream aparte"
@@ -6473,7 +6473,7 @@ List&lt;String&gt; palabras = frases.stream()
 System.out.println(palabras.size());</pre>
 ¿Cuántos elementos tiene la lista palabras y por qué se necesita flatMap aquí?`,
         opts: [
-          "2 elementos en total, ya que cada frase completa cuenta como un solo elemento",
+          "2 elementos, ya que cada frase completa cuenta como un solo elemento",
           "5 elementos en total; flatMap evita un stream de arreglos sin aplanar",
           "3 elementos, contando únicamente aquellas palabras que resultan ser únicas",
           "0 elementos, dado que split no puede invocarse dentro de un stream de Java"
@@ -6485,10 +6485,10 @@ System.out.println(palabras.size());</pre>
         id: "cs-30", cat: "collections-streams", type: "teoria", diff: "Avanzado",
         q: "¿Qué diferencia hay entre Collectors.toList() y Collectors.toUnmodifiableList() al finalizar un stream?",
         opts: [
-          "Son exactamente equivalentes entre sí en todas las versiones actuales de Java",
+          "Son exactamente equivalentes en todas las versiones actuales de Java",
           "toList() no garantiza inmutabilidad; toUnmodifiableList() sí la garantiza",
-          "toUnmodifiableList() únicamente puede aplicarse sobre streams de tipo primitivo",
-          "toList() siempre retorna, en la práctica, un arreglo en vez de una lista real"
+          "toUnmodifiableList() solo puede aplicarse sobre streams primitivos",
+          "toList() siempre retorna un arreglo en vez de una lista real"
         ], correct: 1,
         exp: "Aunque en la práctica muchas implementaciones de toList() devuelven una ArrayList mutable, la especificación no lo garantiza formalmente. Collectors.toUnmodifiableList() (Java 10+) documenta explícitamente que el resultado es inmutable, siendo la opción más segura cuando se requiere garantizar que la colección resultante no pueda modificarse posteriormente."
       },
@@ -6502,7 +6502,7 @@ List&lt;Contribuyente&gt; conDeuda = separados.get(true);</pre>
 ¿Qué hace Collectors.partitioningBy() a diferencia de groupingBy()?`,
         opts: [
           "Ambos son prácticamente idénticos; solo cambia el nombre del método usado",
-          "partitioningBy() divide en dos grupos true/false; groupingBy() admite N grupos",
+          "partitioningBy(): dos grupos true/false; groupingBy(): admite N grupos",
           "partitioningBy() ordena los elementos alfabéticamente antes de agrupar",
           "groupingBy() solo puede usarse con tipos numéricos como clave"
         ], correct: 1,
@@ -6517,7 +6517,7 @@ List&lt;Contribuyente&gt; conDeuda = separados.get(true);</pre>
 ¿Qué ocurre si dos contribuyentes en la lista original comparten el mismo RUC?`,
         opts: [
           "toMap() combina automáticamente ambos valores sumándolos, sin configuración",
-          "Lanza IllegalStateException por clave duplicada, sin función de fusión definida",
+          "Lanza IllegalStateException por clave duplicada, sin función de fusión",
           "Solo conserva el primero encontrado, descartando el segundo en silencio",
           "El stream completo se detiene sin generar ningún resultado ni lanzar error"
         ], correct: 1,
@@ -6547,7 +6547,7 @@ List&lt;Contribuyente&gt; conDeuda = separados.get(true);</pre>
         opts: [
           "Reemplaza por completo el primer criterio de orden, usando solo el nombre",
           "Define un desempate: ordena por departamento y, si empatan, por nombre",
-          "Ordena dos veces la lista de forma independiente, generando dos listas separadas",
+          "Ordena dos veces la lista, generando dos listas separadas",
           "Solo funciona si ambos campos que se comparan son de tipo numérico"
         ], correct: 1,
         exp: "Comparator.thenComparing() añade un criterio de desempate que solo se aplica cuando el criterio anterior considera dos elementos 'iguales' (comparación de departamento empatada); en ese caso, se recurre al segundo criterio (nombre) para determinar el orden final."
@@ -6557,10 +6557,10 @@ List&lt;Contribuyente&gt; conDeuda = separados.get(true);</pre>
         id: "cs-35", cat: "collections-streams", type: "teoria", diff: "Intermedio",
         q: "¿Por qué se recomienda usar Iterator.remove() (o Collection.removeIf()) en lugar de modificar una lista directamente dentro de un bucle for-each?",
         opts: [
-          "Porque for-each es una sintaxis obsoleta que Java eliminará en versiones futuras",
+          "Porque for-each es sintaxis obsoleta que Java eliminará en el futuro",
           "Porque modificar la lista fuera del Iterator invalida su estado interno",
-          "Porque las listas inmutables no permiten ningún tipo de recorrido con for-each",
-          "Porque el for-each solo puede usarse sobre arreglos, nunca sobre listas reales"
+          "Porque las listas inmutables no permiten recorrido con for-each",
+          "Porque el for-each solo puede usarse sobre arreglos, no sobre listas"
         ], correct: 1,
         exp: "El Iterator implícito de un for-each detecta cambios estructurales concurrentes comparando un contador interno (modCount); modificar la colección directamente (por ejemplo, lista.remove(x)) desincroniza ese contador y provoca ConcurrentModificationException en la siguiente iteración. Iterator.remove() actualiza correctamente ese estado, y removeIf() ofrece una alternativa aún más directa y segura."
       },
@@ -6569,10 +6569,10 @@ List&lt;Contribuyente&gt; conDeuda = separados.get(true);</pre>
         id: "cs-36", cat: "collections-streams", type: "teoria", diff: "Intermedio",
         q: "¿Qué ventaja ofrece PriorityQueue frente a una cola FIFO común como LinkedList usada como Queue?",
         opts: [
-          "PriorityQueue mantiene un orden estricto de inserción, igual que cualquier cola",
+          "PriorityQueue mantiene orden de inserción, igual que cualquier cola FIFO",
           "PriorityQueue entrega primero el elemento de mayor prioridad al usar poll()",
-          "PriorityQueue solo admite almacenar valores de tipo primitivo, nunca objetos",
-          "PriorityQueue impide agregar elementos duplicados bajo cualquier circunstancia"
+          "PriorityQueue solo admite valores de tipo primitivo, nunca objetos",
+          "PriorityQueue impide agregar elementos duplicados en cualquier caso"
         ], correct: 1,
         exp: "A diferencia de una cola FIFO estricta, PriorityQueue reordena internamente sus elementos (mediante un heap) según su orden natural o un Comparator dado, de modo que poll() siempre retorna el elemento de mayor prioridad relativa, sin importar el orden en que se insertaron."
       },
@@ -6614,7 +6614,7 @@ System.out.println(escalas.floorEntry(2500).getValue());</pre>
 ¿Qué hace el Collector Collectors.averagingDouble en combinación con groupingBy aquí?`,
         opts: [
           "Cuenta cuántos empleados hay en cada departamento, ignorando su salario",
-          "Calcula el promedio de salarios de los empleados dentro de cada departamento",
+          "Calcula el promedio de salarios por departamento",
           "Suma todos los salarios de la empresa entera en un único valor total",
           "Ordena los departamentos según su salario promedio, de mayor a menor"
         ], correct: 1,
@@ -6626,9 +6626,9 @@ System.out.println(escalas.floorEntry(2500).getValue());</pre>
         q: "¿Qué caracteriza a un WeakHashMap frente a un HashMap común?",
         opts: [
           "WeakHashMap encripta automáticamente las claves antes de almacenarlas",
-          "WeakHashMap deja que el GC libere sus claves sin referencias fuertes restantes",
+          "WeakHashMap deja que el GC libere claves sin referencias fuertes",
           "WeakHashMap no permite almacenar ningún tipo de valor null en el mapa",
-          "WeakHashMap es simplemente una versión más rápida de HashMap, sin más diferencias"
+          "WeakHashMap es solo una versión más rápida de HashMap"
         ], correct: 1,
         exp: "En un WeakHashMap, las claves se mantienen mediante referencias débiles (WeakReference); si ninguna otra parte del programa mantiene una referencia fuerte a esa clave, el recolector de basura puede liberarla, y la entrada correspondiente desaparece automáticamente del mapa, útil para cachés que no deben impedir la liberación de memoria."
       },
@@ -6653,10 +6653,10 @@ System.out.println(nombres);</pre>
         id: "cs-42", cat: "collections-streams", type: "teoria", diff: "Intermedio",
         q: "¿Qué representa Comparator.naturalOrder() y en qué se diferencia de Comparator.reverseOrder()?",
         opts: [
-          "naturalOrder() usa el compareTo() propio del tipo; reverseOrder() invierte ese mismo orden",
-          "Ambos métodos son sinónimos exactos, sin ninguna diferencia real de comportamiento",
-          "reverseOrder() solo funciona con arreglos de tipo primitivo, nunca con objetos",
-          "naturalOrder() ordena siempre alfabéticamente sin importar el tipo de dato usado"
+          "naturalOrder() usa compareTo() del tipo; reverseOrder() invierte ese orden",
+          "Ambos métodos son sinónimos exactos, sin diferencia real de comportamiento",
+          "reverseOrder() solo funciona con arreglos primitivos, nunca con objetos",
+          "naturalOrder() ordena siempre alfabéticamente, sin importar el tipo de dato"
         ], correct: 0,
         exp: "naturalOrder() delega en el compareTo() propio del tipo (por ejemplo, orden ascendente para Integer o alfabético para String, ya que ambos implementan Comparable); reverseOrder() produce exactamente el orden contrario a ese orden natural, sin necesidad de escribir un Comparator manual."
       },
@@ -6671,8 +6671,8 @@ System.out.println(nombres);</pre>
         (suma, cantidad) -&gt; suma / (double) cantidad));</pre>
 ¿Qué logra Collectors.teeing() en este pipeline?`,
         opts: [
-          "Ejecuta el stream dos veces de forma secuencial, una por cada collector indicado",
-          "Aplica dos collectors en una sola pasada y combina ambos resultados al final",
+          "Ejecuta el stream dos veces, una por cada collector indicado",
+          "Aplica dos collectors en una sola pasada y combina los resultados",
           "Divide el stream original en dos streams completamente independientes",
           "Solo funciona con streams de tipo IntStream, nunca con Stream&lt;T&gt;"
         ], correct: 1,
@@ -6683,7 +6683,7 @@ System.out.println(nombres);</pre>
         id: "cs-44", cat: "collections-streams", type: "teoria", diff: "Básico",
         q: "¿Qué hace el método Collections.unmodifiableList(lista) sobre una lista mutable existente?",
         opts: [
-          "Crea una copia completamente independiente de la lista, congelada para siempre",
+          "Crea una copia independiente de la lista, congelada para siempre",
           "Devuelve una vista de solo lectura respaldada por la lista original",
           "Elimina físicamente todos los elementos de la lista original ya existente",
           "Convierte esa lista en un arreglo de tipo Object[] equivalente"
@@ -6708,10 +6708,10 @@ System.out.println(pila.peek());</pre>
         id: "cs-46", cat: "collections-streams", type: "teoria", diff: "Intermedio",
         q: "¿Qué ventaja ofrece ListIterator sobre un Iterator común al recorrer una List?",
         opts: [
-          "ListIterator solo puede usarse con listas que estén ordenadas numéricamente de forma ascendente",
-          "ListIterator recorre en ambas direcciones y permite reemplazar o insertar durante la iteración",
-          "Iterator es siempre más rápido que ListIterator en cualquier escenario posible de uso",
-          "ListIterator jamás puede usarse dentro de un bucle while tradicional del lenguaje"
+          "ListIterator solo puede usarse con listas ordenadas ascendentemente",
+          "ListIterator recorre ambas direcciones, y permite reemplazar/insertar",
+          "Iterator es siempre más rápido que ListIterator en cualquier escenario",
+          "ListIterator jamás puede usarse dentro de un bucle while tradicional"
         ], correct: 1,
         exp: "Iterator solo ofrece hasNext()/next()/remove(). ListIterator extiende esas capacidades: permite recorrer hacia atrás con hasPrevious()/previous(), reemplazar el elemento actual con set() e insertar nuevos elementos con add() durante el propio recorrido, algo que Iterator no soporta."
       },
@@ -6734,8 +6734,8 @@ System.out.println(potencias);</pre>
         q: "¿Para qué se usa típicamente la operación intermedia peek() en un pipeline de Stream?",
         opts: [
           "Para eliminar del stream los elementos que cumplan cierta condición",
-          "Para inspeccionar cada elemento a medida que pasa por el pipeline, sin modificarlo",
-          "Para forzar la ejecución inmediata de todo el pipeline sin operación terminal",
+          "Para inspeccionar cada elemento al pasar por el pipeline, sin modificarlo",
+          "Para forzar la ejecución inmediata del pipeline sin operación terminal",
           "Para ordenar los elementos según su posición original antes de continuar"
         ], correct: 1,
         exp: "peek() es una operación intermedia (no terminal) que permite ejecutar una acción con fines de observación (típicamente un println para depurar) sobre cada elemento sin alterarlo ni consumir el stream; como toda operación intermedia, solo se ejecuta si hay una operación terminal que dispare el pipeline."
@@ -6749,9 +6749,9 @@ lista.set(0, "UNO");
 lista.add("cuatro");</pre>
 ¿Qué línea de este código lanza una excepción en tiempo de ejecución, y por qué?`,
         opts: [
-          "lista.set(0, \"UNO\"), porque Arrays.asList() produce una lista completamente inmutable",
-          "lista.add(\"cuatro\"), porque esa lista tiene tamaño fijo y no admite cambiar su tamaño",
-          "Ninguna línea falla; ambas operaciones son completamente válidas sobre esa lista",
+          "lista.set(0, \"UNO\"), porque Arrays.asList() produce una lista inmutable",
+          "lista.add(\"cuatro\"), porque esa lista tiene tamaño fijo",
+          "Ninguna línea falla; ambas operaciones son válidas sobre esa lista",
           "Ambas líneas fallan, ya que Arrays.asList() no permite ninguna modificación"
         ], correct: 1,
         exp: "Arrays.asList() retorna una lista de tamaño fijo respaldada directamente por un arreglo: set() sí funciona porque solo reemplaza un elemento existente, pero add() intenta cambiar el tamaño, lo cual esa implementación no soporta, lanzando UnsupportedOperationException."
@@ -6767,10 +6767,10 @@ for (String clave : datos.keySet())
     datos.remove(clave);</pre>
 Si se reemplaza únicamente el tipo de datos por ConcurrentHashMap, ¿qué cambia en el comportamiento de este bucle?`,
         opts: [
-          "Deja de lanzar ConcurrentModificationException, ya que su iterador se mantiene consistente",
-          "El comportamiento es idéntico en ambos casos, ya que ambas clases manejan la iteración igual",
-          "El bucle deja de eliminar cualquier elemento, dejando el mapa completamente intacto",
-          "Se lanza una excepción de compilación al usar ConcurrentHashMap dentro de un for-each"
+          "Deja de lanzar ConcurrentModificationException; su iterador es consistente",
+          "El comportamiento es idéntico; ambas clases manejan la iteración igual",
+          "El bucle deja de eliminar elementos, dejando el mapa intacto",
+          "Se lanza un error de compilación al usar ConcurrentHashMap en un for-each"
         ], correct: 0,
         exp: "Con un HashMap normal, eliminar durante la iteración de keySet() invalida el iterador y provoca ConcurrentModificationException en la segunda vuelta del bucle. Las clases concurrentes como ConcurrentHashMap mantienen el acceso ordenado de lectura/escritura, de modo que el iterador refleja consistentemente el estado del mapa incluso cuando se elimina un elemento durante el propio recorrido."
       },
@@ -6779,9 +6779,9 @@ Si se reemplaza únicamente el tipo de datos por ConcurrentHashMap, ¿qué cambi
         id: "cs-51", cat: "collections-streams", type: "teoria", diff: "Intermedio",
         q: "¿En qué situación se recomienda usar una clase concurrente de colección (como ConcurrentHashMap) en lugar de su equivalente no concurrente?",
         opts: [
-          "Cuando varios hilos modifican la colección fuera de un bloque o método sincronizado",
-          "Únicamente cuando la colección va a contener menos de diez elementos en total",
-          "Solo cuando la aplicación se ejecuta en un único hilo, sin ningún tipo de concurrencia real",
+          "Cuando varios hilos modifican la colección sin sincronización",
+          "Únicamente cuando la colección tendrá menos de diez elementos",
+          "Solo cuando la aplicación corre en un único hilo, sin concurrencia real",
           "Nunca es necesario si la colección se declara como variable final"
         ], correct: 0,
         exp: "Siempre que varios hilos puedan modificar una colección compartida sin estar protegidos por sincronización externa, conviene usar la versión concurrente correspondiente; sin ella, el acceso simultáneo puede lanzar excepciones o, peor, corromper silenciosamente la estructura de datos. Si la colección es inmutable, en cambio, no hace falta ninguna variante concurrente."
@@ -6796,10 +6796,10 @@ private void incrementarYReportar() {
 }</pre>
 ¿Qué garantiza el uso de AtomicInteger frente a usar simplemente un campo int con contadorOvejas++?`,
         opts: [
-          "Que incrementar y leer ocurre como una operación indivisible, sin intercalarse con otro hilo",
-          "Que el valor del contador nunca podrá superar Integer.MAX_VALUE bajo ninguna circunstancia",
-          "Que incrementAndGet() se ejecuta automáticamente en un hilo separado del resto del programa",
-          "Que el campo deja de necesitar inicializarse explícitamente en el constructor de la clase"
+          "Que incrementar y leer ocurre como operación indivisible, sin intercalarse",
+          "Que el valor del contador nunca podrá superar Integer.MAX_VALUE",
+          "Que incrementAndGet() se ejecuta automáticamente en un hilo separado",
+          "Que el campo ya no necesita inicializarse en el constructor"
         ], correct: 0,
         exp: "Las clases del paquete java.util.concurrent.atomic garantizan que operaciones como incrementAndGet() se ejecuten atómicamente: ningún otro hilo puede leer o modificar el valor a mitad de la operación. Un int con ++ ordinario no ofrece esa garantía, ya que esa operación se descompone en varios pasos separables (leer, sumar, escribir)."
       },
@@ -6808,10 +6808,10 @@ private void incrementarYReportar() {
         id: "cs-53", cat: "collections-streams", type: "teoria", diff: "Avanzado",
         q: "¿Qué propósito cumple la clase CyclicBarrier al coordinar varios hilos que ejecutan tareas por etapas?",
         opts: [
-          "Hace que los hilos se esperen hasta llegar todos a la barrera, y luego avancen juntos",
-          "Bloquea permanentemente a todos los hilos involucrados hasta que la aplicación finaliza por completo",
-          "Ejecuta automáticamente las tareas de todos los hilos en un orden estrictamente secuencial, uno tras otro",
-          "Sirve exclusivamente para medir cuánto tiempo tarda en ejecutarse un bloque de código concurrente"
+          "Hace que los hilos esperen a llegar todos a la barrera, y avancen juntos",
+          "Bloquea permanentemente a los hilos hasta que la aplicación finaliza",
+          "Ejecuta las tareas de todos los hilos en orden estrictamente secuencial",
+          "Sirve solo para medir cuánto tarda un bloque de código concurrente"
         ], correct: 0,
         exp: "CyclicBarrier se construye con un número de partes esperadas; cada hilo llama a await() al llegar a ese punto, y todos quedan bloqueados hasta que la cantidad configurada de hilos haya llamado a await(), momento en el que todos continúan simultáneamente, útil para sincronizar fases de un trabajo dividido entre varios trabajadores (por ejemplo, no dejar entrar animales a un recinto hasta que termine de limpiarse por completo)."
       },
@@ -6820,9 +6820,9 @@ private void incrementarYReportar() {
         id: "cs-54", cat: "collections-streams", type: "teoria", diff: "Intermedio",
         q: "¿Qué caracteriza específicamente a las clases 'CopyOnWrite' (como CopyOnWriteArrayList) dentro de las colecciones concurrentes de Java?",
         opts: [
-          "Copian toda la estructura interna en cada modificación, dejando la lectura libre de bloqueo",
-          "Impiden por completo cualquier operación de escritura una vez creada la instancia inicial",
-          "Solo pueden almacenar tipos primitivos autoboxeados, nunca objetos complejos",
+          "Copian la estructura en cada modificación; la lectura queda sin bloqueo",
+          "Impiden cualquier operación de escritura una vez creada la instancia",
+          "Solo pueden almacenar primitivos autoboxeados, nunca objetos complejos",
           "Ordenan automáticamente sus elementos según su hashCode() al insertarlos"
         ], correct: 0,
         exp: "Las clases CopyOnWrite generan una copia nueva del arreglo subyacente cada vez que ocurre una modificación (add, remove, set), dejando la estructura original intacta para quienes la estén leyendo concurrentemente; esto favorece lecturas muy frecuentes con escrituras poco frecuentes, ya que cada escritura tiene el costo de copiar toda la estructura."
@@ -6850,10 +6850,10 @@ long total = stream.filter(s -&gt; s.startsWith("g"))
 System.out.println(total);</pre>
 En algunas versiones de la JVM, este código puede imprimir solo "1" sin mostrar "grizzly" antes. ¿Por qué peek() puede no llegar a ejecutarse aquí?`,
         opts: [
-          "Porque peek() solo funciona con streams generados por Stream.iterate(), no por Stream.of()",
-          "count() puede optimizar el pipeline sin recorrer cada elemento, saltándose peek()",
-          "Porque filter() ya consume el stream antes de que peek() reciba algún elemento",
-          "Porque System.out.println() dentro de peek() siempre se descarta por diseño del lenguaje"
+          "Porque peek() solo funciona con streams de Stream.iterate(), no Stream.of()",
+          "count() puede optimizar el pipeline sin recorrer elementos, saltando peek()",
+          "Porque filter() consume el stream antes de que peek() reciba elementos",
+          "Porque System.out.println() dentro de peek() se descarta por diseño"
         ], correct: 1,
         exp: "peek() es una operación intermedia que solo se ejecuta cuando la operación terminal realmente recorre cada elemento. Cuando la JVM detecta que puede determinar el conteo sin necesidad de iterar uno por uno (una optimización de count()), las operaciones intermedias previas como peek() pueden no dispararse, un comportamiento documentado que sorprende a quienes usan peek() solo para depurar."
       },
@@ -6862,9 +6862,9 @@ En algunas versiones de la JVM, este código puede imprimir solo "1" sin mostrar
         id: "cs-57", cat: "collections-streams", type: "teoria", diff: "Intermedio",
         q: "¿Qué diferencia hay entre la operación intermedia peek() y la operación terminal forEach(), dado que ambas reciben un Consumer como argumento?",
         opts: [
-          "Son idénticas en todo sentido; peek() es solo un alias histórico de forEach()",
-          "peek() retorna el stream para seguir encadenando; forEach() es terminal y cierra el pipeline",
-          "forEach() solo puede usarse con streams de tipo primitivo (IntStream, LongStream)",
+          "Son idénticas; peek() es solo un alias histórico de forEach()",
+          "peek() retorna el stream para encadenar; forEach() es terminal y cierra",
+          "forEach() solo puede usarse con streams primitivos (IntStream, LongStream)",
           "peek() modifica permanentemente los elementos del stream antes de continuar"
         ], correct: 1,
         exp: "peek() puede pensarse como una versión intermedia de forEach(): ejecuta la acción dada sobre cada elemento pero retorna el stream original para poder seguir encadenando más operaciones. forEach(), en cambio, es una operación terminal: consume el stream y no retorna nada, terminando el pipeline."
@@ -6896,10 +6896,10 @@ if (opt.isPresent()) {
 }</pre>
 Si calcularPromedio() retorna un Optional vacío, ¿qué ocurre al ejecutar este código?`,
         opts: [
-          "Se lanza una excepción NoSuchElementException en tiempo de ejecución al evaluar isPresent()",
-          "isPresent() retorna false, por lo que el bloque if no se ejecuta y no se imprime nada",
-          "get() retorna automáticamente el valor null dentro del cuerpo de ese bloque if",
-          "El programa completo no compila porque Optional no puede usarse dentro de un if"
+          "Se lanza NoSuchElementException en ejecución al evaluar isPresent()",
+          "isPresent() retorna false; el bloque if no se ejecuta y no imprime nada",
+          "get() retorna automáticamente null dentro del cuerpo de ese bloque if",
+          "El programa no compila porque Optional no puede usarse dentro de un if"
         ], correct: 1,
         exp: "isPresent() simplemente indica si el Optional contiene un valor, sin lanzar ninguna excepción; retorna false cuando está vacío, por lo que el cuerpo del if (que llama a get()) nunca se ejecuta. Si se llamara a get() directamente sobre un Optional vacío, sí se lanzaría NoSuchElementException."
       },
@@ -6911,10 +6911,10 @@ Si calcularPromedio() retorna un Optional vacío, ¿qué ocurre al ejecutar este
 opt.ifPresent(System.out::println);</pre>
 ¿Qué diferencia de comportamiento tiene ifPresent(Consumer) frente al patrón if (opt.isPresent()) { ... opt.get() ... }?`,
         opts: [
-          "Ninguna diferencia real; solo cambia la cantidad de líneas de código escritas",
-          "ifPresent() ejecuta el Consumer en una sola llamada, solo si hay valor presente",
-          "ifPresent() lanza una excepción si el Optional está vacío, a diferencia del patrón con if",
-          "ifPresent() solo puede usarse con Optional<String>, nunca con otros tipos genéricos"
+          "Ninguna diferencia real; solo cambia la cantidad de líneas escritas",
+          "ifPresent() ejecuta el Consumer solo si hay un valor presente",
+          "ifPresent() lanza excepción si el Optional está vacío, a diferencia del if",
+          "ifPresent() solo puede usarse con Optional<String>, no con otros tipos"
         ], correct: 1,
         exp: "ifPresent(Consumer) encapsula la comprobación y el acceso al valor en una sola operación: si el Optional contiene un valor, invoca el Consumer con ese valor; si está vacío, simplemente no hace nada, sin lanzar excepción, evitando el patrón repetitivo de comprobar con isPresent() y luego extraer con get()."
       },
@@ -6926,10 +6926,10 @@ opt.ifPresent(System.out::println);</pre>
 System.out.println(opt.orElseGet(() -&gt; Math.random()));</pre>
 ¿Qué diferencia clave existe entre usar orElseGet(Supplier) aquí y usar orElse(Math.random())?`,
         opts: [
-          "orElse() evalúa esa expresión siempre; orElseGet() solo la invoca si está vacío",
+          "orElse() evalúa siempre; orElseGet() solo invoca si está vacío",
           "Ambas formas son exactamente equivalentes en todos los casos posibles",
           "orElseGet() solo acepta valores literales, nunca expresiones ni lambdas",
-          "orElse() lanza una excepción de compilación si se le pasa una llamada a método"
+          "orElse() no compila si recibe una llamada a método como argumento"
         ], correct: 0,
         exp: "orElse(T) recibe un valor ya calculado como argumento, por lo que esa expresión se evalúa siempre (incluso si el Optional tiene valor y el resultado se descarta). orElseGet(Supplier) solo invoca el Supplier de forma perezosa cuando el Optional está vacío, evitando cálculos innecesarios o costosos cuando sí hay un valor presente."
       },
@@ -7018,7 +7018,7 @@ D. a,b -&gt; true</pre>
         id: "cs-69", cat: "collections-streams", type: "teoria", diff: "Avanzado",
         q: "¿Qué diferencia hay entre DoubleSupplier y Supplier&lt;Double&gt; respecto al valor que pueden retornar?",
         opts: [
-          "DoubleSupplier nunca retorna null; Supplier&lt;Double&gt; sí admite un Double null",
+          "DoubleSupplier nunca retorna null; Supplier&lt;Double&gt; sí admite null",
           "Ambas interfaces son completamente equivalentes en todo sentido",
           "Supplier&lt;Double&gt; nunca puede retornar null bajo ninguna circunstancia",
           "DoubleSupplier admite retornar null igual que Supplier&lt;Double&gt;"
@@ -7081,7 +7081,7 @@ s.count();
 s.findFirst();</pre>
 ¿Qué ocurre al ejecutar la segunda operación terminal sobre el mismo stream?`,
         opts: [
-          "Lanza IllegalStateException: el stream ya fue operado y no puede reutilizarse",
+          "Lanza IllegalStateException: el stream ya fue operado, no reutilizable",
           "Retorna Optional[1], igual que si fuera la primera operación",
           "Retorna 3, ya que count() reinicia internamente el cursor",
           "No ocurre ningún error; los streams pueden consumirse varias veces"
@@ -7093,7 +7093,7 @@ s.findFirst();</pre>
         id: "cs-75", cat: "collections-streams", type: "teoria", diff: "Intermedio",
         q: "¿Qué diferencia esencial hay entre map() y flatMap() en un pipeline de Stream?",
         opts: [
-          "map() transforma 1 a 1; flatMap() aplana varios streams internos en uno solo",
+          "map() transforma 1 a 1; flatMap() aplana varios streams en uno solo",
           "flatMap() solo puede aplicarse sobre streams de tipos primitivos",
           "No existe ninguna diferencia real entre ambos métodos",
           "map() siempre reduce la cantidad de elementos del stream original"
@@ -7136,7 +7136,7 @@ System.out.println(opt.map(String::toUpperCase).orElse("B"));</pre>
         id: "cs-79", cat: "collections-streams", type: "teoria", diff: "Intermedio",
         q: "¿Qué diferencia de comportamiento hay entre opt.orElse(calcularCaro()) y opt.orElseGet(() -> calcularCaro())?",
         opts: [
-          "orElse() evalúa siempre su argumento; orElseGet() solo invoca el Supplier si está vacío",
+          "orElse() siempre evalúa su argumento; orElseGet() lo invoca solo si vacío",
           "Ambas expresiones son exactamente equivalentes en cualquier escenario",
           "orElseGet() siempre es más lento que orElse() en la práctica",
           "orElse() retorna un Optional en lugar de un valor directo"
@@ -7273,9 +7273,9 @@ System.out.println(r);</pre>
         id: "cs-89", cat: "collections-streams", type: "teoria", diff: "Intermedio",
         q: "¿Qué diferencia a IntStream de Stream<Integer>?",
         opts: [
-          "IntStream opera con primitivos sin boxing y ofrece sum/average/max especializados",
-          "Stream<Integer> resulta siempre más rápido gracias al cache interno de Integer",
-          "Ninguna en absoluto: ambos tipos son completamente intercambiables en la API",
+          "IntStream opera con primitivos sin boxing y ofrece sum/average/max",
+          "Stream<Integer> resulta siempre más rápido por el cache interno de Integer",
+          "Ninguna: ambos tipos son completamente intercambiables en la API",
           "IntStream no admite de ningún modo la operación map dentro de su pipeline"
         ], correct: 0,
         exp: "Los streams primitivos evitan el costo de autoboxing y agregan métodos numéricos; se convierte con mapToInt/boxed."
@@ -7700,8 +7700,8 @@ System.out.println(r);</pre>
         opts: [
           "Siempre se ve el estado original con el que se creó la colección",
           "No compila si la colección llega a modificarse antes de la terminal",
-          "El stream es 'late-binding': refleja los cambios hechos antes de la terminal",
-          "Lanza siempre una ConcurrentModificationException apenas se empieza a iterar"
+          "El stream es 'late-binding': refleja cambios hechos antes de la terminal",
+          "Lanza siempre ConcurrentModificationException apenas se empieza a iterar"
         ], correct: 2,
         exp: "Los streams vinculan la fuente tarde: los datos se leen al ejecutar la terminal. Modificar DURANTE la ejecución sí puede lanzar CME en fuentes fail-fast."
       },
@@ -7746,10 +7746,10 @@ System.out.println(r);</pre>
         id: "cs-121", cat: "collections-streams", type: "teoria", diff: "Básico",
         q: "Al recorrer HashSet, LinkedHashSet y TreeSet con los mismos elementos insertados, ¿qué orden de iteración produce cada uno?",
         opts: [
-          "HashSet no garantiza orden; LinkedHashSet preserva inserción; TreeSet usa orden natural o Comparator",
-          "Los tres implementan exactamente el mismo orden de iteración, sin ninguna diferencia real",
-          "HashSet siempre ordena alfabéticamente, igual que TreeSet, mientras LinkedHashSet no ordena nada",
-          "Solo TreeSet permite en realidad iterar sus elementos; los otros dos no ofrecen ningún iterador"
+          "HashSet: sin orden; LinkedHashSet: preserva orden; TreeSet: orden natural",
+          "Los tres implementan el mismo orden de iteración, sin diferencia real",
+          "HashSet ordena alfabéticamente, igual que TreeSet; LinkedHashSet no ordena",
+          "Solo TreeSet permite iterar; los otros dos no ofrecen iterador"
         ], correct: 0,
         exp: "HashSet basa el orden en códigos hash internos (no garantizado ni estable); LinkedHashSet añade una lista enlazada interna que preserva el orden de inserción; TreeSet mantiene los elementos ordenados según Comparable/Comparator."
       },
@@ -7758,10 +7758,10 @@ System.out.println(r);</pre>
         id: "cs-122", cat: "collections-streams", type: "teoria", diff: "Intermedio",
         q: "En cuanto a rendimiento y caso de uso típico, ¿qué distingue a TreeSet de HashSet?",
         opts: [
-          "TreeSet ofrece O(log n) con orden automático; HashSet ofrece O(1) promedio sin orden garantizado",
-          "TreeSet siempre es más rápido que HashSet en cualquier operación de inserción o búsqueda",
-          "HashSet requiere que todos sus elementos implementen Comparable, TreeSet no lo requiere",
-          "No existe en la práctica ninguna diferencia real de rendimiento entre TreeSet y HashSet"
+          "TreeSet: O(log n) con orden automático; HashSet: O(1) promedio sin orden",
+          "TreeSet siempre es más rápido que HashSet en inserción o búsqueda",
+          "HashSet requiere que sus elementos implementen Comparable; TreeSet no",
+          "No existe diferencia real de rendimiento entre TreeSet y HashSet"
         ], correct: 0,
         exp: "HashSet ofrece O(1) promedio para add/contains gracias a la tabla hash, útil cuando solo importa la unicidad; TreeSet ofrece O(log n) (árbol rojo-negro), útil cuando los elementos deben permanecer siempre ordenados."
       },
@@ -7771,10 +7771,10 @@ System.out.println(r);</pre>
         id: "cs-123", cat: "collections-streams", type: "teoria", diff: "Básico",
         q: "¿Qué orden de iteración de claves produce cada uno: HashMap, LinkedHashMap y TreeMap?",
         opts: [
-          "HashMap sin orden garantizado; LinkedHashMap preserva inserción; TreeMap ordena claves automáticamente",
-          "Los tres terminan manteniendo exactamente el mismo orden de claves, determinado por su hashCode",
-          "TreeMap nunca ordena nada; solo HashMap y LinkedHashMap llegan a ordenar sus propias claves",
-          "Solo LinkedHashMap permite en la práctica tener más de una clave con el mismo valor de hash"
+          "HashMap: sin orden; LinkedHashMap: preserva orden; TreeMap: ordena claves",
+          "Los tres mantienen el mismo orden de claves, determinado por su hashCode",
+          "TreeMap nunca ordena; solo HashMap y LinkedHashMap llegan a ordenar claves",
+          "Solo LinkedHashMap permite tener más de una clave con el mismo hash"
         ], correct: 0,
         exp: "HashMap no garantiza orden de claves; LinkedHashMap preserva el orden de inserción mediante una lista enlazada interna; TreeMap (NavigableMap) mantiene las claves ordenadas según su orden natural o un Comparator."
       },
@@ -7783,10 +7783,10 @@ System.out.println(r);</pre>
         id: "cs-124", cat: "collections-streams", type: "teoria", diff: "Intermedio",
         q: "¿Qué diferencia clave tiene Hashtable frente a HashMap, y por qué se considera una clase legada (legacy)?",
         opts: [
-          "Hashtable es sincronizada y no admite null en claves/valores; hoy se prefiere ConcurrentHashMap",
-          "Hashtable admite claves null igual que HashMap, pero es ligeramente más rápida en accesos concurrentes",
-          "Hashtable y HashMap son sinónimos exactos desde Java 5, sin ninguna diferencia de implementación",
-          "Hashtable solo puede llegar a almacenar valores de tipo String, a diferencia de HashMap"
+          "Hashtable es sincronizada, sin null; hoy se prefiere ConcurrentHashMap",
+          "Hashtable admite null igual que HashMap, pero es más rápida en concurrencia",
+          "Hashtable y HashMap son sinónimos desde Java 5, sin diferencia real",
+          "Hashtable solo admite valores tipo String, a diferencia de HashMap"
         ], correct: 0,
         exp: "Hashtable sincroniza todos sus métodos (afectando el rendimiento) y lanza NullPointerException ante claves o valores null, a diferencia de HashMap; en código concurrente moderno se prefiere ConcurrentHashMap, con mejor rendimiento y semántica más clara."
       },
@@ -7799,7 +7799,7 @@ System.out.println(r);</pre>
         q: "¿Qué papel cumple la interfaz java.sql.Connection en JDBC?",
         opts: [
           "Representa una consulta SQL que ya viene compilada y lista para ejecutarse",
-          "Representa la sesión activa con la base de datos, base para crear Statements",
+          "Representa la sesión activa con la BD, base para crear Statements",
           "Es la clase encargada de almacenar los resultados de una consulta ejecutada",
           "Sirve únicamente para cargar en memoria el driver JDBC del motor usado"
         ], correct: 1,
@@ -7812,8 +7812,8 @@ System.out.println(r);</pre>
         opts: [
           "PreparedStatement no admite sentencias SELECT, solo INSERT o UPDATE",
           "Precompila el SQL con parámetros posicionales, evitando inyección SQL",
-          "Statement resulta más seguro porque valida automáticamente los tipos de dato",
-          "En la práctica, ambas interfaces se comportan de forma prácticamente idéntica"
+          "Statement es más seguro porque valida automáticamente los tipos de dato",
+          "En la práctica, ambas interfaces se comportan de forma casi idéntica"
         ], correct: 1,
         exp: "PreparedStatement separa la sentencia SQL de sus parámetros: estos se asignan mediante métodos como setString()/setInt(), evitando concatenar valores directamente en el SQL (fuente típica de inyección SQL) y permitiendo que el motor reutilice el plan de ejecución compilado."
       },
@@ -7827,9 +7827,9 @@ ResultSet rs = st.executeQuery(sql);</pre>
 ¿Cuál es el principal riesgo de este código si rucIngresado proviene de un formulario web?`,
         opts: [
           "Ninguno; Statement valida por sí solo cualquier carácter especial recibido",
-          "Es vulnerable a inyección SQL, al concatenar directamente el valor del usuario",
+          "Es vulnerable a inyección SQL, al concatenar directamente la entrada",
           "El código simplemente no compila porque Statement no admite SELECT",
-          "El ResultSet siempre queda vacío al usar Statement en vez de PreparedStatement"
+          "El ResultSet queda vacío al usar Statement en vez de PreparedStatement"
         ], correct: 1,
         exp: "Al concatenar directamente la entrada del usuario, alguien podría inyectar código SQL (por ejemplo, cerrando la comilla y agregando ' OR '1'='1) alterando la consulta. La mitigación estándar es usar PreparedStatement con parámetros (?) en lugar de concatenar cadenas."
       },
@@ -7917,7 +7917,7 @@ try {
         q: "¿Qué es un DataSource en el contexto de JDBC y por qué se prefiere frente a DriverManager en aplicaciones empresariales?",
         opts: [
           "Un simple archivo de configuración XML, sin relación directa con conexiones",
-          "Una fábrica de conexiones respaldada por un pool, gestionada por el servidor",
+          "Una fábrica de conexiones respaldada por un pool del servidor",
           "Un reemplazo directo pensado para sustituir por completo a ResultSet",
           "Un componente que solo puede emplearse contra bases de datos NoSQL"
         ], correct: 1,
@@ -7935,10 +7935,10 @@ for (String msg : mensajes) {
 int[] resultados = ps.executeBatch();</pre>
 ¿Qué beneficio aporta usar addBatch()/executeBatch() en este escenario?`,
         opts: [
-          "Ejecuta cada inserción en paralelo, repartida automáticamente entre varios hilos",
+          "Ejecuta cada inserción en paralelo, repartida entre varios hilos",
           "Agrupa varias sentencias en pocos viajes de red, reduciendo la sobrecarga",
           "Convierte de forma automática cada INSERT en una sentencia de tipo DDL",
-          "Resulta obligatorio para poder usar parámetros con cualquier PreparedStatement"
+          "Resulta obligatorio para usar parámetros con cualquier PreparedStatement"
         ], correct: 1,
         exp: "El procesamiento por lotes (batch) acumula varias sentencias y las envía juntas, reduciendo el número de round-trips entre la aplicación y la base de datos, lo cual mejora sustancialmente el rendimiento en inserciones o actualizaciones masivas."
       },
@@ -7973,7 +7973,7 @@ if (rs.next()) {
         opts: [
           "Son sinónimos entre sí; solo cambia el nombre según el motor de base usado",
           "READ_COMMITTED admite lecturas no repetibles; SERIALIZABLE los evita todos",
-          "SERIALIZABLE resulta más rápido, ya que bloquea menos recursos que READ_COMMITTED",
+          "SERIALIZABLE es más rápido, ya que bloquea menos recursos que READ_COMMITTED",
           "READ_COMMITTED es un nivel que solo aplica a sentencias de tipo SELECT"
         ], correct: 1,
         exp: "Los niveles de aislamiento definen qué fenómenos de concurrencia se permiten. READ_COMMITTED impide leer cambios no confirmados de otra transacción, pero admite lecturas no repetibles/phantom reads; SERIALIZABLE ofrece la máxima consistencia (evita todos esos fenómenos) a costa de mayor bloqueo y menor concurrencia."
@@ -8018,9 +8018,9 @@ try {
 con.commit();</pre>
 ¿Qué logra con.rollback(sp) en este escenario, a diferencia de un rollback() completo?`,
         opts: [
-          "Deshace absolutamente todos los cambios, incluida la primera actualización ya aplicada",
-          "Revierte solo lo posterior al savepoint, conservando la primera actualización",
-          "Cierra la conexión de inmediato, sin posibilidad de continuar la transacción",
+          "Deshace todos los cambios, incluida la primera actualización ya aplicada",
+          "Revierte lo posterior al savepoint, conservando la primera actualización",
+          "Cierra la conexión de inmediato, sin poder continuar la transacción",
           "Convierte automáticamente la conexión a modo autoCommit desde ese punto"
         ], correct: 1,
         exp: "Un Savepoint marca un punto intermedio dentro de una transacción; rollback(savepoint) deshace solo los cambios posteriores a ese punto, dejando intactos los anteriores. Así, si falla la segunda actualización, la primera puede conservarse y confirmarse igualmente, en vez de perder toda la transacción."
@@ -8043,7 +8043,7 @@ con.commit();</pre>
         q: "¿Qué expone la interfaz DatabaseMetaData, obtenida con connection.getMetaData()?",
         opts: [
           "Solo el número de filas de la última consulta ejecutada en esa conexión",
-          "Datos del motor y su esquema: versión, tablas, claves primarias y procedimientos",
+          "Datos del motor y su esquema: versión, tablas, claves y procedimientos",
           "Las credenciales de todos los usuarios registrados en la base de datos",
           "El plan de ejecución óptimo calculado para la próxima consulta a correr"
         ], correct: 1,
@@ -8059,9 +8059,9 @@ config.setConnectionTimeout(5000);
 config.setIdleTimeout(300000);</pre>
 ¿Qué controla connectionTimeout en este pool?`,
         opts: [
-          "El tiempo máximo que una conexión puede permanecer inactiva antes de cerrarse",
+          "El tiempo máximo que una conexión puede estar inactiva antes de cerrarse",
           "El tiempo que un hilo espera por una conexión antes de lanzar excepción",
-          "El tiempo de vida total de una conexión antes de reciclarse obligatoriamente",
+          "El tiempo de vida total de una conexión antes de reciclarse",
           "El intervalo entre cada verificación automática de salud del pool"
         ], correct: 1,
         exp: "connectionTimeout define cuánto tiempo (en milisegundos) esperará un hilo solicitante antes de que el pool le lance una excepción si no logra entregarle una conexión disponible, típicamente porque el pool está saturado (todas sus conexiones ocupadas). idleTimeout, en cambio, controla cuánto puede permanecer inactiva una conexión antes de ser retirada del pool."
@@ -8086,9 +8086,9 @@ config.setIdleTimeout(300000);</pre>
 ¿Qué información adicional aporta BatchUpdateException frente a una SQLException genérica?`,
         opts: [
           "Indica únicamente el mensaje de error de la última sentencia del lote",
-          "getUpdateCounts() revela cuántas filas afectó cada sentencia ya ejecutada antes del fallo",
-          "Revierte automáticamente toda la transacción sin intervención del desarrollador",
-          "Convierte automáticamente el lote fallido en sentencias individuales reintentables"
+          "getUpdateCounts() revela cuántas filas afectó cada sentencia antes del fallo",
+          "Revierte automáticamente toda la transacción sin intervención manual",
+          "Convierte el lote fallido en sentencias individuales reintentables"
         ], correct: 1,
         exp: "BatchUpdateException extiende SQLException añadiendo getUpdateCounts(), un arreglo con el resultado de cada sentencia del lote ejecutada antes del fallo (según el driver, puede continuar o detenerse en la primera falla), permitiendo diagnosticar exactamente cuáles operaciones del lote se completaron."
       },
@@ -8099,7 +8099,7 @@ config.setIdleTimeout(300000);</pre>
         opts: [
           "Permite recorrer el ResultSet hacia atrás o saltar a una fila específica",
           "Aumenta automáticamente la velocidad de todas las consultas ejecutadas",
-          "Es un requisito obligatorio para poder usar PreparedStatement con parámetros",
+          "Es un requisito para poder usar PreparedStatement con parámetros",
           "Convierte cada fila del resultado en un objeto serializable por defecto"
         ], correct: 0,
         exp: "TYPE_FORWARD_ONLY (el valor por defecto) solo permite avanzar una vez con next(). TYPE_SCROLL_INSENSITIVE habilita métodos como previous(), first(), last() o absolute(n) para navegar libremente el ResultSet, a costa de mayor consumo de recursos en el driver/servidor."
@@ -8112,9 +8112,9 @@ config.setIdleTimeout(300000);</pre>
 ¿Qué representa el segmento 'thin' dentro de esta URL específica de Oracle?`,
         opts: [
           "El nombre de usuario que se usará para autenticarse contra la base de datos",
-          "El tipo de driver JDBC de Oracle: el driver 'thin', escrito 100% en Java, sin cliente nativo",
+          "El tipo de driver JDBC de Oracle: 'thin', 100% Java, sin cliente nativo",
           "El tamaño máximo permitido para el pool de conexiones abiertas",
-          "El nivel de aislamiento de transacción configurado por defecto para esa conexión"
+          "El nivel de aislamiento de transacción por defecto para esa conexión"
         ], correct: 1,
         exp: "En la URL JDBC de Oracle, 'thin' identifica el driver Thin, una implementación 100% Java que no requiere instalar el cliente nativo de Oracle en la máquina, a diferencia de drivers OCI más antiguos que sí dependían de bibliotecas nativas locales."
       },
@@ -8123,8 +8123,8 @@ config.setIdleTimeout(300000);</pre>
         id: "jd-24", cat: "jdbc", type: "teoria", diff: "Básico",
         q: "¿Cuál es la diferencia principal entre obtener una conexión con DriverManager.getConnection() y con un DataSource inyectado por el servidor?",
         opts: [
-          "DriverManager abre una conexión nueva cada vez; un DataSource reutiliza conexiones de un pool",
-          "Ambos mecanismos son exactamente equivalentes en rendimiento y comportamiento",
+          "DriverManager abre una conexión nueva cada vez; DataSource reutiliza del pool",
+          "Ambos mecanismos son equivalentes en rendimiento y comportamiento",
           "DataSource solo puede usarse con bases de datos NoSQL, nunca relacionales",
           "DriverManager requiere JNDI obligatoriamente para poder funcionar"
         ], correct: 0,
@@ -8143,10 +8143,10 @@ try (CallableStatement cs = conn.prepareCall(sql);
 }</pre>
 ¿Qué diferencia hay entre crear este objeto con prepareCall() en lugar de prepareStatement()?`,
         opts: [
-          "prepareCall() se usa para procedimientos ({call nombre(...)}); prepareStatement() para SQL normal",
-          "Ambos métodos son intercambiables y producen exactamente el mismo tipo de objeto resultante",
-          "prepareCall() solo puede usarse si el procedimiento no retorna ningún ResultSet",
-          "prepareStatement() es la única forma válida de invocar un procedimiento almacenado en JDBC"
+          "prepareCall(): procedimientos ({call ...}); prepareStatement(): SQL normal",
+          "Ambos métodos son intercambiables y producen el mismo tipo de objeto",
+          "prepareCall() solo puede usarse si el procedimiento no retorna ResultSet",
+          "prepareStatement() es la única forma válida de invocar un procedimiento en JDBC"
         ], correct: 0,
         exp: "Connection.prepareCall() crea específicamente un CallableStatement, diseñado para invocar procedimientos almacenados con la sintaxis {call procedimiento(...)}; prepareStatement() crea un PreparedStatement para sentencias SQL parametrizadas normales (SELECT/INSERT/UPDATE/DELETE), sin ese soporte especial para llamadas a procedimientos."
       },
@@ -8162,10 +8162,10 @@ try (var cs = conn.prepareCall(sql)) {
 }</pre>
 ¿Qué ocurre si se omite la llamada a cs.registerOutParameter(1, Types.INTEGER) antes de execute()?`,
         opts: [
-          "El driver no sabrá interpretar el valor de salida, y cs.getInt(\"num\") fallará",
-          "El procedimiento se ejecuta igual, ya que registerOutParameter() es completamente opcional",
-          "El signo ?= al inicio del SQL hace innecesario registrar el parámetro de salida en el código Java",
-          "Java infiere automáticamente el tipo del parámetro de salida a partir del nombre del procedimiento"
+          "El driver no sabrá interpretar el valor de salida y cs.getInt(\"num\") falla",
+          "El procedimiento se ejecuta igual; registerOutParameter() es opcional",
+          "El signo ?= al inicio del SQL hace innecesario registrar el parámetro de salida",
+          "Java infiere el tipo del parámetro de salida según el nombre del procedimiento"
         ], correct: 0,
         exp: "Para cada parámetro OUT o INOUT de un CallableStatement es obligatorio llamar a registerOutParameter(), indicando su posición (o nombre) y tipo SQL; esto permite que JDBC sepa cómo interpretar el valor devuelto por el procedimiento. Sin ese registro, el driver no puede exponer correctamente ese valor de salida al código Java."
       },
@@ -8182,10 +8182,10 @@ try (var cs = conn.prepareCall(sql)) {
 }</pre>
 ¿Por qué este parámetro requiere tanto setInt() como registerOutParameter(), a diferencia de un parámetro puramente IN o puramente OUT?`,
         opts: [
-          "Porque INOUT combina ambos requisitos: setInt() para la entrada, registerOutParameter() para la salida",
-          "Porque setInt() y registerOutParameter() en realidad configuran dos parámetros distintos del procedimiento",
-          "Porque double_number() requiere obligatoriamente dos signos de interrogación en el SQL, no uno solo",
-          "Porque INOUT es en realidad un error de sintaxis, y el ejemplo no compilaría en la práctica"
+          "Porque INOUT combina setInt() para entrada y registerOutParameter() para salida",
+          "Porque setInt() y registerOutParameter() configuran dos parámetros distintos",
+          "Porque double_number() requiere dos signos de interrogación en el SQL, no uno",
+          "Porque INOUT es en realidad un error de sintaxis; el ejemplo no compilaría"
         ], correct: 0,
         exp: "Un parámetro INOUT actúa simultáneamente como IN y como OUT: requiere setInt() para enviar el valor de entrada (el 8) y registerOutParameter() para poder leer después el valor modificado que el procedimiento retorna, cumpliendo así los requisitos de ambos tipos de parámetro a la vez."
       },
@@ -8194,10 +8194,10 @@ try (var cs = conn.prepareCall(sql)) {
         id: "jd-28", cat: "jdbc", type: "teoria", diff: "Intermedio",
         q: "¿Qué diferencia de comportamiento existe entre un parámetro IN y uno OUT respecto a la obligación de llamar a registerOutParameter() en un CallableStatement?",
         opts: [
-          "IN solo necesita un setter como setInt(); OUT exige siempre registerOutParameter()",
-          "Ambos tipos de parámetro requieren exactamente los mismos pasos de configuración",
-          "Un parámetro IN siempre requiere registerOutParameter(), y un parámetro OUT nunca lo necesita",
-          "Ninguno de los dos tipos de parámetro necesita configuración adicional más allá de declarar el signo de interrogación"
+          "IN solo necesita un setter como setInt(); OUT exige registerOutParameter()",
+          "Ambos tipos de parámetro requieren los mismos pasos de configuración",
+          "Un parámetro IN requiere registerOutParameter(); OUT nunca lo necesita",
+          "Ninguno de los dos necesita configuración más allá del signo de interrogación"
         ], correct: 0,
         exp: "Según los requisitos de cada tipo de parámetro en un CallableStatement: IN solo exige fijar su valor de entrada (por ejemplo con setInt()) y nunca requiere registerOutParameter(); OUT, al no recibir valor de entrada, no necesita un setter, pero sí exige siempre registrarse con registerOutParameter() para poder leerse después de ejecutar el procedimiento."
       },
@@ -8206,10 +8206,10 @@ try (var cs = conn.prepareCall(sql)) {
         id: "jd-29", cat: "jdbc", type: "teoria", diff: "Avanzado",
         q: "¿Qué representa la constante ResultSet.TYPE_FORWARD_ONLY al crear un Statement o PreparedStatement?",
         opts: [
-          "Que el cursor solo avanza hacia adelante, sin poder retroceder ni saltar de posición",
-          "Que la consulta solo puede ejecutarse una única vez durante toda la vida de la conexión",
-          "Que el ResultSet resultante se ordena automáticamente en sentido ascendente por su clave primaria",
-          "Que el driver JDBC ejecutará la consulta en un hilo separado del hilo principal de la aplicación"
+          "Que el cursor solo avanza hacia adelante, sin poder retroceder",
+          "Que la consulta solo puede ejecutarse una vez durante la vida de la conexión",
+          "Que el ResultSet se ordena automáticamente en sentido ascendente por su clave",
+          "Que el driver JDBC ejecutará la consulta en un hilo separado del principal"
         ], correct: 0,
         exp: "TYPE_FORWARD_ONLY es el tipo de ResultSet por defecto en JDBC: su cursor solo puede moverse hacia adelante con next(), una fila cada vez, sin soportar operaciones como previous() o absolute(n). Para navegación bidireccional se necesita en cambio TYPE_SCROLL_INSENSITIVE o TYPE_SCROLL_SENSITIVE al crear el Statement."
       },
@@ -8277,7 +8277,7 @@ ResultSet rs = st.executeQuery(
     "SELECT * FROM cuentas WHERE nombre = '" + usuario + "'");</pre>
 ¿Qué riesgo de seguridad tiene este código?`,
         opts: [
-          "Inyección SQL: la entrada del usuario se concatena directamente sin sanitizar",
+          "Inyección SQL: la entrada del usuario se concatena sin sanitizar",
           "Ninguno, siempre que después se use PreparedStatement en otra parte",
           "Falta hacer commit tras ejecutar la consulta",
           "No compila por combinar Statement con executeQuery"
@@ -8329,8 +8329,8 @@ Si la consulta devuelve 3 filas, ¿qué imprime este código?`,
         id: "jd-40", cat: "jdbc", type: "teoria", diff: "Intermedio",
         q: "¿Qué retorna el método execute() de PreparedStatement, aplicable a cualquier tipo de sentencia?",
         opts: [
-          "Un boolean: true si el resultado es un ResultSet, false si es un update count",
-          "Siempre un ResultSet completo, sin importar qué sentencia haya sido ejecutada",
+          "Un boolean: true si el resultado es ResultSet, false si es update count",
+          "Siempre un ResultSet completo, sin importar la sentencia ejecutada",
           "Siempre un valor int representando la cantidad de filas afectadas",
           "void; este método no informa absolutamente nada sobre el resultado"
         ], correct: 0,
@@ -8360,7 +8360,7 @@ Si la columna bono es NULL en la fila actual, ¿qué imprime este código?`,
         q: "¿Qué representa un RowSet (por ejemplo CachedRowSet) frente a un ResultSet tradicional?",
         opts: [
           "Un tipo particular de índice físico construido sobre la tabla consultada",
-          "Un ResultSet extendido que puede operar desconectado de la conexión original",
+          "Un ResultSet extendido que puede operar desconectado de la conexión",
           "Una vista materializada precalculada sobre el resultado de la consulta",
           "Exactamente lo mismo que un ResultSet, solo que con otro nombre distinto"
         ], correct: 1,
@@ -8430,10 +8430,10 @@ ps.setString(1, "S%");</pre>
         id: "jd-48", cat: "jdbc", type: "teoria", diff: "Avanzado",
         q: "¿Qué diferencia hay entre setMaxRows(n) y setFetchSize(n) en un Statement?",
         opts: [
-          "Ambos métodos terminan limitando de igual manera el total de filas que se devuelven",
-          "En realidad es al revés: fetchSize limita filas y maxRows ajusta el buffer de red",
+          "Ambos métodos terminan limitando igual el total de filas devueltas",
+          "En realidad es al revés: fetchSize limita filas, maxRows ajusta el buffer",
           "maxRows limita filas; fetchSize ajusta el buffer de red por viaje",
-          "No existe absolutamente ninguna diferencia real entre ambos métodos disponibles"
+          "No existe ninguna diferencia real entre ambos métodos disponibles"
         ], correct: 2,
         exp: "maxRows descarta silenciosamente cualquier fila que exceda el límite indicado (límite duro del resultado); fetchSize es solo una optimización del tamaño de bloque transferido por red, sin afectar el contenido final."
       },
@@ -8445,7 +8445,7 @@ ps.setString(1, "S%");</pre>
           "Aumenta directamente el tamaño de fetch por defecto usado por el driver",
           "Activa el cifrado SSL de forma automática sobre la conexión JDBC",
           "Limita el número máximo de filas que puede devolver cada consulta",
-          "Cachea PreparedStatements ya cerrados para reutilizar cursores y evitar reparseo"
+          "Cachea PreparedStatements cerrados para reutilizar cursores y evitar reparseo"
         ], correct: 3,
         exp: "El statement caching implícito conserva statements 'cerrados' listos para reutilizarse: reduce los soft parses repetidos y mejora la latencia en cargas transaccionales de alto volumen (OLTP)."
       },
@@ -8490,7 +8490,7 @@ if (ps.executeUpdate() == 0)
         opts: [
           "Un mecanismo simple de auditoría de cambios aplicado sobre la tabla",
           "Bloqueo pesimista, reteniendo la fila desde el primer instante posible",
-          "Bloqueo optimista: detecta cambios concurrentes comparando versión, sin locks",
+          "Bloqueo optimista: detecta cambios comparando versión, sin locks",
           "Un patrón de cache de segundo nivel aplicado únicamente sobre lecturas"
         ], correct: 2,
         exp: "Si otro proceso modificó la fila entretanto, la columna version ya no coincide y el UPDATE afecta 0 filas: la colisión se detecta al vuelo sin necesidad de bloquear lecturas concurrentes de otros procesos."
@@ -8508,9 +8508,9 @@ public List<Emp> find(int id) throws SQLException {
 ¿Qué problema de concurrencia introduce este diseño?`,
         opts: [
           "Ninguno; Connection está diseñada específicamente para ese uso compartido",
-          "Solo se vuelve algo más lento por contención, pero el resultado sigue siendo correcto",
-          "El código simplemente no compila al compartir una conexión entre varios hilos",
-          "Connection no es segura entre hilos: compartir transacción y estado causa errores"
+          "Solo se vuelve más lento por contención, pero el resultado sigue correcto",
+          "El código no compila al compartir una conexión entre varios hilos",
+          "Connection no es thread-safe: compartir transacción y estado causa errores"
         ], correct: 3,
         exp: "Una Connection debe usarse por un único hilo a la vez; en componentes compartidos entre peticiones concurrentes, la conexión debe obtenerse del pool por petición y cerrarse al finalizar, en vez de guardarse como campo compartido."
       },
@@ -8519,7 +8519,7 @@ public List<Emp> find(int id) throws SQLException {
         id: "jd-54", cat: "jdbc", type: "teoria", diff: "Intermedio",
         q: "¿Qué ocurre con el ResultSet abierto de un Statement al volver a llamar executeQuery() sobre ese mismo Statement?",
         opts: [
-          "El ResultSet anterior se cierra implícitamente al ejecutar la nueva consulta",
+          "El ResultSet anterior se cierra al ejecutar la nueva consulta",
           "Ambos ResultSet permanecen abiertos simultáneamente sin ningún problema",
           "Se lanza SQLException al intentar ejecutar una segunda consulta",
           "Las filas del primer ResultSet se duplican dentro del segundo resultado"
@@ -8550,7 +8550,7 @@ public List<Emp> find(int id) throws SQLException {
         q: "¿Qué efecto tiene invocar connection.setReadOnly(true) sobre una Connection JDBC?",
         opts: [
           "Bloquea de inmediato la tabla completa mientras dure toda la transacción",
-          "Da una pista de optimización al driver; el efecto exacto depende de cada uno",
+          "Da una pista de optimización al driver; el efecto depende de cada uno",
           "Impide ejecutar cualquier sentencia SELECT sobre esa misma conexión",
           "Cierra la conexión de forma inmediata apenas se invoca el método"
         ], correct: 1,
@@ -8562,7 +8562,7 @@ public List<Emp> find(int id) throws SQLException {
         q: "¿Qué diferencia hay entre getErrorCode() y getSQLState() en una SQLException lanzada contra Oracle?",
         opts: [
           "Ambos métodos devuelven exactamente el mismo valor numérico siempre",
-          "getErrorCode() da el código del vendor; getSQLState() el estándar de 5 caracteres",
+          "getErrorCode(): código del vendor; getSQLState(): estándar de 5 caracteres",
           "getSQLState() solo existe en drivers de bases de datos distintas a Oracle",
           "getErrorCode() únicamente informa la línea Java donde ocurrió la excepción"
         ], correct: 1,
@@ -8616,7 +8616,7 @@ ResultSet keys = ps.getGeneratedKeys();</pre>
         q: "¿Qué ventaja de rendimiento aporta reutilizar un PreparedStatement con distintos valores frente a construir Statements ad-hoc?",
         opts: [
           "Únicamente reduce el consumo de memoria del lado cliente en la JVM",
-          "La base de datos compila el plan una sola vez y lo reutiliza con distintos parámetros",
+          "La base de datos compila el plan una vez y lo reutiliza con otros parámetros",
           "En realidad no ofrece ninguna ventaja real frente a un Statement clásico",
           "Evita por completo la necesidad de usar transacciones en la sesión"
         ], correct: 1,
@@ -8642,10 +8642,10 @@ ResultSet keys = ps.getGeneratedKeys();</pre>
         id: "or-01", cat: "orm", type: "teoria", diff: "Básico",
         q: "¿Qué relación existe entre JPA y Hibernate?",
         opts: [
-          "Son dos productos competidores que resultan totalmente incompatibles entre sí",
+          "Son dos productos competidores, totalmente incompatibles entre sí",
           "JPA es la especificación estándar; Hibernate es una implementación concreta",
-          "Hibernate define la especificación oficial, y JPA es simplemente una de sus implementaciones",
-          "JPA es una API pensada exclusivamente para trabajar contra bases de datos NoSQL"
+          "Hibernate define la especificación oficial; JPA es una de sus implementaciones",
+          "JPA es una API pensada exclusivamente para bases de datos NoSQL"
         ], correct: 1,
         exp: "JPA (Jakarta Persistence API) define anotaciones e interfaces estándar (@Entity, EntityManager, etc.) sin imponer una implementación concreta. Hibernate implementa esa especificación (y añade funcionalidades propias), por lo que el código basado en JPA puede, en teoría, portarse a otro proveedor JPA."
       },
@@ -8663,8 +8663,8 @@ public class Contribuyente {
 }</pre>
 ¿Qué indican en conjunto @Id y @GeneratedValue(strategy = GenerationType.IDENTITY)?`,
         opts: [
-          "Que el campo id es completamente opcional y, de hecho, puede quedar como nulo",
-          "Que id es la clave primaria y su valor lo genera una columna autoincremental",
+          "Que el campo id es opcional y puede quedar como nulo",
+          "Que id es la clave primaria, generada por una columna autoincremental",
           "Que en realidad ruc es el verdadero campo de clave primaria de la tabla",
           "Que la tabla contribuyente no llegará a tener clave primaria física"
         ], correct: 1,
@@ -8675,8 +8675,8 @@ public class Contribuyente {
         id: "or-03", cat: "orm", type: "teoria", diff: "Intermedio",
         q: "¿Qué diferencia hay entre FetchType.LAZY y FetchType.EAGER en una asociación JPA?",
         opts: [
-          "LAZY carga la asociación de inmediato, mientras EAGER la posterga hasta que se necesite",
-          "EAGER carga la asociación de inmediato; LAZY la difiere hasta el primer acceso real",
+          "LAZY carga de inmediato; EAGER la posterga hasta que se necesite",
+          "EAGER carga de inmediato; LAZY difiere hasta el primer acceso real",
           "Ambos modos cargan siempre de forma inmediata; solo difiere el nombre usado",
           "LAZY es un modo de carga válido únicamente en relaciones de tipo @OneToOne"
         ], correct: 1,
@@ -8694,7 +8694,7 @@ public class Departamento {
 }</pre>
 Fuera de una transacción/sesión activa (por ejemplo, tras cerrar el EntityManager), se intenta acceder a departamento.getEmpleados().size(). ¿Qué problema típico puede ocurrir?`,
         opts: [
-          "Ninguno; LAZY siempre precarga todo en memoria justo antes de cerrar la sesión",
+          "Ninguno; LAZY siempre precarga todo antes de cerrar la sesión",
           "LazyInitializationException: el proxy intenta cargar datos sin sesión activa",
           "Se abre automáticamente una nueva transacción para resolverlo sin errores",
           "El programa simplemente retorna una lista vacía, sin avisar del problema"
@@ -8737,7 +8737,7 @@ Contribuyente c = query.getSingleResult();</pre>
         opts: [
           "Un error de sintaxis muy frecuente que ocurre al declarar entidades JPA",
           "Cargar N entidades y disparar una consulta extra por cada una",
-          "Un límite estricto sobre el número máximo de asociaciones permitidas por entidad",
+          "Un límite estricto sobre el máximo de asociaciones permitidas por entidad",
           "Un mecanismo de caché que mejora el rendimiento de forma automática"
         ], correct: 1,
         exp: "El problema N+1 ocurre cuando se ejecuta 1 consulta para obtener N entidades, y luego, al recorrerlas y acceder a una asociación LAZY de cada una, se dispara una consulta adicional por entidad (N consultas más), degradando el rendimiento. Se mitiga con fetch join, @EntityGraph o consultas específicas que carguen la asociación de una sola vez."
@@ -8748,7 +8748,7 @@ Contribuyente c = query.getSingleResult();</pre>
         q: "¿Qué diferencia existe entre la caché de primer nivel (first-level cache) y la de segundo nivel (second-level cache) en Hibernate?",
         opts: [
           "Es la misma caché; solo cambia el nombre según la versión de Hibernate usada",
-          "La de primer nivel vive con la sesión; la de segundo nivel es opcional y compartida",
+          "La de primer nivel vive con la sesión; la de segundo nivel es opcional",
           "La de segundo nivel solamente almacena resultados de consultas SQL nativas",
           "La caché de primer nivel únicamente puede configurarse mediante XML externo"
         ], correct: 1,
@@ -8790,8 +8790,8 @@ public class Factura {
         id: "or-11", cat: "orm", type: "teoria", diff: "Avanzado",
         q: "¿Qué es el 'dirty checking' (detección de cambios) en Hibernate?",
         opts: [
-          "Un chequeo de seguridad orientado a impedir accesos no autorizados a entidades",
-          "Comparar el estado actual de la entidad contra su instantánea y generar el UPDATE",
+          "Un chequeo orientado a impedir accesos no autorizados a entidades",
+          "Compara el estado actual contra su instantánea y genera el UPDATE",
           "Un algoritmo que comprime los datos justo antes de persistirlos en disco",
           "Una validación que directamente impide guardar cualquier campo nulo"
         ], correct: 1,
@@ -8817,7 +8817,7 @@ Si se elimina una Factura de la base de datos usando este mapeo, ¿qué sucede c
         id: "or-13", cat: "orm", type: "teoria", diff: "Intermedio",
         q: "¿Por qué se recomienda tener precaución al sobrescribir equals() y hashCode() en una entidad JPA usando su @Id autogenerado?",
         opts: [
-          "Porque la especificación JPA prohíbe expresamente sobrescribir esos dos métodos",
+          "Porque la especificación JPA prohíbe sobrescribir esos dos métodos",
           "Porque antes de persistir, el id puede ser null, causando inconsistencias",
           "Porque sobrescribir esos métodos solo está permitido en clases abstractas",
           "Porque hacerlo elimina automáticamente la clave primaria de la entidad"
@@ -8867,8 +8867,8 @@ q.setParameter("estado", "ACTIVO");</pre>
         opts: [
           "Ninguna, ambas formas tienen exactamente el mismo comportamiento y costo",
           "El proveedor valida y cachea la consulta desde el arranque de la app",
-          "Solo las @NamedQuery pueden llegar a usar parámetros con nombre como :estado",
-          "Las NamedQuery se ejecutan directo en la base de datos, sin pasar por Hibernate"
+          "Solo las @NamedQuery pueden usar parámetros con nombre como :estado",
+          "Las NamedQuery se ejecutan directo en la BD, sin pasar por Hibernate"
         ], correct: 1,
         exp: "Al declararse junto a la entidad, el proveedor JPA puede parsear y cachear la consulta desde el arranque, detectando errores de sintaxis JPQL tempranamente en vez de en tiempo de ejecución, y evita duplicar el mismo texto de consulta en múltiples partes del código."
       },
@@ -8877,7 +8877,7 @@ q.setParameter("estado", "ACTIVO");</pre>
         id: "or-17", cat: "orm", type: "teoria", diff: "Avanzado",
         q: "En el mapeo de herencia de entidades JPA, ¿qué caracteriza a la estrategia SINGLE_TABLE (InheritanceType.SINGLE_TABLE)?",
         opts: [
-          "Cada subclase se guarda en su propia tabla independiente, sin columnas compartidas",
+          "Cada subclase se guarda en su propia tabla, sin columnas compartidas",
           "Toda la jerarquía comparte una única tabla, con una columna discriminadora",
           "Requiere obligatoriamente una base de datos NoSQL para poder funcionar",
           "Solo puede aplicarse a entidades que carecen por completo de clave primaria"
@@ -8907,7 +8907,7 @@ List&lt;Factura&gt; buscarPorAnio(@Param("anio") int anio);</pre>
         opts: [
           "Evita que la consulta necesite recibir absolutamente ningún parámetro",
           "El problema N+1: trae la asociación junto con la consulta principal",
-          "Convierte la asociación en EAGER de forma permanente para toda la aplicación",
+          "Convierte la asociación en EAGER de forma permanente en toda la app",
           "Elimina la necesidad de declarar la relación @OneToMany en la entidad"
         ], correct: 1,
         exp: "@EntityGraph permite indicar, por consulta específica, qué asociaciones LAZY deben cargarse anticipadamente junto con la entidad principal (similar a un JOIN FETCH), evitando que Hibernate dispare una consulta adicional por cada fila al acceder después a esa asociación, mitigando así el problema N+1 sin necesidad de volver EAGER la relación en todo el resto de la aplicación."
@@ -8920,7 +8920,7 @@ List&lt;Factura&gt; buscarPorAnio(@Param("anio") int anio);</pre>
 ¿Qué diferencia hay entre este JOIN FETCH y un JOIN normal (sin FETCH) en JPQL?`,
         opts: [
           "JOIN FETCH filtra registros con una condición adicional que JOIN no permite",
-          "JOIN FETCH carga eager la asociación en el mismo SELECT, evitando una consulta extra",
+          "JOIN FETCH carga eager la asociación en el mismo SELECT, evitando otra consulta",
           "Ambos producen exactamente la misma consulta SQL final, sin diferencia real",
           "JOIN FETCH solo puede usarse en consultas nativas SQL, nunca en JPQL"
         ], correct: 1,
@@ -8951,8 +8951,8 @@ public class Factura {
 ¿Qué mecanismo de concurrencia habilita el campo anotado con @Version?`,
         opts: [
           "Cifrado automático del campo estado antes de guardarlo en disco",
-          "Bloqueo optimista: revisa la versión antes del UPDATE y lanza excepción si ya cambió",
-          "Bloqueo pesimista permanente sobre esa fila mientras exista cualquier sesión abierta",
+          "Bloqueo optimista: revisa la versión antes del UPDATE, lanza excepción si cambió",
+          "Bloqueo pesimista sobre esa fila mientras exista cualquier sesión abierta",
           "Replicación automática del registro hacia una base de datos secundaria"
         ], correct: 1,
         exp: "@Version implementa bloqueo optimista: cada UPDATE incluye una condición WHERE version = valorLeído; si otra transacción ya modificó (e incrementó) la versión mientras tanto, la actualización no afecta ninguna fila y Hibernate lanza OptimisticLockException, evitando sobrescribir cambios concurrentes sin detectarlos."
@@ -8975,7 +8975,7 @@ public class Factura {
         q: "Entre los tipos de CascadeType (PERSIST, MERGE, REMOVE, ALL), ¿qué distingue específicamente a CascadeType.REMOVE?",
         opts: [
           "Propaga únicamente la operación persist() hacia las entidades asociadas",
-          "Propaga la eliminación: borrar el padre elimina también sus entidades hijas asociadas",
+          "Propaga la eliminación: borrar el padre elimina también sus hijas asociadas",
           "Sincroniza cambios de estado sin eliminar ni crear ningún registro nuevo",
           "Solo tiene efecto sobre relaciones @ManyToOne, nunca sobre @OneToMany"
         ], correct: 1,
@@ -8996,7 +8996,7 @@ public class Producto {
 }</pre>
 ¿Qué logra la anotación @Transient sobre getPrecioFinal()?`,
         opts: [
-          "Marca el método como el punto de entrada obligatorio para todas las consultas",
+          "Marca el método como punto de entrada obligatorio para todas las consultas",
           "Indica que ese valor calculado no debe mapearse ni persistirse como columna",
           "Convierte el método en el nuevo identificador (clave primaria) de la entidad",
           "Obliga a recalcular ese valor automáticamente cada vez que se hace commit"
@@ -9008,10 +9008,10 @@ public class Producto {
         id: "or-26", cat: "orm", type: "teoria", diff: "Intermedio",
         q: "¿Qué ventaja ofrece la Criteria API de JPA frente a escribir JPQL como texto plano para construir consultas dinámicas?",
         opts: [
-          "Ejecuta las consultas directamente en la base de datos sin pasar por el proveedor JPA",
-          "Construye consultas de forma programática con verificación de tipos en compilación",
+          "Ejecuta las consultas directamente en la BD sin pasar por el proveedor JPA",
+          "Construye consultas programáticamente con verificación de tipos en compilación",
           "Solo puede usarse para operaciones de eliminación masiva de registros",
-          "Reemplaza por completo la necesidad de declarar entidades anotadas con @Entity"
+          "Reemplaza la necesidad de declarar entidades anotadas con @Entity"
         ], correct: 1,
         exp: "A diferencia de concatenar strings de JPQL (propenso a errores de sintaxis detectables solo en tiempo de ejecución), la Criteria API construye la consulta mediante objetos Java tipados, permitiendo que el compilador detecte errores de tipo y facilitando ensamblar condiciones dinámicas según parámetros de búsqueda opcionales."
       },
@@ -9024,8 +9024,8 @@ public class Producto {
 List&lt;Contribuyente&gt; resultado = q.getResultList();</pre>
 ¿Por qué podría preferirse createNativeQuery() sobre JPQL en este caso específico?`,
         opts: [
-          "Porque JPQL no permite ejecutar ningún tipo de SELECT bajo ninguna circunstancia",
-          "Porque ROWNUM es propio de Oracle, sin equivalente directo en JPQL estándar portable",
+          "Porque JPQL no permite ejecutar ningún tipo de SELECT",
+          "Porque ROWNUM es propio de Oracle, sin equivalente directo en JPQL estándar",
           "Porque las consultas nativas se ejecutan siempre más rápido que cualquier JPQL",
           "Porque createNativeQuery() es la única forma de mapear resultados a una entidad"
         ], correct: 1,
@@ -9045,8 +9045,8 @@ public class Contribuyente {
 Al recorrer 50 contribuyentes y acceder a sus declaraciones, ¿cómo cambia el número de consultas SQL con @BatchSize(size = 20) frente a no usar esa anotación?`,
         opts: [
           "Agrupa la carga de proxies pendientes en lotes de hasta 20 usando cláusulas IN",
-          "Elimina por completo cualquier consulta adicional, cargando todo en la consulta original",
-          "Cambia el tipo de asociación de LAZY a EAGER de forma permanente para toda la entidad",
+          "Elimina cualquier consulta adicional, cargando todo en la consulta original",
+          "Cambia el tipo de asociación de LAZY a EAGER, de forma permanente",
           "Solo tiene efecto si la colección se declara además como @Transient"
         ], correct: 0,
         exp: "Según la documentación oficial de Hibernate, @BatchSize especifica un tamaño máximo de lote para la carga diferida de una entidad o colección: en lugar de una consulta SQL por cada proxy no inicializado, Hibernate agrupa varios usando una cláusula IN, reduciendo el problema N+1 de N consultas a aproximadamente N/tamaño_lote consultas."
@@ -9056,10 +9056,10 @@ Al recorrer 50 contribuyentes y acceder a sus declaraciones, ¿cómo cambia el n
         id: "or-29", cat: "orm", type: "teoria", diff: "Intermedio",
         q: "Según la documentación de Hibernate, ¿cuál es la diferencia principal entre una Session normal y una StatelessSession?",
         opts: [
-          "No mantiene caché de primer nivel ni dirty checking; opera directo contra la base de datos",
-          "StatelessSession solo puede usarse para operaciones de lectura, nunca para INSERT o UPDATE",
+          "No mantiene caché de primer nivel ni dirty checking; opera directo contra la BD",
+          "StatelessSession solo sirve para lectura, nunca para INSERT o UPDATE",
           "Ambas son idénticas; StatelessSession es solo un alias histórico de Session",
-          "StatelessSession requiere obligatoriamente deshabilitar la caché de segundo nivel de toda la aplicación"
+          "StatelessSession requiere deshabilitar la caché de segundo nivel de toda la app"
         ], correct: 0,
         exp: "Una StatelessSession de Hibernate opera a un nivel más bajo: no tiene contexto de persistencia (caché de primer nivel), no aplica dirty checking automático ni cascadas, y cada operación (insert/update/delete) se traduce directamente en la sentencia SQL correspondiente, útil para procesos batch de alto volumen donde el overhead de una Session completa no se justifica."
       },
@@ -9068,9 +9068,9 @@ Al recorrer 50 contribuyentes y acceder a sus declaraciones, ¿cómo cambia el n
         id: "or-30", cat: "orm", type: "teoria", diff: "Intermedio",
         q: "¿Qué controla el modo de descarga (FlushMode) de una sesión de Hibernate, y qué diferencia hay entre AUTO y COMMIT?",
         opts: [
-          "AUTO puede sincronizar antes de una consulta afectada; COMMIT solo al confirmar la transacción",
-          "FlushMode controla exclusivamente la frecuencia de backups automáticos de la base de datos",
-          "COMMIT sincroniza los cambios en cada línea de código ejecutada, sin excepción",
+          "AUTO sincroniza antes de una consulta afectada; COMMIT solo al confirmar",
+          "FlushMode controla exclusivamente la frecuencia de backups automáticos de la BD",
+          "COMMIT sincroniza los cambios en cada línea de código ejecutada",
           "AUTO y COMMIT son sinónimos exactos en todas las versiones de Hibernate"
         ], correct: 0,
         exp: "El FlushMode determina cuándo Hibernate sincroniza el estado en memoria con la base de datos. AUTO (el valor por defecto histórico) puede disparar un flush automático antes de una consulta si detecta cambios pendientes relevantes para esa consulta; COMMIT pospone la sincronización hasta el commit de la transacción, evitando flushes intermedios."
@@ -9092,10 +9092,10 @@ public class Factura {
 }</pre>
 ¿Por qué se considera que DetalleFactura es el lado 'propietario' (owning side) de esta relación y Factura el lado inverso?`,
         opts: [
-          "Porque DetalleFactura contiene el atributo mappedBy, que indica quién controla la relación",
-          "El lado que declara @JoinColumn es el propietario; mappedBy solo referencia esa relación",
-          "El propietario se determina alfabéticamente por el nombre de la clase, no por la anotación",
-          "En JPA no existe ningún concepto de lado propietario en relaciones bidireccionales"
+          "Porque DetalleFactura tiene mappedBy, que indica quién controla la relación",
+          "El lado que declara @JoinColumn es el propietario; mappedBy solo referencia",
+          "El propietario se determina alfabéticamente por el nombre de la clase",
+          "En JPA no existe lado propietario en relaciones bidireccionales"
         ], correct: 1,
         exp: "En una relación bidireccional JPA, el lado propietario es el que define la columna de clave foránea física mediante @JoinColumn; es el que Hibernate usa para generar los INSERT/UPDATE de esa relación. El lado inverso (con mappedBy) es solo de lectura respecto a la relación: modificarlo sin actualizar también el lado propietario no persiste el cambio."
       },
@@ -9104,9 +9104,9 @@ public class Factura {
         id: "or-32", cat: "orm", type: "teoria", diff: "Básico",
         q: "Según la especificación Jakarta Persistence, ¿qué determina el atributo generationType.SEQUENCE en @GeneratedValue?",
         opts: [
-          "Que el identificador se genera mediante un objeto SEQUENCE consultado antes de insertar",
+          "Que el identificador se genera con un SEQUENCE, consultado antes de insertar",
           "Que el identificador se genera concatenando campos de texto de la entidad",
-          "Que la clave primaria se calcula solo en el cliente Java, sin consultar la base de datos",
+          "Que la clave primaria se calcula solo en el cliente Java, sin consultar la BD",
           "Que el identificador se reutiliza automáticamente tras eliminar una fila"
         ], correct: 0,
         exp: "GenerationType.SEQUENCE delega la generación del identificador a un objeto SEQUENCE del motor de base de datos (ampliamente soportado por Oracle), que el proveedor JPA consulta (normalmente con NEXTVAL) para obtener el próximo valor antes de insertar la nueva fila."
@@ -9116,7 +9116,7 @@ public class Factura {
         id: "or-33", cat: "orm", type: "teoria", diff: "Avanzado",
         q: "¿Qué diferencia hay entre el ciclo de vida 'detached' y 'removed' de una entidad JPA?",
         opts: [
-          "detached se desconectó del contexto; removed fue marcada para eliminarse de la base",
+          "detached se desconectó del contexto; removed fue marcada para eliminarse",
           "Ambos estados son sinónimos exactos según la especificación Jakarta Persistence",
           "removed significa que la entidad nunca fue guardada en la base de datos",
           "detached solo aplica a entidades que aún no tienen identificador asignado"
@@ -9135,10 +9135,10 @@ public class Documento { @Id private Long id; }
 public class Factura extends Documento { private double monto; }</pre>
 ¿Cómo organiza JOINED las tablas físicas de esta jerarquía, a diferencia de SINGLE_TABLE?`,
         opts: [
-          "Crea una tabla por cada clase concreta de la jerarquía, sin ninguna relación entre ellas",
-          "Una tabla para los campos comunes y otra por subclase, unidas por la misma clave primaria",
-          "Ignora por completo la jerarquía y almacena todo en una única tabla, igual que SINGLE_TABLE",
-          "Requiere obligatoriamente que Documento sea una interfaz, no una clase abstracta"
+          "Crea una tabla por cada clase concreta de la jerarquía, sin relación entre ellas",
+          "Una tabla para campos comunes y otra por subclase, unidas por la misma clave",
+          "Ignora la jerarquía y almacena todo en una única tabla, igual que SINGLE_TABLE",
+          "Requiere que Documento sea una interfaz, no una clase abstracta"
         ], correct: 1,
         exp: "JOINED normaliza la jerarquía en varias tablas relacionadas: una para los campos comunes de la superclase, y una tabla adicional por cada subclase que contiene únicamente sus campos específicos, enlazadas por la misma clave primaria; recuperar una Factura completa implica un JOIN entre ambas tablas, a diferencia del enfoque de una sola tabla ancha de SINGLE_TABLE."
       },
@@ -9147,8 +9147,8 @@ public class Factura extends Documento { private double monto; }</pre>
         id: "or-35", cat: "orm", type: "teoria", diff: "Intermedio",
         q: "¿Qué papel cumple la interfaz EntityListener (junto con anotaciones como @PrePersist o @PostLoad) en el ciclo de vida de una entidad JPA?",
         opts: [
-          "Ejecuta lógica de callback en momentos del ciclo de vida, sin mezclarla en la lógica de negocio",
-          "Reemplaza por completo la necesidad de declarar un EntityManager en la aplicación",
+          "Ejecuta callbacks en el ciclo de vida, sin mezclarlos en la lógica de negocio",
+          "Reemplaza la necesidad de declarar un EntityManager en la aplicación",
           "Solo puede usarse en entidades marcadas como @Embeddable, nunca en @Entity",
           "Convierte automáticamente la entidad en de solo lectura tras su primera carga"
         ], correct: 0,
@@ -9164,10 +9164,10 @@ public class Factura extends Documento { private double monto; }</pre>
     .executeUpdate();</pre>
 ¿Qué particularidad tiene un UPDATE ejecutado con executeUpdate() en JPQL respecto al contexto de persistencia (caché de primer nivel) ya cargado en memoria?`,
         opts: [
-          "Actualiza automáticamente cualquier entidad Contribuyente ya cargada en el contexto actual",
-          "Afecta la base de datos por SQL, pero no sincroniza las entidades ya cargadas en memoria",
-          "Lanza una excepción si existe alguna entidad Contribuyente ya cargada en la sesión",
-          "Convierte automáticamente la consulta en una operación por lotes sin configuración adicional"
+          "Actualiza automáticamente cualquier entidad Contribuyente ya cargada en el contexto",
+          "Afecta la BD por SQL, pero no sincroniza las entidades ya cargadas en memoria",
+          "Lanza excepción si existe una entidad Contribuyente ya cargada en la sesión",
+          "Convierte la consulta en una operación por lotes sin configuración adicional"
         ], correct: 1,
         exp: "Las operaciones JPQL bulk (UPDATE/DELETE con executeUpdate()) se traducen directamente a SQL contra la base de datos, sin pasar por el ciclo normal de gestión de entidades; por eso no actualizan automáticamente las instancias que ya estaban cargadas en el contexto de persistencia, pudiendo dejarlas con datos obsoletos hasta que se recarguen explícitamente."
       },
@@ -9184,10 +9184,10 @@ public class Factura extends Documento { private double monto; }</pre>
         id: "or-38", cat: "orm", type: "teoria", diff: "Avanzado",
         q: "¿Qué diferencia hay entre los modos de acceso 'FIELD' y 'PROPERTY' que Hibernate puede usar para leer/escribir los atributos de una entidad?",
         opts: [
-          "FIELD accede a los campos por reflexión; PROPERTY usa los getter/setter declarados",
+          "FIELD accede a campos por reflexión; PROPERTY usa los getter/setter declarados",
           "FIELD solo puede usarse con tipos primitivos, nunca con objetos",
           "PROPERTY obliga a que todos los campos de la entidad sean públicos",
-          "Ambos modos son idénticos en comportamiento, solo cambia el nombre de configuración"
+          "Ambos modos son idénticos en comportamiento; solo cambia el nombre"
         ], correct: 0,
         exp: "El modo de acceso se determina típicamente por dónde se colocan las anotaciones (sobre el campo o sobre el getter). En FIELD, Hibernate lee/escribe los atributos directamente vía reflexión, ignorando getters/setters; en PROPERTY, pasa por esos métodos, lo que permite ejecutar validaciones o transformaciones adicionales dentro de ellos al leer o escribir el valor."
       },
@@ -9205,9 +9205,9 @@ public class Contribuyente {
 }</pre>
 Si direccion es null al persistir un nuevo Contribuyente, ¿qué ocurre con las columnas calle y ciudad en la tabla?`,
         opts: [
-          "Se lanza una excepción obligatoriamente, ya que @Embedded no permite valores null",
+          "Se lanza una excepción, ya que @Embedded no permite valores null",
           "Ambas columnas quedan con valor NULL en la fila recién insertada",
-          "Se crea automáticamente una fila vacía adicional en una tabla separada para Direccion",
+          "Se crea automáticamente una fila vacía en una tabla separada para Direccion",
           "El identificador de la entidad Contribuyente se genera como null en ese caso"
         ], correct: 1,
         exp: "Un componente @Embeddable no tiene tabla propia: sus atributos se mapean como columnas adicionales de la tabla del que lo contiene. Si la referencia @Embedded es null al persistir, esas columnas simplemente quedan NULL en la fila insertada, sin generar ninguna excepción ni tabla adicional."
@@ -9217,10 +9217,10 @@ Si direccion es null al persistir un nuevo Contribuyente, ¿qué ocurre con las 
         id: "or-40", cat: "orm", type: "teoria", diff: "Intermedio",
         q: "Según el User Guide oficial de Hibernate, ¿qué diferencia existe entre el flush mode AUTO y el flush mode COMMIT?",
         opts: [
-          "AUTO sincroniza antes de consultas afectadas o al commit; COMMIT lo retrasa hasta el commit",
-          "COMMIT ejecuta el flush inmediatamente después de cada llamada a persist(), sin excepción",
-          "AUTO nunca sincroniza cambios automáticamente; requiere siempre una llamada manual a flush()",
-          "Ambos modos son idénticos desde Hibernate 5 en adelante, sin ninguna diferencia real"
+          "AUTO sincroniza antes de consultas afectadas o al commit; COMMIT lo retrasa",
+          "COMMIT ejecuta el flush inmediatamente después de cada llamada a persist()",
+          "AUTO nunca sincroniza solo; siempre requiere una llamada manual a flush()",
+          "Ambos modos son idénticos desde Hibernate 5, sin diferencia real"
         ], correct: 0,
         exp: "Según el User Guide de Hibernate, AUTO (el modo por defecto) sincroniza los cambios pendientes con la base de datos antes de ejecutar una consulta que podría verse afectada por ellos, además de al hacer commit. COMMIT intenta posponer esa sincronización hasta el commit de la transacción, aunque el propio Hibernate advierte que puede igualmente hacer flush antes en ciertos casos."
       },
@@ -9230,7 +9230,7 @@ Si direccion es null al persistir un nuevo Contribuyente, ¿qué ocurre con las 
         q: "¿Qué controla el flush mode MANUAL, disponible en Hibernate más allá de los dos modos estándar de JPA (AUTO y COMMIT)?",
         opts: [
           "Delega en la aplicación invocar Session.flush() explícitamente para sincronizar",
-          "Deshabilita por completo el mecanismo de dirty checking dentro de esa sesión",
+          "Deshabilita por completo el dirty checking dentro de esa sesión",
           "Obliga a Hibernate a hacer flush antes de cada línea de código ejecutada",
           "Es un alias exacto del modo COMMIT, sin ninguna diferencia práctica"
         ], correct: 0,
@@ -9248,8 +9248,8 @@ List&lt;Contribuyente&gt; suspendidos = em.createQuery(
 Con el flush mode AUTO (el predeterminado), ¿aparecerá el contribuyente recién modificado en la lista suspendidos?`,
         opts: [
           "No, los cambios en memoria nunca se reflejan en consultas de la misma transacción",
-          "Sí, Hibernate detecta que la consulta podría verse afectada y hace flush automático",
-          "Solo si se llama explícitamente a em.flush() justo antes de la consulta, sin excepción",
+          "Sí, Hibernate detecta que la consulta podría verse afectada y hace flush",
+          "Solo si se llama explícitamente a em.flush() justo antes de la consulta",
           "Depende exclusivamente de si la entidad tiene o no un campo @Version definido"
         ], correct: 1,
         exp: "Con el modo AUTO por defecto, Hibernate sincroniza (hace flush de) los cambios pendientes antes de ejecutar una consulta que su análisis considera que podría verse afectada por ellos, incluyendo actualizaciones a la misma entidad consultada. Por eso el contribuyente recién marcado como SUSPENDIDO aparece en el resultado sin necesidad de un flush() manual."
@@ -9259,10 +9259,10 @@ Con el flush mode AUTO (el predeterminado), ¿aparecerá el contribuyente recié
         id: "or-43", cat: "orm", type: "teoria", diff: "Intermedio",
         q: "¿Qué diferencia hay entre LockModeType.PESSIMISTIC_READ y LockModeType.PESSIMISTIC_WRITE en JPA?",
         opts: [
-          "PESSIMISTIC_READ impide modificar la fila; PESSIMISTIC_WRITE impide que otras transacciones la lean o modifiquen",
-          "Son sinónimos exactos; ambos producen siempre el mismo tipo de bloqueo compartido sobre la fila afectada",
-          "PESSIMISTIC_WRITE solo puede aplicarse a columnas de tipo numérico, nunca sobre columnas de texto",
-          "PESSIMISTIC_READ únicamente puede solicitarse fuera de cualquier transacción activa en curso"
+          "PESSIMISTIC_READ impide modificar; PESSIMISTIC_WRITE impide leer o modificar",
+          "Son sinónimos exactos; ambos producen el mismo bloqueo sobre la fila",
+          "PESSIMISTIC_WRITE solo puede aplicarse a columnas numéricas, nunca de texto",
+          "PESSIMISTIC_READ únicamente puede solicitarse fuera de una transacción activa"
         ], correct: 0,
         exp: "Según la especificación JPA, PESSIMISTIC_READ obtiene un bloqueo compartido que impide escrituras concurrentes; PESSIMISTIC_WRITE obtiene un bloqueo exclusivo, más restrictivo, que además impide que otras transacciones lean esa fila con su propio lock. Hibernate traduce ambos al mecanismo de bloqueo nativo del motor (por ejemplo, SELECT ... FOR UPDATE)."
       },
@@ -9276,10 +9276,10 @@ Con el flush mode AUTO (el predeterminado), ¿aparecerá el contribuyente recié
 private List&lt;Tributo&gt; tributos;</pre>
 ¿Qué representa @JoinTable en esta relación @ManyToMany?`,
         opts: [
-          "Declara la tabla intermedia que materializa la relación, con sus dos columnas de clave foránea",
-          "Renombra la propia tabla de la entidad Contribuyente sin crear ninguna tabla adicional",
+          "Declara la tabla intermedia de la relación, con sus dos claves foráneas",
+          "Renombra la tabla de Contribuyente sin crear ninguna tabla adicional",
           "Define un índice físico adicional sobre la columna contribuyente_id únicamente",
-          "Solo tiene efecto documental; Hibernate igual generaría esa tabla por convención propia"
+          "Solo tiene efecto documental; Hibernate igual generaría esa tabla por convención"
         ], correct: 0,
         exp: "Una relación @ManyToMany requiere una tabla intermedia (join table) que conecte ambas entidades mediante dos claves foráneas. @JoinTable especifica el nombre de esa tabla y sus columnas: joinColumns apunta al lado propietario, inverseJoinColumns al lado inverso de la relación."
       },
@@ -9288,10 +9288,10 @@ private List&lt;Tributo&gt; tributos;</pre>
         id: "or-45", cat: "orm", type: "teoria", diff: "Intermedio",
         q: "¿Qué caracteriza a la estrategia de herencia InheritanceType.TABLE_PER_CLASS en JPA?",
         opts: [
-          "Cada clase concreta de la jerarquía tiene su propia tabla, con todas sus columnas heredadas duplicadas",
-          "Todas las subclases comparten obligatoriamente una única tabla física con una columna discriminadora",
-          "Solo la superclase abstracta llega a mapearse físicamente a una tabla en la base de datos",
-          "Requiere que cada subclase se almacene en un esquema de base de datos completamente distinto"
+          "Cada clase concreta tiene su propia tabla, con las columnas heredadas duplicadas",
+          "Todas las subclases comparten una tabla física con columna discriminadora",
+          "Solo la superclase abstracta llega a mapearse a una tabla en la base de datos",
+          "Requiere que cada subclase se almacene en un esquema de base de datos distinto"
         ], correct: 0,
         exp: "Con TABLE_PER_CLASS, cada clase concreta de la jerarquía obtiene su propia tabla, incluyendo las columnas heredadas de la superclase; a diferencia de JOINED (tablas separadas unidas por clave foránea) o SINGLE_TABLE (una sola tabla con columna discriminadora), suele requerir UNION para consultas polimórficas sobre la superclase."
       },
@@ -9300,10 +9300,10 @@ private List&lt;Tributo&gt; tributos;</pre>
         id: "or-46", cat: "orm", type: "teoria", diff: "Básico",
         q: "¿Qué diferencia hay entre los valores 'validate' y 'update' de la propiedad hibernate.hbm2ddl.auto?",
         opts: [
-          "'validate' compara el esquema contra las entidades sin modificarlo; 'update' sí aplica cambios (agrega tablas/columnas)",
-          "Ambos valores realizan exactamente la misma verificación de esquema, sin ninguna diferencia práctica real",
-          "'validate' borra y recrea completamente el esquema; 'update' jamás llega a tocar la base de datos",
-          "'update' solo puede funcionar contra bases de datos Oracle, nunca contra otros motores distintos"
+          "'validate' compara esquema y entidades sin modificar; 'update' sí aplica cambios",
+          "Ambos valores realizan la misma verificación de esquema, sin diferencia práctica",
+          "'validate' borra y recrea el esquema; 'update' nunca toca la base de datos",
+          "'update' solo puede funcionar contra bases de datos Oracle, nunca otros motores"
         ], correct: 0,
         exp: "'validate' únicamente compara el esquema actual contra el mapeo de entidades y lanza error si no coinciden, sin modificar nada. 'update' sí intenta ajustar el esquema agregando tablas o columnas faltantes, pero sin eliminar las existentes, a diferencia de 'create' o 'create-drop', que sí recrean el esquema desde cero."
       },
@@ -9317,7 +9317,7 @@ private List&lt;Tributo&gt; tributos;</pre>
     .getResultList();</pre>
 ¿Qué controlan setFirstResult(20) y setMaxResults(10) en esta consulta JPQL?`,
         opts: [
-          "Paginación: omite los primeros 20 resultados y retorna como máximo los siguientes 10",
+          "Paginación: omite los primeros 20 resultados y retorna máximo 10 siguientes",
           "Un tiempo máximo de espera de 20 segundos y un límite de 10 reintentos ante fallo",
           "El número de columnas seleccionadas y el número de joins permitidos en la consulta",
           "Solo tienen efecto si la consulta se ejecuta dentro de una StatelessSession"
@@ -9329,10 +9329,10 @@ private List&lt;Tributo&gt; tributos;</pre>
         id: "or-48", cat: "orm", type: "teoria", diff: "Avanzado",
         q: "¿En qué circunstancia lanza JPA una OptimisticLockException sobre una entidad con @Version?",
         opts: [
-          "Cuando, al hacer commit, el valor de la columna @Version en base de datos ya no coincide con el leído al inicio",
-          "Cada vez que dos usuarios distintos llegan a consultar (SELECT) simultáneamente esa misma fila",
-          "Únicamente cuando la entidad no tiene definida ninguna clave primaria válida en su mapeo",
-          "Cuando el pool de conexiones JDBC se agota por completo durante la transacción en curso"
+          "Al hacer commit, si @Version en la BD ya no coincide con el leído al inicio",
+          "Cada vez que dos usuarios consultan (SELECT) simultáneamente la misma fila",
+          "Únicamente cuando la entidad no tiene clave primaria válida en su mapeo",
+          "Cuando el pool de conexiones JDBC se agota durante la transacción en curso"
         ], correct: 0,
         exp: "El bloqueo optimista compara, al momento de actualizar, el valor de @Version leído originalmente contra el valor actual en la fila; si otra transacción ya la modificó (incrementando esa versión) mientras tanto, la actualización falla y se lanza OptimisticLockException, señalando un conflicto de concurrencia detectado tardíamente."
       },
@@ -9341,10 +9341,10 @@ private List&lt;Tributo&gt; tributos;</pre>
         id: "or-49", cat: "orm", type: "teoria", diff: "Intermedio",
         q: "¿Qué relación existe entre un EntityManagerFactory y las instancias de EntityManager que produce?",
         opts: [
-          "El EntityManagerFactory es costoso de crear y se comparte por la app; el EntityManager es ligero y de vida corta",
-          "Ambos representan exactamente el mismo concepto, usados de forma intercambiable en cualquier contexto",
-          "Un EntityManagerFactory solo puede producir un único EntityManager durante toda la vida de la aplicación",
-          "El EntityManager es el que se comparte globalmente, mientras que el Factory se crea por cada petición"
+          "EntityManagerFactory es costoso y compartido; EntityManager es ligero",
+          "Ambos representan el mismo concepto, usados de forma intercambiable",
+          "Un EntityManagerFactory solo puede producir un único EntityManager en toda la app",
+          "El EntityManager se comparte globalmente; el Factory se crea por cada petición"
         ], correct: 0,
         exp: "EntityManagerFactory encapsula la configuración de persistencia (mapeos, datasource) y es costoso de inicializar, por lo que se crea una sola vez por aplicación; cada EntityManager, en cambio, es liviano, no es thread-safe, y normalmente vive el tiempo de una única unidad de trabajo (una petición o transacción)."
       },
@@ -9353,10 +9353,10 @@ private List&lt;Tributo&gt; tributos;</pre>
         id: "or-50", cat: "orm", type: "teoria", diff: "Avanzado",
         q: "¿Qué optimización aporta la anotación específica de Hibernate @DynamicUpdate sobre una entidad?",
         opts: [
-          "Genera el UPDATE incluyendo solo las columnas que realmente cambiaron, en vez de todas las columnas mapeadas",
-          "Permite modificar el nombre de la tabla de la entidad en tiempo de ejecución de forma dinámica",
-          "Convierte automáticamente todas las consultas de esa entidad en consultas SQL completamente nativas",
-          "Fuerza a que cada UPDATE llegue a ejecutarse dentro de su propia transacción totalmente independiente"
+          "Genera el UPDATE solo con las columnas que realmente cambiaron, no todas",
+          "Permite modificar el nombre de la tabla de la entidad en tiempo de ejecución",
+          "Convierte automáticamente las consultas de esa entidad en SQL nativo",
+          "Fuerza a que cada UPDATE se ejecute dentro de su propia transacción independiente"
         ], correct: 0,
         exp: "Por defecto, Hibernate genera un UPDATE con todas las columnas mapeadas de la entidad, incluso las que no cambiaron. @DynamicUpdate hace que Hibernate calcule en tiempo de ejecución qué columnas realmente se modificaron y genere un UPDATE más acotado, útil en entidades con muchas columnas donde solo algunas cambian con frecuencia."
       },
@@ -9365,10 +9365,10 @@ private List&lt;Tributo&gt; tributos;</pre>
         id: "or-51", cat: "orm", type: "teoria", diff: "Avanzado",
         q: "Según la documentación de Hibernate, ¿qué alternativa ofrece el 'bytecode enhancement' frente a los proxies dinámicos tradicionales para la carga diferida (lazy loading)?",
         opts: [
-          "Instrumenta las clases de entidad para interceptar el acceso a campos, sin una subclase proxy en tiempo de ejecución",
-          "Elimina por completo la posibilidad de usar FetchType.LAZY en cualquier tipo de asociación definida",
-          "Obliga a que absolutamente todas las entidades se declaren final, impidiendo cualquier otro mecanismo",
-          "Reemplaza completamente a JDBC como mecanismo de comunicación con la base de datos subyacente"
+          "Instrumenta las clases de entidad para interceptar accesos, sin proxy",
+          "Elimina la posibilidad de usar FetchType.LAZY en cualquier asociación",
+          "Obliga a que todas las entidades se declaren final, impidiendo otro mecanismo",
+          "Reemplaza completamente a JDBC como mecanismo de comunicación con la BD"
         ], correct: 0,
         exp: "El bytecode enhancement modifica el bytecode de las propias clases de entidad (en tiempo de compilación o carga) para interceptar el acceso a atributos y disparar la carga diferida, evitando las limitaciones de los proxies dinámicos basados en subclases (como no poder marcar la clase como final o problemas con atributos de tipo básico)."
       },
@@ -9388,8 +9388,8 @@ class Contribuyente {
 }</pre>
 ¿Qué modela esta combinación de @Embeddable y @EmbeddedId?`,
         opts: [
-          "Una clave primaria compuesta, formada por varios atributos agrupados en una clase embebida",
-          "Una relación @OneToOne opcional entre Contribuyente y una entidad ContribuyenteId separada",
+          "Una clave compuesta, formada por varios atributos en una clase embebida",
+          "Una relación @OneToOne opcional entre Contribuyente y ContribuyenteId",
           "Un índice secundario adicional sobre la columna ruc, sin afectar la clave primaria",
           "Un campo transitorio que nunca se persiste ni participa en la clave primaria"
         ], correct: 0,
@@ -9400,10 +9400,10 @@ class Contribuyente {
         id: "or-53", cat: "orm", type: "teoria", diff: "Intermedio",
         q: "¿Qué logra marcar una consulta JPQL como cacheable mediante el hint org.hibernate.cacheable?",
         opts: [
-          "Que el resultado se almacene en la caché de consultas, reutilizándose si se repite con los mismos parámetros",
-          "Que la consulta se ejecute automáticamente en un hilo completamente separado del principal",
-          "Que se deshabilite por completo la caché de primer nivel únicamente para esa consulta puntual",
-          "Que la consulta ignore cualquier cambio pendiente sin confirmar dentro de la transacción actual"
+          "Que el resultado quede en caché de consultas para reutilizarse",
+          "Que la consulta se ejecute automáticamente en un hilo separado del principal",
+          "Que se deshabilite la caché de primer nivel únicamente para esa consulta",
+          "Que la consulta ignore cambios pendientes sin confirmar en la transacción actual"
         ], correct: 0,
         exp: "La caché de consultas (query cache) de Hibernate, habilitada junto con la caché de segundo nivel, almacena el conjunto de identificadores resultante de una consulta marcada como cacheable, evitando reejecutar la misma consulta SQL cuando se repite con parámetros idénticos, siempre que las entidades subyacentes no hayan cambiado."
       },
@@ -9412,10 +9412,10 @@ class Contribuyente {
         id: "or-54", cat: "orm", type: "teoria", diff: "Básico",
         q: "¿Qué diferencia adicional tiene hibernate.hbm2ddl.auto=create-drop frente al valor create?",
         opts: [
-          "create-drop además elimina todo el esquema al cerrarse la SessionFactory o el EntityManagerFactory",
-          "create-drop nunca llega a crear tablas nuevas, solo actualiza las columnas ya existentes",
-          "create solo puede llegar a usarse contra bases de datos en memoria, nunca contra Oracle",
-          "No existe absolutamente ninguna diferencia real entre ambos valores de esta configuración"
+          "create-drop además borra el esquema al cerrar la Session/EntityManagerFactory",
+          "create-drop nunca crea tablas nuevas, solo actualiza las columnas existentes",
+          "create solo puede usarse contra bases de datos en memoria, nunca contra Oracle",
+          "No existe ninguna diferencia real entre ambos valores de esta configuración"
         ], correct: 0,
         exp: "Ambos valores eliminan y recrean el esquema completo al iniciar la aplicación; create-drop añade que, al cerrarse la SessionFactory/EntityManagerFactory, ese esquema recién creado también se elimina, lo que resulta útil típicamente para pruebas automatizadas que deben dejar la base de datos limpia."
       },
@@ -9424,10 +9424,10 @@ class Contribuyente {
         id: "or-55", cat: "orm", type: "teoria", diff: "Intermedio",
         q: "¿Qué diferencia hay entre las estrategias de concurrencia 'read-only' y 'read-write' de la caché de segundo nivel?",
         opts: [
-          "'read-only' asume que la entidad nunca se modifica tras crearse; 'read-write' sí soporta actualizaciones",
-          "Ambas estrategias resultan idénticas en comportamiento, solo cambia el nombre usado en la configuración",
-          "'read-write' solo puede llegar a aplicarse a entidades marcadas explícitamente como @Immutable",
-          "'read-only' requiere obligatoriamente deshabilitar la propia caché de primer nivel de la sesión"
+          "'read-only' asume que la entidad no se modifica tras crearse; 'read-write' sí",
+          "Ambas estrategias son idénticas en comportamiento, solo cambia el nombre",
+          "'read-write' solo puede aplicarse a entidades marcadas como @Immutable",
+          "'read-only' requiere deshabilitar la propia caché de primer nivel de la sesión"
         ], correct: 0,
         exp: "'read-only' es la estrategia más simple y de mejor rendimiento, pensada para datos que nunca cambian tras insertarse (intentar actualizarlos lanza error); 'read-write' sí permite modificaciones, empleando un mecanismo de bloqueo suave para mantener la caché consistente con la base de datos ante actualizaciones concurrentes."
       },
@@ -9438,10 +9438,10 @@ class Contribuyente {
     LockModeType.PESSIMISTIC_WRITE);</pre>
 ¿Qué efecto tiene solicitar explícitamente PESSIMISTIC_WRITE en esta llamada a find()?`,
         opts: [
-          "Obtiene un bloqueo exclusivo sobre esa fila en base de datos, impidiendo que otra transacción la lea o modifique",
-          "Solo afecta al objeto en memoria dentro de esta JVM en particular, sin ningún efecto sobre la base de datos",
-          "Convierte automáticamente la consulta en una operación de solo lectura, sin posibilidad alguna de update",
-          "Equivale exactamente a no solicitar ningún tipo de bloqueo, es decir, a usar LockModeType.NONE"
+          "Obtiene un bloqueo exclusivo sobre esa fila en la BD para otras transacciones",
+          "Solo afecta al objeto en memoria de esta JVM, sin efecto sobre la base de datos",
+          "Convierte la consulta en una operación de solo lectura, sin posibilidad de update",
+          "Equivale a no solicitar ningún bloqueo, es decir, a usar LockModeType.NONE"
         ], correct: 0,
         exp: "Al pasar un LockModeType a find(), Hibernate traduce ese pedido al mecanismo de bloqueo nativo del motor de base de datos (típicamente SELECT ... FOR UPDATE); PESSIMISTIC_WRITE obtiene un bloqueo exclusivo que otras transacciones deben esperar hasta que la actual confirme o revierta."
       },
@@ -9450,10 +9450,10 @@ class Contribuyente {
         id: "or-57", cat: "orm", type: "teoria", diff: "Intermedio",
         q: "¿Qué diferencia hay entre EntityManager.find() y EntityManager.getReference() para obtener una entidad por su id?",
         opts: [
-          "find() consulta la base de datos de inmediato; getReference() retorna un proxy perezoso sin consultar aún",
-          "Ambos métodos resultan estrictamente equivalentes y siempre terminan ejecutando la misma consulta SQL",
-          "getReference() solo llega a funcionar con identificadores de tipo String, nunca con identificadores numéricos",
-          "find() jamás retorna null en ningún caso, mientras que getReference() sí puede llegar a retornar null"
+          "find() consulta la BD ya; getReference() retorna un proxy sin consultar aún",
+          "Ambos métodos resultan equivalentes y siempre ejecutan la misma consulta SQL",
+          "getReference() solo funciona con identificadores tipo String, nunca numéricos",
+          "find() jamás retorna null; getReference() sí puede llegar a retornar null"
         ], correct: 0,
         exp: "find() ejecuta una consulta contra la base de datos inmediatamente (o revisa la caché de primer nivel) y retorna la entidad inicializada, o null si no existe. getReference() retorna un proxy sin verificar la existencia de la fila, difiriendo la consulta real hasta que se acceda a un atributo distinto del id, lanzando EntityNotFoundException en ese momento si la fila no existe."
       }
@@ -9504,10 +9504,10 @@ BEGIN
 END;</pre>
 ¿Qué indica el atributo SQL%ROWCOUNT en este contexto?`,
         opts: [
-          "El número total de registros actualmente existentes en toda la tabla tramite",
+          "El número total de registros actualmente existentes en la tabla tramite",
           "Las filas afectadas por la última sentencia DML implícita, aquí el UPDATE",
           "El identificador numérico interno asignado a la última fila insertada",
-          "La cantidad total de errores producidos durante toda la ejecución del bloque"
+          "La cantidad total de errores producidos durante la ejecución del bloque"
         ], correct: 1,
         exp: "SQL%ROWCOUNT es un atributo de cursor implícito que indica cuántas filas fueron afectadas por la sentencia DML más reciente (INSERT, UPDATE o DELETE) ejecutada en el bloque; aquí permite detectar si el UPDATE realmente encontró y modificó algún registro."
       },
@@ -9547,10 +9547,10 @@ EXCEPTION
 END;</pre>
 ¿Por qué se verifica c_pendientes%ISOPEN antes de cerrar el cursor dentro del bloque EXCEPTION?`,
         opts: [
-          "Porque cerrar un cursor ya cerrado detiene por completo el servidor de base de datos",
+          "Porque cerrar un cursor ya cerrado detiene por completo el servidor de la BD",
           "Porque cerrar un cursor no abierto lanzaría el error INVALID_CURSOR",
-          "Porque %ISOPEN en realidad determina si aún quedan filas pendientes por leer",
-          "Porque esa verificación es un requisito de sintaxis obligatorio en todo EXCEPTION"
+          "Porque %ISOPEN determina si aún quedan filas pendientes por leer",
+          "Porque esa verificación es un requisito de sintaxis obligatorio en EXCEPTION"
         ], correct: 1,
         exp: "%ISOPEN indica si el cursor está actualmente abierto. En el manejo de errores conviene comprobarlo antes de CLOSE, ya que cerrar un cursor que no está abierto genera la excepción INVALID_CURSOR, lo cual enmascararía o interferiría con el manejo del error original que se está gestionando."
       },
@@ -9559,7 +9559,7 @@ END;</pre>
         id: "pl-06", cat: "plsql", type: "teoria", diff: "Intermedio",
         q: "¿Qué diferencia existe entre un parámetro IN, uno OUT y uno IN OUT en un procedimiento PL/SQL?",
         opts: [
-          "IN entra de solo lectura; OUT solo devuelve; IN OUT recibe y también devuelve",
+          "IN entra de solo lectura; OUT solo devuelve; IN OUT recibe y devuelve",
           "Los tres modos se comportan de forma idéntica; solo cambia el nombre usado",
           "El modo OUT resulta obligatorio en absolutamente todos los procedimientos",
           "IN OUT es un modo que únicamente puede aplicarse sobre parámetros NUMBER"
@@ -9593,7 +9593,7 @@ END;</pre>
         opts: [
           "Un objeto que genera números únicos y consecutivos para claves primarias",
           "Una variante particular de vista materializada, especializada en reportes",
-          "Un tipo de índice de Oracle diseñado específicamente para búsquedas de texto",
+          "Un tipo de índice de Oracle diseñado para búsquedas de texto",
           "Un procedimiento almacenado cuya función es ordenar registros de una tabla"
         ], correct: 0,
         exp: "Una SEQUENCE es un objeto independiente de cualquier tabla que genera valores numéricos secuenciales (con NEXTVAL/CURRVAL), típicamente utilizado para asignar identificadores únicos a nuevas filas, especialmente en versiones de Oracle previas a las columnas IDENTITY nativas."
@@ -9629,7 +9629,7 @@ END;</pre>
           "Un simple archivo de configuración interno propio del servidor Oracle",
           "Un objeto que agrupa procedimientos y tipos, con especificación y cuerpo",
           "Otro nombre alternativo con el que a veces se conoce, sin más, a un trigger",
-          "Una tabla especial de Oracle usada únicamente con fines de auditoría interna"
+          "Una tabla especial de Oracle usada solo con fines de auditoría interna"
         ], correct: 1,
         exp: "Un PACKAGE organiza elementos PL/SQL relacionados en dos partes: la especificación (PACKAGE) declara lo que es visible externamente, y el cuerpo (PACKAGE BODY) contiene la implementación, incluyendo posibles elementos privados no expuestos en la especificación."
       },
@@ -9663,10 +9663,10 @@ END;</pre>
         id: "pl-12", cat: "plsql", type: "teoria", diff: "Avanzado",
         q: "¿Para qué se utiliza el pragma AUTONOMOUS_TRANSACTION en un procedimiento PL/SQL?",
         opts: [
-          "Para poder ejecutar el procedimiento sin ninguna conexión activa a la base de datos",
-          "Para que corra en una transacción propia, con su COMMIT/ROLLBACK independiente",
+          "Para poder ejecutar el procedimiento sin ninguna conexión activa a la BD",
+          "Para que corra en una transacción propia, con COMMIT/ROLLBACK independiente",
           "Para forzar, de forma permanente, que el procedimiento jamás haga un commit",
-          "Para transformar automáticamente ese procedimiento en una función con retorno"
+          "Para convertir ese procedimiento en una función con valor de retorno"
         ], correct: 1,
         exp: "PRAGMA AUTONOMOUS_TRANSACTION aísla la transacción del bloque respecto a la transacción llamadora. Es útil, por ejemplo, en rutinas de logging/auditoría: aunque la transacción principal haga rollback, el registro autónomo de log ya confirmado (commit) permanece, ya que corre en su propio contexto transaccional independiente."
       },
@@ -9676,7 +9676,7 @@ END;</pre>
         q: "¿Cuál es la diferencia principal entre un cursor implícito y uno explícito en PL/SQL?",
         opts: [
           "El implícito lo gestiona Oracle; el explícito lo controla el desarrollador",
-          "Ambos son, en la práctica, exactamente lo mismo; solo cambia la sintaxis usada",
+          "Ambos son, en la práctica, lo mismo; solo cambia la sintaxis usada",
           "Un cursor explícito, por regla, solo puede declararse dentro de funciones",
           "El cursor implícito exige declarar obligatoriamente una variable %ROWTYPE"
         ], correct: 0,
@@ -9707,7 +9707,7 @@ END;</pre>
         q: "¿Qué diferencia principal existe entre COMMIT y ROLLBACK en una transacción PL/SQL/SQL?",
         opts: [
           "COMMIT confirma los cambios; ROLLBACK los deshace todos por completo",
-          "Ambas sentencias hacen exactamente lo mismo; ROLLBACK solo resulta más veloz",
+          "Ambas sentencias hacen lo mismo; ROLLBACK solo resulta más veloz",
           "COMMIT es una sentencia que únicamente puede acompañar a un SELECT",
           "ROLLBACK, en la práctica, elimina físicamente las tablas involucradas"
         ], correct: 0,
@@ -9733,10 +9733,10 @@ BEGIN
 END;</pre>
 ¿Cómo podría usarse esta función directamente dentro de una sentencia SQL?`,
         opts: [
-          "No es posible invocar una función PL/SQL desde SQL bajo ninguna circunstancia",
+          "No es posible invocar una función PL/SQL desde SQL en ningún caso",
           "SELECT id, monto * (1 + calcular_recargo(dias_atraso)) AS monto_total FROM declaracion;",
-          "Solo es invocable desde otro bloque PL/SQL, jamás desde una sentencia SQL directa",
-          "Debe convertirse antes en un PROCEDURE para poder usarla dentro de un SELECT"
+          "Solo es invocable desde otro bloque PL/SQL, jamás desde una sentencia SQL",
+          "Debe convertirse antes en un PROCEDURE para usarla dentro de un SELECT"
         ], correct: 1,
         exp: "Una FUNCTION PL/SQL que retorna un tipo de dato SQL válido (como NUMBER) puede invocarse directamente dentro de una expresión SQL, por ejemplo en la lista de columnas de un SELECT, siempre que no realice operaciones no permitidas en ese contexto (como DML sin PRAGMA especial en versiones antiguas)."
       },
@@ -9746,8 +9746,8 @@ END;</pre>
         opts: [
           "Una copia física adicional de una tabla, que se actualiza una vez al día",
           "Una consulta SQL almacenada que actúa como tabla virtual",
-          "Un tipo de índice especial diseñado exclusivamente para columnas de texto libre",
-          "Un procedimiento que se ejecuta automáticamente cada cierto tiempo programado"
+          "Un tipo de índice especial diseñado exclusivamente para texto libre",
+          "Un procedimiento que se ejecuta automáticamente en tiempo programado"
         ], correct: 1,
         exp: "Una vista encapsula una consulta SQL bajo un nombre, comportándose como una tabla virtual; simplifica el acceso a joins o cálculos complejos repetidos en múltiples lugares, y puede usarse también como mecanismo de seguridad para exponer solo un subconjunto de columnas o filas de las tablas subyacentes."
       },
@@ -9755,7 +9755,7 @@ END;</pre>
         id: "pl-18", cat: "plsql", type: "teoria", diff: "Intermedio",
         q: "¿Qué diferencia existe entre un trigger FOR EACH ROW y uno de nivel de sentencia (sin FOR EACH ROW) en Oracle?",
         opts: [
-          "Son equivalentes; FOR EACH ROW es solo una palabra clave opcional sin efecto",
+          "Son equivalentes; FOR EACH ROW es solo una palabra clave opcional",
           "FOR EACH ROW dispara por cada fila; el de sentencia corre una sola vez",
           "Los triggers de nivel de sentencia solo pueden dispararse ante un DELETE",
           "FOR EACH ROW solo puede declararse en triggers de tipo INSTEAD OF"
@@ -9768,10 +9768,10 @@ END;</pre>
 <pre class="code-block">CREATE INDEX idx_declaracion_ruc ON declaracion(ruc);</pre>
 ¿Qué compromiso (trade-off) implica agregar este índice?`,
         opts: [
-          "Solo trae beneficios reales, sin ninguna desventaja asociada conocida hasta ahora",
+          "Solo trae beneficios reales, sin ninguna desventaja conocida",
           "Acelera las búsquedas por ruc, con overhead de escritura y disco",
-          "Impide por completo realizar futuras actualizaciones sobre esa columna indexada",
-          "Convierte automáticamente la tabla afectada en una vista materializada nueva"
+          "Impide realizar futuras actualizaciones sobre esa columna indexada",
+          "Convierte la tabla afectada en una vista materializada nueva"
         ], correct: 1,
         exp: "Un índice acelera notablemente las búsquedas y joins por la columna indexada (evitando un full table scan), pero tiene costo: cada operación de escritura (INSERT/UPDATE/DELETE) debe también mantener actualizada la estructura del índice, y este ocupa espacio adicional en disco, por lo que no conviene indexar columnas indiscriminadamente."
       },
@@ -9780,10 +9780,10 @@ END;</pre>
         id: "pl-20", cat: "plsql", type: "teoria", diff: "Intermedio",
         q: "¿Qué diferencia existe entre un elemento declarado en la especificación de un PACKAGE y uno declarado solo en su PACKAGE BODY?",
         opts: [
-          "No hay diferencia real; ambas secciones exponen exactamente los mismos elementos",
-          "Lo de la especificación es visible fuera del paquete; lo solo en el body es privado",
-          "El PACKAGE BODY solo puede contener variables, nunca procedimientos ni funciones",
-          "La especificación siempre debe ir después del PACKAGE BODY en el mismo script"
+          "No hay diferencia real; ambas secciones exponen los mismos elementos",
+          "Lo de la especificación es visible fuera del paquete; lo del body es privado",
+          "El PACKAGE BODY solo contiene variables, nunca procedimientos ni funciones",
+          "La especificación siempre va después del PACKAGE BODY en el mismo script"
         ], correct: 1,
         exp: "La especificación (PACKAGE) actúa como interfaz pública: solo lo declarado allí puede invocarse desde fuera del paquete. El PACKAGE BODY contiene la implementación y puede incluir elementos adicionales (variables auxiliares, procedimientos helper) que quedan ocultos, accesibles únicamente desde dentro del propio paquete."
       },
@@ -9832,7 +9832,7 @@ END;</pre>
         q: "¿Para qué se utiliza el paquete DBMS_OUTPUT (con PUT_LINE) durante el desarrollo de bloques PL/SQL?",
         opts: [
           "Para insertar registros de auditoría directamente en una tabla del esquema",
-          "Para imprimir mensajes de depuración en el búfer, visibles en la consola del cliente SQL",
+          "Para imprimir mensajes de depuración en el búfer, visibles en el cliente SQL",
           "Para exportar el resultado de una consulta a un archivo CSV",
           "Para enviar notificaciones por correo electrónico desde la base de datos"
         ], correct: 1,
@@ -9849,7 +9849,7 @@ END;</pre>
 ¿Qué propósito cumple el parámetro de tipo SYS_REFCURSOR en este procedimiento?`,
         opts: [
           "Define el número máximo de filas que la consulta puede devolver",
-          "Permite devolver al llamador un conjunto de resultados completo, no un valor escalar",
+          "Permite devolver al llamador un conjunto de resultados, no un valor escalar",
           "Obliga a que el procedimiento se ejecute como una transacción autónoma",
           "Convierte automáticamente el procedimiento en una función con retorno"
         ], correct: 1,
@@ -9861,7 +9861,7 @@ END;</pre>
         q: "¿Para qué se usa PRAGMA EXCEPTION_INIT en la declaración de una excepción PL/SQL, como en 'PRAGMA EXCEPTION_INIT(mi_excepcion, -2291)'?",
         opts: [
           "Para definir el mensaje de texto exacto que mostrará la excepción",
-          "Asocia un nombre propio a un código de error Oracle, capturable con un WHEN específico",
+          "Asocia un nombre propio a un código de error Oracle, capturable con un WHEN",
           "Para deshabilitar por completo esa excepción durante la ejecución",
           "Para registrar automáticamente la excepción en una tabla de auditoría"
         ], correct: 1,
@@ -9876,8 +9876,8 @@ EXECUTE IMMEDIATE 'SELECT COUNT(*) FROM ' || v_tabla INTO v_total;</pre>
 ¿Qué caso de uso justifica recurrir a EXECUTE IMMEDIATE en lugar de una sentencia SQL estática embebida?`,
         opts: [
           "Es obligatorio siempre que se use la palabra clave SELECT en PL/SQL",
-          "Cuando el nombre del objeto se determina solo en tiempo de ejecución, no antes",
-          "Únicamente para mejorar el rendimiento de consultas ya conocidas de antemano",
+          "Cuando el nombre del objeto se determina en tiempo de ejecución, no antes",
+          "Únicamente para mejorar el rendimiento de consultas ya conocidas",
           "Es la única forma de ejecutar sentencias DDL desde un bloque PL/SQL"
         ], correct: 1,
         exp: "SQL dinámico (EXECUTE IMMEDIATE) es necesario cuando la sentencia no puede conocerse completamente en tiempo de compilación, por ejemplo cuando el nombre de la tabla depende de una variable calculada en tiempo de ejecución, algo que el SQL estático embebido en PL/SQL no permite parametrizar directamente para identificadores de objeto."
@@ -9906,7 +9906,7 @@ EXCEPTION
 END;</pre>
 Según el Oracle PL/SQL Language Reference, ¿cuándo se lanza específicamente DUP_VAL_ON_INDEX?`,
         opts: [
-          "Cuando un INSERT o UPDATE guarda un valor duplicado en una columna con índice único",
+          "Cuando un INSERT o UPDATE guarda un valor duplicado en columna con índice único",
           "Cuando el nombre de la tabla referenciada no existe en el esquema actual",
           "Cuando se intenta leer una columna que no fue declarada en el SELECT",
           "Cuando la transacción actual excede el tiempo máximo configurado por el DBA"
@@ -9918,10 +9918,10 @@ Según el Oracle PL/SQL Language Reference, ¿cuándo se lanza específicamente 
         id: "pl-29", cat: "plsql", type: "teoria", diff: "Avanzado",
         q: "Según la documentación oficial de Oracle sobre tipos de colección PL/SQL, ¿qué caracteriza específicamente a una tabla anidada (nested table) frente a un varray?",
         opts: [
-          "Nested table no tiene tamaño máximo y puede quedar 'sparse'; varray tiene tamaño fijo y es densa",
-          "Un varray puede persistirse como columna de tabla; una nested table nunca puede almacenarse así",
-          "Ambos tipos son idénticos en Oracle; solo cambia la palabra clave usada para declararlos",
-          "Una nested table solo puede contener tipos numéricos, nunca cadenas de texto ni objetos"
+          "Nested table no tiene tamaño máximo, puede ser 'sparse'; varray es fija y densa",
+          "Un varray puede persistirse como columna de tabla; nested table no puede así",
+          "Ambos tipos son idénticos en Oracle; solo cambia la palabra clave para declararlos",
+          "Una nested table solo puede contener tipos numéricos, nunca texto ni objetos"
         ], correct: 0,
         exp: "Según la documentación de Oracle, un varray declara un tamaño máximo fijo y mantiene sus elementos de forma densa (sin huecos). Una nested table no tiene límite máximo declarado y puede volverse 'sparse' (con huecos en los índices) tras eliminar elementos; ambos tipos, a diferencia de las tablas asociativas (index-by), sí pueden almacenarse como columnas de una tabla de base de datos."
       },
@@ -9938,8 +9938,8 @@ BEGIN
 END;</pre>
 Según la documentación de Oracle, ¿qué caracteriza a este tipo de colección frente a un nested table o un varray?`,
         opts: [
-          "Es la única que puede indexarse por un tipo distinto a un entero secuencial, como VARCHAR2",
-          "Es la única que puede almacenarse físicamente como columna de una tabla de base de datos",
+          "Es la única indexable por un tipo distinto a entero secuencial, como VARCHAR2",
+          "Es la única que puede almacenarse físicamente como columna de una tabla",
           "Es la única que exige declarar un tamaño máximo fijo antes de usarla",
           "Es la única que no puede declararse dentro de un bloque PL/SQL anónimo"
         ], correct: 0,
@@ -9950,10 +9950,10 @@ Según la documentación de Oracle, ¿qué caracteriza a este tipo de colección
         id: "pl-31", cat: "plsql", type: "teoria", diff: "Intermedio",
         q: "Según el Oracle PL/SQL Language Reference, ¿qué diferencia hay entre las excepciones VALUE_ERROR e INVALID_NUMBER?",
         opts: [
-          "VALUE_ERROR cubre errores aritméticos/tamaño en general; INVALID_NUMBER solo conversión a número",
-          "Ambas excepciones son sinónimos exactos, documentadas con el mismo código de error",
-          "INVALID_NUMBER solo puede ocurrir dentro de un cursor explícito, nunca en una asignación directa",
-          "VALUE_ERROR únicamente se aplica a operaciones con fechas, nunca con números"
+          "VALUE_ERROR cubre errores aritméticos/tamaño; INVALID_NUMBER solo conversión a número",
+          "Ambas excepciones son sinónimos exactos, con el mismo código de error",
+          "INVALID_NUMBER solo ocurre dentro de un cursor explícito, nunca en asignación directa",
+          "VALUE_ERROR únicamente se aplica a operaciones con fechas, no con números"
         ], correct: 0,
         exp: "Según la documentación de Oracle, VALUE_ERROR es una excepción más general para errores aritméticos, de conversión o de tamaño (por ejemplo, asignar una cadena muy larga a una variable con longitud restringida). INVALID_NUMBER es más específica: se lanza cuando una conversión a NUMBER falla porque la cadena de origen no representa un literal numérico válido."
       },
@@ -9968,10 +9968,10 @@ Según la documentación de Oracle, ¿qué caracteriza a este tipo de colección
 END;</pre>
 ¿Qué ventaja ofrece este cursor FOR loop implícito frente a declarar y manejar manualmente OPEN, FETCH y CLOSE?`,
         opts: [
-          "Abre, recorre y cierra el cursor automáticamente, sin gestionar esas tres operaciones a mano",
-          "Ejecuta la consulta una sola vez para todas las filas combinadas en un único registro",
+          "Abre, recorre y cierra el cursor automáticamente, sin gestionarlo a mano",
+          "Ejecuta la consulta una vez para todas las filas, en un único registro",
           "Solo puede usarse con tablas que tengan menos de 1000 registros en total",
-          "Requiere declarar previamente el cursor en la sección DECLARE, a diferencia de OPEN/FETCH/CLOSE"
+          "Requiere declarar antes el cursor en DECLARE, a diferencia de OPEN/FETCH/CLOSE"
         ], correct: 0,
         exp: "El cursor FOR loop implícito simplifica el patrón más común de recorrido: declara automáticamente el registro fila con la forma de las columnas seleccionadas, abre el cursor, itera fila por fila y lo cierra automáticamente al finalizar (o ante una excepción), evitando el código repetitivo de gestionar manualmente OPEN/FETCH/CLOSE."
       },
@@ -10037,7 +10037,7 @@ END;</pre>
         id: "pl-38", cat: "plsql", type: "teoria", diff: "Intermedio",
         q: "¿Qué diferencia hay entre un cursor implícito y uno explícito en PL/SQL?",
         opts: [
-          "El implícito lo gestiona Oracle; el explícito lo declara y controla el desarrollador",
+          "El implícito lo gestiona Oracle; el explícito lo declara y controla el dev",
           "El cursor explícito siempre es más rápido de ejecutar en cualquier caso",
           "No existe absolutamente ninguna diferencia real entre ambos tipos",
           "El cursor implícito no es un concepto reconocido dentro de PL/SQL"
@@ -10059,7 +10059,7 @@ Si el UPDATE afectó 3 filas, ¿qué imprime este código?`,
         id: "pl-40", cat: "plsql", type: "teoria", diff: "Avanzado",
         q: "¿Qué información expone EXPLAIN PLAN (o DBMS_XPLAN.DISPLAY) sobre una consulta SQL?",
         opts: [
-          "El plan de ejecución estimado por el optimizador: operaciones, orden y costos previstos",
+          "El plan de ejecución del optimizador: operaciones, orden y costos previstos",
           "El tiempo real que tardó la última ejecución de la consulta",
           "Los bloqueos (locks) actualmente activos sobre las tablas involucradas",
           "Los datos reales devueltos por la consulta"
@@ -10197,7 +10197,7 @@ intercambiar(x, y);</pre>
 END;</pre>
 ¿Qué particularidad tiene g_contador, declarada en la especificación del package?`,
         opts: [
-          "Mantiene su valor durante toda la sesión, entre distintas llamadas al package",
+          "Mantiene su valor durante la sesión, entre distintas llamadas al package",
           "Se reinicia a su valor por defecto en cada llamada al package",
           "Se comparte automáticamente entre todas las sesiones conectadas",
           "No está permitido declarar variables directamente en un package"
@@ -10227,9 +10227,9 @@ END;</pre>
         id: "pl-53", cat: "plsql", type: "teoria", diff: "Avanzado",
         q: "¿Qué situación provoca el error ORA-04091 (mutating table)?",
         opts: [
-          "Un trigger de fila que consulta o modifica la misma tabla que disparó el trigger",
-          "Un cursor que quedó abierto en la sesión sin cerrarse nunca de forma explícita",
-          "Un interbloqueo (deadlock) producido entre dos sesiones concurrentes distintas",
+          "Un trigger de fila que consulta o modifica la misma tabla que lo disparó",
+          "Un cursor que quedó abierto en la sesión sin cerrarse nunca",
+          "Un interbloqueo (deadlock) entre dos sesiones concurrentes distintas",
           "Falta de privilegios suficientes otorgados sobre esa tabla en particular"
         ], correct: 0,
         exp: "Mientras un trigger de fila está procesando un DML, la tabla que lo disparó se considera en un estado inconsistente ('mutante'); consultarla o modificarla desde ese mismo trigger lanza ORA-04091. Se resuelve con un compound trigger o moviendo esa lógica a un trigger de nivel de sentencia."
@@ -10254,7 +10254,7 @@ FORALL i IN v_rucs.FIRST .. v_rucs.LAST
     UPDATE contribuyente SET revisado = 1 WHERE ruc = v_rucs(i);</pre>
 ¿Qué ventaja de rendimiento aporta esta combinación frente a un cursor recorrido fila por fila?`,
         opts: [
-          "Carga los RUC en una operación y envía los UPDATE en un solo lote al motor SQL",
+          "Carga los RUC en una operación y envía los UPDATE en un solo lote al motor",
           "Procesa cada fila de forma completamente secuencial, igual que un cursor",
           "No compila: FORALL no admite sentencias UPDATE",
           "Tiene un rendimiento equivalente a un cursor FOR loop tradicional"
@@ -10278,7 +10278,7 @@ FORALL i IN v_rucs.FIRST .. v_rucs.LAST
         id: "pl-57", cat: "plsql", type: "teoria", diff: "Avanzado",
         q: "¿Qué diferencia principal hay entre un associative array y una nested table/varray en PL/SQL?",
         opts: [
-          "El associative array solo vive en memoria; nested table y varray son tipos SQL",
+          "El associative array solo vive en memoria; nested table y varray, en SQL",
           "Las tres estructuras son completamente idénticas en Oracle",
           "El varray no tiene ningún límite de tamaño declarado",
           "La nested table solo puede contener como máximo 10 elementos"
@@ -10305,10 +10305,10 @@ END;</pre>
         id: "pl-59", cat: "plsql", type: "teoria", diff: "Avanzado",
         q: "¿Qué logra agregar SAVE EXCEPTIONS a una sentencia FORALL?",
         opts: [
-          "Permite que el lote continúe pese a errores individuales, acumulándolos en SQL%BULK_EXCEPTIONS",
-          "Guarda automáticamente todas las excepciones ocurridas en una tabla de auditoría propia",
-          "Detiene por completo el FORALL apenas ocurre el primer error en cualquier fila",
-          "Ignora silenciosamente todos y cada uno de los errores producidos durante el lote"
+          "Permite que el lote continúe pese a errores, acumulándolos en SQL%BULK_EXCEPTIONS",
+          "Guarda automáticamente las excepciones ocurridas en una tabla de auditoría",
+          "Detiene el FORALL apenas ocurre el primer error en cualquier fila",
+          "Ignora silenciosamente todos los errores producidos durante el lote"
         ], correct: 0,
         exp: "Sin SAVE EXCEPTIONS, el primer fallo dentro del lote aborta todo el FORALL. Con esa cláusula, se procesa todo lo posible y, al finalizar, se lanza ORA-24381; el detalle de cada fallo (índice y código de error) queda disponible en la colección SQL%BULK_EXCEPTIONS."
       },
@@ -10317,10 +10317,10 @@ END;</pre>
         id: "pl-60", cat: "plsql", type: "teoria", diff: "Intermedio",
         q: "¿Qué es un REF CURSOR y para qué se usa típicamente?",
         opts: [
-          "Un puntero a un cursor que puede abrirse con distintas consultas y pasarse entre programas",
+          "Un puntero a cursor abrible con distintas consultas, pasable entre programas",
           "Un tipo especial de índice físico construido directamente sobre una tabla",
           "Un cursor estático limitado siempre a una única consulta fija predefinida",
-          "Una vista materializada construida sobre el resultado de una consulta previa"
+          "Una vista materializada construida sobre el resultado de una consulta"
         ], correct: 0,
         exp: "SYS_REFCURSOR es el tipo débil predefinido de REF CURSOR en Oracle: a diferencia de un cursor estático, puede asociarse a distintas consultas en tiempo de ejecución, siendo el mecanismo estándar para devolver conjuntos de resultados desde un procedimiento hacia JDBC u otro lenguaje cliente."
       },
@@ -10333,9 +10333,9 @@ BEGIN
 END;</pre>
 ¿Cómo consume Java típicamente el resultado de este procedimiento?`,
         opts: [
-          "Registrando el parámetro como OracleTypes.CURSOR y leyendo el resultado como un ResultSet normal",
-          "Llamando directamente a executeQuery() sobre el nombre completo del propio procedimiento",
-          "Mediante una llamada al método getGeneratedKeys() propio del Statement usado",
+          "Registrando el parámetro como OracleTypes.CURSOR y leyendo el resultado como ResultSet",
+          "Llamando directamente a executeQuery() sobre el nombre completo del procedimiento",
+          "Mediante una llamada al método getGeneratedKeys() del Statement usado",
           "No es posible consumir de ningún modo un REF CURSOR desde código Java"
         ], correct: 0,
         exp: "Desde un CallableStatement, se registra el parámetro OUT con registerOutParameter(1, OracleTypes.CURSOR) y, tras ejecutar, se castea ese valor a ResultSet mediante el driver de Oracle, permitiendo recorrerlo con la API JDBC estándar."
@@ -10362,10 +10362,10 @@ END;</pre>
     INTO v_total USING 'ACTIVO';</pre>
 ¿Qué papel cumplen INTO y USING en esta sentencia dinámica?`,
         opts: [
-          "INTO recibe el resultado de la consulta de una fila; USING liga :e de forma segura",
-          "INTO define el nombre de la tabla consultada; USING el nombre de la columna filtrada",
-          "Ambas cláusulas resultan completamente opcionales y no afectan en nada al resultado",
-          "USING solo puede utilizarse junto a sentencias DDL, nunca junto a DML o SELECT"
+          "INTO recibe el resultado de la consulta de una fila; USING liga :e con seguridad",
+          "INTO define el nombre de la tabla consultada; USING la columna filtrada",
+          "Ambas cláusulas resultan opcionales y no afectan en nada al resultado",
+          "USING solo puede usarse junto a sentencias DDL, nunca junto a DML o SELECT"
         ], correct: 0,
         exp: "EXECUTE IMMEDIATE admite INTO para capturar el resultado de una consulta que retorna una sola fila, y USING para pasar valores a los binds (:e) de forma parametrizada y segura, evitando concatenar esos valores directamente en el texto SQL."
       },
@@ -10408,8 +10408,8 @@ END;</pre>
         q: "¿Qué diferencia hay entre TRUNC(fecha, 'MM') y ROUND(fecha, 'MM') sobre una fecha a mitad de mes?",
         opts: [
           "TRUNC va al día 1 del mes; ROUND puede saltar al mes siguiente según el día",
-          "Ambas funciones truncan exactamente de la misma forma, sin ninguna diferencia real",
-          "ROUND siempre elimina únicamente la parte correspondiente a la hora de esa fecha",
+          "Ambas funciones truncan de la misma forma, sin ninguna diferencia real",
+          "ROUND siempre elimina solo la parte correspondiente a la hora de esa fecha",
           "TRUNC redondea siempre al mes calendario más cercano a esa fecha"
         ], correct: 0,
         exp: "TRUNC(DATE '2024-05-20','MM') da como resultado 01-mayo (siempre trunca hacia atrás). ROUND, en cambio, redondea: con día 20 (pasada la mitad del mes) salta a 01-junio. Ambas dejan la hora en 00:00."
@@ -10457,10 +10457,10 @@ ON DELETE CASCADE;</pre>
         id: "pl-71", cat: "plsql", type: "teoria", diff: "Intermedio",
         q: "¿Cuál es una diferencia clave entre DELETE y TRUNCATE sobre una tabla?",
         opts: [
-          "DELETE es DML revertible con rollback; TRUNCATE es DDL, rápido pero irreversible",
-          "No existe absolutamente ninguna diferencia real entre ambas sentencias del lenguaje",
-          "TRUNCATE sí admite incluir una cláusula WHERE para poder filtrar filas específicas",
-          "DELETE siempre resulta más rápido que TRUNCATE al operar sobre tablas grandes"
+          "DELETE: DML revertible con rollback; TRUNCATE: DDL rápido e irreversible",
+          "No existe ninguna diferencia real entre ambas sentencias del lenguaje",
+          "TRUNCATE sí admite una cláusula WHERE para filtrar filas específicas",
+          "DELETE siempre es más rápido que TRUNCATE al operar sobre tablas grandes"
         ], correct: 0,
         exp: "DELETE es DML: genera undo/redo fila por fila y puede revertirse con ROLLBACK antes de confirmar. TRUNCATE es DDL: desasigna espacio y resetea el high water mark sin generar undo detallado, siendo muchísimo más rápido pero con COMMIT implícito e irreversible."
       },
@@ -10480,7 +10480,7 @@ ON DELETE CASCADE;</pre>
 FROM emp;</pre>
 ¿Qué calcula esta función analítica?`,
         opts: [
-          "El ranking de salario dentro de cada departamento, dejando huecos ante empates",
+          "El ranking de salario en cada departamento, dejando huecos ante empates",
           "El ranking global de todos los salarios, sin considerar el departamento",
           "Un número secuencial sin empates ni huecos posibles",
           "El promedio de salario agrupado por departamento"
@@ -10492,7 +10492,7 @@ FROM emp;</pre>
         id: "pl-74", cat: "plsql", type: "teoria", diff: "Intermedio",
         q: "¿Qué ventaja tienen las funciones analíticas (OVER) frente a un GROUP BY tradicional?",
         opts: [
-          "Calculan un valor de ventana sin colapsar filas: cada fila conserva su detalle",
+          "Calculan un valor de ventana sin colapsar filas: cada fila conserva detalle",
           "No pueden combinarse con una cláusula WHERE en la misma consulta",
           "Son siempre más lentas que un GROUP BY equivalente",
           "Reemplazan por completo la necesidad de mantener índices en la tabla"
@@ -10758,7 +10758,7 @@ WHERE rk <= 3;</pre>
           "Porque a la función RANK le falta agregar una cláusula PARTITION BY",
           "En realidad no falla: la consulta se ejecuta con total normalidad",
           "Porque RANK no admite usar DESC dentro de su propio ORDER BY",
-          "Las funciones analíticas se calculan después del WHERE: rk aún no existe ahí"
+          "Las funciones analíticas se calculan después del WHERE: rk no existe ahí"
         ], correct: 3,
         exp: "Las funciones analíticas se evalúan casi al final del procesamiento lógico (tras WHERE, GROUP BY y HAVING); para filtrar según su resultado hace falta envolver la consulta en una subconsulta o CTE externa."
       },
@@ -10827,7 +10827,7 @@ SELECT SUM(n) FROM nums;</pre>
 ¿Qué par de valores devuelve esta consulta?`,
         opts: [
           "NULL primero, y luego 10, en el mismo orden en que aparecen los NULLIF",
-          "NULL en ambos casos, ya que ambas comparaciones se consideran siempre iguales",
+          "NULL en ambos casos, ya que ambas comparaciones se consideran iguales",
           "10 primero, y luego NULL, exactamente en el orden invertido al real",
           "10 en ambos casos, ignorando por completo la comparación realizada"
         ], correct: 0,
@@ -10897,7 +10897,7 @@ WHERE deptno = 10
 FOR UPDATE NOWAIT;</pre>
 ¿Qué logra exactamente la cláusula FOR UPDATE NOWAIT en este SELECT?`,
         opts: [
-          "Actualiza de manera directa las filas que fueron seleccionadas por el SELECT",
+          "Actualiza directamente las filas que fueron seleccionadas por el SELECT",
           "Crea de forma automática un trigger temporal asociado a esa tabla",
           "Bloquea las filas seleccionadas sin esperar si ya están bloqueadas",
           "No produce ningún efecto especial adicional sobre la sesión actual"
@@ -11196,8 +11196,8 @@ END;</pre>
         q: "¿Qué contrato establece la palabra clave DETERMINISTIC al declararse sobre una función PL/SQL?",
         opts: [
           "Declara que, con las mismas entradas, siempre devuelve el mismo resultado",
-          "Hace que la función se ejecute siempre en una transacción autónoma separada del bloque llamador",
-          "En la práctica no tiene ningún efecto real, más allá de documentar la intención del autor",
+          "Hace que la función corra en una transacción autónoma, separada del llamador",
+          "En la práctica no tiene efecto real, más allá de documentar la intención del autor",
           "Impide por completo que esa función pueda invocarse desde una sentencia SQL"
         ], correct: 0,
         exp: "DETERMINISTIC es un contrato asumido por el programador (Oracle no lo verifica automáticamente): habilita índices basados en función y evita reevaluaciones innecesarias; declarar así una función que en realidad no lo es puede producir resultados incorrectos."
@@ -11210,7 +11210,7 @@ END;</pre>
           "Solamente funciona si la función también está marcada como DETERMINISTIC",
           "Duplica el tamaño de la memoria PGA asignada a la sesión actual",
           "Crea un cache local válido únicamente dentro de la sesión que lo generó",
-          "Comparte los resultados en la shared pool entre sesiones, invalidándolos al cambiar las tablas"
+          "Comparte resultados en la shared pool entre sesiones, invalidándolos al cambiar tablas"
         ], correct: 3,
         exp: "El result cache de funciones acelera consultas repetidas sobre datos relativamente estáticos; la dependencia RELIES_ON se detecta de forma automática desde la versión 11gR2, invalidando el cache al modificarse las tablas subyacentes."
       },
@@ -11231,10 +11231,10 @@ COMPOUND TRIGGER
 END;</pre>
 ¿Qué patrón concreto implementa este compound trigger?`,
         opts: [
-          "Acumula ids fila por fila y procesa en bloque al final, evitando mutating table",
-          "Provoca un error, ya que no se pueden mezclar distintos timing points en un mismo trigger",
+          "Acumula ids fila por fila y procesa en bloque, evitando mutating table",
+          "Provoca un error, ya que no se pueden mezclar timing points en un mismo trigger",
           "Se comporta exactamente igual que un trigger de fila común y corriente",
-          "En realidad declara dos triggers completamente independientes sobre la tabla"
+          "En realidad declara dos triggers independientes sobre la misma tabla"
         ], correct: 0,
         exp: "El compound trigger comparte estado (la colección g_ids) entre los distintos timing points de una misma sentencia: patrón estándar para evitar ORA-04091 (mutating table) y para procesar auditoría de forma eficiente en bloque."
       },
