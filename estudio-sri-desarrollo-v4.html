@@ -861,7 +861,6 @@
 
       <div class="card">
         <div class="btn-row">
-          <button class="btn" id="btn-retry-same" type="button">Reintentar (misma configuración)</button>
           <button class="btn" id="btn-retry-failed" type="button">Reintentar solo falladas</button>
           <button class="btn secondary" id="btn-back-config" type="button">Volver a configuración inicial</button>
         </div>
@@ -893,8 +892,7 @@
       { key: "seguridad", label: "Seguridad (Elytron/Keycloak/SSO)" },
       { key: "logging", label: "Logging y monitoreo" },
       { key: "javascript", label: "JavaScript" },
-      { key: "ti-general", label: "Siglas y TI general" },
-      { key: "junit-testing", label: "Testing: JUnit y Mockito" }
+      { key: "ti-general", label: "Siglas y TI general" }
     ];
     const CAT_LABEL = Object.fromEntries(CATEGORIES.map(c => [c.key, c.label]));
 
@@ -919,7 +917,7 @@
 
       {
         id: "jc-02", cat: "java-core", type: "teoria", diff: "Básico",
-        q: "¿Qué mecanismo oculta el estado interno de un objeto y expone solo lo necesario mediante métodos públicos?",
+        q: "En Java, ¿qué mecanismo permite ocultar el estado interno de un objeto y exponer solo lo necesario mediante métodos públicos?",
         opts: ["Herencia múltiple", "Encapsulamiento", "Sobrecarga de métodos", "Instanciación estática"], correct: 1,
         exp: "El encapsulamiento consiste en declarar los atributos como privados y controlar el acceso a través de getters/setters u otros métodos públicos, protegiendo la integridad del estado interno."
       },
@@ -978,7 +976,7 @@ public class ConfiguracionExtendida extends Configuracion {
 
       {
         id: "jc-06", cat: "java-core", type: "teoria", diff: "Básico",
-        q: "¿Qué principio de POO permite que un método ejecute distinto comportamiento según la clase real del objeto?",
+        q: "¿Qué principio de POO permite que un mismo método invocado sobre referencias de tipo padre ejecute distinto comportamiento según la clase real del objeto?",
         opts: ["Encapsulamiento", "Polimorfismo", "Sobrecarga estática", "Composición"], correct: 1,
         exp: "El polimorfismo (en su forma de enlace dinámico o 'dynamic dispatch') permite que la JVM resuelva en tiempo de ejecución cuál implementación de un método sobrescrito se ejecuta, según el tipo real del objeto."
       },
@@ -1186,7 +1184,7 @@ class C implements A, B {
 
       {
         id: "jc-20", cat: "java-core", type: "teoria", diff: "Avanzado",
-        q: "¿Por qué se recomienda 'favorecer la composición sobre la herencia' en el diseño orientado a objetos?",
+        q: "¿Por qué se recomienda frecuentemente 'favorecer la composición sobre la herencia' en el diseño orientado a objetos?",
         opts: [
           "Porque Java no admite herencia múltiple de clases",
           "Porque delega comportamiento, reduciendo el acoplamiento rígido",
@@ -1222,7 +1220,7 @@ System.out.println(b);</pre>
 
       {
         id: "jc-23", cat: "java-core", type: "teoria", diff: "Intermedio",
-        q: "¿Por qué 'long max = 3123456789;' no compila, mientras que 'long max = 3123456789L;' sí lo hace?",
+        q: "¿Por qué el literal 3123456789 en 'long max = 3123456789;' NO compila, mientras que 'long max = 3123456789L;' sí lo hace?",
         opts: [
           "Porque Java no permite asignar literales numéricos a variables long",
           "Porque sin sufijo L el literal es int y excede su rango máximo",
@@ -1347,7 +1345,7 @@ class Pato implements Volador, Nadador {
 
       {
         id: "jc-32", cat: "java-core", type: "teoria", diff: "Intermedio",
-        q: "¿Qué diferencia hay entre clase concreta, abstracta e interfaz en instanciación e implementación obligatoria?",
+        q: "¿Cuál es la diferencia entre una clase concreta, una clase abstracta y una interfaz en cuanto a instanciación e implementación obligatoria de métodos?",
         opts: [
           "La concreta se instancia; la abstracta puede faltar completar métodos",
           "Las tres pueden instanciarse con new, sin ninguna restricción",
@@ -1440,7 +1438,7 @@ System.out.println(contador);</pre>
 
       {
         id: "jc-38", cat: "java-core", type: "teoria", diff: "Intermedio",
-        q: "¿Qué diferencia hay entre los operadores && / || y & / | sobre expresiones booleanas?",
+        q: "¿Qué diferencia hay entre los operadores lógicos && / || y los operadores & / | cuando se usan sobre expresiones booleanas?",
         opts: [
           "No existe ninguna diferencia; son sinónimos exactos en cualquier contexto",
           "&& y || cortocircuitan; & y | siempre evalúan ambos operandos por igual",
@@ -1463,7 +1461,7 @@ System.out.println(x + " " + y);</pre>
 
       {
         id: "jc-40", cat: "java-core", type: "teoria", diff: "Avanzado",
-        q: "¿Qué papel cumple una variable patrón en un switch con pattern matching (Java 21+)?",
+        q: "¿Qué papel cumple una variable patrón (pattern variable) en una expresión switch con pattern matching (Java 21+), como 'case Integer i when i > 10 -> ...'?",
         opts: [
           "Declara una constante accesible desde cualquier parte del programa",
           "Introduce una variable ya casteada al patrón, refinable con 'when'",
@@ -1476,7 +1474,7 @@ System.out.println(x + " " + y);</pre>
       /* --- Excepciones --- */
       {
         id: "jc-41", cat: "java-core", type: "teoria", diff: "Básico",
-        q: "¿Cuál es la diferencia entre una excepción 'checked' y una 'unchecked' en Java?",
+        q: "¿Cuál es la diferencia principal entre una excepción 'checked' (verificada) y una 'unchecked' (no verificada) en Java?",
         opts: [
           "No hay diferencia real; ambas se manejan exactamente igual",
           "Las checked exigen declarar throws o capturarlas; las unchecked no",
@@ -1504,7 +1502,7 @@ System.out.println(x + " " + y);</pre>
 
       {
         id: "jc-43", cat: "java-core", type: "teoria", diff: "Intermedio",
-        q: "¿En qué orden se ejecutan try-catch-finally si se lanza una excepción capturada por el catch?",
+        q: "¿En qué orden se ejecutan los bloques de un try-catch-finally, asumiendo que se lanza una excepción capturada por el catch?",
         opts: [
           "Primero se ejecuta finally, y recién después el try seguido del catch",
           "Primero try hasta el fallo, luego catch, y finally siempre al final",
@@ -1613,7 +1611,7 @@ System.out.println(a.equals(c));</pre>
 
       {
         id: "jc-50", cat: "java-core", type: "teoria", diff: "Intermedio",
-        q: "¿Por qué se recomienda StringBuilder en vez de concatenar Strings con '+' en un bucle con muchas iteraciones?",
+        q: "¿Por qué se recomienda usar StringBuilder en lugar de concatenar Strings con '+' dentro de un bucle con muchas iteraciones?",
         opts: [
           "Porque el operador '+' con tipo String no compila nunca dentro de un bucle",
           "Porque cada '+' crea un nuevo String, con overhead de memoria",
@@ -1679,7 +1677,7 @@ System.out.println(matriz.length + " " + matriz[0].length);</pre>
       /* --- Concurrencia --- */
       {
         id: "jc-55", cat: "java-core", type: "teoria", diff: "Intermedio",
-        q: "¿Qué ventaja da un ExecutorService frente a crear manualmente un Thread con 'new Thread(...).start()'?",
+        q: "¿Qué ventaja ofrece usar un ExecutorService (por ejemplo, Executors.newFixedThreadPool(4)) en lugar de crear manualmente objetos Thread con 'new Thread(...).start()'?",
         opts: [
           "Impide por completo cualquier condición de carrera entre sus hilos",
           "Reutiliza un pool de hilos y añade Future para obtener resultados",
@@ -1749,7 +1747,7 @@ lineas.forEach(System.out::println);</pre>
 
       {
         id: "jc-60", cat: "java-core", type: "teoria", diff: "Básico",
-        q: "¿Qué diferencia hay entre un Stream de bytes (FileInputStream) y uno de caracteres (FileReader)?",
+        q: "¿Qué diferencia general existe entre un Stream de bytes (como FileInputStream) y un Stream de caracteres (como FileReader) en la API de I/O clásica de Java?",
         opts: [
           "Son prácticamente idénticos, solo cambia el nombre de la clase utilizada",
           "Stream procesa bytes binarios; Reader/Writer interpretan texto",
@@ -1804,7 +1802,7 @@ System.out.println(Contador.total);</pre>
 
       {
         id: "jc-64", cat: "java-core", type: "teoria", diff: "Intermedio",
-        q: "¿Qué diferencia hay entre una clase anidada estática y una clase interna (inner class) no estática?",
+        q: "¿Qué diferencia hay entre una clase anidada estática (static nested class) y una clase interna (inner class) no estática?",
         opts: [
           "Son exactamente lo mismo; solo cambia el orden en que se declara static",
           "La estática no requiere instancia externa; la inner class sí la necesita",
@@ -1982,7 +1980,7 @@ Si riesgoso() lanza una RuntimeException y no existe ningún bloque catch, ¿qu�
 
       {
         id: "jc-76", cat: "java-core", type: "teoria", diff: "Avanzado",
-        q: "¿Qué patrón describe 'envolver' una excepción checked dentro de una unchecked (exception chaining)?",
+        q: "¿Qué patrón describe 'envolver' una excepción checked dentro de una unchecked, como en 'throw new RuntimeException(\"mensaje\", excepcionOriginal)'?",
         opts: [
           "Exception chaining: preserva la original como 'cause' de la relanzada",
           "Un anti-patrón sin propósito válido, siempre prohibido en buenas prácticas",
@@ -2012,7 +2010,7 @@ Si riesgoso() lanza una RuntimeException y no existe ningún bloque catch, ¿qu�
 
       {
         id: "jc-78", cat: "java-core", type: "teoria", diff: "Intermedio",
-        q: "¿Qué relación debe cumplirse entre equals() y hashCode() según el contrato de Object?",
+        q: "¿Qué relación debe cumplirse entre equals() y hashCode() según el contrato de Object, cuando ambos se sobrescriben?",
         opts: [
           "No existe ninguna relación exigida entre ambos métodos; son independientes",
           "Objetos iguales por equals() comparten hashCode(); lo inverso no aplica",
@@ -2161,7 +2159,7 @@ Si /canino/coyote es un enlace simbólico que apunta a un directorio existente, 
 
       {
         id: "jc-88", cat: "java-core", type: "teoria", diff: "Intermedio",
-        q: "¿Qué diferencia clave hay entre File tradicional y NIO.2 (Files/Path) para detectar enlaces simbólicos?",
+        q: "¿Qué diferencia clave existe entre la clase File tradicional y las capacidades que ofrece NIO.2 (Files/Path) para detectar enlaces simbólicos?",
         opts: [
           "File carece de método para enlaces simbólicos; NIO.2 sí lo ofrece",
           "File puede detectar enlaces con isSymbolicLink(); NIO.2 carece de eso",
@@ -2207,7 +2205,7 @@ System.out.println(rb.getString("hello"));</pre>
 
       {
         id: "jc-91", cat: "java-core", type: "teoria", diff: "Básico",
-        q: "¿Qué diferencia hay entre ResourceBundle.getBundle(\"nombre\") y getBundle(\"nombre\", locale)?",
+        q: "¿Qué diferencia hay entre invocar ResourceBundle.getBundle(\"nombre\") y ResourceBundle.getBundle(\"nombre\", locale)?",
         opts: [
           "La primera usa el Locale por defecto de la JVM; la segunda, el dado",
           "Ambas formas son equivalentes y cargan el mismo archivo de propiedades",
@@ -2237,7 +2235,7 @@ System.out.println(fr.parse(s));</pre>
 
       {
         id: "jc-93", cat: "java-core", type: "teoria", diff: "Intermedio",
-        q: "¿Por qué se recomienda evitar el tipo double para representar montos de dinero en una aplicación real?",
+        q: "¿Por qué se recomienda evitar el tipo double para representar montos de dinero en una aplicación real, según las buenas prácticas usuales para manejo de moneda?",
         opts: [
           "Porque double es binario y acumula errores de precisión; se usa BigDecimal",
           "Porque double no puede formatearse con NumberFormat.getCurrencyInstance()",
@@ -2384,7 +2382,7 @@ Si cada tarea tarda 5 segundos, ¿qué imprime este código?`,
 
       {
         id: "jc-103", cat: "java-core", type: "teoria", diff: "Básico",
-        q: "¿Qué ventaja da ThreadLocalRandom.current() frente a usar new Random() en aplicaciones multihilo?",
+        q: "¿Qué ventaja ofrece ThreadLocalRandom.current() frente a usar directamente new Random() en aplicaciones multihilo?",
         opts: [
           "Evita contención entre hilos, dando un generador propio a cada uno",
           "Genera siempre la misma secuencia de números en cualquier ejecución",
@@ -2458,7 +2456,7 @@ System.out.print(line.length());</pre>
 
       {
         id: "jc-109", cat: "java-core", type: "practica", diff: "Básico",
-        q: "¿Qué palabras completan: 'el ___ va en la firma del método, mientras que ___ se usa para lanzar la excepción'?",
+        q: "¿Qué palabras completan correctamente: 'el ___ se usa en la firma del método, mientras que ___ se usa para lanzar la excepción'?",
         opts: ["throws / throw", "throw / throws", "catch / throw", "throws / catch"],
         correct: 0,
         exp: "throws se declara en la firma de un método para advertir que puede propagar una excepción checked; throw es la sentencia que efectivamente lanza una instancia de excepción en tiempo de ejecución. No existe una palabra reservada 'throwing' en Java."
@@ -3854,7 +3852,7 @@ System.out.println(idx);</pre>
 
       {
         id: "jc-207", cat: "java-core", type: "teoria", diff: "Intermedio",
-        q: "En las Torres de Hanoi con n discos, ¿cuál es el mínimo de movimientos según la fórmula recursiva clásica?",
+        q: "En las Torres de Hanoi con n discos, ¿cuál es el número mínimo de movimientos según la fórmula recursiva clásica?",
         opts: [
           "2^n - 1, ya que cada disco adicional duplica aproximadamente el trabajo",
           "n * (n - 1) / 2, la misma fórmula usada para sumar los primeros n enteros",
@@ -4324,7 +4322,7 @@ while (!cola.isEmpty()) System.out.print(cola.poll() + " ");</pre>
       },
       {
         id: "jc-243", cat: "java-core", type: "teoria", diff: "Intermedio",
-        q: "Para recorrer/invertir una lista simplemente enlazada manualmente, ¿qué referencia mínima necesita cada nodo?",
+        q: "Para recorrer/invertir una lista simplemente enlazada (singly linked list) manualmente, ¿qué referencia mínima necesita cada nodo?",
         opts: [
           "Una referencia 'next'; invertir requiere reasignar esos enlaces uno a uno",
           "Referencias 'next' y 'prev', igual que en una lista doblemente enlazada",
@@ -4496,7 +4494,7 @@ char masFrecuente = Collections.max(freq.entrySet(),
       /* --- Expresiones lambda (ampliación) --- */
       {
         id: "jc-254", cat: "java-core", type: "teoria", diff: "Intermedio",
-        q: "¿Qué diferencia clave hay entre una lambda y una clase anónima respecto al valor de 'this' en su cuerpo?",
+        q: "¿Qué diferencia clave existe entre una lambda y una clase anónima respecto al valor de 'this' dentro de su cuerpo?",
         opts: [
           "En la lambda, 'this' es la envolvente; en la anónima, a sí misma",
           "En ambos casos 'this' referencia siempre a la instancia anónima o lambda",
@@ -4507,7 +4505,7 @@ char masFrecuente = Collections.max(freq.entrySet(),
       },
       {
         id: "jc-255", cat: "java-core", type: "teoria", diff: "Avanzado",
-        q: "A nivel de bytecode, ¿cómo se compila una lambda en Java, a diferencia de una clase anónima?",
+        q: "A nivel de bytecode, ¿cómo se compila típicamente una expresión lambda en Java, a diferencia de una clase anónima?",
         opts: [
           "Mediante invokedynamic, sin generar una clase .class por lambda",
           "Generando siempre un .class separado, igual que una anónima",
@@ -4570,7 +4568,7 @@ nombres.sort(Comparator.comparing(String::toLowerCase).thenComparing(Comparator.
       },
       {
         id: "jc-260", cat: "java-core", type: "teoria", diff: "Básico",
-        q: "¿Qué diferencia de sintaxis hay entre el cuerpo de una lambda de expresión única y uno de tipo bloque?",
+        q: "¿Qué diferencia de sintaxis existe entre el cuerpo de una lambda de expresión única y uno de tipo bloque ({ ... })?",
         opts: [
           "El bloque exige 'return' si debe devolver un valor; la expresión no",
           "Ambos cuerpos son sintácticamente idénticos y se comportan igual",
@@ -4628,7 +4626,7 @@ class C implements A, B {
       },
       {
         id: "jc-264", cat: "java-core", type: "teoria", diff: "Intermedio",
-        q: "¿Puede una clase que implementa una interfaz con un método static homónimo llamarlo vía una instancia?",
+        q: "¿Puede una clase que implementa una interfaz con un método static homónimo llamarlo mediante una instancia de esa clase?",
         opts: [
           "No; deben invocarse calificados con el nombre de la interfaz",
           "Sí, igual que los métodos default, ya que ambos se heredan igual",
@@ -4704,7 +4702,7 @@ List&lt;String&gt; ref = lista;</pre>
       },
       {
         id: "jc-270", cat: "java-core", type: "teoria", diff: "Intermedio",
-        q: "En un método genérico como <T> T primero(List<T> lista), ¿de dónde infiere el compilador el tipo T?",
+        q: "En un método genérico como <T> T primero(List<T> lista), ¿de dónde infiere el compilador el tipo T al invocarlo?",
         opts: [
           "Del tipo de los argumentos reales pasados en la llamada, sin indicarlo",
           "Siempre de Object, ya que los genéricos borran su tipo al compilar",
@@ -4772,7 +4770,7 @@ double area(Forma f) {
       },
       {
         id: "jc-275", cat: "java-core", type: "teoria", diff: "Intermedio",
-        q: "Si una subclase permitida de una jerarquía sealed no está en el mismo módulo, ¿qué requisito adicional aplica?",
+        q: "Si una subclase permitida de una jerarquía sealed no está en el mismo módulo con nombre, ¿qué requisito adicional se aplica?",
         opts: [
           "Debe estar en el mismo paquete que la clase/interfaz sealed que la permite",
           "Puede estar en cualquier paquete y módulo, sin restricción",
@@ -4923,7 +4921,7 @@ class Moto extends Vehiculo {}</pre>
       },
       {
         id: "jc-287", cat: "java-core", type: "teoria", diff: "Avanzado",
-        q: "¿Por qué volatile no reemplaza a synchronized para proteger un contador incrementado por múltiples hilos?",
+        q: "¿Por qué volatile no reemplaza a synchronized para proteger operaciones compuestas como un contador incrementado por múltiples hilos?",
         opts: [
           "Porque volatile solo asegura visibilidad, no atomicidad",
           "Porque volatile resulta más lento en la práctica que synchronized",
@@ -4949,7 +4947,7 @@ arr[0] = 42;</pre>
       },
       {
         id: "jc-289", cat: "java-core", type: "teoria", diff: "Avanzado",
-        q: "¿Por qué 'List<Object> l = new ArrayList<String>();' no compila, pero 'Object[] a = new String[3];' sí?",
+        q: "¿Por qué List<Object> lista = new ArrayList<String>(); no compila, mientras que Object[] arr = new String[3]; sí lo hace?",
         opts: [
           "Arreglos son covariantes; genéricos son invariantes salvo wildcards",
           "Porque ArrayList nunca puede asignarse a una variable de tipo List",
@@ -5254,7 +5252,7 @@ java Main</pre>
 
       {
         id: "jt-03", cat: "jdk-tools", type: "teoria", diff: "Intermedio",
-        q: "¿Qué propósito cumple module-info.java, introducido con el Java Platform Module System (JPMS, Java 9+)?",
+        q: "¿Qué propósito cumple el archivo module-info.java introducido con el Java Platform Module System (JPMS, Java 9+)?",
         opts: [
           "Reemplaza directamente al archivo pom.xml que utiliza Maven",
           "Declara el nombre del módulo, qué exporta y qué otros módulos requiere",
@@ -5476,7 +5474,7 @@ Suponiendo que el archivo Validador.java existe y compiló correctamente en otra
 
       {
         id: "jt-20", cat: "jdk-tools", type: "teoria", diff: "Intermedio",
-        q: "¿Qué diferencia hay entre ejecutar JBoss EAP con standalone.sh y con domain.sh?",
+        q: "¿Qué diferencia hay entre ejecutar JBoss EAP con standalone.sh (o standalone.bat) frente a domain.sh (domain.bat)?",
         opts: [
           "Son, en la práctica, el mismo script, con distinto nombre de archivo",
           "standalone arranca una instancia; domain coordina varios servidores",
@@ -5514,7 +5512,7 @@ Suponiendo que el archivo Validador.java existe y compiló correctamente en otra
 
       {
         id: "jt-23", cat: "jdk-tools", type: "teoria", diff: "Básico",
-        q: "¿Qué comando de Maven descarga dependencias, compila, prueba y empaqueta el resultado en un JAR/WAR?",
+        q: "¿Qué comando de Maven descarga dependencias, compila el código y ejecuta las pruebas, empaquetando el resultado en un JAR/WAR?",
         opts: ["mvn clean", "mvn package", "mvn validate", "mvn help"],
         correct: 1,
         exp: "mvn package ejecuta las fases previas del ciclo de vida (validate, compile, test) y finalmente empaqueta el artefacto según el packaging declarado en el pom.xml. mvn clean solo borra el directorio target, y mvn validate únicamente verifica que el proyecto esté correctamente configurado."
@@ -5674,7 +5672,7 @@ Suponiendo que el archivo Validador.java existe y compiló correctamente en otra
 
       {
         id: "jt-35", cat: "jdk-tools", type: "teoria", diff: "Intermedio",
-        q: "¿Para qué se usa la variable de entorno JAVA_OPTS (o CATALINA_OPTS en Tomcat) al arrancar una app Java?",
+        q: "¿Para qué se utiliza comúnmente la variable de entorno JAVA_OPTS (o CATALINA_OPTS en Tomcat) al arrancar una aplicación Java?",
         opts: [
           "Para especificar la ruta del código fuente original de la aplicación",
           "Para pasar argumentos de arranque a la JVM (memoria, propiedades, GC)",
@@ -5715,7 +5713,7 @@ Suponiendo que el archivo Validador.java existe y compiló correctamente en otra
 
       {
         id: "jt-38", cat: "jdk-tools", type: "teoria", diff: "Intermedio",
-        q: "¿Qué diferencia hay entre usar 'opens' y declarar el módulo completo como 'open module' en module-info.java?",
+        q: "¿Qué diferencia hay entre usar la directiva 'opens' y declarar el módulo completo como 'open module' en module-info.java?",
         opts: [
           "'opens' abre paquetes uno por uno; 'open module' abre todos a la vez",
           "Son sinónimos, y ambas formas pueden mezclarse libremente",
@@ -5894,7 +5892,7 @@ Según JEP 330 (Java 11+), ¿qué hace el launcher java en este caso?`,
 
       {
         id: "jt-51", cat: "jdk-tools", type: "teoria", diff: "Intermedio",
-        q: "¿Por qué native-image no es parte de las herramientas estándar de un JDK de Oracle/OpenJDK convencional?",
+        q: "¿Por qué native-image no forma parte de las herramientas estándar incluidas en un JDK de Oracle/OpenJDK convencional?",
         opts: [
           "native-image sí viene incluido de fábrica en todo JDK estándar",
           "native-image es de GraalVM, una distribución distinta con su propio JDK",
@@ -6272,7 +6270,7 @@ System.out.println(total);</pre>
 
       {
         id: "cs-15", cat: "collections-streams", type: "teoria", diff: "Básico",
-        q: "¿Qué palabra clave verifica una condición interna y lanza AssertionError si es falsa, en pruebas o depuración?",
+        q: "¿Qué palabra clave de Java permite verificar una condición interna y lanzar un AssertionError si es falsa, principalmente en pruebas o depuración?",
         opts: ["verify", "assert", "check", "expect"], correct: 1,
         exp: "La palabra reservada assert evalúa una expresión booleana; si es falsa (y las aserciones están habilitadas con la bandera -ea), lanza un AssertionError. Suele usarse para validar invariantes internas, no para validar entradas de usuario en producción."
       },
@@ -6296,7 +6294,7 @@ long pares = numeros.parallelStream()
 
       {
         id: "cs-17", cat: "collections-streams", type: "teoria", diff: "Intermedio",
-        q: "¿Qué diferencia hay entre la referencia a método String::toUpperCase y su lambda equivalente?",
+        q: "¿Qué diferencia hay entre una referencia a método (method reference) como String::toUpperCase y una lambda equivalente s -> s.toUpperCase()?",
         opts: [
           "Son formas alternativas del mismo comportamiento; la referencia es concisa",
           "Las referencias a método solamente pueden aplicarse sobre métodos estáticos",
@@ -6350,7 +6348,7 @@ System.out.println(nums);</pre>
       /* --- Streams primitivos, flatMap, Optional primitivos --- */
       {
         id: "cs-21", cat: "collections-streams", type: "teoria", diff: "Intermedio",
-        q: "¿Por qué existen versiones de Stream especializadas en primitivos, como IntStream, LongStream y DoubleStream?",
+        q: "¿Por qué existen versiones especializadas de Stream para tipos primitivos, como IntStream, LongStream y DoubleStream?",
         opts: [
           "Porque Stream&lt;Integer&gt; resulta inútil para operaciones numéricas",
           "Para evitar autoboxing y exponer operaciones numéricas (sum, average, max)",
@@ -6430,7 +6428,7 @@ System.out.println(maximo);</pre>
 
       {
         id: "cs-26", cat: "collections-streams", type: "teoria", diff: "Intermedio",
-        q: "Además de Function, Predicate, Supplier y Consumer, ¿qué propósito cumple UnaryOperator&lt;T&gt;?",
+        q: "Además de Function, Predicate, Supplier y Consumer, ¿qué propósito cumple la interfaz funcional UnaryOperator&lt;T&gt;?",
         opts: [
           "Es, en la práctica, idéntica a Supplier&lt;T&gt;; cambia el nombre",
           "Especializa Function&lt;T,T&gt;, con entrada y salida del mismo tipo",
@@ -6455,7 +6453,7 @@ System.out.println(positivoYPar.test(6));</pre>
 
       {
         id: "cs-28", cat: "collections-streams", type: "teoria", diff: "Básico",
-        q: "¿Qué operación de IntStream genera rápido una secuencia de enteros consecutivos, como IntStream.range(0, 5)?",
+        q: "¿Qué operación de IntStream permite generar rápidamente una secuencia de enteros consecutivos, como en IntStream.range(0, 5)?",
         opts: [
           "Genera 0,1,2,3,4 (incluye inicio, excluye fin); rangeClosed incluye el 5",
           "Genera, en cambio, un único valor numérico tomado al azar entre 0 y 5",
@@ -6557,7 +6555,7 @@ List&lt;Contribuyente&gt; conDeuda = separados.get(true);</pre>
 
       {
         id: "cs-35", cat: "collections-streams", type: "teoria", diff: "Intermedio",
-        q: "¿Por qué se recomienda Iterator.remove() (o removeIf()) en vez de modificar una lista dentro de un for-each?",
+        q: "¿Por qué se recomienda usar Iterator.remove() (o Collection.removeIf()) en lugar de modificar una lista directamente dentro de un bucle for-each?",
         opts: [
           "Porque for-each es sintaxis obsoleta que Java eliminará en el futuro",
           "Porque modificar la lista fuera del Iterator invalida su estado interno",
@@ -6779,7 +6777,7 @@ Si se reemplaza únicamente el tipo de datos por ConcurrentHashMap, ¿qué cambi
 
       {
         id: "cs-51", cat: "collections-streams", type: "teoria", diff: "Intermedio",
-        q: "¿Cuándo conviene una colección concurrente (como ConcurrentHashMap) frente a su equivalente no concurrente?",
+        q: "¿En qué situación se recomienda usar una clase concurrente de colección (como ConcurrentHashMap) en lugar de su equivalente no concurrente?",
         opts: [
           "Cuando varios hilos modifican la colección sin sincronización",
           "Únicamente cuando la colección tendrá menos de diez elementos",
@@ -6820,7 +6818,7 @@ private void incrementarYReportar() {
 
       {
         id: "cs-54", cat: "collections-streams", type: "teoria", diff: "Intermedio",
-        q: "¿Qué caracteriza a las clases 'CopyOnWrite' (como CopyOnWriteArrayList) entre las colecciones concurrentes?",
+        q: "¿Qué caracteriza específicamente a las clases 'CopyOnWrite' (como CopyOnWriteArrayList) dentro de las colecciones concurrentes de Java?",
         opts: [
           "Copian la estructura en cada modificación; la lectura queda sin bloqueo",
           "Impiden cualquier operación de escritura una vez creada la instancia",
@@ -6862,7 +6860,7 @@ En algunas versiones de la JVM, este código puede imprimir solo "1" sin mostrar
 
       {
         id: "cs-57", cat: "collections-streams", type: "teoria", diff: "Intermedio",
-        q: "¿Qué diferencia hay entre peek() (intermedia) y forEach() (terminal), si ambas reciben un Consumer?",
+        q: "¿Qué diferencia hay entre la operación intermedia peek() y la operación terminal forEach(), dado que ambas reciben un Consumer como argumento?",
         opts: [
           "Son idénticas; peek() es solo un alias histórico de forEach()",
           "peek() retorna el stream para encadenar; forEach() es terminal y cierra",
@@ -7746,7 +7744,7 @@ System.out.println(r);</pre>
       /* --- HashSet vs LinkedHashSet vs TreeSet --- */
       {
         id: "cs-121", cat: "collections-streams", type: "teoria", diff: "Básico",
-        q: "Al recorrer HashSet, LinkedHashSet y TreeSet con los mismos elementos, ¿qué orden produce cada uno?",
+        q: "Al recorrer HashSet, LinkedHashSet y TreeSet con los mismos elementos insertados, ¿qué orden de iteración produce cada uno?",
         opts: [
           "HashSet: sin orden; LinkedHashSet: preserva orden; TreeSet: orden natural",
           "Los tres implementan el mismo orden de iteración, sin diferencia real",
@@ -7916,7 +7914,7 @@ try {
 
       {
         id: "jd-09", cat: "jdbc", type: "teoria", diff: "Intermedio",
-        q: "¿Qué es un DataSource en JDBC y por qué se prefiere frente a DriverManager en apps empresariales?",
+        q: "¿Qué es un DataSource en el contexto de JDBC y por qué se prefiere frente a DriverManager en aplicaciones empresariales?",
         opts: [
           "Un simple archivo de configuración XML, sin relación directa con conexiones",
           "Una fábrica de conexiones respaldada por un pool del servidor",
@@ -7971,7 +7969,7 @@ if (rs.next()) {
 
       {
         id: "jd-13", cat: "jdbc", type: "teoria", diff: "Avanzado",
-        q: "¿Qué diferencia hay entre los niveles de aislamiento READ_COMMITTED y SERIALIZABLE en JDBC?",
+        q: "¿Qué diferencia hay entre los niveles de aislamiento de transacciones READ_COMMITTED y SERIALIZABLE en JDBC (Connection.setTransactionIsolation)?",
         opts: [
           "Son sinónimos entre sí; solo cambia el nombre según el motor de base usado",
           "READ_COMMITTED admite lecturas no repetibles; SERIALIZABLE los evita todos",
@@ -7983,7 +7981,7 @@ if (rs.next()) {
 
       {
         id: "jd-14", cat: "jdbc", type: "teoria", diff: "Intermedio",
-        q: "¿Qué método de PreparedStatement ejecuta INSERT/UPDATE/DELETE en vez de una consulta SELECT?",
+        q: "¿Qué método de PreparedStatement se utiliza para ejecutar sentencias que modifican datos (INSERT, UPDATE, DELETE) en lugar de consultas SELECT?",
         opts: ["executeQuery()", "executeUpdate()", "executeBatchOnly()", "getResultSet()"], correct: 1,
         exp: "executeUpdate() se usa para sentencias de modificación (INSERT/UPDATE/DELETE) o DDL, y retorna un int con el número de filas afectadas; executeQuery() se reserva para SELECT y devuelve un ResultSet."
       },
@@ -8097,7 +8095,7 @@ config.setIdleTimeout(300000);</pre>
 
       {
         id: "jd-22", cat: "jdbc", type: "teoria", diff: "Intermedio",
-        q: "¿Qué habilita crear un Statement/PreparedStatement con TYPE_SCROLL_INSENSITIVE en vez del tipo por defecto?",
+        q: "¿Qué habilita crear un Statement/PreparedStatement con el tipo TYPE_SCROLL_INSENSITIVE en lugar del tipo por defecto (TYPE_FORWARD_ONLY)?",
         opts: [
           "Permite recorrer el ResultSet hacia atrás o saltar a una fila específica",
           "Aumenta automáticamente la velocidad de todas las consultas ejecutadas",
@@ -8123,7 +8121,7 @@ config.setIdleTimeout(300000);</pre>
 
       {
         id: "jd-24", cat: "jdbc", type: "teoria", diff: "Básico",
-        q: "¿Qué diferencia hay entre obtener una conexión con DriverManager y con un DataSource inyectado?",
+        q: "¿Cuál es la diferencia principal entre obtener una conexión con DriverManager.getConnection() y con un DataSource inyectado por el servidor?",
         opts: [
           "DriverManager abre una conexión nueva cada vez; DataSource reutiliza del pool",
           "Ambos mecanismos son equivalentes en rendimiento y comportamiento",
@@ -8194,7 +8192,7 @@ try (var cs = conn.prepareCall(sql)) {
 
       {
         id: "jd-28", cat: "jdbc", type: "teoria", diff: "Intermedio",
-        q: "¿Qué diferencia hay entre un parámetro IN y uno OUT respecto a registerOutParameter() en CallableStatement?",
+        q: "¿Qué diferencia de comportamiento existe entre un parámetro IN y uno OUT respecto a la obligación de llamar a registerOutParameter() en un CallableStatement?",
         opts: [
           "IN solo necesita un setter como setInt(); OUT exige registerOutParameter()",
           "Ambos tipos de parámetro requieren los mismos pasos de configuración",
@@ -8218,7 +8216,7 @@ try (var cs = conn.prepareCall(sql)) {
 
       {
         id: "jd-30", cat: "jdbc", type: "practica", diff: "Básico",
-        q: "De Connection, Driver, DriverManager, PreparedStatement y ResultSet, ¿cuántas son interfaces del JDK?",
+        q: "De Connection, Driver, DriverManager, PreparedStatement y ResultSet, ¿cuántas son interfaces del JDK (no clases)?",
         opts: ["Tres", "Cuatro", "Cinco", "Dos"],
         correct: 1,
         exp: "Connection, Driver, PreparedStatement y ResultSet son interfaces del paquete java.sql. DriverManager es la excepción: es una clase final con métodos static, no una interfaz. Por eso el conteo correcto es 4."
@@ -8519,7 +8517,7 @@ public List<Emp> find(int id) throws SQLException {
 
       {
         id: "jd-54", cat: "jdbc", type: "teoria", diff: "Intermedio",
-        q: "¿Qué ocurre con el ResultSet abierto de un Statement al volver a llamar executeQuery() en ese mismo Statement?",
+        q: "¿Qué ocurre con el ResultSet abierto de un Statement al volver a llamar executeQuery() sobre ese mismo Statement?",
         opts: [
           "El ResultSet anterior se cierra al ejecutar la nueva consulta",
           "Ambos ResultSet permanecen abiertos simultáneamente sin ningún problema",
@@ -8615,7 +8613,7 @@ ResultSet keys = ps.getGeneratedKeys();</pre>
 
       {
         id: "jd-61", cat: "jdbc", type: "teoria", diff: "Avanzado",
-        q: "¿Qué ventaja de rendimiento da reutilizar un PreparedStatement frente a crear Statements ad-hoc?",
+        q: "¿Qué ventaja de rendimiento aporta reutilizar un PreparedStatement con distintos valores frente a construir Statements ad-hoc?",
         opts: [
           "Únicamente reduce el consumo de memoria del lado cliente en la JVM",
           "La base de datos compila el plan una vez y lo reutiliza con otros parámetros",
@@ -8747,7 +8745,7 @@ Contribuyente c = query.getSingleResult();</pre>
 
       {
         id: "or-08", cat: "orm", type: "teoria", diff: "Intermedio",
-        q: "¿Qué diferencia hay entre la caché de primer nivel y la de segundo nivel (second-level cache) en Hibernate?",
+        q: "¿Qué diferencia existe entre la caché de primer nivel (first-level cache) y la de segundo nivel (second-level cache) en Hibernate?",
         opts: [
           "Es la misma caché; solo cambia el nombre según la versión de Hibernate usada",
           "La de primer nivel vive con la sesión; la de segundo nivel es opcional",
@@ -8817,7 +8815,7 @@ Si se elimina una Factura de la base de datos usando este mapeo, ¿qué sucede c
 
       {
         id: "or-13", cat: "orm", type: "teoria", diff: "Intermedio",
-        q: "¿Por qué tener precaución al sobrescribir equals() y hashCode() en una entidad JPA con @Id autogenerado?",
+        q: "¿Por qué se recomienda tener precaución al sobrescribir equals() y hashCode() en una entidad JPA usando su @Id autogenerado?",
         opts: [
           "Porque la especificación JPA prohíbe sobrescribir esos dos métodos",
           "Porque antes de persistir, el id puede ser null, causando inconsistencias",
@@ -8877,7 +8875,7 @@ q.setParameter("estado", "ACTIVO");</pre>
 
       {
         id: "or-17", cat: "orm", type: "teoria", diff: "Avanzado",
-        q: "En el mapeo de herencia de entidades JPA, ¿qué caracteriza a la estrategia SINGLE_TABLE?",
+        q: "En el mapeo de herencia de entidades JPA, ¿qué caracteriza a la estrategia SINGLE_TABLE (InheritanceType.SINGLE_TABLE)?",
         opts: [
           "Cada subclase se guarda en su propia tabla, sin columnas compartidas",
           "Toda la jerarquía comparte una única tabla, con una columna discriminadora",
@@ -8889,7 +8887,7 @@ q.setParameter("estado", "ACTIVO");</pre>
 
       {
         id: "or-18", cat: "orm", type: "teoria", diff: "Intermedio",
-        q: "¿Qué efecto tiene anotar un método de servicio con @Transactional en Spring o en EJBs?",
+        q: "¿Qué efecto tiene anotar un método de servicio con @Transactional en un framework como Spring o en EJBs (contenedor de transacciones)?",
         opts: [
           "Obliga a que el método se ejecute en un hilo separado del resto de la app",
           "Delega en el contenedor abrir la transacción y su commit final",
@@ -8962,7 +8960,7 @@ public class Factura {
 
       {
         id: "or-23", cat: "orm", type: "teoria", diff: "Intermedio",
-        q: "¿Qué logra configurar la caché de segundo nivel con un proveedor como Ehcache en una app Hibernate?",
+        q: "¿Qué logra configurar la caché de segundo nivel (second-level cache) con un proveedor como Ehcache en una aplicación Hibernate?",
         opts: [
           "Almacena en memoria compartida el resultado de páginas HTML completas",
           "Reutiliza entidades cargadas entre sesiones de la misma SessionFactory",
@@ -8974,7 +8972,7 @@ public class Factura {
 
       {
         id: "or-24", cat: "orm", type: "teoria", diff: "Avanzado",
-        q: "Entre PERSIST, MERGE, REMOVE y ALL de CascadeType, ¿qué distingue específicamente a CascadeType.REMOVE?",
+        q: "Entre los tipos de CascadeType (PERSIST, MERGE, REMOVE, ALL), ¿qué distingue específicamente a CascadeType.REMOVE?",
         opts: [
           "Propaga únicamente la operación persist() hacia las entidades asociadas",
           "Propaga la eliminación: borrar el padre elimina también sus hijas asociadas",
@@ -9008,7 +9006,7 @@ public class Producto {
 
       {
         id: "or-26", cat: "orm", type: "teoria", diff: "Intermedio",
-        q: "¿Qué ventaja da la Criteria API de JPA frente a escribir JPQL como texto plano para consultas dinámicas?",
+        q: "¿Qué ventaja ofrece la Criteria API de JPA frente a escribir JPQL como texto plano para construir consultas dinámicas?",
         opts: [
           "Ejecuta las consultas directamente en la BD sin pasar por el proveedor JPA",
           "Construye consultas programáticamente con verificación de tipos en compilación",
@@ -9056,7 +9054,7 @@ Al recorrer 50 contribuyentes y acceder a sus declaraciones, ¿cómo cambia el n
 
       {
         id: "or-29", cat: "orm", type: "teoria", diff: "Intermedio",
-        q: "Según Hibernate, ¿cuál es la diferencia entre una Session normal y una StatelessSession?",
+        q: "Según la documentación de Hibernate, ¿cuál es la diferencia principal entre una Session normal y una StatelessSession?",
         opts: [
           "No mantiene caché de primer nivel ni dirty checking; opera directo contra la BD",
           "StatelessSession solo sirve para lectura, nunca para INSERT o UPDATE",
@@ -9068,7 +9066,7 @@ Al recorrer 50 contribuyentes y acceder a sus declaraciones, ¿cómo cambia el n
 
       {
         id: "or-30", cat: "orm", type: "teoria", diff: "Intermedio",
-        q: "¿Qué controla el FlushMode de una sesión de Hibernate, y qué diferencia hay entre AUTO y COMMIT?",
+        q: "¿Qué controla el modo de descarga (FlushMode) de una sesión de Hibernate, y qué diferencia hay entre AUTO y COMMIT?",
         opts: [
           "AUTO sincroniza antes de una consulta afectada; COMMIT solo al confirmar",
           "FlushMode controla exclusivamente la frecuencia de backups automáticos de la BD",
@@ -9104,7 +9102,7 @@ public class Factura {
 
       {
         id: "or-32", cat: "orm", type: "teoria", diff: "Básico",
-        q: "Según Jakarta Persistence, ¿qué determina el atributo GenerationType.SEQUENCE en @GeneratedValue?",
+        q: "Según la especificación Jakarta Persistence, ¿qué determina el atributo generationType.SEQUENCE en @GeneratedValue?",
         opts: [
           "Que el identificador se genera con un SEQUENCE, consultado antes de insertar",
           "Que el identificador se genera concatenando campos de texto de la entidad",
@@ -9147,7 +9145,7 @@ public class Factura extends Documento { private double monto; }</pre>
 
       {
         id: "or-35", cat: "orm", type: "teoria", diff: "Intermedio",
-        q: "¿Qué papel cumple EntityListener (con @PrePersist o @PostLoad) en el ciclo de vida de una entidad JPA?",
+        q: "¿Qué papel cumple la interfaz EntityListener (junto con anotaciones como @PrePersist o @PostLoad) en el ciclo de vida de una entidad JPA?",
         opts: [
           "Ejecuta callbacks en el ciclo de vida, sin mezclarlos en la lógica de negocio",
           "Reemplaza la necesidad de declarar un EntityManager en la aplicación",
@@ -9176,7 +9174,7 @@ public class Factura extends Documento { private double monto; }</pre>
 
       {
         id: "or-37", cat: "orm", type: "teoria", diff: "Básico",
-        q: "¿Qué anotación de Bean Validation asegura que un campo de una entidad no sea nulo antes de persistirse?",
+        q: "¿Qué anotación de Bean Validation (integrable con JPA) se usa para asegurar que un campo de una entidad no sea nulo antes de persistirse?",
         opts: ["@NotNull", "@Transient", "@Embedded", "@Version"],
         correct: 0,
         exp: "@NotNull (de la especificación Bean Validation, jakarta.validation.constraints) marca un campo como obligatorio; los proveedores JPA modernos suelen integrar automáticamente estas validaciones antes de ejecutar operaciones de persistencia, lanzando una excepción si se viola la restricción."
@@ -9184,7 +9182,7 @@ public class Factura extends Documento { private double monto; }</pre>
 
       {
         id: "or-38", cat: "orm", type: "teoria", diff: "Avanzado",
-        q: "¿Qué diferencia hay entre los modos 'FIELD' y 'PROPERTY' que Hibernate usa para leer/escribir atributos?",
+        q: "¿Qué diferencia hay entre los modos de acceso 'FIELD' y 'PROPERTY' que Hibernate puede usar para leer/escribir los atributos de una entidad?",
         opts: [
           "FIELD accede a campos por reflexión; PROPERTY usa los getter/setter declarados",
           "FIELD solo puede usarse con tipos primitivos, nunca con objetos",
@@ -9217,7 +9215,7 @@ Si direccion es null al persistir un nuevo Contribuyente, ¿qué ocurre con las 
 
       {
         id: "or-40", cat: "orm", type: "teoria", diff: "Intermedio",
-        q: "Según Hibernate, ¿qué diferencia existe entre el flush mode AUTO y el flush mode COMMIT?",
+        q: "Según el User Guide oficial de Hibernate, ¿qué diferencia existe entre el flush mode AUTO y el flush mode COMMIT?",
         opts: [
           "AUTO sincroniza antes de consultas afectadas o al commit; COMMIT lo retrasa",
           "COMMIT ejecuta el flush inmediatamente después de cada llamada a persist()",
@@ -9229,7 +9227,7 @@ Si direccion es null al persistir un nuevo Contribuyente, ¿qué ocurre con las 
 
       {
         id: "or-41", cat: "orm", type: "teoria", diff: "Avanzado",
-        q: "¿Qué controla el flush mode MANUAL, disponible en Hibernate además de los dos modos estándar de JPA?",
+        q: "¿Qué controla el flush mode MANUAL, disponible en Hibernate más allá de los dos modos estándar de JPA (AUTO y COMMIT)?",
         opts: [
           "Delega en la aplicación invocar Session.flush() explícitamente para sincronizar",
           "Deshabilita por completo el dirty checking dentro de esa sesión",
@@ -9365,7 +9363,7 @@ private List&lt;Tributo&gt; tributos;</pre>
 
       {
         id: "or-51", cat: "orm", type: "teoria", diff: "Avanzado",
-        q: "Según Hibernate, ¿qué alternativa da 'bytecode enhancement' frente a los proxies dinámicos de lazy loading?",
+        q: "Según la documentación de Hibernate, ¿qué alternativa ofrece el 'bytecode enhancement' frente a los proxies dinámicos tradicionales para la carga diferida (lazy loading)?",
         opts: [
           "Instrumenta las clases de entidad para interceptar accesos, sin proxy",
           "Elimina la posibilidad de usar FetchType.LAZY en cualquier asociación",
@@ -9424,7 +9422,7 @@ class Contribuyente {
 
       {
         id: "or-55", cat: "orm", type: "teoria", diff: "Intermedio",
-        q: "¿Qué diferencia hay entre las estrategias 'read-only' y 'read-write' de la caché de segundo nivel?",
+        q: "¿Qué diferencia hay entre las estrategias de concurrencia 'read-only' y 'read-write' de la caché de segundo nivel?",
         opts: [
           "'read-only' asume que la entidad no se modifica tras crearse; 'read-write' sí",
           "Ambas estrategias son idénticas en comportamiento, solo cambia el nombre",
@@ -9450,7 +9448,7 @@ class Contribuyente {
 
       {
         id: "or-57", cat: "orm", type: "teoria", diff: "Intermedio",
-        q: "¿Qué diferencia hay entre EntityManager.find() y EntityManager.getReference() para obtener una entidad?",
+        q: "¿Qué diferencia hay entre EntityManager.find() y EntityManager.getReference() para obtener una entidad por su id?",
         opts: [
           "find() consulta la BD ya; getReference() retorna un proxy sin consultar aún",
           "Ambos métodos resultan equivalentes y siempre ejecutan la misma consulta SQL",
@@ -9780,7 +9778,7 @@ END;</pre>
 
       {
         id: "pl-20", cat: "plsql", type: "teoria", diff: "Intermedio",
-        q: "¿Qué diferencia hay entre un elemento declarado en la especificación de un PACKAGE y uno en su PACKAGE BODY?",
+        q: "¿Qué diferencia existe entre un elemento declarado en la especificación de un PACKAGE y uno declarado solo en su PACKAGE BODY?",
         opts: [
           "No hay diferencia real; ambas secciones exponen los mismos elementos",
           "Lo de la especificación es visible fuera del paquete; lo del body es privado",
@@ -9860,7 +9858,7 @@ END;</pre>
 
       {
         id: "pl-25", cat: "plsql", type: "teoria", diff: "Avanzado",
-        q: "¿Para qué se usa PRAGMA EXCEPTION_INIT al declarar una excepción PL/SQL personalizada?",
+        q: "¿Para qué se usa PRAGMA EXCEPTION_INIT en la declaración de una excepción PL/SQL, como en 'PRAGMA EXCEPTION_INIT(mi_excepcion, -2291)'?",
         opts: [
           "Para definir el mensaje de texto exacto que mostrará la excepción",
           "Asocia un nombre propio a un código de error Oracle, capturable con un WHEN",
@@ -9887,7 +9885,7 @@ EXECUTE IMMEDIATE 'SELECT COUNT(*) FROM ' || v_tabla INTO v_total;</pre>
 
       {
         id: "pl-27", cat: "plsql", type: "teoria", diff: "Intermedio",
-        q: "Según Oracle, ¿en qué situación exacta se lanza la excepción predefinida NO_DATA_FOUND?",
+        q: "Según el Oracle PL/SQL Language Reference, ¿en qué situación exacta se lanza la excepción predefinida NO_DATA_FOUND?",
         opts: [
           "Cuando una sentencia SELECT INTO no devuelve ninguna fila coincidente",
           "Cuando una sentencia SELECT INTO devuelve más de una fila coincidente",
@@ -9918,7 +9916,7 @@ Según el Oracle PL/SQL Language Reference, ¿cuándo se lanza específicamente 
 
       {
         id: "pl-29", cat: "plsql", type: "teoria", diff: "Avanzado",
-        q: "Según Oracle, ¿qué caracteriza a una tabla anidada (nested table) frente a un varray?",
+        q: "Según la documentación oficial de Oracle sobre tipos de colección PL/SQL, ¿qué caracteriza específicamente a una tabla anidada (nested table) frente a un varray?",
         opts: [
           "Nested table no tiene tamaño máximo, puede ser 'sparse'; varray es fija y densa",
           "Un varray puede persistirse como columna de tabla; nested table no puede así",
@@ -9950,7 +9948,7 @@ Según la documentación de Oracle, ¿qué caracteriza a este tipo de colección
 
       {
         id: "pl-31", cat: "plsql", type: "teoria", diff: "Intermedio",
-        q: "Según Oracle, ¿qué diferencia hay entre las excepciones VALUE_ERROR e INVALID_NUMBER?",
+        q: "Según el Oracle PL/SQL Language Reference, ¿qué diferencia hay entre las excepciones VALUE_ERROR e INVALID_NUMBER?",
         opts: [
           "VALUE_ERROR cubre errores aritméticos/tamaño; INVALID_NUMBER solo conversión",
           "Ambas excepciones son sinónimos exactos, con el mismo código de error",
@@ -10071,7 +10069,7 @@ Si el UPDATE afectó 3 filas, ¿qué imprime este código?`,
 
       {
         id: "pl-41", cat: "plsql", type: "teoria", diff: "Avanzado",
-        q: "¿Por qué usar TRUNC(fecha) sobre una columna indexada en el WHERE suele impedir usar el índice?",
+        q: "¿Por qué aplicar una función sobre una columna indexada en el WHERE (como TRUNC(fecha)) suele impedir el uso del índice?",
         opts: [
           "El índice guarda el valor original, no el resultado de la función aplicada",
           "Porque los índices de Oracle no admiten columnas de tipo fecha",
@@ -10374,7 +10372,7 @@ END;</pre>
 
       {
         id: "pl-64", cat: "plsql", type: "teoria", diff: "Intermedio",
-        q: "¿Por qué ROWNUM no sirve directamente para los 3 salarios más altos con WHERE ROWNUM <= 3 tras un ORDER BY?",
+        q: "¿Por qué ROWNUM no puede usarse directamente para obtener los 3 salarios más altos con un simple WHERE ROWNUM <= 3 tras un ORDER BY?",
         opts: [
           "Oracle asigna ROWNUM antes de aplicar el ORDER BY de esa misma consulta",
           "ROWNUM solo existe en versiones de Oracle anteriores a la 12c",
@@ -10434,7 +10432,7 @@ FROM emp WHERE sal = 3000;</pre>
 
       {
         id: "pl-69", cat: "plsql", type: "teoria", diff: "Básico",
-        q: "¿Qué restricción garantiza que una columna solo contenga valores que existan en la clave de otra tabla?",
+        q: "¿Qué tipo de restricción (constraint) garantiza que una columna solo contenga valores que existan en la clave de otra tabla?",
         opts: ["FOREIGN KEY", "CHECK", "UNIQUE", "NOT NULL"],
         correct: 0,
         exp: "La foreign key impone integridad referencial: el valor de la columna debe existir en la clave primaria o única de la tabla referenciada (o ser NULL, si la columna lo permite), evitando referencias huérfanas."
@@ -10661,7 +10659,7 @@ SELECT deptno FROM dept;</pre>
 
       {
         id: "pl-86", cat: "plsql", type: "teoria", diff: "Intermedio",
-        q: "¿Qué operador de conjuntos de Oracle devuelve las filas de la primera consulta que no están en la segunda?",
+        q: "¿Qué operador de conjuntos propio de Oracle devuelve las filas de la primera consulta que NO aparecen en la segunda?",
         opts: [
           "INTERSECT, que en realidad devuelve las filas comunes a ambas",
           "DIFFERENCE, un operador que no existe en Oracle SQL",
@@ -11025,7 +11023,7 @@ GROUP BY deptno;</pre>
 
       {
         id: "pl-111", cat: "plsql", type: "teoria", diff: "Intermedio",
-        q: "¿En qué posición debe ir obligatoriamente WHEN OTHERS dentro de un bloque EXCEPTION con varios manejadores?",
+        q: "¿En qué posición debe ubicarse obligatoriamente el manejador WHEN OTHERS dentro de un bloque EXCEPTION con varios manejadores?",
         opts: [
           "Debe ser siempre el ÚLTIMO manejador declarado en ese bloque",
           "Puede ubicarse libremente en cualquier posición del bloque",
@@ -11422,7 +11420,7 @@ session.setMaxInactiveInterval(1800);</pre>
 
       {
         id: "sj-06", cat: "servlets-jsp", type: "teoria", diff: "Básico",
-        q: "¿Cuál es la diferencia de alcance entre un atributo guardado en HttpServletRequest y uno en HttpSession?",
+        q: "¿Cuál es la diferencia de alcance (scope) entre un atributo guardado en HttpServletRequest y uno guardado en HttpSession?",
         opts: [
           "El de request dura solo esa solicitud; session persiste entre varias",
           "Ambos alcances tienen la misma duración y visibilidad para el usuario",
@@ -11495,7 +11493,7 @@ public class ContadorServlet extends HttpServlet {
 
       {
         id: "sj-11", cat: "servlets-jsp", type: "teoria", diff: "Básico",
-        q: "¿Qué diferencia hay entre el alcance 'session' y 'application' (ServletContext) al guardar un atributo?",
+        q: "¿Qué diferencia existe entre el alcance 'session' y el alcance 'application' (ServletContext) al guardar un atributo?",
         opts: [
           "'session' es de todos los usuarios; 'application' es de uno solo",
           "'session' es de un usuario; 'application' es de toda la aplicación",
@@ -11529,7 +11527,7 @@ public class SesionListener implements HttpSessionListener {
 
       {
         id: "sj-13", cat: "servlets-jsp", type: "teoria", diff: "Intermedio",
-        q: "¿Qué mecanismo usa un servidor para asociar solicitudes posteriores del mismo cliente a una HttpSession?",
+        q: "¿Qué mecanismo usa típicamente un servidor para identificar solicitudes HTTP posteriores del mismo cliente como parte de la misma HttpSession?",
         opts: [
           "Analiza exclusivamente la dirección IP de origen de cada solicitud",
           "Una cookie JSESSIONID que el cliente reenvía en cada solicitud",
@@ -11579,7 +11577,7 @@ public class SesionListener implements HttpSessionListener {
       },
       {
         id: "sj-17", cat: "servlets-jsp", type: "teoria", diff: "Intermedio",
-        q: "En una app web con MVC sobre Servlets/JSP, ¿qué rol cumple un servlet 'Front Controller'?",
+        q: "En una aplicación web organizada con el patrón MVC sobre Servlets/JSP, ¿qué rol suele cumplir un servlet 'Front Controller' (controlador frontal)?",
         opts: [
           "Actuar como la única fuente de datos, en reemplazo de la base de datos",
           "Centralizar la recepción de solicitudes y decidir qué vista renderizar",
@@ -11688,7 +11686,7 @@ response.addCookie(preferencia);</pre>
 
       {
         id: "sj-24", cat: "servlets-jsp", type: "teoria", diff: "Básico",
-        q: "¿Qué directiva JSP importa una clase o define atributos generales de la página?",
+        q: "¿Qué directiva JSP se utiliza para importar una clase Java o definir atributos generales de la página, como en '<%@ page import=\"java.util.List\" %>'?",
         opts: ["page", "include", "taglib", "attribute"],
         correct: 0,
         exp: "La directiva page configura atributos generales del JSP (importaciones, tipo de contenido, manejo de errores, sesión). include incorpora otro archivo en tiempo de traducción, y taglib declara una biblioteca de etiquetas personalizada (como JSTL) para usarla en la página."
@@ -11708,7 +11706,7 @@ response.addCookie(preferencia);</pre>
 
       {
         id: "sj-26", cat: "servlets-jsp", type: "teoria", diff: "Intermedio",
-        q: "Según la especificación Servlet, ¿cuál es el estado actual de la interfaz SingleThreadModel?",
+        q: "Según la especificación Jakarta Servlet, ¿cuál es el estado actual de la interfaz SingleThreadModel, pensada para garantizar que un servlet procese una sola solicitud a la vez?",
         opts: [
           "Deprecada desde Servlet 2.4; no soluciona todos los problemas de concurrencia",
           "Es el mecanismo recomendado hoy para manejar concurrencia en servlets",
@@ -11720,7 +11718,7 @@ response.addCookie(preferencia);</pre>
 
       {
         id: "sj-27", cat: "servlets-jsp", type: "teoria", diff: "Básico",
-        q: "Según la especificación Servlet, ¿qué garantiza el contenedor sobre las llamadas a init() y destroy()?",
+        q: "Según la especificación Jakarta Servlet, ¿qué garantiza el contenedor respecto a las llamadas a init() y destroy() durante el ciclo de vida de un servlet?",
         opts: [
           "Ambos se invocan una vez: init() antes, destroy() al retirar el servlet",
           "init() se invoca antes de cada solicitud individual recibida por el servlet",
@@ -11748,7 +11746,7 @@ Según la especificación Jakarta Servlet, ¿qué controla el atributo dispatche
 
       {
         id: "sj-29", cat: "servlets-jsp", type: "teoria", diff: "Avanzado",
-        q: "¿Qué diferencia hay entre getRequestDispatcher() en ServletContext y en HttpServletRequest?",
+        q: "¿Qué diferencia hay entre ServletContext.getRequestDispatcher(ruta) y HttpServletRequest.getRequestDispatcher(ruta)?",
         opts: [
           "context exige ruta absoluta desde '/'; request también admite rutas relativas",
           "Ambos métodos producen el mismo RequestDispatcher en cualquier caso",
@@ -11760,7 +11758,7 @@ Según la especificación Jakarta Servlet, ¿qué controla el atributo dispatche
 
       {
         id: "sj-30", cat: "servlets-jsp", type: "teoria", diff: "Básico",
-        q: "¿Qué relación hay entre @WebServlet y declarar <servlet>/<servlet-mapping> en web.xml?",
+        q: "¿Qué relación existe entre declarar un servlet con la anotación @WebServlet y hacerlo mediante <servlet>/<servlet-mapping> en web.xml?",
         opts: [
           "Formas equivalentes de registrar el servlet; web.xml puede sobrescribirlo",
           "@WebServlet solo funciona en servidores de aplicaciones, no en contenedor puro",
@@ -11772,7 +11770,7 @@ Según la especificación Jakarta Servlet, ¿qué controla el atributo dispatche
 
       {
         id: "sj-31", cat: "servlets-jsp", type: "teoria", diff: "Intermedio",
-        q: "¿Qué diferencia de alcance hay entre un context-param (ServletContext) y un init-param de un <servlet>?",
+        q: "¿Qué diferencia de alcance existe entre un context-param (ServletContext) y un init-param declarado dentro de un <servlet> específico?",
         opts: [
           "context-param es visible para toda la app; init-param solo dentro de ese servlet",
           "Ambos parámetros son visibles en el mismo alcance, sin diferencia real",
@@ -11796,7 +11794,7 @@ Según la especificación Jakarta Servlet, ¿qué controla el atributo dispatche
 
       {
         id: "sj-33", cat: "servlets-jsp", type: "teoria", diff: "Avanzado",
-        q: "Cuando varios <servlet-mapping> podrían coincidir con una URL, ¿qué orden de precedencia aplica el contenedor?",
+        q: "Cuando varios <servlet-mapping> podrían coincidir con una misma URL, ¿qué orden de precedencia aplica el contenedor según la especificación?",
         opts: [
           "Coincidencia exacta, luego prefijo más largo, extensión y por último el default",
           "El contenedor elige al azar entre los servlets cuyo patrón coincide con la URL",
@@ -11820,7 +11818,7 @@ Según la especificación Jakarta Servlet, ¿qué controla el atributo dispatche
 
       {
         id: "sj-35", cat: "servlets-jsp", type: "teoria", diff: "Intermedio",
-        q: "En EL, ¿qué diferencia hay entre pageScope, requestScope, sessionScope y applicationScope?",
+        q: "En Expression Language (EL), ¿qué diferencia hay entre los objetos implícitos pageScope, requestScope, sessionScope y applicationScope?",
         opts: [
           "Cada uno expone atributos de su ámbito, de acotado (página) a amplio (app)",
           "Los cuatro son sinónimos exactos, con el mismo conjunto de atributos compartido",
@@ -11844,7 +11842,7 @@ Según la especificación Jakarta Servlet, ¿qué controla el atributo dispatche
 
       {
         id: "sj-37", cat: "servlets-jsp", type: "teoria", diff: "Avanzado",
-        q: "¿Qué dos piezas se necesitan para definir una etiqueta JSP personalizada reutilizable en varias páginas?",
+        q: "¿Qué dos piezas se necesitan para definir una etiqueta JSP personalizada (custom tag) reutilizable en varias páginas?",
         opts: [
           "Una clase manejadora (tag handler) y un descriptor TLD que la declare",
           "Solo un archivo .jsp adicional, sin ninguna clase Java ni descriptor",
@@ -11907,7 +11905,7 @@ Según la especificación Jakarta Servlet, ¿qué controla el atributo dispatche
 
       {
         id: "sj-42", cat: "servlets-jsp", type: "teoria", diff: "Intermedio",
-        q: "Con las cookies deshabilitadas en el navegador, ¿qué mecanismo alternativo mantiene la sesión?",
+        q: "Si el navegador del cliente tiene las cookies deshabilitadas, ¿qué mecanismo alternativo permite mantener el seguimiento de sesión?",
         opts: [
           "Reescritura de URL (URL rewriting), propagando el ID de sesión en la propia URL",
           "El contenedor no ofrece alternativa; sin cookies es imposible mantener sesión",
@@ -11919,7 +11917,7 @@ Según la especificación Jakarta Servlet, ¿qué controla el atributo dispatche
 
       {
         id: "sj-43", cat: "servlets-jsp", type: "teoria", diff: "Básico",
-        q: "Si un servlet no sobrescribe doOptions() ni doHead(), ¿qué comportamiento por defecto da HttpServlet?",
+        q: "Si un servlet no sobrescribe doOptions() ni doHead(), ¿qué comportamiento por defecto ofrece HttpServlet ante esas solicitudes?",
         opts: [
           "HttpServlet provee una implementación por defecto razonable para ambos métodos",
           "El contenedor responde con error 500 al no encontrar implementación explícita",
@@ -11968,11 +11966,11 @@ Según la especificación Jakarta Servlet, ¿qué controla el atributo dispatche
 
       {
         id: "sj-47", cat: "servlets-jsp", type: "teoria", diff: "Avanzado",
-        q: "¿Por qué debe llamarse request.setCharacterEncoding() antes de leer cualquier parámetro, y no después?",
+        q: "¿Por qué debe llamarse a request.setCharacterEncoding() antes de leer cualquier parámetro de la solicitud, y no después?",
         opts: [
-          "Porque decodifica al acceder al primer parámetro, fijando la codificación usada",
+          "Porque el contenedor decodifica al acceder al primer parámetro, fijando la codificación",
           "Porque setCharacterEncoding() solo tiene efecto en los primeros cinco segundos",
-          "El orden de llamadas es irrelevante; el contenedor siempre relee los parámetros",
+          "Porque el orden de llamadas es irrelevante; el contenedor siempre relee los parámetros",
           "Porque llamarlo después lanza directamente una excepción IllegalStateException"
         ], correct: 0,
         exp: "El contenedor decodifica los parámetros del cuerpo de la solicitud (por ejemplo, un formulario POST) la primera vez que se invoca getParameter() o un método relacionado, usando la codificación vigente en ese momento; llamar a setCharacterEncoding() después de ese punto ya no tiene ningún efecto sobre parámetros ya decodificados."
@@ -12079,20 +12077,8 @@ public class ContribuyenteResource {
       },
 
       {
-        id: "rs-07", cat: "rest-soap", type: "teoria", diff: "Avanzado",
-        q: "¿Qué es HATEOAS (Hypermedia As The Engine Of Application State) en el contexto de REST?",
-        opts: [
-          "Un protocolo pensado específicamente para autenticar servicios de tipo REST",
-          "Un principio por el que la API incluye enlaces a las acciones/recursos siguientes",
-          "Un formato de serialización binaria propuesto como alternativa directa a JSON",
-          "Una extensión que solo tiene sentido dentro del propio protocolo SOAP clásico"
-        ], correct: 1,
-        exp: "HATEOAS propone que las respuestas de una API REST 'verdaderamente RESTful' incluyan enlaces a acciones o recursos relacionados (por ejemplo, un enlace a 'cancelar' dentro de la representación de un pedido), permitiendo que el cliente navegue la API dinámicamente en lugar de codificar rutas fijas de antemano."
-      },
-
-      {
         id: "rs-08", cat: "rest-soap", type: "teoria", diff: "Básico",
-        q: "¿Qué elemento describe formalmente las operaciones y tipos de datos de un servicio SOAP?",
+        q: "¿Qué elemento describe formalmente las operaciones, mensajes y tipos de datos de un servicio web SOAP, permitiendo generar clientes automáticamente?",
         opts: ["JSON Schema", "WSDL", "YAML", "Swagger UI"], correct: 1,
         exp: "WSDL es un documento XML que describe formalmente un servicio SOAP: sus operaciones disponibles, los mensajes de entrada/salida y los tipos de datos involucrados, permitiendo que herramientas generen automáticamente clases cliente (stubs) para consumir el servicio."
       },
@@ -12115,7 +12101,7 @@ WWW-Authenticate: Bearer</pre>
 
       {
         id: "rs-10", cat: "rest-soap", type: "teoria", diff: "Intermedio",
-        q: "¿Por qué es importante versionar una API REST pública (por ejemplo, /api/v1/... o vía cabeceras)?",
+        q: "¿Por qué se considera importante versionar una API REST pública (por ejemplo, /api/v1/... o mediante cabeceras)?",
         opts: [
           "Porque la especificación HTTP exige incluir una versión en toda URL",
           "Para poder evolucionar la API sin romper a los clientes que ya la consumen",
@@ -12182,7 +12168,7 @@ Si el endpoint respeta correctamente la semántica REST de PUT, ¿qué debería 
 
       {
         id: "rs-15", cat: "rest-soap", type: "teoria", diff: "Avanzado",
-        q: "¿Qué rol cumple la cabecera HTTP 'Accept' en la negociación de contenido de una API REST?",
+        q: "¿Qué rol cumple la cabecera HTTP 'Accept' en la negociación de contenido (content negotiation) de una API REST?",
         opts: [
           "Le indica al servidor si debe aceptar o rechazar la conexión TCP entrante",
           "Comunica qué tipo de medio prefiere el cliente recibir como respuesta",
@@ -12314,7 +12300,7 @@ Frente a versionar mediante una cabecera personalizada (por ejemplo, Accept-Vers
 
       {
         id: "rs-25", cat: "rest-soap", type: "teoria", diff: "Intermedio",
-        q: "Según RFC 9110, ¿cuáles de GET, POST, PUT y DELETE están clasificados como 'idempotentes'?",
+        q: "Según RFC 9110 (HTTP Semantics), ¿cuáles de los métodos GET, POST, PUT y DELETE están clasificados oficialmente como 'idempotentes'?",
         opts: [
           "GET, PUT y DELETE son idempotentes; POST no lo es",
           "Solo GET es idempotente; los otros tres no lo son bajo ninguna circunstancia",
@@ -12368,7 +12354,7 @@ Según la clasificación de RFC 9110, ¿por qué es seguro que el cliente reinte
         q: "¿Qué distingue al código de estado HTTP 422 (Unprocessable Content) de un 400 (Bad Request) genérico?",
         opts: [
           "422 indica sintaxis correcta, pero no se pudieron procesar las instrucciones",
-          "422 y 400 son sinónimos que cualquier framework puede usar indistintamente",
+          "422 y 400 son códigos sinónimos que cualquier framework puede usar indistintamente",
           "422 solo puede emplearse en respuestas a solicitudes DELETE, nunca en POST o PUT",
           "422 significa que el servidor está sobrecargado y no puede atender la solicitud"
         ], correct: 0,
@@ -12381,9 +12367,9 @@ Según la clasificación de RFC 9110, ¿por qué es seguro que el cliente reinte
 Retry-After: 3600</pre>
 Según RFC 6585, ¿qué comunica esta respuesta al cliente?`,
         opts: [
-          "Que superó el límite de solicitudes y debe esperar 3600s antes de reintentar",
+          "Que superó el límite de solicitudes y debe esperar 3600 segundos antes de reintentar",
           "Que el recurso solicitado fue movido permanentemente a otra ubicación",
-          "Que el servidor procesó la solicitud con éxito sin devolver contenido",
+          "Que el servidor procesó la solicitud con éxito pero sin devolver ningún contenido",
           "Que el cliente debe autenticarse nuevamente antes de repetir esa misma solicitud"
         ], correct: 0,
         exp: "429 Too Many Requests (definido en RFC 6585) señala limitación de tasa (rate limiting): el cliente envió demasiadas solicitudes en un periodo dado. La cabecera Retry-After indica cuánto debe esperar, en segundos o como fecha HTTP, antes de intentarlo de nuevo."
@@ -12398,7 +12384,7 @@ PUT /api/contribuyentes/42
 If-Match: "v7"</pre>
 ¿Qué mecanismo de concurrencia implementan juntas las cabeceras ETag e If-Match en este flujo?`,
         opts: [
-          "Concurrencia optimista: el PUT solo se aplica si el recurso no cambió (ETag)",
+          "Concurrencia optimista: el PUT solo se aplica si el recurso no cambió desde el ETag",
           "Cifrado del cuerpo, usando el ETag como clave simétrica de un solo uso",
           "Compresión del contenido, indicando al servidor qué algoritmo aplicar",
           "Autenticación del cliente, sustituyendo por completo la cabecera Authorization"
@@ -12410,8 +12396,8 @@ If-Match: "v7"</pre>
         id: "rs-32", cat: "rest-soap", type: "teoria", diff: "Avanzado",
         q: "¿Qué problema busca resolver el patrón de la cabecera Idempotency-Key en un POST que crea un recurso?",
         opts: [
-          "Que reintentar la misma solicitud tras un timeout no duplique el recurso creado",
-          "Que el servidor comprima automáticamente el cuerpo de la solicitud entrante",
+          "Que reintentar la misma solicitud (tras un timeout) no duplique el recurso creado",
+          "Que el servidor pueda comprimir automáticamente el cuerpo de la solicitud entrante",
           "Que el cliente reciba siempre una respuesta en formato distinto de JSON o XML",
           "Que el servidor rote automáticamente las credenciales usadas para esa solicitud"
         ], correct: 0,
@@ -12440,7 +12426,7 @@ public Contribuyente buscar(@PathParam("id") Long id,
         opts: [
           "@Produces declara el tipo de medio; @Consumes, el aceptado en la solicitud",
           "Ambas anotaciones controlan exclusivamente el método HTTP que el recurso admite",
-          "@Consumes declara la respuesta; @Produces declara lo aceptado en la solicitud",
+          "@Consumes declara la respuesta; @Produces declara el cuerpo aceptado en la solicitud",
           "Solo una de las dos anotaciones puede declararse por método, nunca ambas juntas"
         ], correct: 0,
         exp: "@Produces indica el/los tipo(s) MIME que ese método puede devolver (usado en la negociación vía Accept), mientras que @Consumes indica el/los tipo(s) MIME que ese método acepta recibir en el cuerpo de la solicitud (comparado contra Content-Type), pudiendo declararse varios valores en cada una."
@@ -12450,7 +12436,7 @@ public Contribuyente buscar(@PathParam("id") Long id,
         id: "rs-35", cat: "rest-soap", type: "teoria", diff: "Avanzado",
         q: "En JAX-RS, ¿qué rol cumple una clase anotada con @Provider que implementa ExceptionMapper?",
         opts: [
-          "Intercepta un tipo de excepción de los recursos y la traduce a una respuesta",
+          "Intercepta un tipo de excepción de los recursos y la traduce a una respuesta HTTP",
           "Registra un nuevo método HTTP personalizado no contemplado por la especificación",
           "Sustituye por completo al contenedor de servlets sobre el que corre JAX-RS",
           "Define el esquema de base de datos que usarán los recursos JAX-RS de la app"
@@ -12460,9 +12446,9 @@ public Contribuyente buscar(@PathParam("id") Long id,
 
       {
         id: "rs-36", cat: "rest-soap", type: "teoria", diff: "Avanzado",
-        q: "¿Qué exige la restricción de 'interfaz uniforme', uno de los principios originales de REST según Fielding?",
+        q: "¿Qué exige la restricción de 'interfaz uniforme' (uniform interface), uno de los principios originales de REST según Fielding?",
         opts: [
-          "Que los recursos se identifiquen y manipulen con operaciones estándar",
+          "Que los recursos se identifiquen y manipulen con un conjunto estándar de operaciones",
           "Que el servidor exponga siempre el mismo endpoint, sin importar el recurso",
           "Que toda comunicación deba cifrarse obligatoriamente con TLS",
           "Que cliente y servidor compartan siempre el mismo lenguaje de programación"
@@ -12476,7 +12462,7 @@ public Contribuyente buscar(@PathParam("id") Long id,
         opts: [
           "Las respuestas deben indicar, explícita o implícitamente, si pueden cachearse",
           "Cacheable significa que el servidor jamás puede modificar ese recurso ya creado",
-          "Solo las solicitudes POST pueden marcarse como cacheables, según esto",
+          "Solo las solicitudes POST pueden marcarse como cacheables, según esta restricción",
           "Cache-Control solo tiene efecto sobre solicitudes HTTPS, nunca sobre HTTP simple"
         ], correct: 0,
         exp: "Bajo la restricción de cacheable, las respuestas deben declarar (mediante Cache-Control u otras cabeceras) si son cacheables o no, permitiendo que clientes e intermediarios reutilicen respuestas anteriores cuando sea válido, reduciendo interacciones innecesarias y mejorando la escalabilidad percibida."
@@ -12488,7 +12474,7 @@ public Contribuyente buscar(@PathParam("id") Long id,
         opts: [
           "Que existan intermediarios (proxies, gateways) sin que el cliente lo note",
           "Que el cliente conozca obligatoriamente la implementación interna de cada capa",
-          "Que cada capa del sistema use un formato de datos distinto e incompatible",
+          "Que cada capa del sistema use un formato de datos distinto e incompatible entre sí",
           "Que el servidor mantenga el estado de sesión del cliente en cada capa intermedia"
         ], correct: 0,
         exp: "La restricción de sistema en capas permite insertar intermediarios (proxies, cachés, gateways de seguridad, balanceadores) entre cliente y servidor sin que el cliente necesite saber si está hablando directamente con el servidor final o con una capa intermedia, siempre que cada capa respete la interfaz uniforme."
@@ -12500,7 +12486,7 @@ public Contribuyente buscar(@PathParam("id") Long id,
         opts: [
           "Consultar qué opciones admite ese recurso, sin ejecutar ninguna acción",
           "Eliminar de forma permanente el recurso identificado por esa URI concreta",
-          "Solicitar solo las cabeceras de la respuesta, descartando el cuerpo devuelto",
+          "Solicitar solo las cabeceras de la respuesta, descartando siempre el cuerpo devuelto",
           "Crear un nuevo recurso subordinado dentro de la colección apuntada por esa URI"
         ], correct: 0,
         exp: "RFC 9110 define OPTIONS como el método que permite a un cliente consultar qué opciones de comunicación ofrece un recurso o servidor (por ejemplo, qué métodos HTTP soporta), sin implicar ninguna acción sobre el recurso ni iniciar su recuperación."
@@ -12522,7 +12508,7 @@ public Contribuyente buscar(@PathParam("id") Long id,
         id: "rs-41", cat: "rest-soap", type: "teoria", diff: "Intermedio",
         q: "Dentro de un documento WSDL, ¿qué información contiene específicamente el elemento types?",
         opts: [
-          "Las definiciones de tipos de datos de los mensajes, con un esquema XML",
+          "Las definiciones de tipos de datos de los mensajes, típicamente con un esquema XML",
           "La lista de operaciones expuestas por el servicio, junto con su implementación",
           "La dirección de red (endpoint) donde el servicio puede invocarse en producción",
           "El protocolo de transporte concreto (HTTP, SMTP) que utilizará ese servicio"
@@ -12534,9 +12520,9 @@ public Contribuyente buscar(@PathParam("id") Long id,
         id: "rs-42", cat: "rest-soap", type: "teoria", diff: "Avanzado",
         q: "Dentro de un documento WSDL, ¿qué propósito cumple el elemento binding respecto al portType/interface?",
         opts: [
-          "Especifica detalles de protocolo y formato (SOAP sobre HTTP) para esas acciones",
+          "Especifica detalles de protocolo y formato (SOAP sobre HTTP) para esas operaciones",
           "Declara los tipos de datos abstractos que usarán los mensajes de esa interfaz",
-          "Define solo el nombre lógico del servicio, sin detalle técnico adicional",
+          "Define exclusivamente el nombre lógico del servicio, sin detalle técnico adicional",
           "Sustituye por completo al elemento portType, obsoleto desde WSDL 1.1"
         ], correct: 0,
         exp: "Mientras portType/interface describe operaciones de forma abstracta (qué mensajes se envían y reciben), binding especifica los detalles concretos de protocolo de transporte y formato de mensaje (por ejemplo, SOAP sobre HTTP con codificación determinada) para poder invocar esas operaciones realmente."
@@ -12549,14 +12535,14 @@ public Contribuyente buscar(@PathParam("id") Long id,
           "Si el receptor debe procesar ese bloque, o rechazar el mensaje si no puede",
           "Si el mensaje completo debe cifrarse obligatoriamente antes de transmitirse",
           "El tamaño máximo, en bytes, permitido para el cuerpo de ese mensaje SOAP",
-          "El número de reintentos automáticos que el cliente hace ante un fallo de red"
+          "El número de reintentos automáticos que el cliente debe hacer ante un fallo de red"
         ], correct: 0,
         exp: "mustUnderstand=\"1\" en un bloque de cabecera SOAP obliga al receptor a procesar ese bloque (o alguno de sus destinatarios intermedios); si ninguno de ellos es capaz de entenderlo, el receptor debe generar un soap:Fault en vez de ignorar silenciosamente esa cabecera."
       },
 
       {
         id: "rs-44", cat: "rest-soap", type: "teoria", diff: "Intermedio",
-        q: "¿Qué característica de SOAP permite transportar un mismo mensaje tanto sobre HTTP como sobre SMTP o JMS?",
+        q: "¿Qué característica de SOAP permite que un mismo mensaje se transporte tanto sobre HTTP como sobre otros protocolos (SMTP, JMS)?",
         opts: [
           "SOAP fue diseñado como independiente del protocolo de transporte que lo entrega",
           "SOAP obliga siempre a usar HTTP como único transporte válido",
@@ -12568,10 +12554,10 @@ public Contribuyente buscar(@PathParam("id") Long id,
 
       {
         id: "rs-45", cat: "rest-soap", type: "teoria", diff: "Avanzado",
-        q: "En el Richardson Maturity Model, ¿qué distingue al nivel 3 (Hypermedia) del nivel 2 (HTTP Verbs)?",
+        q: "Según el Richardson Maturity Model, ¿qué distingue al nivel 3 (Hypermedia Controls) de una API que solo llega al nivel 2 (HTTP Verbs)?",
         opts: [
           "El nivel 3 incorpora enlaces HATEOAS, guiando sobre acciones disponibles",
-          "El nivel 3 elimina el uso de URIs distintas para cada recurso de la API",
+          "El nivel 3 elimina el uso de URIs distintas para cada recurso expuesto por la API",
           "El nivel 2 ya incluye hipermedia; el nivel 3 solo añade compresión del cuerpo",
           "No existe diferencia real entre ambos niveles; es solo otra forma de nombrarlos"
         ], correct: 0,
@@ -12612,7 +12598,7 @@ public Contribuyente buscar(@PathParam("id") Long id,
 
       {
         id: "sv-03", cat: "servidores", type: "teoria", diff: "Intermedio",
-        q: "¿Qué es JNDI (Java Naming and Directory Interface) y para qué se usa en un servidor de aplicaciones?",
+        q: "¿Qué es JNDI (Java Naming and Directory Interface) y para qué se usa comúnmente en un servidor de aplicaciones?",
         opts: [
           "Un protocolo pensado exclusivamente para cifrar contraseñas de usuario",
           "Una API para buscar recursos por un nombre lógico registrado en el servidor",
@@ -12682,9 +12668,9 @@ public Contribuyente buscar(@PathParam("id") Long id,
 
       {
         id: "sv-08", cat: "servidores", type: "teoria", diff: "Avanzado",
-        q: "¿Por qué cada app web desplegada en Tomcat o JBoss EAP suele usar su propio ClassLoader aislado?",
+        q: "¿Por qué cada aplicación web desplegada en un servidor como Tomcat o JBoss EAP típicamente usa su propio ClassLoader aislado?",
         opts: [
-          "Para obligar a que todas las apps compartan las mismas versiones de librerías",
+          "Para obligar a que todas las apps compartan siempre las mismas versiones de librerías",
           "Para aislar dependencias entre apps y permitir redeploys independientes",
           "Porque la JVM prohíbe dos clases con igual nombre, sin importar el classloader",
           "Únicamente por motivos de rendimiento durante el arranque del servidor"
@@ -12748,7 +12734,7 @@ or check the servlet status</pre>
 
       {
         id: "sv-13", cat: "servidores", type: "teoria", diff: "Intermedio",
-        q: "¿Qué es un 'subsistema' en la configuración de JBoss EAP (por ejemplo, datasources, ejb3 o logging)?",
+        q: "¿Qué es un 'subsistema' (subsystem) en la configuración de JBoss EAP (por ejemplo, el subsistema datasources, ejb3 o logging)?",
         opts: [
           "Un plugin de terceros que JBoss EAP no soporta oficialmente",
           "Un módulo configurable que provee una capacidad del servidor",
@@ -12822,7 +12808,7 @@ Con el 'deployer' de escaneo automático activo por defecto, ¿qué sucede tras 
 
       {
         id: "sv-19", cat: "servidores", type: "teoria", diff: "Intermedio",
-        q: "¿Qué papel cumple mod_cluster (u otro balanceador consciente de apps) frente a un clúster de JBoss EAP?",
+        q: "¿Qué papel cumple mod_cluster (u otro balanceador consciente de aplicaciones) frente a un clúster de instancias de JBoss EAP?",
         opts: [
           "Compila el código de la aplicación antes de distribuirlo a cada nodo del clúster",
           "Distribuye solicitudes entre nodos activos y retira del balanceo los caídos",
@@ -12891,7 +12877,7 @@ DataSource ds = (DataSource) ctx.lookup("java:/jdbc/SRIDS");</pre>
 
       {
         id: "sv-24", cat: "servidores", type: "teoria", diff: "Avanzado",
-        q: "¿Por qué es importante aplicar 'patches' (parches acumulativos, CP) periódicos a JBoss EAP en producción?",
+        q: "¿Por qué es importante aplicar 'patches' (parches acumulativos, CP) periódicos a una instalación de JBoss EAP en producción?",
         opts: [
           "Porque sin ellos la aplicación deja de compilar automáticamente cada mes",
           "Porque acumulan correcciones de seguridad, con soporte oficial de Red Hat",
@@ -12915,7 +12901,7 @@ DataSource ds = (DataSource) ctx.lookup("java:/jdbc/SRIDS");</pre>
 
       {
         id: "sv-26", cat: "servidores", type: "teoria", diff: "Avanzado",
-        q: "¿Qué diferencia separa a DataSourceRealm de JDBCRealm en Tomcat para autenticar contra una BD relacional?",
+        q: "¿Qué diferencia principal separa a DataSourceRealm de JDBCRealm en Tomcat para autenticar contra una base de datos relacional?",
         opts: [
           "JDBCRealm no puede usarse nunca con Oracle, solo con bases de datos MySQL",
           "DataSourceRealm usa un pool JNDI; JDBCRealm mantiene una sola conexión directa",
@@ -12994,17 +12980,17 @@ con el deployment scanner activo por defecto. ¿Cada cuánto revisa el scanner e
         opts: [
           "Agrupa varios comandos de gestión para ejecutarlos como una operación atómica",
           "Ejecuta un único comando de forma más rápida que el modo interactivo normal",
-          "Programa esos comandos para que corran cada noche sin supervisión",
+          "Programa la ejecución de esos comandos para que corran cada noche sin supervisión",
           "Convierte comandos CLI en scripts de shell nativos del sistema operativo"
         ], correct: 0,
         exp: "El modo batch de jboss-cli.sh permite agrupar una secuencia de comandos de gestión y ejecutarlos con run-batch como una única transacción atómica: si alguno falla, ninguno de los cambios del lote se aplica al modelo de gestión del servidor."
       },
       {
         id: "sv-34", cat: "servidores", type: "teoria", diff: "Avanzado",
-        q: "¿Qué propósito cumple el sistema de módulos (carpeta modules/) de JBoss EAP frente al classloading plano?",
+        q: "¿Qué propósito cumple el sistema de módulos (carpeta modules/) de JBoss EAP frente al classloading tradicional plano?",
         opts: [
-          "Aísla las dependencias de cada módulo, evitando conflictos de versiones",
-          "Obliga a que toda la app use las mismas versiones en todas sus librerías",
+          "Aísla las dependencias de cada módulo, evitando conflictos de versiones entre librerías",
+          "Obliga a que toda la app use las mismas versiones para todas sus librerías internas",
           "Elimina la necesidad de declarar cualquier dependencia dentro del proyecto",
           "Comparte automáticamente el mismo classloader entre todas las apps desplegadas"
         ], correct: 0,
@@ -13047,7 +13033,7 @@ con el deployment scanner activo por defecto. ¿Cada cuánto revisa el scanner e
         id: "sv-38", cat: "servidores", type: "teoria", diff: "Avanzado",
         q: "En modo domain de JBoss EAP, ¿qué diferencia hay entre el Host Controller y el Process Controller?",
         opts: [
-          "Process Controller arranca/detiene procesos; Host Controller gestiona config",
+          "El Process Controller arranca/detiene procesos; Host Controller gestiona su configuración",
           "Ambos procesos cumplen la misma función interna, solo cambia su nombre",
           "El Host Controller solo llega a existir en modo standalone, nunca en modo domain",
           "El Process Controller gestiona la base de datos de configuración del dominio"
@@ -13059,7 +13045,7 @@ con el deployment scanner activo por defecto. ¿Cada cuánto revisa el scanner e
         q: "¿Qué aporta el conector APR/native de Tomcat frente al conector NIO puro de Java?",
         opts: [
           "Usa la biblioteca nativa APR, aprovechando funciones del sistema operativo",
-          "Convierte automáticamente las solicitudes HTTP entrantes en solicitudes AJP",
+          "Convierte automáticamente todas las solicitudes HTTP entrantes en solicitudes AJP",
           "Solo llega a funcionar en sistemas Windows, nunca en distribuciones Linux o Unix",
           "Elimina por completo la necesidad de configurar un keystore SSL/TLS propio"
         ], correct: 0,
@@ -13069,10 +13055,10 @@ con el deployment scanner activo por defecto. ¿Cada cuánto revisa el scanner e
         id: "sv-40", cat: "servidores", type: "practica", diff: "Básico",
         q: "¿Qué hace el flag --connect al invocar jboss-cli.sh en JBoss EAP?",
         opts: [
-          "Conecta la CLI a una instancia de JBoss EAP en ejecución para gestionarla",
+          "Conecta la CLI a una instancia de JBoss EAP en ejecución para gestionarla remotamente",
           "Compila el código fuente de la aplicación antes de desplegarla en el servidor",
           "Genera un nuevo certificado TLS autofirmado para el servidor de aplicaciones",
-          "Reinicia automáticamente el servidor entero sin pedir confirmación"
+          "Reinicia automáticamente el servidor entero sin pedir confirmación al administrador"
         ], correct: 0,
         exp: "--connect abre una sesión de gestión de la CLI contra un servidor JBoss EAP en ejecución (local o remoto, según --controller), permitiendo enviar comandos administrativos interactivamente o mediante scripts, en vez de arrancar la CLI sin conexión."
       },
@@ -13102,7 +13088,7 @@ con el deployment scanner activo por defecto. ¿Cada cuánto revisa el scanner e
         id: "sv-43", cat: "servidores", type: "teoria", diff: "Básico",
         q: "¿Para qué se usa la aplicación /manager/text incluida con Tomcat?",
         opts: [
-          "Desplegar, recargar o eliminar apps remotamente con comandos de texto simple",
+          "Desplegar, recargar o eliminar apps de forma remota mediante comandos de texto simple",
           "Mostrar solo estadísticas de uso de memoria de la JVM en tiempo real",
           "Editar directamente el contenido HTML de las páginas que ya fueron desplegadas",
           "Configurar certificados SSL/TLS sin necesidad alguna de reiniciar el servidor"
@@ -13151,10 +13137,10 @@ con el deployment scanner activo por defecto. ¿Cada cuánto revisa el scanner e
         id: "we-02", cat: "empaquetado", type: "teoria", diff: "Intermedio",
         q: "¿En qué se diferencia un EAR (Enterprise Archive) de un WAR?",
         opts: [
-          "Son el mismo formato; EAR es solo el nombre que usa JBoss EAP para un WAR",
-          "El EAR agrupa varios módulos (WAR, EJB) en una unidad; el WAR es un módulo web",
+          "Son el mismo formato; EAR es solo el nombre que usa JBoss EAP para un WAR renombrado",
+          "El EAR agrupa varios módulos (WAR, EJB) como unidad de despliegue; el WAR es un módulo web",
           "Un WAR puede contener EARs anidados dentro de WEB-INF, pero nunca al revés",
-          "El EAR solo se despliega en Tomcat; el WAR corre en casi cualquier servidor"
+          "El EAR solo puede desplegarse en Tomcat, mientras el WAR corre en casi cualquier servidor"
         ], correct: 1,
         exp: "El EAR es la unidad de empaquetado de nivel superior en Jakarta EE, capaz de agrupar varios módulos (por ejemplo, un WAR de interfaz web junto con uno o más módulos EJB de lógica de negocio y librerías compartidas), coordinados mediante el descriptor application.xml dentro de META-INF."
       },
@@ -13174,7 +13160,7 @@ con el deployment scanner activo por defecto. ¿Cada cuánto revisa el scanner e
         opts: [
           "Es solo una convención estética del equipo, sin efecto sobre el funcionamiento",
           "Porque WEB-INF/lib es la ruta convencional donde el contenedor busca los JAR",
-          "Porque los .jar no pueden ir en la raíz del WAR por restricción del formato ZIP",
+          "Porque los .jar no pueden ubicarse en la raíz del WAR por restricción del formato ZIP",
           "Porque WEB-INF/lib es una ruta pública para que los usuarios descarguen los JAR"
         ], correct: 1,
         exp: "WEB-INF/lib es la carpeta convencional donde el contenedor de servlets espera encontrar las bibliotecas .jar de las que depende la aplicación, incorporándolas automáticamente al classloader de esa aplicación web. Todo el contenido bajo WEB-INF además queda protegido de acceso directo vía URL, a diferencia de index.jsp."
@@ -13244,10 +13230,10 @@ con el deployment scanner activo por defecto. ¿Cada cuánto revisa el scanner e
 
       {
         id: "we-08", cat: "empaquetado", type: "teoria", diff: "Avanzado",
-        q: "En el classloading de un WAR dentro de un EAR, ¿qué orden de búsqueda de clases es habitual ('parent-first')?",
+        q: "En el classloading de una aplicación web empaquetada como WAR dentro de un EAR, ¿qué orden de búsqueda de clases es habitual (delegación padre-primero, 'parent-first')?",
         opts: [
           "El classloader del WAR ignora siempre las clases del EAR y del contenedor",
-          "Primero se consulta el classloader del servidor/EAR; si falla, el del WAR",
+          "Primero se consulta el classloader del servidor/EAR; si falla, se busca en el del WAR",
           "El orden de búsqueda entre classloaders cambia al azar en cada solicitud HTTP",
           "Cada solicitud recarga desde cero todas las clases, sin classloader en caché"
         ], correct: 1,
@@ -13256,7 +13242,7 @@ con el deployment scanner activo por defecto. ¿Cada cuánto revisa el scanner e
 
       {
         id: "we-09", cat: "empaquetado", type: "practica", diff: "Intermedio",
-        q: "¿Qué ventaja da un 'fat jar' (Maven Shade/Assembly) frente a un JAR delgado con dependencias externas?",
+        q: "¿Qué ventaja principal ofrece un 'fat jar' (Maven Shade/Assembly) frente a un JAR delgado con dependencias externas?",
         opts: [
           "Produce siempre un archivo más pequeño que el JAR delgado equivalente",
           "Permite ejecutar con un solo comando (java -jar), sin resolver classpath externo",
@@ -13280,7 +13266,7 @@ con el deployment scanner activo por defecto. ¿Cada cuánto revisa el scanner e
 
       {
         id: "we-11", cat: "empaquetado", type: "teoria", diff: "Intermedio",
-        q: "¿Qué ventaja da empaquetar módulos EJB junto al módulo web en un mismo EAR, en vez de artefactos separados?",
+        q: "¿Qué ventaja ofrece empaquetar módulos EJB junto con el módulo web dentro de un mismo EAR, en lugar de desplegarlos como artefactos completamente separados?",
         opts: [
           "Ninguna ventaja real; el resultado es equivalente en todos los aspectos",
           "Comparten un mismo classloader y se invocan localmente de forma más eficiente",
@@ -13295,7 +13281,7 @@ con el deployment scanner activo por defecto. ¿Cada cuánto revisa el scanner e
         q: "El navegador muestra 404 pese a que el WAR figura como \"desplegado\" en consola. ¿Qué revisar primero?",
         opts: [
           "Que el disco duro del servidor físico se haya quedado completamente sin espacio",
-          "Que el contexto raíz no coincida con la URL usada, o esté mal mapeado",
+          "Que el contexto raíz configurado no coincida con la URL usada, o el mapeo esté mal",
           "Que la versión de Java instalada sea necesariamente incompatible con el servidor",
           "Que falte el archivo MANIFEST.MF, lo cual siempre bloquea cualquier despliegue"
         ], correct: 1,
@@ -13303,7 +13289,7 @@ con el deployment scanner activo por defecto. ¿Cada cuánto revisa el scanner e
       },
       {
         id: "we-13", cat: "empaquetado", type: "teoria", diff: "Intermedio",
-        q: "En un Maven multi-módulo (pom padre 'pom' y varios módulos hijos), ¿qué ventaja da esta organización?",
+        q: "En un proyecto Maven multi-módulo (un pom.xml padre con packaging 'pom' y varios módulos hijos), ¿qué ventaja principal aporta esta organización?",
         opts: [
           "Obliga a que todos los módulos compartan exactamente el mismo código fuente",
           "Construye varios artefactos desde una raíz común, compartiendo configuración",
@@ -13341,9 +13327,9 @@ dependencies {
 }</pre>
 ¿Qué equivalencia tiene providedCompile respecto al scope 'provided' de Maven visto en dependencias WAR?`,
         opts: [
-          "No tienen relación alguna; son conceptos distintos entre herramientas",
-          "Ambos excluyen la dependencia final; el contenedor la aporta en runtime",
-          "providedCompile sí incluye la dependencia en el WAR, a diferencia de Maven",
+          "No tienen relación alguna; son conceptos completamente distintos entre herramientas",
+          "Ambos excluyen la dependencia del artefacto final, pues el contenedor la aporta en runtime",
+          "providedCompile obliga a incluir la dependencia dentro del WAR, a diferencia de Maven",
           "Solo aplica a dependencias de testing, nunca a las usadas en producción"
         ], correct: 1,
         exp: "providedCompile (aportada por el plugin 'war' de Gradle) cumple el mismo rol que el scope 'provided' de Maven: la dependencia participa en la compilación pero se excluye del artefacto WAR final, asumiendo que el servidor de destino ya la expone en su classpath."
@@ -13369,7 +13355,7 @@ dependencies {
 
       {
         id: "we-17", cat: "empaquetado", type: "teoria", diff: "Intermedio",
-        q: "¿Qué describe el 'assembly descriptor' usado por el maven-assembly-plugin al generar un artefacto?",
+        q: "¿Qué describe el 'assembly descriptor' usado por el maven-assembly-plugin (o su sucesor, maven-shade-plugin) al generar un artefacto personalizado?",
         opts: [
           "El manual de usuario final de la aplicación ya empaquetada",
           "Un archivo que define qué incluir y en qué formato generar el artefacto",
@@ -13381,7 +13367,7 @@ dependencies {
 
       {
         id: "we-18", cat: "empaquetado", type: "teoria", diff: "Avanzado",
-        q: "¿Qué caracteriza a un 'skinny WAR' frente a uno tradicional que incluye sus dependencias en WEB-INF/lib?",
+        q: "¿Qué caracteriza a un 'skinny WAR' frente a un WAR tradicional que incluye todas sus dependencias en WEB-INF/lib?",
         opts: [
           "Un skinny WAR omite el archivo web.xml por completo",
           "Excluye deliberadamente librerías ya provistas por el servidor, más liviano",
@@ -13412,10 +13398,10 @@ dependencies {
 
       {
         id: "we-20", cat: "empaquetado", type: "teoria", diff: "Básico",
-        q: "¿Qué convención de versionado semántico representa un artefacto Maven marcado SNAPSHOT, como 2.3.0-SNAPSHOT?",
+        q: "¿Qué convención de versionado semántico representa correctamente un artefacto Maven marcado como SNAPSHOT, como en 2.3.0-SNAPSHOT?",
         opts: [
           "Una versión final y estable, lista para publicarse en un repositorio de releases",
-          "Una versión en desarrollo que Maven redescarga aunque el número no cambie",
+          "Una versión en desarrollo activo, que Maven puede redescargar aunque el número no cambie",
           "Un artefacto que solo puede compilarse en el sistema operativo Windows",
           "Un artefacto que ya no recibirá ningún cambio futuro bajo ninguna circunstancia"
         ], correct: 1,
@@ -13446,7 +13432,7 @@ Un módulo hijo agrega esa dependencia solo con &lt;groupId&gt;junit&lt;/groupId
 
       {
         id: "we-22", cat: "empaquetado", type: "teoria", diff: "Básico",
-        q: "En el ciclo de vida por defecto de Maven, ¿qué fase se ejecuta justo después de 'test' y antes de 'verify'?",
+        q: "Dentro del ciclo de vida por defecto de Maven, ¿qué fase se ejecuta inmediatamente después de 'test' y antes de 'verify'?",
         opts: ["validate", "compile", "package", "install"],
         correct: 2,
         exp: "El orden oficial del ciclo de vida 'default' de Maven es: validate, compile, test, package, verify, install, deploy. Ejecutar una fase implica correr automáticamente todas las anteriores, por lo que 'mvn package' compila y prueba antes de empaquetar."
@@ -13457,7 +13443,7 @@ Un módulo hijo agrega esa dependencia solo con &lt;groupId&gt;junit&lt;/groupId
         q: "¿Qué diferencia principal existe entre las fases 'verify' e 'install' del ciclo de vida por defecto de Maven?",
         opts: [
           "Ambas fases son idénticas y solo cambia el nombre del comando invocado",
-          "verify valida pruebas de integración; install copia el paquete al repo local",
+          "verify valida pruebas de integración; install copia el paquete al repositorio local",
           "install ejecuta las pruebas unitarias y verify solo compila sin probar nada",
           "verify sube el artefacto a un repositorio remoto compartido por todo el equipo"
         ], correct: 1,
@@ -13479,7 +13465,7 @@ Un módulo hijo agrega esa dependencia solo con &lt;groupId&gt;junit&lt;/groupId
         id: "we-25", cat: "empaquetado", type: "teoria", diff: "Intermedio",
         q: "¿Qué implica declarar una dependencia Maven con scope 'provided'?",
         opts: [
-          "Disponible en compilación/pruebas; el contenedor la aporta en runtime",
+          "Disponible en compilación/pruebas; el contenedor la aporta en runtime (no se empaqueta)",
           "Se empaqueta siempre dentro del artefacto final, igual que con scope compile",
           "Solo está disponible durante las pruebas unitarias, nunca en compilación",
           "Nunca se resuelve como dependencia transitiva de otros módulos del proyecto"
@@ -13501,7 +13487,7 @@ Un módulo hijo agrega esa dependencia solo con &lt;groupId&gt;junit&lt;/groupId
         id: "we-27", cat: "empaquetado", type: "teoria", diff: "Avanzado",
         q: "¿Por qué se desaconseja el scope 'system' para dependencias Maven?",
         opts: [
-          "Requiere una ruta de archivo local fija, rompiendo la portabilidad",
+          "Requiere una ruta de archivo local fija, rompiendo la portabilidad entre máquinas",
           "Porque no existe como opción válida en las versiones recientes de Maven",
           "Porque obliga a subir esa dependencia a un repositorio remoto de acceso público",
           "Porque solo llega a funcionar correctamente dentro de proyectos multi-módulo"
@@ -13515,13 +13501,13 @@ Un módulo hijo agrega esa dependencia solo con &lt;groupId&gt;junit&lt;/groupId
           "Activar configuración distinta (dependencias, plugins) según el entorno",
           "Definir los datos de perfil personal del desarrollador que sube el artefacto",
           "Reemplazar por completo al archivo settings.xml propio del usuario actual",
-          "Cifrar las credenciales usadas para publicar el artefacto en un repo remoto"
+          "Cifrar las credenciales usadas para publicar el artefacto en un repositorio remoto"
         ], correct: 0,
         exp: "Un profile permite alterar configuración del build (dependencias, propiedades, plugins) según se active o no, mediante criterios como una propiedad del sistema, el sistema operativo, o pasando -P nombrePerfil en la línea de comandos; útil por ejemplo para separar config de dev/prod."
       },
       {
         id: "we-29", cat: "empaquetado", type: "teoria", diff: "Avanzado",
-        q: "Cuando dos versiones distintas de una misma dependencia transitiva compiten, ¿qué regla aplica Maven?",
+        q: "Cuando dos versiones distintas de la misma dependencia transitiva compiten, ¿qué regla aplica Maven por defecto?",
         opts: [
           "Gana la versión declarada más cerca en el árbol de dependencias (nearest wins)",
           "Gana siempre la versión con el número más alto, sin importar la profundidad",
@@ -13596,7 +13582,7 @@ Un módulo hijo agrega esa dependencia solo con &lt;groupId&gt;junit&lt;/groupId
       },
       {
         id: "we-35", cat: "empaquetado", type: "teoria", diff: "Intermedio",
-        q: "A diferencia del 'nearest wins' de Maven, ¿qué estrategia usa Gradle por defecto ante versiones en conflicto?",
+        q: "A diferencia de la resolución 'nearest wins' de Maven, ¿qué estrategia usa Gradle por defecto ante versiones en conflicto?",
         opts: [
           "Selecciona la versión más alta declarada entre todas las que entran en conflicto",
           "Selecciona siempre la versión declarada primero en el archivo build.gradle",
@@ -13609,7 +13595,7 @@ Un módulo hijo agrega esa dependencia solo con &lt;groupId&gt;junit&lt;/groupId
         id: "we-36", cat: "empaquetado", type: "teoria", diff: "Intermedio",
         q: "¿Qué ventaja aporta la caché de build (build cache) de Gradle entre distintas ejecuciones?",
         opts: [
-          "Reutiliza resultados de tareas ya ejecutadas con las mismas entradas",
+          "Reutiliza resultados de tareas ya ejecutadas con las mismas entradas, sin recalcular",
           "Elimina por completo la necesidad de declarar cualquier dependencia entre tareas",
           "Comprime automáticamente el artefacto final generado al terminar el build",
           "Ejecuta automáticamente todas las tareas en paralelo sin configuración adicional"
@@ -13621,7 +13607,7 @@ Un módulo hijo agrega esa dependencia solo con &lt;groupId&gt;junit&lt;/groupId
         q: "¿Qué diferencia hay entre las fases 'install' y 'deploy' del ciclo de vida de Maven?",
         opts: [
           "install copia el artefacto al repositorio local; deploy lo sube a uno remoto",
-          "Ambas fases realizan la misma acción sobre ese mismo repositorio remoto",
+          "Ambas fases realizan la misma acción sobre ese mismo repositorio remoto compartido",
           "deploy solo llega a ejecutar las pruebas unitarias, sin generar ningún artefacto",
           "install sube el artefacto a un repositorio remoto, mientras deploy lo hace local"
         ], correct: 0,
@@ -13631,10 +13617,10 @@ Un módulo hijo agrega esa dependencia solo con &lt;groupId&gt;junit&lt;/groupId
         id: "we-38", cat: "empaquetado", type: "teoria", diff: "Avanzado",
         q: "En el plugin java-library de Gradle, ¿qué diferencia hay entre las configuraciones 'implementation' y 'api'?",
         opts: [
-          "'api' expone la dependencia a consumidores; 'implementation' es interna",
+          "'api' expone la dependencia a consumidores del módulo; 'implementation' la mantiene interna",
           "Ambas configuraciones exponen siempre la dependencia de la misma forma",
           "'implementation' solo puede usarse en el proyecto raíz, nunca en submódulos",
-          "'api' está pensada solo para dependencias usadas en pruebas (test) del módulo"
+          "'api' está pensada exclusivamente para dependencias usadas en pruebas (test) del módulo"
         ], correct: 0,
         exp: "Con el plugin java-library, una dependencia declarada como 'api' se propaga al classpath de compilación de cualquier módulo que consuma este módulo; 'implementation' permanece como detalle interno, oculto de esos consumidores, lo que acelera recompilaciones al reducir el classpath expuesto."
       }
@@ -13680,7 +13666,7 @@ Un módulo hijo agrega esa dependencia solo con &lt;groupId&gt;junit&lt;/groupId
 
       {
         id: "se-04", cat: "seguridad", type: "teoria", diff: "Avanzado",
-        q: "¿Qué beneficio da el Single Sign-On (SSO) a los usuarios finales de un conjunto de apps institucionales?",
+        q: "¿Qué beneficio aporta el Single Sign-On (SSO) a los usuarios finales de un conjunto de aplicaciones institucionales?",
         opts: [
           "Obliga a memorizar una contraseña distinta para cada aplicación institucional",
           "Permite autenticarse una vez y acceder a otras apps sin reingresar credenciales",
@@ -13715,7 +13701,7 @@ Un módulo hijo agrega esa dependencia solo con &lt;groupId&gt;junit&lt;/groupId
         opts: [
           "Un archivo binario cifrado que solo abre software propietario específico",
           "Un token JSON autocontenido cuya integridad garantiza una firma digital",
-          "Un identificador de sesión guardado solo en el servidor, nunca en el cliente",
+          "Un identificador de sesión que se guarda solo del lado del servidor, nunca en el cliente",
           "Una contraseña codificada en Base64, sin mecanismo adicional de verificación"
         ], correct: 1,
         exp: "Un JWT se compone de tres partes codificadas en Base64URL separadas por puntos: header (algoritmo), payload (claims como sub, roles, exp) y una firma calculada sobre las dos primeras partes con una clave. Esa firma permite al receptor verificar que el contenido no fue alterado, sin depender de una consulta adicional al emisor en cada validación."
@@ -13752,7 +13738,7 @@ public Response obtenerReporteConsolidado() { ... }</pre>
 
       {
         id: "se-09", cat: "seguridad", type: "teoria", diff: "Básico",
-        q: "¿Por qué usar HTTPS (TLS) en vez de HTTP plano al transmitir tokens de autenticación como un JWT?",
+        q: "¿Por qué es importante utilizar HTTPS (TLS) en lugar de HTTP plano al transmitir tokens de autenticación como un JWT?",
         opts: [
           "Porque HTTP no admite el envío de cabeceras personalizadas como Authorization",
           "Porque TLS cifra el tráfico, evitando que intercepten y reutilicen el token",
@@ -13795,7 +13781,7 @@ public Response obtenerReporteConsolidado() { ... }</pre>
 
       {
         id: "se-12", cat: "seguridad", type: "teoria", diff: "Intermedio",
-        q: "¿Qué diferencia hay entre un token de acceso (access token) y uno de refresco (refresh token) en OAuth2/OIDC?",
+        q: "¿Qué diferencia existe entre un token de acceso (access token) y un token de refresco (refresh token) en OAuth2/OpenID Connect?",
         opts: [
           "Son términos equivalentes; solo cambia el nombre según el proveedor de identidad",
           "El access token autoriza solicitudes y dura poco; el refresh lo renueva",
@@ -13826,19 +13812,19 @@ Si el servidor de recursos está correctamente integrado con Keycloak/Elytron, �
         opts: [
           "200 OK, devolviendo por defecto los trámites de todos los usuarios registrados",
           "401 Unauthorized, ya que no se incluyó ninguna credencial del solicitante",
-          "500 Internal Server Error, porque el servidor no sabe tratar la falta de token",
+          "500 Internal Server Error, porque el servidor no sabe tratar la ausencia de token",
           "El servidor asigna automáticamente el rol de administrador cuando falta el token"
         ], correct: 1,
         exp: "Un endpoint correctamente protegido debe rechazar solicitudes sin credenciales válidas devolviendo 401 Unauthorized, indicando que falta autenticarse (por ejemplo, incluyendo la cabecera Authorization: Bearer &lt;token&gt;), en lugar de asumir un usuario por defecto o fallar con un error genérico de servidor."
       },
       {
         id: "se-15", cat: "seguridad", type: "teoria", diff: "Intermedio",
-        q: "¿Qué tipo de ataque busca prevenir un token CSRF en formularios web con sesión activa?",
+        q: "¿Qué tipo de ataque busca prevenir un token CSRF (Cross-Site Request Forgery) en formularios web con sesión activa?",
         opts: [
           "Que un atacante intercepte y lea el tráfico cifrado entre cliente y servidor",
-          "Que un sitio externo induzca al navegador de la víctima a enviar una solicitud",
+          "Que un sitio ajeno induzca al navegador de la víctima a enviar una solicitud no deseada",
           "Que un usuario adivine la contraseña de otro mediante fuerza bruta",
-          "Que dos usuarios compartan accidentalmente el mismo identificador de sesión"
+          "Que dos usuarios distintos compartan accidentalmente el mismo identificador de sesión"
         ], correct: 1,
         exp: "CSRF explota que el navegador envía automáticamente las cookies de sesión válidas hacia el dominio legítimo, incluso si la solicitud fue iniciada desde una página maliciosa distinta. Un token CSRF único e impredecible, incluido en el formulario y validado en el servidor, evita que una solicitud forjada externamente sea aceptada como legítima."
       },
@@ -13847,7 +13833,7 @@ Si el servidor de recursos está correctamente integrado con Keycloak/Elytron, �
         q: "¿Qué tipo de vulnerabilidad describe un ataque XSS (Cross-Site Scripting)?",
         opts: [
           "Un atacante ejecuta comandos SQL arbitrarios contra la base de datos",
-          "Un atacante inyecta script ejecutable en una página vista por otros, sin escape",
+          "Un atacante inyecta script ejecutable en una página vista por otros, por falta de escape",
           "Un atacante satura el servidor enviando miles de solicitudes simultáneas",
           "Un atacante intercepta paquetes de red sin cifrar entre dos servidores distintos"
         ], correct: 1,
@@ -13855,10 +13841,10 @@ Si el servidor de recursos está correctamente integrado con Keycloak/Elytron, �
       },
       {
         id: "se-17", cat: "seguridad", type: "teoria", diff: "Avanzado",
-        q: "¿Por qué usar hash con 'salt' (como bcrypt) para contraseñas, en vez de un hash simple como SHA-256?",
+        q: "¿Por qué se recomienda almacenar contraseñas usando un algoritmo de hash con 'salt' (como bcrypt) en lugar de un hash simple (por ejemplo, un único SHA-256 sin sal)?",
         opts: [
           "Porque bcrypt es más rápido de calcular, acelerando el proceso de login",
-          "Porque su salt y costo configurable dificultan fuerza bruta y rainbow tables",
+          "Porque su salt por contraseña y costo configurable dificultan fuerza bruta y rainbow tables",
           "Porque un hash simple no puede almacenarse en una base de datos relacional",
           "Porque bcrypt permite recuperar la contraseña original desde el hash guardado"
         ], correct: 1,
@@ -13897,7 +13883,7 @@ Si el servidor de recursos está correctamente integrado con Keycloak/Elytron, �
         q: "¿Qué añade la autenticación mutua TLS (mTLS) frente al TLS tradicional usado en HTTPS?",
         opts: [
           "Duplica la velocidad de cifrado de la conexión sin cambiar el protocolo",
-          "El servidor también exige y valida un certificado del cliente",
+          "El servidor también exige y valida un certificado del cliente, autenticando ambos",
           "Permite navegar por HTTPS sin necesidad de ningún certificado en absoluto",
           "Solo aplica a comunicaciones dentro de una misma red local, nunca a internet"
         ], correct: 1,
@@ -13928,7 +13914,7 @@ if (jwt.getExpiresAt().isBefore(Instant.now())) {
 ¿Por qué es importante validar explícitamente la expiración (exp) del token, incluso si su firma ya fue verificada como válida?`,
         opts: [
           "No es necesario; una firma válida ya garantiza que el token no expiró",
-          "Porque la firma no certifica vigencia; un token vencido se aceptaría igual",
+          "Porque la firma certifica integridad, no vigencia: un token vencido seguiría aceptado",
           "Porque los JWT nunca incluyen información de expiración por especificación",
           "Porque validar la expiración reemplaza la necesidad de verificar la firma"
         ], correct: 1,
@@ -13937,7 +13923,7 @@ if (jwt.getExpiresAt().isBefore(Instant.now())) {
 
       {
         id: "se-23", cat: "seguridad", type: "teoria", diff: "Avanzado",
-        q: "En Keycloak, ¿qué diferencia hay entre un cliente 'confidential' y uno 'public'?",
+        q: "En Keycloak, ¿qué diferencia hay entre un cliente configurado como 'confidential' y uno configurado como 'public'?",
         opts: [
           "confidential guarda un secreto protegido en el backend; public no maneja secreto",
           "Ambos tipos de cliente son idénticos en Keycloak, solo cambia la etiqueta visual",
@@ -13949,10 +13935,10 @@ if (jwt.getExpiresAt().isBefore(Instant.now())) {
 
       {
         id: "se-24", cat: "seguridad", type: "teoria", diff: "Intermedio",
-        q: "¿Qué representa una solicitud 'preflight' OPTIONS que el navegador envía antes de solicitudes cross-origin?",
+        q: "¿Qué representa una solicitud 'preflight' OPTIONS que el navegador envía automáticamente antes de ciertas solicitudes cross-origin?",
         opts: [
           "Una solicitud que el desarrollador programa manualmente en cada llamada AJAX",
-          "Verifica con el servidor si la solicitud real será permitida por CORS",
+          "Verifica con el servidor si la solicitud real será permitida por la política CORS",
           "Un mecanismo exclusivo para autenticar usuarios mediante certificados",
           "Una solicitud que reemplaza por completo a la solicitud real posterior"
         ], correct: 1,
@@ -13973,7 +13959,7 @@ if (jwt.getExpiresAt().isBefore(Instant.now())) {
 
       {
         id: "se-26", cat: "seguridad", type: "teoria", diff: "Básico",
-        q: "Según OWASP Top 10 (2021), ¿qué categoría de riesgo ocupa la posición A01, la más crítica de la lista?",
+        q: "Según el listado oficial OWASP Top 10 (edición 2021), ¿qué categoría de riesgo ocupa la posición A01, la más crítica de la lista?",
         opts: [
           "Broken Access Control (control de acceso deficiente)",
           "Cryptographic Failures (fallas criptográficas)",
@@ -13987,7 +13973,7 @@ if (jwt.getExpiresAt().isBefore(Instant.now())) {
         id: "se-27", cat: "seguridad", type: "teoria", diff: "Intermedio",
         q: "Según la documentación oficial de Keycloak, ¿qué diferencia hay entre un 'realm role' y un 'client role'?",
         opts: [
-          "realm role es global en el realm; client role está acotado a una app específica",
+          "realm role es global en todo el realm; client role está acotado a una app específica",
           "Ambos tipos de rol son idénticos en Keycloak, solo cambia la etiqueta visual",
           "Un client role solo puede asignarse a grupos, nunca a usuarios individuales",
           "Un realm role solo puede usarse en el flujo SAML, nunca en OpenID Connect"
@@ -14004,18 +13990,18 @@ if (jwt.getExpiresAt().isBefore(Instant.now())) {
 Según la documentación de Keycloak, ¿qué ocurre cuando se asigna el rol compuesto "supervisor-tramites" a un usuario?`,
         opts: [
           "Obtiene también los roles incluidos, recursivamente si esos roles son compuestos",
-          "El usuario solo recibe el rol como etiqueta visual, sin heredar permisos",
-          "Los roles incluidos requieren asignación manual aparte del rol compuesto",
-          "El rol compuesto exige que el usuario esté en un grupo con el mismo nombre"
+          "El usuario solo recibe el rol como etiqueta visual, sin heredar ningún permiso adicional",
+          "Los roles incluidos deben asignarse manualmente, aunque el rol compuesto ya esté asignado",
+          "El rol compuesto solo funciona si el usuario también pertenece a un grupo con el mismo nombre"
         ], correct: 0,
         exp: "Según la documentación oficial de Keycloak, un rol compuesto es un rol que tiene uno o más roles adicionales asociados; al asignar el rol compuesto a un usuario, este obtiene automáticamente también los roles asociados a esa composición, y esa herencia es recursiva si alguno de esos roles es a su vez compuesto de otros."
       },
 
       {
         id: "se-29", cat: "seguridad", type: "teoria", diff: "Avanzado",
-        q: "Según JBoss EAP Elytron, ¿qué papel cumple un 'credential-store' dentro del subsistema Elytron?",
+        q: "Según la documentación de JBoss EAP Elytron, ¿qué papel cumple un 'credential-store' dentro del subsistema Elytron?",
         opts: [
-          "Almacena credenciales sensibles cifradas, sin texto plano en la configuración",
+          "Almacena de forma cifrada credenciales sensibles, sin dejarlas en texto plano en la config",
           "Reemplaza por completo la necesidad de configurar un security-realm en Elytron",
           "Solo puede usarse para almacenar certificados TLS, nunca contraseñas",
           "Se genera automáticamente al arrancar el servidor y no requiere configuración"
@@ -14025,7 +14011,7 @@ Según la documentación de Keycloak, ¿qué ocurre cuando se asigna el rol comp
 
       {
         id: "se-30", cat: "seguridad", type: "teoria", diff: "Intermedio",
-        q: "Según OWASP Top 10 2021, ¿en qué categoría se ubican las fallas de autenticación e identificación?",
+        q: "Según OWASP, ¿en qué categoría del Top 10 2021 se ubican las fallas de autenticación e identificación, como gestión débil de sesiones o credenciales expuestas?",
         opts: [
           "A07:2021-Identification and Authentication Failures",
           "A03:2021-Injection",
@@ -14040,7 +14026,7 @@ Según la documentación de Keycloak, ¿qué ocurre cuando se asigna el rol comp
         q: "En OAuth2, ¿para qué escenario está pensado el grant type 'client_credentials'?",
         opts: [
           "Comunicación máquina a máquina donde el cliente se autentica sin usuario final",
-          "Un usuario final inicia sesión en un formulario web y aprueba el acceso",
+          "Un usuario final inicia sesión en un formulario web y aprueba el acceso explícitamente",
           "Un dispositivo sin navegador muestra un código que el usuario ingresa en otro",
           "Renovar un access token expirado usando exclusivamente el refresh token emitido"
         ], correct: 0,
@@ -14051,7 +14037,7 @@ Según la documentación de Keycloak, ¿qué ocurre cuando se asigna el rol comp
         q: "¿Qué logra el grant type 'refresh_token' en OAuth2?",
         opts: [
           "Obtener un nuevo access token sin repetir el login, usando el refresh token",
-          "Autenticar por primera vez a un usuario con su nombre de usuario y contraseña",
+          "Autenticar por primera vez a un usuario final con su nombre de usuario y contraseña",
           "Revocar de forma inmediata todos los tokens activos emitidos para ese cliente",
           "Registrar un nuevo cliente OAuth2 ante el servidor de autorización"
         ], correct: 0,
@@ -14061,7 +14047,7 @@ Según la documentación de Keycloak, ¿qué ocurre cuando se asigna el rol comp
         id: "se-33", cat: "seguridad", type: "teoria", diff: "Intermedio",
         q: "¿Qué diferencia hay entre el ID token y el access token en OpenID Connect?",
         opts: [
-          "El ID token identifica al usuario autenticado; el access token autoriza APIs",
+          "El ID token identifica al usuario autenticado (JWT firmado); el access token autoriza APIs",
           "Ambos tokens son completamente intercambiables y cumplen la misma función",
           "El access token identifica al usuario; el ID token solo refresca la sesión",
           "El ID token nunca tiene formato JWT, a diferencia del access token"
@@ -14138,7 +14124,7 @@ Según la documentación de Keycloak, ¿qué ocurre cuando se asigna el rol comp
         id: "se-40", cat: "seguridad", type: "teoria", diff: "Básico",
         q: "Según OWASP, ¿qué ejemplo típico ilustra 'Security Misconfiguration' (A05:2021)?",
         opts: [
-          "Dejar cuentas o credenciales por defecto habilitadas, o errores muy detallados",
+          "Dejar cuentas o credenciales por defecto habilitadas, o errores demasiado detallados",
           "Permitir que los usuarios configuren contraseñas demasiado débiles y adivinables",
           "No cifrar de ninguna forma los datos sensibles almacenados en la base de datos",
           "Permitir que un usuario acceda sin autorización a datos de otro usuario"
@@ -14149,8 +14135,8 @@ Según la documentación de Keycloak, ¿qué ocurre cuando se asigna el rol comp
         id: "se-41", cat: "seguridad", type: "teoria", diff: "Avanzado",
         q: "¿En qué consiste un ataque SSRF (Server-Side Request Forgery)?",
         opts: [
-          "El atacante engaña al servidor para atacar destinos internos vía HTTP",
-          "El atacante satura el servidor enviando miles de solicitudes simultáneas",
+          "El atacante engaña al servidor para que haga solicitudes HTTP hacia destinos internos",
+          "El atacante satura el servidor enviando miles de solicitudes simultáneas directamente",
           "El atacante roba la sesión activa de un usuario legítimo ya autenticado",
           "El servidor expone accidentalmente sus credenciales de BD en el código fuente"
         ], correct: 0,
@@ -14161,7 +14147,7 @@ Según la documentación de Keycloak, ¿qué ocurre cuando se asigna el rol comp
         q: "¿Por qué es riesgoso deserializar objetos provenientes de una fuente no confiable sin validación?",
         opts: [
           "Un atacante construye datos serializados que ejecutan código arbitrario",
-          "El proceso de deserialización es más lento que el de serializar datos",
+          "El proceso de deserialización es más lento que el propio proceso de serializar datos",
           "Los objetos deserializados siempre ocupan más memoria que su forma original",
           "La deserialización falla silenciosamente sin lanzar ninguna excepción visible"
         ], correct: 0,
@@ -14172,8 +14158,8 @@ Según la documentación de Keycloak, ¿qué ocurre cuando se asigna el rol comp
         q: "¿Qué establece el principio de mínimo privilegio (least privilege) en seguridad de aplicaciones?",
         opts: [
           "Cada usuario o proceso debe tener solo los permisos necesarios para su función",
-          "Todos los usuarios comparten la misma cuenta administrativa, para simplificar",
-          "Los permisos se otorgan ampliamente primero y se restringen si surge un problema",
+          "Todos los usuarios deben compartir la misma cuenta administrativa, para simplificar",
+          "Los permisos deben otorgarse ampliamente primero y restringirse si surge un problema",
           "Un mismo rol debe agrupar todos los permisos posibles disponibles en el sistema"
         ], correct: 0,
         exp: "El mínimo privilegio limita el daño potencial de una cuenta comprometida o un error de programación: si un componente solo tiene los permisos que realmente necesita, un fallo o ataque exitoso sobre él no puede escalar automáticamente a acciones fuera de su alcance."
@@ -14218,7 +14204,7 @@ Según la documentación de Keycloak, ¿qué ocurre cuando se asigna el rol comp
           "Porque ese flujo requiere que un usuario final se autentique en un navegador",
           "Porque ese flujo no puede emitir nunca un access token de ningún tipo",
           "Porque ese flujo solo funciona correctamente sobre conexiones HTTP sin cifrar",
-          "Porque ese flujo requiere que ambos servicios compartan la misma base de datos"
+          "Porque ese flujo siempre requiere que ambos servicios compartan la misma base de datos"
         ], correct: 0,
         exp: "Authorization Code está diseñado para escenarios con un usuario final interactuando vía navegador (login, consentimiento y redirect); para comunicación servicio-a-servicio sin usuario involucrado, el grant apropiado es client_credentials, que omite ese paso interactivo por completo."
       },
@@ -14312,7 +14298,7 @@ MDC.clear();</pre>
 
       {
         id: "lg-06", cat: "logging", type: "teoria", diff: "Intermedio",
-        q: "¿Por qué es mala práctica loggear información sensible como contraseñas o números de tarjeta completos?",
+        q: "¿Por qué es una mala práctica común registrar (loggear) información sensible como contraseñas o números de tarjeta completos en los archivos de log?",
         opts: [
           "Porque esos datos adicionales ocupan bastante más espacio en disco con el tiempo",
           "Porque los logs suelen guardarse en texto plano con retención larga",
@@ -14324,7 +14310,7 @@ MDC.clear();</pre>
 
       {
         id: "lg-07", cat: "logging", type: "teoria", diff: "Básico",
-        q: "¿Qué propósito tiene la rotación de logs, configurada típicamente con políticas de tamaño o tiempo?",
+        q: "¿Qué propósito tiene la rotación de logs (log rotation), configurada típicamente con políticas de tamaño o tiempo?",
         opts: [
           "Cambiar de forma aleatoria el formato con que se escribe cada mensaje de log",
           "Archivar el log al alcanzar cierto tamaño o intervalo, sin crecer sin límite",
@@ -14398,7 +14384,7 @@ public Response health() {
 
       {
         id: "lg-12", cat: "logging", type: "teoria", diff: "Intermedio",
-        q: "¿Por qué evitar el uso masivo y permanente de niveles DEBUG o TRACE en producción de alto tráfico?",
+        q: "¿Por qué se recomienda evitar el uso de niveles DEBUG o TRACE de forma masiva y permanente en un entorno de producción de alto tráfico?",
         opts: [
           "Porque esos niveles están bloqueados en producción y la app ni arrancaría",
           "Porque generan mucho más volumen, degradando el rendimiento de E/S del servidor",
@@ -14436,7 +14422,7 @@ public Response health() {
 
       {
         id: "lg-15", cat: "logging", type: "teoria", diff: "Intermedio",
-        q: "¿Qué problema resuelve propagar un 'correlation ID' a través de las capas que procesan una solicitud?",
+        q: "¿Qué problema resuelve propagar un 'correlation ID' (o 'trace ID') único a través de las distintas capas y servicios que procesan una misma solicitud?",
         opts: [
           "Reemplaza por completo la necesidad de cualquier autenticación entre servicios",
           "Permite rastrear en los logs todos los eventos de una solicitud entre servicios",
@@ -14463,7 +14449,7 @@ public Response health() {
         q: "¿Qué busca resolver el 'muestreo' (sampling) de logs en sistemas de altísimo volumen de tráfico?",
         opts: [
           "Eliminar por completo cualquier registro de nivel ERROR generado por la app",
-          "Registrar solo una fracción de eventos, sin perder visibilidad",
+          "Registrar solo una fracción de eventos, reduciendo volumen sin perder visibilidad",
           "Cifrar todos los logs para que solo el equipo de seguridad pueda leerlos",
           "Convertir automáticamente los logs existentes a un formato binario comprimido"
         ], correct: 1,
@@ -14472,9 +14458,9 @@ public Response health() {
 
       {
         id: "lg-18", cat: "logging", type: "teoria", diff: "Intermedio",
-        q: "Según Log4j2, ¿qué controla específicamente una SizeBasedTriggeringPolicy dentro de un RollingFileAppender?",
+        q: "Según el manual oficial de Log4j2, ¿qué controla específicamente una SizeBasedTriggeringPolicy dentro de un RollingFileAppender?",
         opts: [
-          "Dispara la rotación del log al alcanzar un tamaño configurado (ej. \"100k\")",
+          "Dispara la rotación del log al alcanzar un tamaño configurado (por ejemplo, \"100k\")",
           "Dispara la rotación solo según una expresión cron configurada en el appender",
           "Cifra el contenido del archivo de log una vez alcanzado cierto tamaño límite",
           "Elimina automáticamente los logs cuyo tamaño total supere el límite indicado"
@@ -14508,7 +14494,7 @@ public Response health() {
 
       {
         id: "lg-21", cat: "logging", type: "teoria", diff: "Básico",
-        q: "¿Qué problema resuelve la fachada de SLF4J frente a acoplarse directamente a Log4j2 o Logback?",
+        q: "¿Qué problema resuelve el patrón de fachada que implementa SLF4J frente a acoplarse directamente a Log4j2 o Logback?",
         opts: [
           "Permite cambiar la implementación de logging subyacente sin modificar el código",
           "Permite que la app funcione temporalmente sin ninguna implementación de logging",
@@ -14544,7 +14530,7 @@ public Response health() {
         id: "lg-24", cat: "logging", type: "teoria", diff: "Intermedio",
         q: "¿Para qué sirve un Marker en SLF4J/Logback al registrar un evento de log?",
         opts: [
-          "Etiqueta semánticamente un evento (ej. AUDITORIA) para filtrarlo o enrutarlo",
+          "Etiqueta semánticamente un evento (ej. AUDITORIA) para filtrarlo o enrutarlo distinto",
           "Define el color exacto con el que se llegará a mostrar ese mensaje en la consola",
           "Reemplaza al nivel de severidad estándar (DEBUG/INFO/WARN/ERROR) de ese evento",
           "Indica de forma precisa el número de línea del código donde se generó ese log"
@@ -14577,9 +14563,9 @@ public Response health() {
         id: "lg-27", cat: "logging", type: "teoria", diff: "Básico",
         q: "¿Qué elementos raíz componen típicamente un archivo logback.xml?",
         opts: [
-          "configuration, que agrupa appenders, loggers específicos y un root por defecto",
+          "configuration, que agrupa appenders, loggers específicos y un root con nivel por defecto",
           "Solo un único elemento appender, sin ninguna otra estructura adicional definida",
-          "Un elemento de web.xml con las mismas etiquetas que un descriptor de servlet",
+          "Un elemento web.xml que reutiliza las mismas etiquetas que un descriptor de servlet",
           "Un único bloque logger que reemplaza por completo tanto a appender como a root"
         ], correct: 0,
         exp: "Un logback.xml típico declara <configuration> como raíz, dentro de la cual se definen uno o más <appender>, opcionalmente <logger> específicos por paquete con su propio nivel, y un <root> que fija el nivel y appenders por defecto para el resto de la aplicación."
@@ -14610,7 +14596,7 @@ public Response health() {
         id: "lg-30", cat: "logging", type: "teoria", diff: "Avanzado",
         q: "¿Qué controla el atributo additivity=\"false\" en un logger de Log4j2/Logback?",
         opts: [
-          "Evita que ese logger envíe sus eventos a los appenders del logger padre",
+          "Evita que ese logger envíe sus eventos a los appenders heredados del logger padre",
           "Impide por completo que ese logger registre eventos de nivel inferior a WARN",
           "Fuerza a que ese logger use obligatoriamente un único appender de tipo consola",
           "Elimina la jerarquía completa de niveles de log para ese logger en particular"
@@ -14633,7 +14619,7 @@ public Response health() {
         q: "¿Qué son los 'Lookups' (como \\${date:yyyy-MM-dd} o \\${sys:propiedad}) en la configuración de Log4j2?",
         opts: [
           "Mecanismos para insertar valores dinámicos (fecha, propiedades) en la config",
-          "Consultas SQL que Log4j2 ejecuta contra una base de datos para guardar logs",
+          "Consultas SQL que Log4j2 ejecuta directamente contra una base de datos para guardar logs",
           "Filtros que descartan mensajes que coincidan con una expresión regular definida",
           "Plantillas HTML usadas exclusivamente por el appender configurado de tipo SMTP"
         ], correct: 0,
@@ -14643,8 +14629,8 @@ public Response health() {
         id: "lg-33", cat: "logging", type: "teoria", diff: "Avanzado",
         q: "¿Qué ventaja de rendimiento ofrece RollingRandomAccessFileAppender frente a RollingFileAppender en Log4j2?",
         opts: [
-          "Usa ByteBuffer de bajo nivel, evitando el overhead de BufferedOutputStream",
-          "Escribe cada evento en una base de datos externa en vez de en disco local",
+          "Usa ByteBuffer y acceso de bajo nivel, evitando el overhead de BufferedOutputStream",
+          "Escribe cada evento en una base de datos externa en vez de hacerlo en disco local",
           "Comprime automáticamente cada línea de log justo antes de escribirla en disco",
           "Elimina por completo la necesidad de definir alguna política de rotación"
         ], correct: 0,
@@ -14663,7 +14649,7 @@ public Response health() {
       },
       {
         id: "lg-35", cat: "logging", type: "teoria", diff: "Intermedio",
-        q: "¿Para qué se usa el puente jul-to-slf4j en un proyecto que combina SLF4J con java.util.logging?",
+        q: "¿Para qué se usa el puente jul-to-slf4j en un proyecto que combina SLF4J con bibliotecas que usan java.util.logging?",
         opts: [
           "Redirige los mensajes de java.util.logging hacia SLF4J para centralizarlos",
           "Convierte a SLF4J en una implementación completa y nativa de java.util.logging",
@@ -14768,7 +14754,7 @@ console.log("Fin");</pre>
 
       {
         id: "js-07", cat: "javascript", type: "teoria", diff: "Básico",
-        q: "¿Qué diferencia hay entre una arrow function (=>) y una función tradicional respecto a 'this'?",
+        q: "¿Qué diferencia sintáctica y de comportamiento tiene una arrow function (=>) respecto a una función tradicional en relación con 'this'?",
         opts: [
           "No hay ninguna diferencia real entre ambas formas en este aspecto puntual",
           "La arrow function hereda 'this' léxico; la tradicional lo define al invocarse",
@@ -14919,14 +14905,14 @@ Suponiendo que el botón está dentro de un &lt;form&gt;, ¿qué logra event.pre
         opts: [
           "Porque fetch() nunca puede fallar bajo ninguna circunstancia de red posible",
           "Porque fetch() solo rechaza ante fallos de red; 404 o 500 resuelven la promesa",
-          "Porque response.json() lanza excepción ante cualquier código distinto de 200",
+          "Porque response.json() lanza siempre una excepción ante un código distinto de 200",
           "Porque .catch() solo captura errores de sintaxis, nunca errores HTTP"
         ], correct: 1,
         exp: "Una particularidad importante de fetch() es que la promesa se resuelve (no se rechaza) incluso cuando el servidor responde con un código de error como 404 o 500; solo se rechaza ante fallos de red o de conexión. Por eso el patrón estándar es comprobar response.ok (o el rango de response.status) y lanzar un error manualmente si la respuesta no fue exitosa."
       },
       {
         id: "js-18", cat: "javascript", type: "teoria", diff: "Intermedio",
-        q: "¿Qué ventaja dan los módulos ES (import/export) frente a cargar varios &lt;script&gt; sueltos en una página?",
+        q: "¿Qué ventaja aportan los módulos ES (import/export) frente a cargar múltiples archivos &lt;script&gt; sueltos en una página HTML?",
         opts: [
           "Los módulos ES ejecutan el código más rápido que un script tradicional",
           "Declaran qué exporta cada archivo, con ámbito propio aislado del global",
@@ -15089,9 +15075,9 @@ console.log(suma(1, 2, 3));</pre>
 
       {
         id: "js-29", cat: "javascript", type: "teoria", diff: "Intermedio",
-        q: "Según MDN, ¿qué diferencia el alcance de sessionStorage frente a localStorage?",
+        q: "Según la documentación de la Web Storage API en MDN, ¿qué diferencia el alcance de sessionStorage frente a localStorage?",
         opts: [
-          "sessionStorage se comparte entre pestañas del mismo origen, como localStorage",
+          "sessionStorage se comparte entre todas las pestañas del mismo origen, como localStorage",
           "sessionStorage es de su pestaña y se borra al cerrarla; localStorage no expira",
           "localStorage se borra al recargar la página, a diferencia de sessionStorage",
           "Ambos mecanismos se sincronizan automáticamente entre distintos orígenes"
@@ -15219,7 +15205,7 @@ console.log(valores.includes(NaN));</pre>
 ¿Por qué estos dos métodos dan resultados distintos ante el mismo valor NaN?`,
         opts: [
           "indexOf() usa igualdad estricta (NaN !== NaN falla); includes() sí detecta NaN",
-          "Ambos métodos deberían retornar el mismo resultado; es un error del motor",
+          "Ambos métodos deberían retornar el mismo resultado; se trata de un error del motor",
           "includes() solo funciona correctamente sobre arreglos ya ordenados numéricamente",
           "indexOf() convierte automáticamente NaN a 0 antes de realizar la búsqueda"
         ], correct: 0,
@@ -15239,7 +15225,7 @@ Si la segunda solicitud se rechaza, ¿qué ocurre con Promise.all() en este caso
         opts: [
           "Espera a que las tres terminen, incluyendo el error en el arreglo resultados",
           "Se rechaza de inmediato con ese error, sin esperar a que terminen las demás",
-          "Ignora la solicitud fallida y sigue solo con las que tuvieron éxito",
+          "Ignora la solicitud fallida y sigue solo con los resultados de las que tuvieron éxito",
           "Lanza una excepción de sintaxis porque no todas las promesas tuvieron éxito"
         ], correct: 1,
         exp: "Promise.all() se rechaza tan pronto como CUALQUIERA de las promesas del arreglo se rechaza, propagando ese primer error al .catch(), sin esperar a que las demás promesas terminen (aunque sigan ejecutándose en segundo plano). Para esperar a todas independientemente del resultado, se usa Promise.allSettled()."
@@ -15348,7 +15334,7 @@ let nombre = "Ana";</pre>
         q: "¿Qué ventaja ofrece un WeakMap frente a un Map normal para asociar datos privados a objetos?",
         opts: [
           "Un WeakMap admite claves de texto además de objetos, cosa que Map no permite",
-          "Sus claves deben ser objetos, y no impiden que el garbage collector los libere",
+          "Sus claves deben ser siempre objetos, y no impiden que el garbage collector los libere",
           "Un WeakMap es simplemente más rápido de recorrer con for...of que un Map",
           "Un WeakMap conserva el orden de inserción de sus claves, mientras Map no lo hace"
         ], correct: 1,
@@ -15370,7 +15356,7 @@ console.log(gen.next().value);</pre>
         opts: [
           "Se ejecuta por completo de inmediato al invocarla, igual que una función normal",
           "Retorna un iterador que pausa su ejecución en cada yield, reanudable con next()",
-          "Solo puede usarse en bucles for...of, nunca invocada manualmente con next()",
+          "Solo puede usarse dentro de bucles for...of, nunca invocada manualmente con next()",
           "Convierte automáticamente todos sus valores yield en una Promise resuelta"
         ], correct: 1,
         exp: "Al invocar una función generadora no se ejecuta su cuerpo de inmediato: retorna un objeto iterador. Cada llamada a next() reanuda la ejecución hasta el siguiente yield, pausando ahí y devolviendo ese valor, lo que permite producir secuencias de datos de forma perezosa, un valor a la vez."
@@ -15403,8 +15389,8 @@ input.addEventListener("input", buscar);</pre>
 ¿Qué logra este patrón de 'debounce' al escuchar el evento input?`,
         opts: [
           "Ejecuta consultarAPI inmediatamente en cada pulsación, sin ningún retraso",
-          "Ejecuta consultarAPI cada 300ms, sin importar si el usuario sigue escribiendo",
-          "Cancela el temporizador pendiente y llama consultarAPI tras 300ms de inactividad",
+          "Ejecuta consultarAPI cada 300 milisegundos, sin importar si el usuario sigue escribiendo",
+          "Cancela el temporizador pendiente y ejecuta consultarAPI tras 300ms de inactividad",
           "Bloquea por completo el evento input mientras consultarAPI se está ejecutando"
         ], correct: 2,
         exp: "Cada nueva pulsación cancela (clearTimeout) el temporizador anterior antes de programar uno nuevo; solo si transcurren 300ms sin una nueva pulsación, el temporizador finalmente llega a disparar fn. Esto evita disparar una solicitud a la API en cada tecla, esperando a que el usuario haga una pausa real."
@@ -15426,7 +15412,7 @@ window.addEventListener("scroll", throttle(actualizarBarra, 200));</pre>
 ¿En qué se diferencia este patrón de 'throttle' respecto al 'debounce'?`,
         opts: [
           "throttle nunca ejecuta la función mientras el evento scroll siga disparándose",
-          "throttle garantiza ejecutar la función una vez por intervalo, no solo al final",
+          "throttle garantiza ejecutar la función como máximo una vez por intervalo, no solo al final",
           "throttle y debounce son términos distintos para describir el mismo patrón",
           "throttle solo puede aplicarse al evento scroll, nunca a otros eventos del DOM"
         ], correct: 1,
@@ -15533,8 +15519,8 @@ console.log(grupos.flatMap(g =&gt; g.map(n =&gt; n * 2)));</pre>
         opts: [
           "Application Programming Interface: protocolo de comunicación entre dos sistemas",
           "Automated Program Installer: instala programas de forma automática y silenciosa",
-          "Advanced Processing Index: métrica para medir rendimiento interno de servidores",
-          "Application Process Isolation: mecanismo de seguridad del sistema operativo"
+          "Advanced Processing Index: métrica para medir el rendimiento interno de servidores",
+          "Application Process Isolation: mecanismo de seguridad del sistema operativo anfitrión"
         ], correct: 0,
         exp: "API (Interfaz de Programación de Aplicaciones) define el contrato mediante el cual distintos sistemas o módulos exponen e invocan funcionalidades entre sí, sin necesidad de conocer los detalles internos de implementación de la otra parte."
       },
@@ -15544,16 +15530,16 @@ console.log(grupos.flatMap(g =&gt; g.map(n =&gt; n * 2)));</pre>
         q: "¿Qué representan las siglas ACID en el contexto de transacciones de bases de datos?",
         opts: [
           "Atomicity, Consistency, Isolation, Durability: propiedades de transacciones",
-          "Access, Control, Identity, Data: modelo de seguridad perimetral en redes",
+          "Access, Control, Identity, Data: modelo de seguridad perimetral en redes corporativas",
           "Application, Cache, Index, Database: componentes de arquitectura de tres capas",
-          "Authentication, Certification, Integration, Deployment: fases de un pipeline"
+          "Authentication, Certification, Integration, Deployment: fases de un pipeline CI/CD"
         ], correct: 0,
         exp: "Las propiedades ACID (Atomicidad, Consistencia, Aislamiento, Durabilidad) son el fundamento clásico de las transacciones en bases de datos relacionales, garantizando integridad y confiabilidad incluso ante fallos o concurrencia."
       },
 
       {
         id: "ti-03", cat: "ti-general", type: "teoria", diff: "Básico",
-        q: "¿Qué operaciones básicas representa el acrónimo CRUD en una API o sistema de gestión de datos?",
+        q: "¿Qué operaciones básicas representa el acrónimo CRUD, comúnmente usado para describir la funcionalidad esencial de una API o sistema de gestión de datos?",
         opts: [
           "Create, Read, Update, Delete",
           "Compile, Run, Undo, Debug: fases típicas de un entorno de desarrollo integrado",
@@ -15601,7 +15587,7 @@ console.log(grupos.flatMap(g =&gt; g.map(n =&gt; n * 2)));</pre>
 
       {
         id: "ti-07", cat: "ti-general", type: "teoria", diff: "Intermedio",
-        q: "¿Qué busca garantizar una práctica de CI/CD (Integración y Entrega/Despliegue Continuos)?",
+        q: "¿Qué busca garantizar principalmente una práctica de CI/CD (Integración Continua / Entrega o Despliegue Continuo)?",
         opts: [
           "Que el código nunca se pruebe de forma automática antes de subir a producción",
           "Automatizar la integración y, en CD, la entrega hacia ambientes",
@@ -15673,11 +15659,11 @@ console.log(grupos.flatMap(g =&gt; g.map(n =&gt; n * 2)));</pre>
 
       {
         id: "ti-13", cat: "ti-general", type: "teoria", diff: "Básico",
-        q: "¿Qué es un contenedor (por ejemplo, Docker) y en qué se diferencia de una máquina virtual tradicional?",
+        q: "¿Qué es un contenedor (por ejemplo, Docker) y en qué se diferencia conceptualmente de una máquina virtual tradicional?",
         opts: [
           "El contenedor comparte el kernel del host; la VM virtualiza hardware completo",
           "Son términos que, en la práctica, se usan como sinónimos exactos sin diferencia",
-          "Un contenedor exige, igual que una VM, su propio sistema operativo completo",
+          "Un contenedor exige, igual que una VM, tener su propio sistema operativo completo",
           "Los contenedores solo pueden ejecutar aplicaciones escritas en el lenguaje Go"
         ], correct: 0,
         exp: "Los contenedores (como los gestionados por Docker) virtualizan a nivel de sistema operativo, compartiendo el kernel del host y empaquetando solo la aplicación y sus dependencias, lo que los hace mucho más livianos y rápidos de iniciar que una máquina virtual tradicional, la cual virtualiza hardware completo e incluye un sistema operativo invitado propio."
@@ -15722,7 +15708,7 @@ console.log(grupos.flatMap(g =&gt; g.map(n =&gt; n * 2)));</pre>
       /* --- Gestión de proyectos y PMP --- */
       {
         id: "ti-17", cat: "ti-general", type: "teoria", diff: "Básico",
-        q: "¿Qué representa la 'triple restricción' (o triángulo de hierro) en la gestión de proyectos según PMI/PMP?",
+        q: "¿Qué representa la llamada 'triple restricción' (o triángulo de hierro) en la gestión de proyectos según el enfoque PMI/PMP?",
         opts: [
           "Alcance, tiempo y costo: tres variables interdependientes del proyecto",
           "Presupuesto, marketing y ventas de la organización que ejecuta el proyecto",
@@ -15734,7 +15720,7 @@ console.log(grupos.flatMap(g =&gt; g.map(n =&gt; n * 2)));</pre>
 
       {
         id: "ti-18", cat: "ti-general", type: "teoria", diff: "Intermedio",
-        q: "¿Qué es un EDT/WBS (Estructura de Desglose del Trabajo) en la gestión de un proyecto?",
+        q: "¿Qué es un EDT/WBS (Estructura de Desglose del Trabajo / Work Breakdown Structure) en la gestión de un proyecto?",
         opts: [
           "Un informe de tipo financiero que pertenece exclusivamente al área contable",
           "Una descomposición jerárquica del alcance en paquetes de trabajo manejables",
@@ -15770,7 +15756,7 @@ console.log(grupos.flatMap(g =&gt; g.map(n =&gt; n * 2)));</pre>
 
       {
         id: "ti-21", cat: "ti-general", type: "teoria", diff: "Avanzado",
-        q: "En Gestión del Valor Ganado (EVM), ¿qué indica un CPI (Cost Performance Index) menor a 1?",
+        q: "En Gestión del Valor Ganado (Earned Value Management, EVM), ¿qué indica un CPI (Cost Performance Index) menor a 1?",
         opts: [
           "Que el proyecto avanza adelantado respecto al cronograma planificado",
           "Que se gasta más de lo planificado por el trabajo completado (CPI = EV / AC)",
@@ -15782,7 +15768,7 @@ console.log(grupos.flatMap(g =&gt; g.map(n =&gt; n * 2)));</pre>
 
       {
         id: "ti-22", cat: "ti-general", type: "teoria", diff: "Intermedio",
-        q: "¿Cuál es la diferencia clave entre un enfoque de gestión predictivo (Waterfall) y uno adaptativo/ágil?",
+        q: "¿Cuál es una diferencia clave entre un enfoque de gestión de proyectos predictivo (tipo 'cascada' o Waterfall) y uno adaptativo/ágil?",
         opts: [
           "El predictivo planifica todo por adelantado; el ágil planifica iterativamente",
           "Ambos enfoques son, en esencia, idénticos; solo cambia la terminología usada",
@@ -15806,7 +15792,7 @@ console.log(grupos.flatMap(g =&gt; g.map(n =&gt; n * 2)));</pre>
 
       {
         id: "ti-24", cat: "ti-general", type: "teoria", diff: "Intermedio",
-        q: "¿Qué busca principalmente un proceso formal de 'control de cambios' en la gestión de un proyecto?",
+        q: "¿Qué busca principalmente un proceso de 'control de cambios' (change control) formal dentro de la gestión de un proyecto?",
         opts: [
           "Prohibir, de forma tajante, cualquier modificación una vez iniciado el proyecto",
           "Evaluar y aprobar o rechazar de forma estructurada cada solicitud de cambio",
@@ -15841,7 +15827,7 @@ console.log(grupos.flatMap(g =&gt; g.map(n =&gt; n * 2)));</pre>
       },
       {
         id: "ti-27", cat: "ti-general", type: "teoria", diff: "Avanzado",
-        q: "En los principios SOLID, ¿qué establece la 'S' (Single Responsibility Principle)?",
+        q: "En los principios SOLID de diseño orientado a objetos, ¿qué establece la 'S' (Single Responsibility Principle)?",
         opts: [
           "Que una clase debe implementar la mayor cantidad posible de interfaces",
           "Que una clase tenga una sola razón para cambiar, con responsabilidad definida",
@@ -15852,7 +15838,7 @@ console.log(grupos.flatMap(g =&gt; g.map(n =&gt; n * 2)));</pre>
       },
       {
         id: "ti-28", cat: "ti-general", type: "teoria", diff: "Intermedio",
-        q: "¿Qué comando de Git combina los cambios de una rama en otra, generando un commit de fusión si hay divergencia?",
+        q: "¿Qué comando de Git se utiliza para combinar los cambios de una rama dentro de otra, generando (por defecto) un nuevo commit de fusión si hay divergencia?",
         opts: [
           "git clone", "git merge", "git tag", "git stash"
         ], correct: 1,
@@ -15938,7 +15924,7 @@ git rebase feature/reporte-anual</pre>
         id: "ti-35", cat: "ti-general", type: "teoria", diff: "Intermedio",
         q: "¿Qué es un pipeline de CI/CD y qué rol cumplen sus 'stages' (etapas) típicas como build, test y deploy?",
         opts: [
-          "Es un flujo automatizado que encadena compilar, probar y desplegar por cambio",
+          "Es un flujo automatizado que encadena compilar, probar y desplegar ante cada cambio",
           "Es un documento de texto que describe manualmente los pasos, sin automatización",
           "Solo aplica a proyectos que usan exclusivamente contenedores Docker",
           "Reemplaza por completo la necesidad de un sistema de control de versiones"
@@ -15950,7 +15936,7 @@ git rebase feature/reporte-anual</pre>
         id: "ti-36", cat: "ti-general", type: "teoria", diff: "Intermedio",
         q: "¿Qué diferencia principal existe entre Kanban y Scrum como marcos de trabajo ágil?",
         opts: [
-          "Kanban fluye sin iteraciones fijas; Scrum organiza Sprints con roles definidos",
+          "Kanban limita el flujo continuo sin iteraciones fijas; Scrum organiza Sprints con roles",
           "Ambos marcos son exactamente idénticos, solo cambia el nombre del tablero usado",
           "Kanban exige obligatoriamente un Scrum Master como rol central del equipo",
           "Scrum no permite visualizar el trabajo en un tablero de ningún tipo"
@@ -16020,7 +16006,7 @@ git rebase feature/reporte-anual</pre>
 
       {
         id: "ti-42", cat: "ti-general", type: "teoria", diff: "Intermedio",
-        q: "Según la Guía Scrum (2020), ¿qué diferencia de propósito hay entre Sprint Review y Sprint Retrospective?",
+        q: "Según la Guía Scrum oficial (2020), ¿qué diferencia de propósito existe entre la Revisión de Sprint (Sprint Review) y la Retrospectiva de Sprint?",
         opts: [
           "Ambos eventos tienen exactamente el mismo propósito, solo cambia el nombre",
           "La Revisión ajusta el Backlog con interesados; Retrospectiva mejora al equipo",
@@ -16073,7 +16059,7 @@ Según la documentación oficial de Git, ¿qué logra este flujo con git stash/g
         q: "Según la Scrum Guide oficial, ¿de qué es responsable específicamente el Scrum Master dentro del equipo?",
         opts: [
           "De asignar tareas individuales a cada miembro del equipo de desarrollo",
-          "De establecer Scrum, ayudando al equipo, Product Owner y organización",
+          "De establecer Scrum, ayudando al equipo, Product Owner y organización a aplicarlo",
           "De maximizar el valor del producto resultante del trabajo del equipo",
           "De aprobar el presupuesto final asignado a cada Sprint"
         ], correct: 1,
@@ -16096,8 +16082,8 @@ Según la documentación oficial de Git, ¿qué logra este flujo con git stash/g
         id: "ti-48", cat: "ti-general", type: "practica", diff: "Intermedio",
         q: "Se solicita una nueva funcionalidad, aún sin asignar a ningún Sprint. ¿Dónde se registra según la Scrum Guide?",
         opts: [
-          "En el Sprint Backlog, donde se registran los elementos pendientes del equipo",
-          "En el Product Backlog, la lista ordenada de lo que se necesita para el producto",
+          "En el Sprint Backlog, donde se registran los elementos de trabajo pendientes del equipo",
+          "En el Product Backlog, la lista ordenada y emergente de lo que se necesita para el producto",
           "En el acta de la Daily Scrum de ese día",
           "En el Definition of Done del equipo"
         ], correct: 1,
@@ -16126,10 +16112,10 @@ Según la documentación oficial de Git, ¿qué logra este flujo con git stash/g
 
       {
         id: "ti-51", cat: "ti-general", type: "teoria", diff: "Avanzado",
-        q: "Según Scrum Guide, ¿cuál es el propósito específico de Sprint Review, a diferencia de Sprint Retrospective?",
+        q: "Según la Scrum Guide, ¿cuál es el propósito específico de la Sprint Review, a diferencia de la Sprint Retrospective?",
         opts: [
           "Ambos eventos tienen exactamente el mismo propósito y son intercambiables",
-          "Inspecciona el incremento con los interesados; la Retrospective mira al equipo",
+          "Inspecciona el incremento con los interesados; la Retrospective mira hacia el equipo",
           "Asignar las tareas del siguiente Sprint a cada desarrollador de forma individual",
           "Aprobar formalmente el presupuesto del siguiente trimestre del proyecto"
         ], correct: 1,
@@ -16165,8 +16151,8 @@ Según la documentación oficial de Git, ¿qué logra este flujo con git stash/g
         q: "¿Qué representan los 'story points' al estimar elementos del backlog en un equipo ágil?",
         opts: [
           "Horas exactas de trabajo que un desarrollador dedicará por completo a esa tarea",
-          "Una unidad relativa para estimar tamaño y complejidad de un elemento",
-          "El número de líneas de código que se espera escribir para completar la tarea",
+          "Una unidad relativa y arbitraria para estimar tamaño y complejidad de un elemento",
+          "El número total de líneas de código que se espera escribir para completar esa tarea",
           "El presupuesto monetario formalmente asignado a ese elemento del backlog"
         ], correct: 1,
         exp: "Los story points son una unidad de medida relativa (no ligada directamente a horas) que el equipo usa para estimar el tamaño y la complejidad de un elemento de trabajo, comparándolo contra otros ya estimados, en lugar de comprometerse con una duración exacta en tiempo."
@@ -16189,7 +16175,7 @@ Según la documentación oficial de Git, ¿qué logra este flujo con git stash/g
         q: "¿Qué diferencia clave existe entre un burndown chart y un burnup chart en la gestión ágil de un proyecto?",
         opts: [
           "Son términos sinónimos para el mismo gráfico, solo cambia el nombre usado",
-          "El burndown grafica solo lo pendiente; el burnup añade el alcance total",
+          "El burndown grafica solo lo pendiente; el burnup añade una línea de alcance total",
           "El burnup solo puede usarse en proyectos con presupuesto fijo, nunca en ágiles",
           "El burndown únicamente se actualiza al finalizar el proyecto completo"
         ], correct: 1,
@@ -16239,8 +16225,8 @@ Según la documentación oficial de Git, ¿qué logra este flujo con git stash/g
         opts: [
           "Combina ciclos iterativos con un análisis de riesgos estructurado en cada vuelta",
           "Ambos modelos son exactamente iguales; solo cambia la forma de representarlos",
-          "El modelo en espiral no permite ningún incremento entregable hasta el final",
-          "El modelo iterativo-incremental nunca produce entregables intermedios"
+          "El modelo en espiral no permite ningún incremento funcional entregable hasta el final",
+          "El modelo iterativo-incremental nunca produce entregables funcionales intermedios"
         ], correct: 0,
         exp: "El modelo en espiral, propuesto por Barry Boehm, repite ciclos que incluyen planificación, análisis explícito de riesgos, ingeniería y evaluación, agregando ese enfoque de riesgo estructurado que un modelo iterativo-incremental simple no exige formalmente."
       },
@@ -16249,8 +16235,8 @@ Según la documentación oficial de Git, ¿qué logra este flujo con git stash/g
         id: "ti-61", cat: "ti-general", type: "teoria", diff: "Avanzado",
         q: "¿Cómo se relaciona DevOps (con integración y entrega continuas) con las fases tradicionales del SDLC?",
         opts: [
-          "Difumina la línea entre desarrollo y operaciones, con despliegue continuo",
-          "Reemplaza la necesidad de una fase de pruebas dentro del ciclo de vida",
+          "Difumina la línea entre desarrollo y operaciones, integrando pruebas/despliegue continuo",
+          "Reemplaza la necesidad de contar con una fase de pruebas dentro del ciclo de vida",
           "Es tan solo una fase adicional que se ejecuta después de todo el mantenimiento",
           "Solo aplica a proyectos que usan exclusivamente el modelo de cascada tradicional"
         ], correct: 0,
@@ -16258,385 +16244,10 @@ Según la documentación oficial de Git, ¿qué logra este flujo con git stash/g
       }
     ];
 
-    /* ---- 15. Testing: JUnit y Mockito ------------------------------------ */
-    const QB_JUNIT = [
-      {
-        id: "ju-01", cat: "junit-testing", type: "teoria", diff: "Básico",
-        q: "¿Qué anotación marca un método como caso de prueba ejecutable en JUnit 5?",
-        opts: ["@Test", "@Before", "@Rule", "@RunWith"], correct: 0,
-        exp: "@Test (del paquete org.junit.jupiter.api) marca un método como caso de prueba que el motor Jupiter ejecutará; a diferencia de JUnit 4, en JUnit 5 el método no necesita ser public."
-      },
-
-      {
-        id: "ju-02", cat: "junit-testing", type: "teoria", diff: "Básico",
-        q: "¿Qué tres módulos componen la arquitectura de JUnit 5?",
-        opts: [
-          "Platform, Jupiter y Vintage",
-          "Core, Runner y Reporter",
-          "Suite, Rule y Extension",
-          "Assert, Mock y Runner"
-        ], correct: 0,
-        exp: "JUnit Platform provee el motor de lanzamiento y ejecución; Jupiter aporta la nueva API y motor de JUnit 5 (@Test, @BeforeEach, etc.); Vintage permite ejecutar tests escritos con JUnit 3/4 sobre la Platform, para migración gradual."
-      },
-
-      {
-        id: "ju-03", cat: "junit-testing", type: "teoria", diff: "Intermedio",
-        q: "¿Qué diferencia hay entre @BeforeEach y @BeforeAll en JUnit 5?",
-        opts: [
-          "@BeforeEach corre antes de cada test; @BeforeAll una vez por clase",
-          "@BeforeAll corre antes de cada test; @BeforeEach una sola vez",
-          "Son sinónimos exactos, solo cambia el nombre del método anotado",
-          "@BeforeAll solo funciona con clases marcadas como @Nested"
-        ], correct: 0,
-        exp: "@BeforeEach se ejecuta antes de cada método @Test (para preparar estado fresco); @BeforeAll se ejecuta una única vez antes de todos los tests de la clase, y su método debe ser static (salvo con @TestInstance(PER_CLASS))."
-      },
-
-      {
-        id: "ju-04", cat: "junit-testing", type: "teoria", diff: "Básico",
-        q: "¿Cómo se llamaban @BeforeEach y @AfterEach en JUnit 4?",
-        opts: ["@Before y @After", "@Setup y @Teardown", "@Init y @Finish", "@PreTest y @PostTest"], correct: 0,
-        exp: "JUnit 4 usaba @Before/@After para el ciclo por método y @BeforeClass/@AfterClass para el ciclo por clase; JUnit 5 los renombró a @BeforeEach/@AfterEach y @BeforeAll/@AfterAll respectivamente."
-      },
-
-      {
-        id: "ju-05", cat: "junit-testing", type: "practica", diff: "Intermedio",
-        q: `Analice:
-<pre class="code-block">class ContadorTest {
-    static int total = 0;
-    @BeforeEach
-    void inc() { total++; }
-    @Test void a() {}
-    @Test void b() {}
-}</pre>
-Al ejecutar la clase completa, ¿cuánto vale total al finalizar?`,
-        opts: ["0", "1", "2", "Depende del orden de ejecución de los tests"], correct: 2,
-        exp: "@BeforeEach se ejecuta antes de cada método @Test; con dos tests (a y b), inc() corre dos veces, dejando total en 2, independientemente del orden entre a y b."
-      },
-
-      {
-        id: "ju-06", cat: "junit-testing", type: "teoria", diff: "Básico",
-        q: "En assertEquals(expected, actual), ¿qué argumento va primero por convención?",
-        opts: ["El valor esperado", "El valor obtenido realmente", "El objeto bajo prueba", "El mensaje de error"], correct: 0,
-        exp: "Por convención (heredada de JUnit desde sus inicios), el primer argumento es el valor esperado y el segundo el valor real obtenido; invertirlos no rompe la prueba, pero produce un mensaje de fallo confuso si algo falla."
-      },
-
-      {
-        id: "ju-07", cat: "junit-testing", type: "teoria", diff: "Intermedio",
-        q: "¿Para qué se usa assertThrows en JUnit 5?",
-        opts: [
-          "Para verificar que un bloque de código lanza una excepción específica",
-          "Para forzar manualmente que un test falle sin ejecutar código",
-          "Para capturar y silenciar cualquier excepción durante el test",
-          "Para medir el tiempo de ejecución de un bloque de código"
-        ], correct: 0,
-        exp: "assertThrows(Clase.class, ejecutable) ejecuta el lambda/método dado y falla el test si NO se lanza una excepción del tipo esperado (o subtipo); si se lanza, retorna la excepción capturada para inspeccionar su mensaje u otros datos."
-      },
-
-      {
-        id: "ju-08", cat: "junit-testing", type: "practica", diff: "Intermedio",
-        q: `Analice:
-<pre class="code-block">@Test
-void divisionPorCero() {
-    Executable ex = () -> Calculadora.dividir(10, 0);
-    assertThrows(ArithmeticException.class, ex);
-}</pre>
-¿Qué ocurre si Calculadora.dividir(10, 0) NO lanza ninguna excepción?`,
-        opts: [
-          "El test falla, porque assertThrows esperaba una ArithmeticException",
-          "El test pasa igual, porque assertThrows solo registra la excepción",
-          "Se lanza una NullPointerException al evaluar el Executable",
-          "El test queda marcado como @Disabled automáticamente"
-        ], correct: 0,
-        exp: "assertThrows falla explícitamente el test si el código ejecutado NO lanza ninguna excepción (o lanza una de tipo distinto al esperado), porque su contrato es verificar que sí ocurra la excepción indicada."
-      },
-
-      {
-        id: "ju-09", cat: "junit-testing", type: "teoria", diff: "Básico",
-        q: "¿Cuál es el equivalente en JUnit 5 de @Ignore de JUnit 4?",
-        opts: ["@Disabled", "@Skip", "@Excluded", "@Off"], correct: 0,
-        exp: "@Disabled marca un método o clase de prueba para que el motor Jupiter lo omita durante la ejecución, reportándolo como deshabilitado en vez de ejecutarlo; puede recibir un mensaje opcional indicando el motivo."
-      },
-
-      {
-        id: "ju-10", cat: "junit-testing", type: "teoria", diff: "Intermedio",
-        q: "¿Qué combinación permite ejecutar un mismo test con varios valores de entrada?",
-        opts: [
-          "@ParameterizedTest junto con una fuente de datos como @ValueSource",
-          "@Test repetido varias veces con distinto nombre de método",
-          "@RepeatedTest, que reejecuta el test con los mismos datos",
-          "@BeforeEach, generando un valor aleatorio en cada corrida"
-        ], correct: 0,
-        exp: "@ParameterizedTest reemplaza a @Test e indica que el método recibirá distintos valores; la fuente de esos valores se declara con anotaciones como @ValueSource, @CsvSource, @MethodSource, etc."
-      },
-
-      {
-        id: "ju-11", cat: "junit-testing", type: "practica", diff: "Intermedio",
-        q: `Analice:
-<pre class="code-block">@ParameterizedTest
-@ValueSource(ints = {2, 4, 6, 8})
-void esPar(int n) {
-    assertEquals(0, n % 2);
-}</pre>
-¿Cuántas veces se ejecuta este método de prueba en total?`,
-        opts: ["1 vez", "2 veces", "4 veces", "0 veces, porque falta @Test"], correct: 2,
-        exp: "@ValueSource(ints = {2,4,6,8}) provee cuatro valores; el motor de JUnit 5 invoca esPar una vez por cada valor de la lista, resultando en 4 ejecuciones independientes del mismo método."
-      },
-
-      {
-        id: "ju-12", cat: "junit-testing", type: "teoria", diff: "Intermedio",
-        q: "¿Qué ventaja aporta @CsvSource frente a @ValueSource en un test parametrizado?",
-        opts: [
-          "Permite pasar varios argumentos por ejecución, no un valor simple",
-          "Permite leer los valores directamente desde una base de datos real",
-          "Es la única forma de parametrizar tests con valores de tipo String",
-          "Sustituye por completo la necesidad de declarar @ParameterizedTest"
-        ], correct: 0,
-        exp: "@ValueSource solo admite un arreglo de un tipo simple (int, String, etc.) como único parámetro por invocación. @CsvSource permite declarar filas de varios valores separados por coma, mapeándose a múltiples parámetros del método de prueba."
-      },
-
-      {
-        id: "ju-13", cat: "junit-testing", type: "teoria", diff: "Avanzado",
-        q: "¿Para qué sirve una clase interna anotada con @Nested en JUnit 5?",
-        opts: [
-          "Para agrupar tests relacionados y compartir contexto jerárquico",
-          "Para ejecutar esa clase de pruebas en un hilo separado del resto",
-          "Para marcar la clase como el punto de entrada principal de la suite",
-          "Para deshabilitar automáticamente todos los tests de la clase externa"
-        ], correct: 0,
-        exp: "@Nested permite anidar clases de test dentro de otra, agrupando escenarios relacionados (por ejemplo, 'CuandoElSaldoEsCero') y heredando el contexto @BeforeEach de la clase contenedora, mejorando la organización y legibilidad de los nombres de prueba."
-      },
-
-      {
-        id: "ju-14", cat: "junit-testing", type: "teoria", diff: "Intermedio",
-        q: "¿Qué logra la anotación @DisplayName en un método o clase de prueba?",
-        opts: [
-          "Define un nombre descriptivo legible que reemplaza al del método",
-          "Cambia el nombre real del método en tiempo de compilación",
-          "Oculta ese test de los reportes generados por el motor de JUnit",
-          "Determina el orden en que se ejecutan los tests de la clase"
-        ], correct: 0,
-        exp: "@DisplayName permite mostrar un texto descriptivo (incluso con espacios o emojis) en reportes e IDEs en lugar del nombre técnico del método, sin afectar el nombre real ni el comportamiento del test."
-      },
-
-      {
-        id: "ju-15", cat: "junit-testing", type: "teoria", diff: "Intermedio",
-        q: "¿Para qué se usa la anotación @Tag en JUnit 5?",
-        opts: [
-          "Para etiquetar tests y poder incluirlos o excluirlos al ejecutar",
-          "Para asociar automáticamente el test con un ticket de Jira",
-          "Para forzar que ese test se ejecute siempre en primer lugar",
-          "Para indicar cuántas veces debe repetirse ese test"
-        ], correct: 0,
-        exp: "@Tag(\"rapido\") o @Tag(\"integracion\") permite categorizar tests; luego se puede configurar el build (Maven/Gradle) para ejecutar o excluir tests según su tag, por ejemplo corriendo solo los rápidos en cada commit."
-      },
-
-      {
-        id: "ju-16", cat: "junit-testing", type: "teoria", diff: "Avanzado",
-        q: "¿Qué reemplaza en JUnit 5 al @RunWith(...) de JUnit 4 para integrar extensiones?",
-        opts: [
-          "@ExtendWith, basado en el nuevo modelo de extensiones de Jupiter",
-          "@RunWith sigue siendo idéntico y obligatorio en JUnit 5",
-          "Ya no es posible integrar extensiones externas en JUnit 5",
-          "@Rule, que ahora es la única forma soportada de extender el motor"
-        ], correct: 0,
-        exp: "JUnit 5 reemplaza el modelo de un único @RunWith por defecto por @ExtendWith(...), que admite múltiples extensiones combinadas en una misma clase (por ejemplo, MockitoExtension para integrar Mockito con @Mock)."
-      },
-
-      {
-        id: "ju-17", cat: "junit-testing", type: "teoria", diff: "Intermedio",
-        q: "¿Debe un método de prueba ser public en JUnit 5, como exigía JUnit 4?",
-        opts: [
-          "No; en JUnit 5 basta con visibilidad de paquete (package-private)",
-          "Sí, sigue siendo obligatorio declararlo public en ambas versiones",
-          "No, pero entonces debe declararse obligatoriamente como protected",
-          "Solo si la clase de prueba implementa una interfaz específica"
-        ], correct: 0,
-        exp: "JUnit 5 relajó esta exigencia: los métodos @Test pueden tener visibilidad de paquete (sin modificador). Sí deben seguir sin ser private ni static (salvo los de ciclo de vida en @TestInstance(PER_CLASS))."
-      },
-
-      {
-        id: "ju-18", cat: "junit-testing", type: "practica", diff: "Avanzado",
-        q: `Analice:
-<pre class="code-block">class PedidoTest {
-    @Nested
-    class CuandoEstaVacio {
-        @Test void totalEsCero() { /* ... */ }
-    }
-}</pre>
-¿Qué requisito exige @Nested sobre la clase CuandoEstaVacio para que JUnit la detecte?`,
-        opts: [
-          "Que sea una clase interna no estática (inner class)",
-          "Que declare explícitamente un constructor sin argumentos",
-          "Que se llame igual que un método de la clase externa",
-          "Que implemente la interfaz TestInstance de Jupiter"
-        ], correct: 0,
-        exp: "@Nested solo funciona sobre clases internas no estáticas: JUnit necesita instanciarlas junto con una instancia de la clase externa para acceder a su contexto (por ejemplo, su @BeforeEach); una clase 'static' rompe ese vínculo y no sería detectada como anidada."
-      },
-
-      {
-        id: "ju-19", cat: "junit-testing", type: "teoria", diff: "Intermedio",
-        q: "¿Qué ventaja ofrece assertAll frente a varias llamadas assertEquals sueltas?",
-        opts: [
-          "Ejecuta todas las aserciones agrupadas y reporta juntos los fallos",
-          "Hace que las aserciones se ejecuten en paralelo entre varios hilos",
-          "Detiene el test en la primera aserción fallida, igual que las sueltas",
-          "Convierte automáticamente cualquier excepción en una aserción fallida"
-        ], correct: 0,
-        exp: "Con aserciones sueltas, la primera que falla lanza una excepción y detiene el test, ocultando fallos posteriores. assertAll(...) agrupa varias aserciones (como lambdas) y las ejecuta todas, reportando el conjunto completo de fallos en un solo resultado."
-      },
-
-      {
-        id: "ju-20", cat: "junit-testing", type: "practica", diff: "Intermedio",
-        q: `Analice:
-<pre class="code-block">@Test
-void datosPersona() {
-    Persona p = new Persona("Ana", 30);
-    assertAll(
-        () -> assertEquals("Ana", p.getNombre()),
-        () -> assertEquals(99, p.getEdad())
-    );
-}</pre>
-Si getNombre() es correcto pero getEdad() retorna 30, ¿qué reporta assertAll?`,
-        opts: [
-          "Un único fallo, señalando que la aserción de edad fue la que falló",
-          "Ningún fallo, porque la primera aserción correcta ya aprueba el test",
-          "Dos fallos independientes, uno por cada aserción declarada",
-          "Una excepción de compilación, por mezclar dos aserciones distintas"
-        ], correct: 0,
-        exp: "assertAll evalúa todas las aserciones agrupadas y acumula los fallos; como solo la de edad (99 vs 30) falla, se reporta ese único fallo, mientras que la de nombre (que sí pasó) no aparece como error."
-      },
-
-      {
-        id: "ju-21", cat: "junit-testing", type: "teoria", diff: "Básico",
-        q: "En Mockito, ¿qué produce mock(Clase.class)?",
-        opts: [
-          "Un objeto simulado, con métodos que no hacen nada por defecto",
-          "Una subclase real que ejecuta la lógica original de sus métodos",
-          "Una instancia serializada de esa clase, lista para persistir en BD",
-          "Un error en tiempo de ejecución si la clase no tiene constructor vacío"
-        ], correct: 0,
-        exp: "mock(Clase.class) crea un doble de prueba (test double): un objeto del mismo tipo cuyos métodos, por defecto, retornan valores 'vacíos' (null, 0, false, colecciones vacías) sin ejecutar la lógica real, permitiendo controlar su comportamiento con when/thenReturn."
-      },
-
-      {
-        id: "ju-22", cat: "junit-testing", type: "teoria", diff: "Intermedio",
-        q: "¿Qué logra when(mockObj.metodo()).thenReturn(valor) en Mockito?",
-        opts: [
-          "Configura qué valor debe devolver ese método al invocarse en el mock",
-          "Verifica que ese método ya haya sido invocado exactamente una vez",
-          "Ejecuta el método real del objeto y compara el resultado con valor",
-          "Lanza una excepción si el método aún no ha sido configurado antes"
-        ], correct: 0,
-        exp: "when(...).thenReturn(...) es la forma de 'programar' el comportamiento de un mock: le indica a Mockito qué valor debe devolver esa llamada específica (con esos argumentos) cuando el código bajo prueba la invoque durante el test."
-      },
-
-      {
-        id: "ju-23", cat: "junit-testing", type: "teoria", diff: "Intermedio",
-        q: "¿Para qué se usa verify(mockObj).metodo() en Mockito?",
-        opts: [
-          "Para comprobar que ese método del mock fue invocado durante el test",
-          "Para configurar el valor que ese método debe retornar al invocarse",
-          "Para crear una nueva instancia simulada de ese método específico",
-          "Para deshabilitar temporalmente ese método durante la ejecución"
-        ], correct: 0,
-        exp: "verify(mock).metodo() comprueba, después de ejecutar el código bajo prueba, que esa interacción realmente ocurrió (por defecto, exactamente una vez); es clave para probar comportamiento (¿se llamó a guardar()?) y no solo valores de retorno."
-      },
-
-      {
-        id: "ju-24", cat: "junit-testing", type: "teoria", diff: "Avanzado",
-        q: "¿Qué diferencia hay entre un mock y un spy en Mockito?",
-        opts: [
-          "El spy envuelve un objeto real; ejecuta sus métodos salvo stubeo",
-          "Son sinónimos; ambos se crean siempre con mock(Clase.class)",
-          "El mock ejecuta siempre la lógica real; el spy nunca la ejecuta",
-          "Un spy solo puede usarse sobre interfaces, nunca sobre clases"
-        ], correct: 0,
-        exp: "mock() crea un doble 'vacío' donde todo método no configurado retorna un valor por defecto. spy() envuelve una instancia real: por defecto delega a la implementación verdadera, salvo en los métodos que se stubeen explícitamente con when/doReturn."
-      },
-
-      {
-        id: "ju-25", cat: "junit-testing", type: "teoria", diff: "Intermedio",
-        q: "¿Qué logra combinar @Mock e @InjectMocks en una prueba con Mockito?",
-        opts: [
-          "Crea los mocks declarados e inyecta esas dependencias en el objeto",
-          "Genera automáticamente los tests para la clase anotada con @InjectMocks",
-          "Convierte la clase de prueba en un mock completo de sí misma",
-          "Solo funciona si la clase bajo prueba no declara ningún constructor"
-        ], correct: 0,
-        exp: "@Mock crea dobles de las dependencias declaradas; @InjectMocks crea una instancia real de la clase bajo prueba e intenta inyectarle esos mocks (por constructor, setter o campo), evitando tener que cablear manualmente cada dependencia en cada test."
-      },
-
-      {
-        id: "ju-26", cat: "junit-testing", type: "teoria", diff: "Básico",
-        q: "¿Qué representan las siglas del patrón AAA usado para estructurar un test?",
-        opts: [
-          "Arrange, Act, Assert", "Analyze, Apply, Approve", "Assert, Arrange, Act", "Automate, Assert, Archive"
-        ], correct: 0,
-        exp: "AAA es una convención para organizar un test en tres bloques claros: Arrange (preparar datos y dependencias), Act (ejecutar la operación bajo prueba) y Assert (verificar el resultado esperado), mejorando la legibilidad del test."
-      },
-
-      {
-        id: "ju-27", cat: "junit-testing", type: "teoria", diff: "Intermedio",
-        q: "¿Por qué es mala práctica que un test dependa del resultado de otro?",
-        opts: [
-          "Porque rompe el aislamiento: el orden de ejecución afecta el resultado",
-          "Porque JUnit prohíbe técnicamente compilar tests con estado compartido",
-          "Porque los tests dependientes siempre se ejecutan más lento",
-          "Porque assertEquals no funciona correctamente entre tests relacionados"
-        ], correct: 0,
-        exp: "Los tests deben ser independientes y poder ejecutarse en cualquier orden (incluso en paralelo). Si un test depende del estado dejado por otro, un cambio de orden o una ejecución aislada puede romperlo de forma impredecible y difícil de diagnosticar."
-      },
-
-      {
-        id: "ju-28", cat: "junit-testing", type: "teoria", diff: "Avanzado",
-        q: "¿Qué controla la anotación @Timeout en un método de prueba de JUnit 5?",
-        opts: [
-          "Falla el test si su ejecución supera la duración máxima indicada",
-          "Retrasa el inicio del test el tiempo especificado antes de ejecutarlo",
-          "Define cuántas veces se reintenta el test si falla por excepción",
-          "Indica cuánto debe esperar el siguiente test antes de iniciar"
-        ], correct: 0,
-        exp: "@Timeout(value = 2, unit = TimeUnit.SECONDS) hace que JUnit falle el test automáticamente si su ejecución excede ese límite, útil para detectar bloqueos, bucles infinitos o código que se degrada en rendimiento."
-      },
-
-      {
-        id: "ju-29", cat: "junit-testing", type: "teoria", diff: "Intermedio",
-        q: "Al comparar valores double con assertEquals, ¿por qué se agrega un delta?",
-        opts: [
-          "Porque errores de precisión binaria evitan que coincidan exactamente",
-          "Porque JUnit no permite comparar tipos double sin ese argumento",
-          "Porque el delta define cuántas veces se repite la comparación",
-          "Porque sin delta el test siempre falla, sin importar los valores"
-        ], correct: 0,
-        exp: "Los double representan la mayoría de los decimales de forma aproximada (IEEE 754); dos cálculos matemáticamente iguales pueden diferir en el último bit. assertEquals(esperado, real, delta) considera iguales los valores si su diferencia absoluta es menor al delta indicado."
-      },
-
-      {
-        id: "ju-30", cat: "junit-testing", type: "practica", diff: "Avanzado",
-        q: `Analice:
-<pre class="code-block">@Test
-void validarMontoNegativo() {
-    Exception ex = assertThrows(
-        IllegalArgumentException.class,
-        () -> Cuenta.retirar(-50)
-    );
-    assertEquals("Monto inválido", ex.getMessage());
-}</pre>
-¿Qué verifica este test además de que se lance la excepción esperada?`,
-        opts: [
-          "Que el mensaje de la excepción capturada sea exactamente el indicado",
-          "Que el método retirar() no haya modificado el saldo de la cuenta",
-          "Que la excepción se lance dentro de los primeros 100 milisegundos",
-          "Que el tipo sea IllegalStateException, no IllegalArgumentException"
-        ], correct: 0,
-        exp: "assertThrows retorna la excepción realmente capturada; guardarla en 'ex' permite hacer aserciones adicionales sobre ella, como comprobar que su mensaje (ex.getMessage()) sea exactamente el esperado, no solo que el tipo de excepción coincida."
-      }
-    ];
-
     const QUESTION_BANK = [].concat(
       QB_JAVA_CORE, QB_JDK_TOOLS, QB_COLLECTIONS_STREAMS, QB_JDBC, QB_ORM,
       QB_PLSQL, QB_SERVLETS_JSP, QB_REST_SOAP, QB_SERVIDORES, QB_EMPAQUETADO,
-      QB_SEGURIDAD, QB_LOGGING, QB_JAVASCRIPT, QB_TI_GENERAL, QB_JUNIT
+      QB_SEGURIDAD, QB_LOGGING, QB_JAVASCRIPT, QB_TI_GENERAL
     );
 
     /* ============================================================
@@ -17117,11 +16728,6 @@ void validarMontoNegativo() {
     document.getElementById("failed-toggle").addEventListener("click", () => {
       document.getElementById("failed-list").classList.toggle("hidden");
       document.getElementById("failed-toggle").classList.toggle("open");
-    });
-
-    document.getElementById("btn-retry-same").addEventListener("click", () => {
-      state.retryMode = false;
-      startTest(getFilteredBank(), state.count);
     });
 
     document.getElementById("btn-retry-failed").addEventListener("click", () => {
