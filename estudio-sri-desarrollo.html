@@ -16997,7 +16997,7 @@ void validarMontoNegativo() {
       if (state.advanceMode === "manual" || pauseOnWrong) {
         document.getElementById("btn-next-question").classList.remove("hidden");
       } else {
-        const delay = revealNow ? 500 : 250;
+        const delay = revealNow ? 400 : 100;
         setTimeout(goNextOrFinish, delay);
       }
     }
