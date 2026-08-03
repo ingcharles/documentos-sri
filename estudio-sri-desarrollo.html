@@ -4949,14 +4949,14 @@ arr[0] = 42;</pre>
       },
       {
         id: "jc-289", cat: "java-core", type: "teoria", diff: "Avanzado",
-        q: "¿Por qué 'List<Object> l = new ArrayList<String>();' no compila, pero 'Object[] a = new String[3];' sí?",
+        q: "¿Por qué 'List&lt;Object&gt; l = new ArrayList&lt;String&gt;();' no compila, pero 'Object[] a = new String[3];' sí?",
         opts: [
           "Arreglos son covariantes; genéricos son invariantes salvo wildcards",
           "Porque ArrayList nunca puede asignarse a una variable de tipo List",
-          "Porque List<Object> es en realidad sinónimo de List<String> al compilar",
+          "Porque List&lt;Object&gt; es en realidad sinónimo de List&lt;String&gt; al compilar",
           "Porque los arreglos, a diferencia de listas, no verifican tipos"
         ], correct: 0,
-        exp: "Los arreglos son covariantes (String[] es-un Object[]), verificando el tipo real en runtime (ArrayStoreException si falla). Los genéricos usan borrado de tipos y son invariantes por defecto: List<String> NO es List<Object>, precisamente para detectar en compilación errores que los arreglos solo detectarían en runtime. Los wildcards (List<? extends Object>) relajan esto de forma controlada."
+        exp: "Los arreglos son covariantes (String[] es-un Object[]), verificando el tipo real en runtime (ArrayStoreException si falla). Los genéricos usan borrado de tipos y son invariantes por defecto: List&lt;String&gt; NO es List&lt;Object&gt;, precisamente para detectar en compilación errores que los arreglos solo detectarían en runtime. Los wildcards (List&lt;? extends Object&gt;) relajan esto de forma controlada."
       },
 
       /* --- Varargs --- */
@@ -5535,18 +5535,6 @@ Suponiendo que el archivo Validador.java existe y compiló correctamente en otra
       },
 
       {
-        id: "jt-25", cat: "jdk-tools", type: "teoria", diff: "Intermedio",
-        q: "¿Qué diferencia principal existe entre Maven y Gradle como herramientas de construcción (build tools)?",
-        opts: [
-          "Maven describe el build en XML; Gradle usa un DSL de Groovy o Kotlin",
-          "Gradle solo puede compilar proyectos Android, nunca Java de escritorio",
-          "Maven no admite ningún sistema de gestión de dependencias transitivas",
-          "Ambas son binariamente compatibles e intercambian configuración"
-        ], correct: 0,
-        exp: "Maven define el proyecto declarativamente en un pom.xml siguiendo convenciones fijas de ciclo de vida. Gradle usa un lenguaje de configuración (Groovy/Kotlin DSL) más programable, con un motor de builds incrementales que suele ofrecer mejor rendimiento en proyectos grandes, a costa de mayor flexibilidad para introducir complejidad."
-      },
-
-      {
         id: "jt-26", cat: "jdk-tools", type: "practica", diff: "Básico",
         q: `Se ejecuta en la terminal:
 <pre class="code-block">echo $JAVA_HOME
@@ -5993,42 +5981,6 @@ Según JEP 330 (Java 11+), ¿qué hace el launcher java en este caso?`,
           "'compile' solo aplica a dependencias de test; 'provided', a producción"
         ], correct: 2,
         exp: "'compile' (el scope por defecto) incluye la dependencia en compilación, test y en el artefacto empaquetado final. 'provided' está disponible en compilación y test, pero se asume que el entorno de ejecución (por ejemplo, el servidor de aplicaciones) ya la provee en runtime, por lo que NO se empaqueta dentro del WAR/JAR final, como típicamente ocurre con la API de Servlet."
-      },
-
-      {
-        id: "jt-58", cat: "jdk-tools", type: "teoria", diff: "Básico",
-        q: "¿Qué propósito cumple el Gradle Wrapper (los archivos gradlew / gradlew.bat) en un proyecto?",
-        opts: [
-          "Reemplaza por completo la necesidad de tener instalado un JDK en la máquina",
-          "Permite compilar el proyecto solo en sistemas operativos basados en Linux",
-          "Descarga y usa la versión exacta de Gradle declarada, sin instalarlo antes",
-          "Convierte automáticamente el proyecto de Gradle a formato Maven"
-        ], correct: 2,
-        exp: "El Gradle Wrapper es un script (gradlew/gradlew.bat) que descarga y ejecuta automáticamente la versión específica de Gradle declarada en el proyecto (gradle-wrapper.properties), garantizando que todos los desarrolladores y el entorno de CI usen exactamente la misma versión, sin depender de una instalación global previa de Gradle."
-      },
-
-      {
-        id: "jt-59", cat: "jdk-tools", type: "teoria", diff: "Intermedio",
-        q: "¿Qué diferencia hay entre declarar la build de Gradle en build.gradle frente a build.gradle.kts?",
-        opts: [
-          "build.gradle.kts solo puede usarse en proyectos sin código Java",
-          "build.gradle usa el DSL de Groovy; build.gradle.kts usa el DSL de Kotlin",
-          "Ambos archivos son intercambiables sin ningún cambio de sintaxis",
-          "build.gradle.kts es exclusivo de Gradle previo a la v4, ya descontinuado"
-        ], correct: 1,
-        exp: "build.gradle usa el lenguaje de configuración basado en Groovy (el original de Gradle); build.gradle.kts usa el DSL basado en Kotlin, que ofrece autocompletado y verificación de tipos más fuerte en IDEs compatibles. Ambos describen el mismo modelo de build de Gradle, solo con sintaxis distinta."
-      },
-
-      {
-        id: "jt-60", cat: "jdk-tools", type: "teoria", diff: "Avanzado",
-        q: "¿Qué significa que Gradle marque una tarea como 'UP-TO-DATE' al volver a ejecutar un build?",
-        opts: [
-          "Que esa tarea falló en la ejecución anterior y debe corregirse",
-          "Que Gradle detectó que entradas y salidas no cambiaron, y omite la tarea",
-          "Que esa tarea se ejecutará igual, pero en un hilo separado del principal",
-          "Que la tarea fue eliminada del build.gradle desde la última ejecución"
-        ], correct: 1,
-        exp: "Gradle rastrea las entradas y salidas declaradas de cada tarea; si ninguna cambió desde la última ejecución exitosa, marca esa tarea como UP-TO-DATE y evita reejecutarla, acelerando builds incrementales significativamente frente a herramientas que siempre reconstruyen todo desde cero."
       },
 
       {
@@ -17105,13 +17057,15 @@ void validarMontoNegativo() {
         }).join("");
       }
 
-      // guardar en historial
-      saveHistoryEntry({
-        date: new Date().toISOString(),
-        section: state.section,
-        categories: catKeys.map(k => CAT_LABEL[k] || k).join(", "),
-        total, score: pct
-      });
+      // guardar en historial (solo tests finalizados, no reintentos)
+      if (!state.retryMode) {
+        saveHistoryEntry({
+          date: new Date().toISOString(),
+          section: state.section,
+          categories: catKeys.map(k => CAT_LABEL[k] || k).join(", "),
+          total, score: pct
+        });
+      }
     }
 
     document.getElementById("failed-toggle").addEventListener("click", () => {
@@ -17120,7 +17074,7 @@ void validarMontoNegativo() {
     });
 
     document.getElementById("btn-retry-same").addEventListener("click", () => {
-      state.retryMode = false;
+      state.retryMode = true;
       startTest(getFilteredBank(), state.count);
     });
 
@@ -17128,6 +17082,7 @@ void validarMontoNegativo() {
       const failedIds = state.answers.filter(a => !a.correct).map(a => a.qid);
       const failedQuestions = QUESTION_BANK.filter(q => failedIds.includes(q.id));
       if (failedQuestions.length === 0) return;
+      state.retryMode = true;
       startTest(failedQuestions, failedQuestions.length);
     });
 
