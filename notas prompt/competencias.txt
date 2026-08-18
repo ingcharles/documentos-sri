@@ -9,3 +9,5 @@ arma tambien un pdf moderno de todas las preguntas con retroalimentacion de las 
 quiero al menos 200 preguntas y tambien mostrar en el entrador(hmtl) la cantidad de preguntas
 
 hazme algo similar a lo anterior pero para test para obtener la certificacion java y oracle, puede ser en dos secciones (teoria y ejercicios), si puedes sacame unas 500 preguntas. te paso los pdf analiza y haz lo solicitado, adicional no olvides de poner conceptos de tipos de clases, herencia polimosfirmo, entre otros conceptos de java, adicional los byte de cada tipo de dato.
+
+https://sriintra01/portal/web/intranet/concursos-meritos
