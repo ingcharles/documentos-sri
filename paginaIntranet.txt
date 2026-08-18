@@ -1,0 +1,3070 @@
+<body class=" controls-visible  yui3-skin-sam signed-out public-page site" id="senna_surface1"><div id="senna_surface1-default" class="flipped" style="display: block;">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	<nav aria-label="Enlaces rápidos" class="quick-access-nav" id="krep_quickAccessNav">
+		<h1 class="hide-accessible">Navegación</h1>
+
+		<ul>
+			
+				<li><a href="#main-content">Saltar al contenido</a></li>
+			
+
+			
+		</ul>
+	</nav>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		<div id="wrapper">
+				<header class="navbar navbar-dark navbar-expand-md navbar-porygon">
+					<div class="container-fluid" id="banner" role="banner">
+						<div class="navbar-header" id="heading">
+							<a class="logo custom-logo" href="https://sriintra01/portal/web/intranet" title="Ir a Intranet">
+								<img alt="intranet" height="56" src="/portal/image/layout_set_logo?img_id=3174876&amp;t=1784364816413">
+							</a>
+					<!--	<div class="triangle" />  
+						</div>  -->
+					</div>
+						
+
+							<button aria-controls="navigation" aria-expanded="false" class="navbar-toggler" data-target="#navigationCollapse" data-toggle="collapse" type="button">
+								<span class="navbar-toggler-icon"></span>
+							</button>
+
+<div aria-expanded="true" class="collapse navbar-collapse" id="navigationCollapse">
+	<nav class="navbar-nav site-navigation" id="navigation" role="navigation" style="margin:0;">
+		
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+	<div class="portlet-boundary portlet-boundary_com_liferay_site_navigation_menu_web_portlet_SiteNavigationMenuPortlet_  portlet-static portlet-static-end portlet-barebone portlet-navigation " id="p_p_id_com_liferay_site_navigation_menu_web_portlet_SiteNavigationMenuPortlet_INSTANCE_main_navigation_menu_">
+		<span id="p_com_liferay_site_navigation_menu_web_portlet_SiteNavigationMenuPortlet_INSTANCE_main_navigation_menu"></span>
+
+
+
+
+	
+
+	
+		
+			
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+		
+<section class="portlet" id="portlet_com_liferay_site_navigation_menu_web_portlet_SiteNavigationMenuPortlet_INSTANCE_main_navigation_menu">
+
+
+	<div class="portlet-content">
+
+
+
+
+		
+			<div class=" portlet-content-container">
+				
+
+
+	<div class="portlet-body">
+
+
+
+	
+		
+			
+				
+					
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+				
+
+				
+					
+						
+
+
+	
+
+		
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+		<style type="text/css">
+.megamenu {
+  position: static !important;
+}
+
+.megamenu .dropdown-menu {
+  background: none;
+  border: none;
+  width: 100%;
+
+    font-size: 1 rem;
+    max-height: 500px;
+    max-width: 100%;
+    min-height: 40px;
+    overflow: auto;
+    box-shadow:none;
+
+}
+
+
+code {
+  color: #745eb1;
+  background: #fff;
+  padding: 0.1rem 0.2rem;
+  border-radius: 0.2rem;
+}
+
+.text-uppercase {
+  letter-spacing: 0.08em;
+}
+
+.fmega-zone{
+    top: 51px;
+    left: -50%;
+	min-width: 1140px !important;
+    min-height: 200px !important;
+}
+.fmega-container{
+	background-color:#f1f2f5 !important;
+	max-width:800px;
+	min-height: 200px !important;
+	opacity:0.93;
+}
+@media (max-width: 991.98px){
+	.fmega-container{
+		background-color:#f1f2f5 !important;
+		float: left;
+		max-width: 37%;
+	}
+}
+
+.row{
+	display:flex !important;
+	}
+.fitem{
+	color:gray !important;
+	background-color:inherit !important;
+	font-weight:600 !important;
+	}
+.fsmenu{
+	color:#135cb9;
+}
+.fitem:hover, .fsmenu:hover{
+	color:skyblue !important;
+	}
+	.lineagris{
+	position:absolute;
+	height:90%;
+	width:2px;
+	top:5%;
+	left:50%;
+	border-left:1px solid lightgray}
+	@media (max-width: 991.98px){
+		.lineagris{
+		display:none;}
+	}
+	
+	.lineagris2{
+	position:absolute;
+	height:90%;
+	width:2px;
+	top:5%;
+	left:100%;
+	border-left:1px solid lightgray}
+	@media (max-width: 991.98px){
+		.lineagris2{
+		display:none;}
+	}
+</style>
+		
+  <div class="navbar navbar-expand-lg navbar-light shadow-sm" id="navbarContent">
+  
+	<div class=" navbar-collapse" id="navbarContent">
+		<ul class="navbar-nav mx-auto">
+			   	<li class="nav-item dropdown megamenu" id="layout_9" role="presentation">
+					<a aria-expanded="false" aria-haspopup="true" class="nav-link dropdown-toggle " data-toggle="dropdown" href="navItem.getURL" id="megamenu">
+							 El SRI
+					</a>
+					  
+						<div aria-labelledby="megamenu" class="dropdown-menu border-0 p-0 m-0 fmega-zone ">
+						<div class="container fmega-container">
+						<div class="row w-100 rounded-0 m-0 shadow-sm">
+						<div class="col-lg-7 col-xl-8">
+						<div class="p-3">
+						<div class="row">
+							
+								
+								
+								<div class="col-lg-6 mb-4" style="margin-bottom: 0px !important;">
+								<a aria-labelledby="layout_56" href="https://sriintra01/portal/web/intranet/directora" role="menuitem">
+									<h4 class="font-weight-bold fsmenu">Director General&nbsp;</h4>
+								</a>
+							</div>
+							
+								
+								
+								<div class="col-lg-6 mb-4" style="margin-bottom: 0px !important;">
+								<a aria-labelledby="layout_8" href="https://sriintra01/portal/web/intranet/filosofia-institucional" role="menuitem">
+									<h4 class="font-weight-bold fsmenu">Filosofía Institucional&nbsp;</h4>
+								</a>
+							</div>
+							
+								
+								
+								<div class="col-lg-6 mb-4" style="margin-bottom: 0px !important;">
+								<a aria-labelledby="layout_57" href="https://sriintra01/portal/web/intranet/autoridades" role="menuitem">
+									<h4 class="font-weight-bold fsmenu">Autoridades&nbsp;</h4>
+								</a>
+							</div>
+							
+								
+								
+								<div class="col-lg-6 mb-4" style="margin-bottom: 0px !important;">
+								<a aria-labelledby="layout_58" href="https://sriintra01/portal/web/intranet/estatuto-organico-por-procesos" role="menuitem">
+									<h4 class="font-weight-bold fsmenu">Estatuto Orgánico Institucional&nbsp;</h4>
+								</a>
+							</div>
+							
+								
+								
+								<div class="col-lg-6 mb-4" style="margin-bottom: 0px !important;">
+								<a aria-labelledby="layout_301" href="https://sriintra01/portal/web/intranet/comit%C3%A9s-institucionales" role="menuitem">
+									<h4 class="font-weight-bold fsmenu">Comités Institucionales&nbsp;</h4>
+								</a>
+							</div>
+							
+								
+								
+								<div class="col-lg-6 mb-4" style="margin-bottom: 0px !important;">
+								<a aria-labelledby="layout_59" href="https://sriintra01/portal/web/intranet/comite-etica" role="menuitem">
+									<h4 class="font-weight-bold fsmenu">Comité de Ética&nbsp;</h4>
+								</a>
+							</div>
+					</div>
+					</div>
+					<div id="linea_gris" class="lineagris"></div>
+					<div id="linea_gris2" class="lineagris2"></div>
+					</div>
+					
+					<div class="col-lg-5 col-xl-4 px-0 p-3 d-none d-lg-block">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+		<div class="journal-content-article " data-analytics-asset-id="118662" data-analytics-asset-title="FotoMegaMenu" data-analytics-asset-type="web-content">
+			
+
+			<h6 style="text-align:center;width:167px;float:right;font-weight:300">
+<a href="">"..."</a>
+
+</h6>
+		</div>
+
+		
+
+	
+
+
+						
+					</div>
+					</div>
+					</div>
+					</div>
+				</li>
+			   	<li class="nav-item dropdown megamenu" id="layout_14" role="presentation">
+					<a aria-expanded="false" aria-haspopup="true" class="nav-link dropdown-toggle " data-toggle="dropdown" href="navItem.getURL" id="megamenu">
+							 Documentos Institucionales
+					</a>
+					  
+						<div aria-labelledby="megamenu" class="dropdown-menu border-0 p-0 m-0 fmega-zone ">
+						<div class="container fmega-container">
+						<div class="row w-100 rounded-0 m-0 shadow-sm">
+						<div class="col-lg-7 col-xl-8">
+						<div class="p-3">
+						<div class="row">
+							
+								
+								
+								<div class="col-lg-6 mb-4" style="margin-bottom: 0px !important;">
+									<h4 class="font-weight-bold" style="color:#135cb9;">Documentos por direcciones</h4>
+									<ul class="list-unstyled" role="menu">
+											<li class="nav-item" id="layout_75" role="presentation">
+											<a href="https://sriintra01/portal/web/intranet/administrativa-financiera" role="menuitem" class="fitem nav-link  pb-0 pt-0 ">Administrativa Financiera
+											</a>
+											</li>
+											<li class="nav-item" id="layout_76" role="presentation">
+											<a href="https://sriintra01/portal/web/intranet/derechos-del-contribuyente" role="menuitem" class="fitem nav-link  pb-0 pt-0 ">Derechos del Contribuyente
+											</a>
+											</li>
+											<li class="nav-item" id="layout_158" role="presentation">
+											<a href="https://sriintra01/portal/web/intranet/planificacion-y-gestion-estrategica2" role="menuitem" class="fitem nav-link  pb-0 pt-0 ">Planificación y Gestión Estratégica
+											</a>
+											</li>
+											<li class="nav-item" id="layout_156" role="presentation">
+											<a href="https://sriintra01/portal/web/intranet/inteligencia-de-la-informacion" role="menuitem" class="fitem nav-link  pb-0 pt-0 ">Inteligencia de la Información
+											</a>
+											</li>
+											<li class="nav-item" id="layout_78" role="presentation">
+											<a href="https://sriintra01/portal/web/intranet/talento-humano-doc" role="menuitem" class="fitem nav-link  pb-0 pt-0 ">Talento Humano
+											</a>
+											</li>
+											<li class="nav-item" id="layout_79" role="presentation">
+											<a href="https://sriintra01/portal/web/intranet/juridico" role="menuitem" class="fitem nav-link  pb-0 pt-0 ">Jurídica
+											</a>
+											</li>
+											<li class="nav-item" id="layout_80" role="presentation">
+											<a href="https://sriintra01/portal/web/intranet/gestion-tributaria" role="menuitem" class="fitem nav-link  pb-0 pt-0 ">Gestión Tributaria
+											</a>
+											</li>
+											<li class="nav-item" id="layout_300" role="presentation">
+											<a href="https://sriintra01/portal/web/intranet/tecnologia" role="menuitem" class="fitem nav-link  pb-0 pt-0 ">Tecnología
+											</a>
+											</li>
+											<li class="nav-item" id="layout_274" role="presentation">
+											<a href="https://sriintra01/portal/web/intranet/asuntos2024" role="menuitem" class="fitem nav-link  pb-0 pt-0 ">Asuntos Internos
+											</a>
+											</li>
+											<li class="nav-item" id="layout_137" role="presentation">
+											<a href="https://sriintra01/portal/web/intranet/asistencia-ciudadana" role="menuitem" class="fitem nav-link  pb-0 pt-0 ">Asistencia al ciudadano
+											</a>
+											</li>
+											<li class="nav-item" id="layout_299" role="presentation">
+											<a href="https://sriintra01/portal/web/intranet/inteligencia-tributaria" role="menuitem" class="fitem nav-link  pb-0 pt-0 ">Inteligencia Tributaria
+											</a>
+											</li>
+									</ul>
+							</div>
+							
+								
+								
+								<div class="col-lg-6 mb-4" style="margin-bottom: 0px !important;">
+									<h4 class="font-weight-bold" style="color:#135cb9;">Sistemas de Gestión SRI</h4>
+									<ul class="list-unstyled" role="menu">
+											<li class="nav-item" id="layout_13" role="presentation">
+											<a href="https://sriintra01/portal/web/intranet/mapa-de-procesos" role="menuitem" class="fitem nav-link  pb-0 pt-0 ">Gestión de la Calidad
+											</a>
+											</li>
+											<li class="nav-item" id="layout_265" role="presentation">
+											<a href="https://sriintra01/portal/web/intranet/modelo_cumplimiento_tributario" role="menuitem" class="fitem nav-link  pb-0 pt-0 ">Modelo de Gestión de Cumplimiento Tributario
+											</a>
+											</li>
+											<li class="nav-item" id="layout_144" role="presentation">
+											<a href="https://sriintra01/portal/web/intranet/sistema-de-gestion-antisoborno" role="menuitem" class="fitem nav-link  pb-0 pt-0 ">Gestión Antisoborno
+											</a>
+											</li>
+									</ul>
+							</div>
+							
+								
+								
+								<div class="col-lg-6 mb-4" style="margin-bottom: 0px !important;">
+								<a aria-labelledby="layout_12" href="https://sriintra01/portal/web/intranet/secretaria" role="menuitem">
+									<h4 class="font-weight-bold fsmenu">Secretaría&nbsp;</h4>
+								</a>
+							</div>
+							
+								
+								
+								<div class="col-lg-6 mb-4" style="margin-bottom: 0px !important;">
+									<h4 class="font-weight-bold" style="color:#135cb9;">ORIÓN</h4>
+									<ul class="list-unstyled" role="menu">
+											<li class="nav-item" id="layout_282" role="presentation">
+											<a href="https://sriintra01/portal/web/intranet/orion" role="menuitem" class="fitem nav-link  pb-0 pt-0 ">Portal del Programa
+											</a>
+											</li>
+											<li class="nav-item" id="layout_287" role="presentation">
+											<a href="https://sriintra01/portal/web/intranet/anal%C3%ADtica-de-datos" role="menuitem" class="fitem nav-link  pb-0 pt-0 ">Analítica de datos
+											</a>
+											</li>
+									</ul>
+							</div>
+					</div>
+					</div>
+					<div id="linea_gris" class="lineagris"></div>
+					<div id="linea_gris2" class="lineagris2"></div>
+					</div>
+					
+					<div class="col-lg-5 col-xl-4 px-0 p-3 d-none d-lg-block">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+		<div class="journal-content-article " data-analytics-asset-id="118662" data-analytics-asset-title="FotoMegaMenu" data-analytics-asset-type="web-content">
+			
+
+			<h6 style="text-align:center;width:167px;float:right;font-weight:300">
+<a href="">"..."</a>
+
+</h6>
+		</div>
+
+		
+
+	
+
+
+						
+					</div>
+					</div>
+					</div>
+					</div>
+				</li>
+			   	<li class="nav-item dropdown megamenu" id="layout_2" role="presentation">
+					<a aria-expanded="false" aria-haspopup="true" class="nav-link dropdown-toggle " data-toggle="dropdown" href="navItem.getURL" id="megamenu">
+							 ¿Cómo vamos SRI?
+					</a>
+					  
+						<div aria-labelledby="megamenu" class="dropdown-menu border-0 p-0 m-0 fmega-zone ">
+						<div class="container fmega-container">
+						<div class="row w-100 rounded-0 m-0 shadow-sm">
+						<div class="col-lg-7 col-xl-8">
+						<div class="p-3">
+						<div class="row">
+							
+								
+								
+								<div class="col-lg-6 mb-4" style="margin-bottom: 0px !important;">
+									<h4 class="font-weight-bold" style="color:#135cb9;">Indicadores</h4>
+									<ul class="list-unstyled" role="menu">
+											<li class="nav-item" id="layout_280" role="presentation">
+											<a href="https://sriintra01/portal/web/intranet/nosotros-en-cifras" role="menuitem" class="fitem nav-link  pb-0 pt-0 ">Nosotros en cifras
+											</a>
+											</li>
+											<li class="nav-item" id="layout_289" role="presentation">
+											<a href="https://sriintra01/portal/web/intranet/nosotros-a-tiempo" role="menuitem" class="fitem nav-link  pb-0 pt-0 ">Nosotros a tiempo
+											</a>
+											</li>
+											<li class="nav-item" id="layout_6" role="presentation">
+											<a href="https://sriintra01/portal/web/intranet/capacidad-operativa" role="menuitem" class="fitem nav-link  pb-0 pt-0 ">Capacidad Operativa
+											</a>
+											</li>
+											<li class="nav-item" id="layout_84" role="presentation">
+											<a href="https://www.sri.gob.ec/web/intersri/estadisticas-generales-de-recaudacion-sri" role="menuitem" class="fitem nav-link  pb-0 pt-0 ">Recaudación
+											</a>
+											</li>
+											<li class="nav-item" id="layout_298" role="presentation">
+											<a href="https://sriintra01/portal/web/intranet/control-de-gesti%C3%B3n" role="menuitem" class="fitem nav-link  pb-0 pt-0 ">Control de Gestión
+											</a>
+											</li>
+									</ul>
+							</div>
+							
+								
+								
+								<div class="col-lg-6 mb-4" style="margin-bottom: 0px !important;">
+									<h4 class="font-weight-bold" style="color:#135cb9;">POSTA SOLIDARIA</h4>
+									<ul class="list-unstyled" role="menu">
+											<li class="nav-item" id="layout_311" role="presentation">
+											<a href="https://sriintra01/portal/web/intranet/posta-solidaria-2025" role="menuitem" class="fitem nav-link  pb-0 pt-0 ">Posta Solidaria 2025
+											</a>
+											</li>
+											<li class="nav-item" id="layout_296" role="presentation">
+											<a href="https://sriintra01/portal/web/intranet/posta-solidaria-2024" role="menuitem" class="fitem nav-link  pb-0 pt-0 ">Posta Solidaria 2024
+											</a>
+											</li>
+											<li class="nav-item" id="layout_272" role="presentation">
+											<a href="https://sriintra01/portal/web/intranet/posta-solidaria-2023" role="menuitem" class="fitem nav-link  pb-0 pt-0 ">Posta Solidaria 2023
+											</a>
+											</li>
+											<li class="nav-item" id="layout_257" role="presentation">
+											<a href="https://sriintra01/portal/web/intranet/posta-2022" role="menuitem" class="fitem nav-link  pb-0 pt-0 ">Posta Solidaria 2022
+											</a>
+											</li>
+											<li class="nav-item" id="layout_181" role="presentation">
+											<a href="https://sriintra01/portal/web/intranet/galeria-2021" role="menuitem" class="fitem nav-link  pb-0 pt-0 ">Posta Solidaria 2021
+											</a>
+											</li>
+									</ul>
+							</div>
+					</div>
+					</div>
+					<div id="linea_gris" class="lineagris"></div>
+					<div id="linea_gris2" class="lineagris2"></div>
+					</div>
+					
+					<div class="col-lg-5 col-xl-4 px-0 p-3 d-none d-lg-block">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+		<div class="journal-content-article " data-analytics-asset-id="118662" data-analytics-asset-title="FotoMegaMenu" data-analytics-asset-type="web-content">
+			
+
+			<h6 style="text-align:center;width:167px;float:right;font-weight:300">
+<a href="">"..."</a>
+
+</h6>
+		</div>
+
+		
+
+	
+
+
+						
+					</div>
+					</div>
+					</div>
+					</div>
+				</li>
+			   	<li class="nav-item dropdown megamenu" id="layout_318" role="presentation">
+					<a aria-expanded="false" aria-haspopup="true" class="nav-link dropdown-toggle " data-toggle="dropdown" href="navItem.getURL" id="megamenu">
+							 TRIBU_SRI
+					</a>
+					  
+				</li>
+	</ul>
+</div>
+</div>
+
+	
+	
+	
+
+
+	
+	
+					
+				
+			
+		
+	
+	
+
+
+	</div>
+
+			</div>
+		
+	</div>
+</section>
+	
+
+		
+		
+
+
+
+
+
+
+
+	</div>
+
+
+
+
+
+
+
+		<div class="user-area">
+		</div>
+	</nav>
+
+	<div class="ml-auto nav navbar-user" style="flex-direction: inherit;">
+		<div>
+			<style>
+	        	.user-avatar-link{
+	        	display:flex;
+    			flex-direction: row-reverse;}
+    			.badge{ position: absolute;}
+        	</style>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+	<div class="portlet-boundary portlet-boundary_com_liferay_product_navigation_user_personal_bar_web_portlet_ProductNavigationUserPersonalBarPortlet_  portlet-static portlet-static-end portlet-decorate portlet-user-personal-bar " id="p_p_id_com_liferay_product_navigation_user_personal_bar_web_portlet_ProductNavigationUserPersonalBarPortlet_">
+		<span id="p_com_liferay_product_navigation_user_personal_bar_web_portlet_ProductNavigationUserPersonalBarPortlet"></span>
+
+
+
+
+	
+
+	
+		
+			
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+
+		
+
+		<span class="sign-in text-default" role="presentation">
+			<a href="https://sriintra01/portal/c/portal/login?p_l_id=9299" class="sign-in text-default" id="_com_liferay_product_navigation_user_personal_bar_web_portlet_ProductNavigationUserPersonalBarPortlet_qfkd____" data-redirect="false"><svg aria-hidden="true" class="lexicon-icon lexicon-icon-user" focusable="false" viewBox="0 0 512 512"><g data-href="https://sriintra01/portal/o/sri-tema-intranet/images/lexicon/icons.svg#user">
+<path class="lexicon-icon-outline" d="M438.4746,277.9082c-23.4189-26.7637-50.791-47.8257-81.3574-62.6011c-1.773-0.8571-3.5547-1.6818-5.34-2.492
+	C371.8131,190.2154,384,160.5065,384,128C384,57.4204,326.5791,0,256,0c-70.5796,0-128,57.4204-128,128
+	c0,32.5064,12.1868,62.2153,32.2226,84.8151c-1.7855,0.8102-3.5671,1.6349-5.3403,2.4921
+	c-30.5659,14.7754-57.938,35.8374-81.3569,62.6011C26.1118,332.0957,0,403.8662,0,480c0,17.6729,14.3271,32,32,32s32-14.3271,32-32
+	c0-123.5137,86.1309-224,192-224s192,100.4863,192,224c0,17.6729,14.3271,32,32,32s32-14.3271,32-32
+	C512,403.8662,485.8877,332.0957,438.4746,277.9082z M192,128c0-35.2896,28.7104-64,64-64c35.29,0,64,28.7104,64,64s-28.71,64-64,64
+	C220.7104,192,192,163.2896,192,128z"></path>
+</g></svg><span class="taglib-icon-label">Acceder</span></a>
+		</span>
+	
+
+		
+	
+
+
+
+
+
+
+
+	</div>
+
+
+
+
+
+
+		 </div>
+		 
+	</div>
+
+</div>					</div>
+				</header>
+			
+	  
+			<main id="content" role="main">
+				<h1 class="hide-accessible">Concursos de méritos - intranet</h1>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="columns-1" id="main-content" role="main">
+	<div class="portlet-layout row">
+		<div class="col-md-12 portlet-column portlet-column-only" id="column-1">
+			<div class="portlet-dropzone portlet-column-content portlet-column-content-only" id="layout-column_column-1">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+	<div class="portlet-boundary portlet-boundary_com_liferay_journal_content_web_portlet_JournalContentPortlet_  portlet-static portlet-static-end portlet-barebone portlet-journal-content " id="p_p_id_com_liferay_journal_content_web_portlet_JournalContentPortlet_INSTANCE_XnbsACNtX63u_">
+		<span id="p_com_liferay_journal_content_web_portlet_JournalContentPortlet_INSTANCE_XnbsACNtX63u"></span>
+
+
+
+
+	
+
+	
+		
+			
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+		
+<section class="portlet" id="portlet_com_liferay_journal_content_web_portlet_JournalContentPortlet_INSTANCE_XnbsACNtX63u">
+
+
+	<div class="portlet-content">
+
+
+
+			<div class="autofit-float autofit-row portlet-header">
+
+
+					<div class="autofit-col autofit-col-end">
+						<div class="autofit-section">
+							<div class="visible-interaction">
+	
+		
+
+		
+
+		
+
+		
+	
+</div>
+						</div>
+					</div>
+			</div>
+
+		
+			<div class=" portlet-content-container">
+				
+
+
+	<div class="portlet-body">
+
+
+
+	
+		
+			
+				
+					
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+				
+
+				
+					
+						
+
+
+	
+
+		
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+		
+			
+			
+				
+					
+					
+					
+
+						
+
+						<div class="" data-fragments-editor-item-id="27701-4235710" data-fragments-editor-item-type="fragments-editor-mapped-item">
+							
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+		<div class="journal-content-article " data-analytics-asset-id="4235708" data-analytics-asset-title="." data-analytics-asset-type="web-content">
+			
+
+			<p><img class="" src="/portal/documents/35138/3190413/ESTADISTICAS_Mesa+de+trabajo+1.png/de550afe-3355-ec37-cb00-f4f31f31da2a?t=1718204028909" style="display: block; margin-left: auto; margin-right: auto;"></p>
+		</div>
+
+		
+
+	
+
+
+
+
+							
+						</div>
+					
+				
+			
+		
+	
+
+
+
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+
+	
+	
+					
+				
+			
+		
+	
+	
+
+
+	</div>
+
+			</div>
+		
+	</div>
+</section>
+	
+
+		
+		
+
+
+
+
+
+
+
+	</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+	<div class="portlet-boundary portlet-boundary_com_liferay_journal_content_web_portlet_JournalContentPortlet_  portlet-static portlet-static-end portlet-barebone portlet-journal-content " id="p_p_id_com_liferay_journal_content_web_portlet_JournalContentPortlet_INSTANCE_jpPCWVewoxO2_">
+		<span id="p_com_liferay_journal_content_web_portlet_JournalContentPortlet_INSTANCE_jpPCWVewoxO2"></span>
+
+
+
+
+	
+
+	
+		
+			
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+		
+<section class="portlet" id="portlet_com_liferay_journal_content_web_portlet_JournalContentPortlet_INSTANCE_jpPCWVewoxO2">
+
+
+	<div class="portlet-content">
+
+
+
+			<div class="autofit-float autofit-row portlet-header">
+
+
+					<div class="autofit-col autofit-col-end">
+						<div class="autofit-section">
+							<div class="visible-interaction">
+	
+		
+
+		
+
+		
+
+		
+	
+</div>
+						</div>
+					</div>
+			</div>
+
+		
+			<div class=" portlet-content-container">
+				
+
+
+	<div class="portlet-body">
+
+
+
+	
+		
+			
+				
+					
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+				
+
+				
+					
+						
+
+
+	
+
+		
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+		
+			
+			
+				
+					
+					
+					
+
+						
+
+						<div class="" data-fragments-editor-item-id="27701-3192085" data-fragments-editor-item-type="fragments-editor-mapped-item">
+							
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+		<div class="journal-content-article " data-analytics-asset-id="3192083" data-analytics-asset-title="Concursos de méritos y oposición" data-analytics-asset-type="web-content">
+			
+
+			<script>
+    jQuery(function() {
+      jQuery('a[href*="#"]:not([href="#"])').click(function() {
+        if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') && location.hostname == this.hostname) {
+          var target = jQuery(this.hash);
+        target = target.length ? target : jQuery('[name=' + this.hash.slice(1) +']');
+        if (target.length) {
+          jQuery('html, body').animate({
+            scrollTop: target.offset().top
+          }, 1000);
+          return false;
+        }
+      }
+    });
+  });
+</script>
+
+<style>
+  body{
+    font-size: 14px;
+  }
+  .opcion.estiloOpcion{
+    text-align: center;
+    width:1%; 
+    height: 180px;
+   font-size: 12px;
+  }
+  
+  .opcion a {
+    color:#fff;
+    text-decoration:none;   
+  }
+
+#contenedor20 a:hover {
+  text-decoration: none;
+}
+
+#contenedor20 a {
+  color:#000;
+}
+   /* Style the tab */
+.tab {
+    background-color: #5ABAC0;
+  margin: auto;
+  
+}
+.tab .titulo{
+    font-size: 2.5ex;
+    font-weight: bold;
+    margin-left: 10px;
+    margin-bottom: 10px;
+  color: white;
+}
+/* Style the buttons inside the tab */
+.tab button {
+  list-style-type: none;
+    background-color: inherit;
+    float: left;
+    cursor: pointer;
+    padding: 0px 20px 0px 20px;
+    transition: 0.3s;
+    font-size: 15px;
+    font-weight: bold;
+  text-align: center;
+    margin: 0px 2px -2px -0px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border: 2px solid #DADADA;
+    border-bottom: #DADADA;
+    padding: 0px 20px 0px 20px;
+  color: white;
+}
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+    background-color: #A5D09F;
+}
+
+/* Create an active/current tablink class */
+.tab button.active {
+    background-color: #A5D09F;
+}
+
+/* Style the tab content */
+.tabcontent {
+    display: none;
+  background: #F7F6F6;
+    clear: both;  
+    padding: 20px 0px 20px 20px;
+    border-radius: 5px;
+    border-top-left-radius: 0px;
+    border: 2px solid #DADADA;
+  text-align: left;
+}
+.tab.color_morado {
+    background-color: #5c68ae;
+}
+.tab.color_morado button:hover {
+    background-color: #7392EE;
+}
+.tab.color_morado button.active {
+    background-color: #7392EE;
+}
+.tab.color_celeste {
+    background-color: #35a1da;
+}
+.tab.color_celeste button:hover {
+    background-color: #0A84D6;
+}
+.tab.color_celeste button.active{
+    background-color: #0A84D6;
+}
+.tab.color_verde {
+    background-color: #5bba9a;
+}
+.tab.color_verde button:hover {
+    background-color: #1EAD9C;
+}
+.tab.color_verde button.active{
+    background-color: #1EAD9C;
+}
+.tab.color_amarillo {
+    background-color: #f4c772;
+}
+.tab.color_amarillo button:hover {
+    background-color: #E5A723;
+}
+.tab.color_amarillo button.active{
+    background-color: #E5A723;
+}
+.tab.color_verde_limon{
+    background-color: #b5d275;
+}
+.tab.color_verde_limon button:hover {
+    background-color: #7CBC79;
+}
+.tab.color_verde_limon button.active{
+    background-color: #7CBC79;
+}
+.tab.color_violeta {
+    background-color: #9C608C;
+}
+.tab.color_violeta button:hover {
+    background-color: #6E378C;
+}
+.tab.color_violeta button.active{
+    background-color: #6E378C;
+}
+.tab.color_coral{
+    background-color: #EE717E;
+}
+.tab.color_coral button:hover {
+    background-color: #C4546E;
+}
+.tab.color_coral button.active{
+    background-color: #C4546E;
+}
+.tab.color_azul{
+    background-color: #5185C4;
+}
+.tab.color_azul button:hover {
+    background-color: #77B6EE;
+}
+.tab.color_azul button.active{
+    background-color: #77B6EE;
+}
+.tab.color_rosa{
+    background-color: #D570A9;
+}
+.tab.color_rosa button:hover {
+    background-color: #FF8DC1;
+}
+.tab.color_rosa button.active{
+    background-color: #FF8DC1;
+}
+.tab.color_naranja{
+    background-color: #F2A13C;
+}
+.tab.color_naranja button:hover {
+    background-color: #FFB548;
+}
+.tab.color_naranja button.active{
+    background-color: #FFB548;
+}
+.tab.color_naranja_fuerte{
+    background-color: #ED5B29;
+}
+.tab.color_naranja_fuerte button:hover {
+    background-color: #F2A13C;
+}
+.tab.color_naranja_fuerte button.active{
+    background-color: #F2A13C;
+}
+.tab.color_piel {
+    background-color: #F3B889;
+}
+.tab.color_piel button:hover {
+    background-color: #FF9E6C;
+}
+.tab.color_piel button.active{
+    background-color: #FF9E6C;
+}
+.tab.color_cafe {
+    background-color: #F3B889;
+}
+.tab.color_cafe button:hover {
+    background-color: #9E6C58;
+}
+.tab.color_cafe button.active{
+    background-color: #9E6C58;
+}
+.tab.color_azul_intenso {
+    background-color: #245C8A;
+}
+.tab.color_azul_intenso  button:hover {
+    background-color: #3E6FB9;
+}
+.tab.color_azul_intenso  button.active{
+    background-color: #3E6FB9;
+}
+.tab.color_gris {
+    background-color: #45606D;
+}
+.tab.color_gris button:hover {
+    background-color: #97A99E;
+}
+.tab.color_gris button.active{
+    background-color: #97A99E;
+}
+.seccion{
+  position: relative;
+ border-block-end: 7px solid #b7b7b7;
+ margin-bottom: 10px;
+margin: 10px;
+ }
+
+ .seccion .content-seccion {
+ padding-left: 50px;
+padding-top: 5px;
+padding-bottom: 10px;
+ width:100% !important;
+}               
+     
+.seccion.color_morado{
+    border-block-end: 5px solid #5c68ae;
+  }
+  .seccion.color_celeste{
+    border-block-end: 5px solid #35a1da;
+  }
+.seccion.color_verde{
+    border-block-end: 5px solid #5bba9a;
+  }
+  .seccion.color_amarillo{
+    border-block-end: 5px solid #f4c772;
+  }
+  .seccion.color_verde_limon{
+    border-block-end: 5px solid #b5d275;
+  }
+  .seccion.color_violeta{
+    border-block-end: 5px solid #9C608C;
+  }
+  .seccion.color_coral{
+    border-block-end: 5px solid #EE717E;
+  }
+  .seccion.color_azul{
+    border-block-end: 5px solid #5185C4;
+  }
+  .seccion.color_rosa{
+    border-block-end: 5px solid #D570A9;
+  }
+  .seccion.color_naranja{
+    border-block-end: 5px solid #F2A13C;
+  }
+  .seccion.color_naranja_fuerte{
+    border-block-end: 5px solid #ED5B29;
+  }
+  .seccion.color_piel{
+    border-block-end: 5px solid #F3B889;
+  }
+  .seccion.color_cafe{
+    border-block-end: 5px solid #BE9770;
+  }
+  .seccion.color_azul_intenso{
+    border-block-end: 5px solid #245C8A;
+  }
+  .seccion.color_gris{
+    border-block-end: 5px solid #45606D;
+  }
+  
+  #columna1{
+    display:table-cell;
+    border:3px solid #fff;
+    vertical-align:middle;
+  }
+  
+</style>
+  
+ <a name="arriba"></a> 
+      <div id="contenedor3" class="container">
+        <div id="contenidos" style="display:table-row;">
+                    	    	 
+            	  <div id="columna1" class="opcion color_azul estiloOpcion" style="background-color:#8E7CC3; padding:3%;">
+					<h1>
+						<a href="#roles-y-funciones" title="Ver ROLES Y FUNCIONES"> 
+						  <i class=" icon-2x" style="margin-top:35px; "></i>
+						</a>
+					</h1>
+					<br><br>
+					<a href="#roles-y-funciones"><h2 style="font-weight:300;">ROLES Y FUNCIONES</h2></a>                 
+				  </div>
+        	    	 
+            	  <div id="columna1" class="opcion color_azul estiloOpcion" style="background-color:#93C47D; padding:3%;">
+					<h1>
+						<a href="#normas-generales" title="Ver NORMAS GENERALES"> 
+						  <i class="icon-folder-open icon-white icon-2x" style="margin-top:35px; "></i>
+						</a>
+					</h1>
+					<br><br>
+					<a href="#normas-generales"><h2 style="font-weight:300;">NORMAS GENERALES</h2></a>                 
+				  </div>
+        	    	 
+            	  <div id="columna1" class="opcion color_azul estiloOpcion" style="background-color:#D8692C; padding:3%;">
+					<h1>
+						<a href="#convocatoria" title="Ver CONVOCATORIA"> 
+						  <i class="icon-user icon-white icon-2x" style="margin-top:35px; "></i>
+						</a>
+					</h1>
+					<br><br>
+					<a href="#convocatoria"><h2 style="font-weight:300;">CONVOCATORIA</h2></a>                 
+				  </div>
+        	    	 
+            	  <div id="columna1" class="opcion color_azul estiloOpcion" style="background-color:#0CA099; padding:3%;">
+					<h1>
+						<a href="#verificación-de-mérito" title="Ver VERIFICACIÓN DE MÉRITO"> 
+						  <i class="icon-edit icon-2x" style="margin-top:35px; "></i>
+						</a>
+					</h1>
+					<br><br>
+					<a href="#verificación-de-mérito"><h2 style="font-weight:300;">VERIFICACIÓN DE MÉRITO</h2></a>                 
+				  </div>
+        	    	 
+            	  <div id="columna1" class="opcion color_azul estiloOpcion" style="background-color:#2370B4; padding:3%;">
+					<h1>
+						<a href="#oposición" title="Ver OPOSICIÓN"> 
+						  <i class="icon-indent-left icon-white icon-2x" style="margin-top:35px; "></i>
+						</a>
+					</h1>
+					<br><br>
+					<a href="#oposición"><h2 style="font-weight:300;">OPOSICIÓN</h2></a>                 
+				  </div>
+        	    	 
+            	  <div id="columna1" class="opcion color_azul estiloOpcion" style="background-color:#D86466; padding:3%;">
+					<h1>
+						<a href="#declaratoria" title="Ver DECLARATORIA"> 
+						  <i class="icon-legal icon-2x" style="margin-top:35px; "></i>
+						</a>
+					</h1>
+					<br><br>
+					<a href="#declaratoria"><h2 style="font-weight:300;">DECLARATORIA</h2></a>                 
+				  </div>
+        </div> 
+      </div>
+    
+      <div style="margin: 10px 20px;">
+      &nbsp;
+      </div>
+
+<div id="contenedor20" class="container">   
+
+		<div id="contenidos2">
+			<div id="columna7"> 
+			  <div class="row seccion " style="border-block-end: 5px solid #8E7CC3;">
+				<div class="w-100">
+				  <div class="contenido-seccion">
+					<p>&nbsp;</p>
+					<a name="roles-y-funciones">
+					  <p></p>
+						<h3 align="left">ROLES Y FUNCIONES</h3>
+					  <p></p>
+					</a>
+					<p align="left"></p>
+					<br><br>
+					<h3>DE LOS RESPONSABLES DEL PROCESO</h3>
+
+<p><picture data-fileentryid="3506896"><source media="(max-width:290px)" srcset="/portal/o/adaptive-media/image/3506896/Thumbnail-300x300/responsables_proceso-02.png?t=1697662065212"><source media="(max-width:1000px) and (min-width:290px)" srcset="/portal/o/adaptive-media/image/3506896/Preview-1000x0/responsables_proceso-02.png?t=1697662065212"><img src="/portal/documents/35138/3190413/responsables_proceso-02.png/b29edfd1-7750-11d4-765d-705bd42d82da?t=1697662065212"></picture></p>
+
+<p>&nbsp;</p>
+					<p align="right">
+					  <a href="#arriba">
+						 <i class="icon-arrow-up" style="margin-top:5px; font-size:25px; color:#BFBFBF;"></i> 
+					  </a>
+					</p>
+				  </div>
+				</div>  
+			  </div>
+			</div>
+				
+		  </div>
+
+		<div id="contenidos2">
+			<div id="columna7"> 
+			  <div class="row seccion " style="border-block-end: 5px solid #93C47D;">
+				<div class="w-100">
+				  <div class="contenido-seccion">
+					<p>&nbsp;</p>
+					<a name="normas-generales">
+					  <p></p>
+						<h3 align="left">NORMAS GENERALES</h3>
+					  <p></p>
+					</a>
+					<p align="left"></p>
+					<br><br>
+					<p><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="" frameborder="0" height="800" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/i_mYfaua-xU?si=t0n_JU6pzY5doDZR" title="YouTube video player" width="1200"></iframe></p>
+
+<p style=""><a href="https://forms.gle/wtV4h6hLMsBQo6cj8"><picture data-fileentryid="3199370"><source media="(max-width:300px)" srcset="/portal/o/adaptive-media/image/3199370/Thumbnail-300x300/Captura+de+Pantalla+2023-06-12+a+la%28s%29+11.20.54.png?t=1686587834680"><source media="(max-width:1000px) and (min-width:300px)" srcset="/portal/o/adaptive-media/image/3199370/Preview-1000x0/Captura+de+Pantalla+2023-06-12+a+la%28s%29+11.20.54.png?t=1686587834680"><img src="/portal/documents/35138/3190413/Captura+de+Pantalla+2023-06-12+a+la%28s%29+11.20.54.png/f7a06f3d-b1b9-bf0b-86c0-19aeefcedc8f?t=1686587059030"></picture></a></p>
+
+<p><meta charset="UTF-8"></p>
+
+<h3><img alt="" height="20" src="/portal/documents/35138/35181/formulario.png/1e95e677-f47e-74c9-a47b-fe8bd5dd1d53?t=1581568999685" width="15">&nbsp;<a href="https://sriintra01/share/s/ofDX2bSFQVuUyXd-8VkCpg" target="_blank">Norma Técnica del Subsistema de Selección de Personal</a>&nbsp;</h3>
+					<p align="right">
+					  <a href="#arriba">
+						 <i class="icon-arrow-up" style="margin-top:5px; font-size:25px; color:#BFBFBF;"></i> 
+					  </a>
+					</p>
+				  </div>
+				</div>  
+			  </div>
+			</div>
+				
+		  </div>
+
+		<div id="contenidos2">
+			<div id="columna7"> 
+			  <div class="row seccion " style="border-block-end: 5px solid #D8692C;">
+				<div class="w-100">
+				  <div class="contenido-seccion">
+					<p>&nbsp;</p>
+					<a name="convocatoria">
+					  <p></p>
+						<h3 align="left">CONVOCATORIA</h3>
+					  <p></p>
+					</a>
+					<p align="left"></p>
+					<br><br>
+					<p><picture data-fileentryid="3193240"><source media="(max-width:300px)" srcset="/portal/o/adaptive-media/image/3193240/Thumbnail-300x300/infografia_intra_1.png?t=1686345156354"><source media="(max-width:1000px) and (min-width:300px)" srcset="/portal/o/adaptive-media/image/3193240/Preview-1000x0/infografia_intra_1.png?t=1686345156354"><img src="/portal/documents/35138/3190413/infografia_intra_1.png/a04c83f5-4a16-e959-3a10-25fb21a5c19b?t=1686345156354"></picture></p>
+
+<p><a href="https://forms.gle/wtV4h6hLMsBQo6cj8"><picture data-fileentryid="3199482"><source media="(max-width:300px)" srcset="/portal/o/adaptive-media/image/3199482/Thumbnail-300x300/Captura+de+Pantalla+2023-06-12+a+la%28s%29+11.36.37.png?t=1686587937528"><source media="(max-width:1000px) and (min-width:300px)" srcset="/portal/o/adaptive-media/image/3199482/Preview-1000x0/Captura+de+Pantalla+2023-06-12+a+la%28s%29+11.36.37.png?t=1686587937528"><img src="/portal/documents/35138/3190413/Captura+de+Pantalla+2023-06-12+a+la%28s%29+11.36.37.png/c0918199-5904-5ced-88f8-768ba0940c17?t=1686587937528"></picture></a></p>
+
+<p>&nbsp;</p>
+
+<h2>PREGUNTAS FRECUENTES</h2>
+
+<p style="text-align:start; text-indent:0px; -webkit-text-stroke-width:0px"><span style="font-size:11pt"><span style="line-height:normal"><span style="font-family:Calibri, sans-serif"><span style="caret-color:#000000"><span style="color:#000000"><span style="font-style:normal"><span style="font-variant-caps:normal"><span style="font-weight:normal"><span style="letter-spacing:normal"><span style="orphans:auto"><span style="text-transform:none"><span style="white-space:normal"><span style="widows:auto"><span style="word-spacing:0px"><span style="-webkit-text-size-adjust:auto"><span style="text-decoration:none"><b><span lang="ES" style="font-size:10pt">¿Puedo aplicar a más de un concurso por convocatoria?</span></b></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></p>
+
+<p style="text-align:start; text-indent:0px; -webkit-text-stroke-width:0px"><span style="font-size:11pt"><span style="line-height:normal"><span style="font-family:Calibri, sans-serif"><span style="caret-color:#000000"><span style="color:#000000"><span style="font-style:normal"><span style="font-variant-caps:normal"><span style="font-weight:normal"><span style="letter-spacing:normal"><span style="orphans:auto"><span style="text-transform:none"><span style="white-space:normal"><span style="widows:auto"><span style="word-spacing:0px"><span style="-webkit-text-size-adjust:auto"><span style="text-decoration:none"><span lang="ES" style="font-size:10pt"></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></p>
+
+<p style="text-align:start; text-indent:0px; -webkit-text-stroke-width:0px"><span style="font-size:11pt"><span style="line-height:normal"><span style="font-family:Calibri, sans-serif"><span style="caret-color:#000000"><span style="color:#000000"><span style="font-style:normal"><span style="font-variant-caps:normal"><span style="font-weight:normal"><span style="letter-spacing:normal"><span style="orphans:auto"><span style="text-transform:none"><span style="white-space:normal"><span style="widows:auto"><span style="word-spacing:0px"><span style="-webkit-text-size-adjust:auto"><span style="text-decoration:none"><span lang="ES" style="font-size:10pt">De conformidad con la Norma Técnica de Selección de Personal, el postulante podrá aplicar exclusivamente a un puesto por convocatoria, por lo que deberá elegir correctamente la instrucción formal y experiencia requerida para el puesto. Cabe mencionar que debido a que cada Zonal ejecuta los Concursos de Méritos y Oposición de manera desconcentrada, las convocatorias de cada dirección Zonal del SRI son independientes.</span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></p>
+
+<p style="text-align:start; text-indent:0px; -webkit-text-stroke-width:0px"><span style="font-size:11pt"><span style="line-height:normal"><span style="font-family:Calibri, sans-serif"><span style="caret-color:#000000"><span style="color:#000000"><span style="font-style:normal"><span style="font-variant-caps:normal"><span style="font-weight:normal"><span style="letter-spacing:normal"><span style="orphans:auto"><span style="text-transform:none"><span style="white-space:normal"><span style="widows:auto"><span style="word-spacing:0px"><span style="-webkit-text-size-adjust:auto"><span style="text-decoration:none"><span lang="ES" style="font-size:10pt"></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></p>
+
+<p style="text-align:start; text-indent:0px; -webkit-text-stroke-width:0px"><span style="font-size:11pt"><span style="line-height:normal"><span style="font-family:Calibri, sans-serif"><span style="caret-color:#000000"><span style="color:#000000"><span style="font-style:normal"><span style="font-variant-caps:normal"><span style="font-weight:normal"><span style="letter-spacing:normal"><span style="orphans:auto"><span style="text-transform:none"><span style="white-space:normal"><span style="widows:auto"><span style="word-spacing:0px"><span style="-webkit-text-size-adjust:auto"><span style="text-decoration:none"><b><span lang="ES" style="font-size:10pt">¿Puedo actualizar información de mi hoja de vida luego de haber postulado a un concurso?</span></b></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></p>
+
+<p style="text-align:start; text-indent:0px; -webkit-text-stroke-width:0px"><span style="font-size:11pt"><span style="line-height:normal"><span style="font-family:Calibri, sans-serif"><span style="caret-color:#000000"><span style="color:#000000"><span style="font-style:normal"><span style="font-variant-caps:normal"><span style="font-weight:normal"><span style="letter-spacing:normal"><span style="orphans:auto"><span style="text-transform:none"><span style="white-space:normal"><span style="widows:auto"><span style="word-spacing:0px"><span style="-webkit-text-size-adjust:auto"><span style="text-decoration:none"><span lang="ES" style="font-size:10pt"></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></p>
+
+<p style="text-align:start; text-indent:0px; -webkit-text-stroke-width:0px"><span style="font-size:11pt"><span style="line-height:normal"><span style="font-family:Calibri, sans-serif"><span style="caret-color:#000000"><span style="color:#000000"><span style="font-style:normal"><span style="font-variant-caps:normal"><span style="font-weight:normal"><span style="letter-spacing:normal"><span style="orphans:auto"><span style="text-transform:none"><span style="white-space:normal"><span style="widows:auto"><span style="word-spacing:0px"><span style="-webkit-text-size-adjust:auto"><span style="text-decoration:none"><span lang="ES" style="font-size:10pt">La plataforma tecnológica del Ministerio del Trabajo te permitirá actualizar información; sin embargo, dicha información actualizada ya no será considerada dentro del proceso que aplicaste pues al momento de postular, la plataforma automáticamente genera un corte con la información registrada en la postulación. Por ello, es importante revisar y actualizar tu hoja de vida, previo a tu aplicación a cualquier concurso de méritos y oposición, recordando que el postulante es el único responsable de la veracidad y exactitud de la información y de sus declaraciones constantes en el registro “Hoja de Vida”.</span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></p>
+
+<p style="text-align:start; text-indent:0px; -webkit-text-stroke-width:0px"><span style="font-size:11pt"><span style="line-height:normal"><span style="font-family:Calibri, sans-serif"><span style="caret-color:#000000"><span style="color:#000000"><span style="font-style:normal"><span style="font-variant-caps:normal"><span style="font-weight:normal"><span style="letter-spacing:normal"><span style="orphans:auto"><span style="text-transform:none"><span style="white-space:normal"><span style="widows:auto"><span style="word-spacing:0px"><span style="-webkit-text-size-adjust:auto"><span style="text-decoration:none"><span lang="ES" style="font-size:10pt"></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></p>
+
+<p style="text-align:start; text-indent:0px; -webkit-text-stroke-width:0px"><span style="font-size:11pt"><span style="line-height:normal"><span style="font-family:Calibri, sans-serif"><span style="caret-color:#000000"><span style="color:#000000"><span style="font-style:normal"><span style="font-variant-caps:normal"><span style="font-weight:normal"><span style="letter-spacing:normal"><span style="orphans:auto"><span style="text-transform:none"><span style="white-space:normal"><span style="widows:auto"><span style="word-spacing:0px"><span style="-webkit-text-size-adjust:auto"><span style="text-decoration:none"><b><span lang="ES" style="font-size:10pt">¿Cuál es el medio oficial en que se comunicará las convocatorias de los Concursos?</span></b></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></p>
+
+<p style="text-align:start; text-indent:0px; -webkit-text-stroke-width:0px"><span style="font-size:11pt"><span style="line-height:normal"><span style="font-family:Calibri, sans-serif"><span style="caret-color:#000000"><span style="color:#000000"><span style="font-style:normal"><span style="font-variant-caps:normal"><span style="font-weight:normal"><span style="letter-spacing:normal"><span style="orphans:auto"><span style="text-transform:none"><span style="white-space:normal"><span style="widows:auto"><span style="word-spacing:0px"><span style="-webkit-text-size-adjust:auto"><span style="text-decoration:none"><span lang="ES" style="font-size:10pt"></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></p>
+
+<p style="text-align:start; text-indent:0px; -webkit-text-stroke-width:0px"><span style="font-size:11pt"><span style="line-height:normal"><span style="font-family:Calibri, sans-serif"><span style="caret-color:#000000"><span style="color:#000000"><span style="font-style:normal"><span style="font-variant-caps:normal"><span style="font-weight:normal"><span style="letter-spacing:normal"><span style="orphans:auto"><span style="text-transform:none"><span style="white-space:normal"><span style="widows:auto"><span style="word-spacing:0px"><span style="-webkit-text-size-adjust:auto"><span style="text-decoration:none"><span lang="ES" style="font-size:10pt">La difusión de convocatorias a concursos de méritos y oposición del SRI a nivel nacional, se realizará en la plataforma tecnológica del Ministerio del Trabajo “Encuentra empleo”.</span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></p>
+
+<p style="text-align:start; text-indent:0px; -webkit-text-stroke-width:0px"><span style="font-size:11pt"><span style="line-height:normal"><span style="font-family:Calibri, sans-serif"><span style="caret-color:#000000"><span style="color:#000000"><span style="font-style:normal"><span style="font-variant-caps:normal"><span style="font-weight:normal"><span style="letter-spacing:normal"><span style="orphans:auto"><span style="text-transform:none"><span style="white-space:normal"><span style="widows:auto"><span style="word-spacing:0px"><span style="-webkit-text-size-adjust:auto"><span style="text-decoration:none"><span lang="ES" style="font-size:10pt"></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></p>
+
+<p style="text-align:start; text-indent:0px; -webkit-text-stroke-width:0px"><span style="font-size:11pt"><span style="line-height:normal"><span style="font-family:Calibri, sans-serif"><span style="caret-color:#000000"><span style="color:#000000"><span style="font-style:normal"><span style="font-variant-caps:normal"><span style="font-weight:normal"><span style="letter-spacing:normal"><span style="orphans:auto"><span style="text-transform:none"><span style="white-space:normal"><span style="widows:auto"><span style="word-spacing:0px"><span style="-webkit-text-size-adjust:auto"><span style="text-decoration:none"><b><span lang="ES" style="font-size:10pt">¿Por qué medio recibiré notificaciones del avance o etapas de un concurso de méritos y oposición al que postulé?</span></b></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></p>
+
+<p style="text-align:start; text-indent:0px; -webkit-text-stroke-width:0px"><span style="font-size:11pt"><span style="line-height:normal"><span style="font-family:Calibri, sans-serif"><span style="caret-color:#000000"><span style="color:#000000"><span style="font-style:normal"><span style="font-variant-caps:normal"><span style="font-weight:normal"><span style="letter-spacing:normal"><span style="orphans:auto"><span style="text-transform:none"><span style="white-space:normal"><span style="widows:auto"><span style="word-spacing:0px"><span style="-webkit-text-size-adjust:auto"><span style="text-decoration:none"><b><span lang="ES" style="font-size:10pt"></span></b></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></p>
+
+<p style="text-align:start; text-indent:0px; -webkit-text-stroke-width:0px"><span style="font-size:11pt"><span style="line-height:normal"><span style="font-family:Calibri, sans-serif"><span style="caret-color:#000000"><span style="color:#000000"><span style="font-style:normal"><span style="font-variant-caps:normal"><span style="font-weight:normal"><span style="letter-spacing:normal"><span style="orphans:auto"><span style="text-transform:none"><span style="white-space:normal"><span style="widows:auto"><span style="word-spacing:0px"><span style="-webkit-text-size-adjust:auto"><span style="text-decoration:none"><span lang="ES" style="font-size:10pt">Todas las notificaciones relacionadas con el concurso de méritos y oposición, serán notificadas a través de la plataforma encuentra empleo como único medio válido para la ejecución del proceso; esta herramienta disparará automáticamente las notificaciones al correo electrónico registrado por el postulante al momento de su aplicación (hoja de vida). Es responsabilidad del postulante el monitorear su participación durante todo el concurso en la plataforma tecnológica.</span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></p>
+
+<p style="text-align:start; text-indent:0px; -webkit-text-stroke-width:0px"><span style="font-size:11pt"><span style="line-height:normal"><span style="font-family:Calibri, sans-serif"><span style="caret-color:#000000"><span style="color:#000000"><span style="font-style:normal"><span style="font-variant-caps:normal"><span style="font-weight:normal"><span style="letter-spacing:normal"><span style="orphans:auto"><span style="text-transform:none"><span style="white-space:normal"><span style="widows:auto"><span style="word-spacing:0px"><span style="-webkit-text-size-adjust:auto"><span style="text-decoration:none"><b><span lang="ES" style="font-size:10pt"></span></b></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></p>
+
+<p style="text-align:start; text-indent:0px; -webkit-text-stroke-width:0px"><span style="font-size:11pt"><span style="line-height:normal"><span style="font-family:Calibri, sans-serif"><span style="caret-color:#000000"><span style="color:#000000"><span style="font-style:normal"><span style="font-variant-caps:normal"><span style="font-weight:normal"><span style="letter-spacing:normal"><span style="orphans:auto"><span style="text-transform:none"><span style="white-space:normal"><span style="widows:auto"><span style="word-spacing:0px"><span style="-webkit-text-size-adjust:auto"><span style="text-decoration:none"><b><span lang="ES" style="font-size:10pt">¿Durante cuánto tiempo puedo aplicar a cada concurso?</span></b></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></p>
+
+<p style="text-align:start; text-indent:0px; -webkit-text-stroke-width:0px"><span style="font-size:11pt"><span style="line-height:normal"><span style="font-family:Calibri, sans-serif"><span style="caret-color:#000000"><span style="color:#000000"><span style="font-style:normal"><span style="font-variant-caps:normal"><span style="font-weight:normal"><span style="letter-spacing:normal"><span style="orphans:auto"><span style="text-transform:none"><span style="white-space:normal"><span style="widows:auto"><span style="word-spacing:0px"><span style="-webkit-text-size-adjust:auto"><span style="text-decoration:none"><span lang="ES" style="font-size:10pt"></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></p>
+
+<p style="text-align:start; text-indent:0px; -webkit-text-stroke-width:0px"><span style="font-size:11pt"><span style="line-height:normal"><span style="font-family:Calibri, sans-serif"><span style="caret-color:#000000"><span style="color:#000000"><span style="font-style:normal"><span style="font-variant-caps:normal"><span style="font-weight:normal"><span style="letter-spacing:normal"><span style="orphans:auto"><span style="text-transform:none"><span style="white-space:normal"><span style="widows:auto"><span style="word-spacing:0px"><span style="-webkit-text-size-adjust:auto"><span style="text-decoration:none"><span lang="ES" style="font-size:10pt">Cada convocatoria estará publicada por un período de 3 días hábiles, durante el cual los ciudadanos podrán aplicar al concurso, exclusivamente a través de la plataforma tecnológica encuentra empleo. Cumplido este término, no se receptarán postulantes por ningún otro medio.</span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></p>
+
+<p style="text-align:start; text-indent:0px; -webkit-text-stroke-width:0px"><span style="font-size:11pt"><span style="line-height:normal"><span style="font-family:Calibri, sans-serif"><span style="caret-color:#000000"><span style="color:#000000"><span style="font-style:normal"><span style="font-variant-caps:normal"><span style="font-weight:normal"><span style="letter-spacing:normal"><span style="orphans:auto"><span style="text-transform:none"><span style="white-space:normal"><span style="widows:auto"><span style="word-spacing:0px"><span style="-webkit-text-size-adjust:auto"><span style="text-decoration:none"><span lang="ES" style="font-size:10pt"></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></p>
+
+<p style="text-align:start; text-indent:0px; -webkit-text-stroke-width:0px"><span style="font-size:11pt"><span style="line-height:normal"><span style="font-family:Calibri, sans-serif"><span style="caret-color:#000000"><span style="color:#000000"><span style="font-style:normal"><span style="font-variant-caps:normal"><span style="font-weight:normal"><span style="letter-spacing:normal"><span style="orphans:auto"><span style="text-transform:none"><span style="white-space:normal"><span style="widows:auto"><span style="word-spacing:0px"><span style="-webkit-text-size-adjust:auto"><span style="text-decoration:none"><b><span lang="ES" style="font-size:10pt">¿Qué hago si no puedo acceder a la plataforma encuentra empleo?</span></b></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></p>
+
+<p style="text-align:start; text-indent:0px; -webkit-text-stroke-width:0px"><span style="font-size:11pt"><span style="line-height:normal"><span style="font-family:Calibri, sans-serif"><span style="caret-color:#000000"><span style="color:#000000"><span style="font-style:normal"><span style="font-variant-caps:normal"><span style="font-weight:normal"><span style="letter-spacing:normal"><span style="orphans:auto"><span style="text-transform:none"><span style="white-space:normal"><span style="widows:auto"><span style="word-spacing:0px"><span style="-webkit-text-size-adjust:auto"><span style="text-decoration:none"><span lang="ES" style="font-size:10pt"></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></p>
+
+<p style="text-align:start; text-indent:0px; -webkit-text-stroke-width:0px"><span style="font-size:11pt"><span style="line-height:normal"><span style="font-family:Calibri, sans-serif"><span style="caret-color:#000000"><span style="color:#000000"><span style="font-style:normal"><span style="font-variant-caps:normal"><span style="font-weight:normal"><span style="letter-spacing:normal"><span style="orphans:auto"><span style="text-transform:none"><span style="white-space:normal"><span style="widows:auto"><span style="word-spacing:0px"><span style="-webkit-text-size-adjust:auto"><span style="text-decoration:none"><span lang="ES" style="font-size:10pt">La plataforma encuentra empleo es de administración del Ministerio del Trabajo; en caso de tener inconvenientes con el ingreso o registros en dicha plataforma, debes comunicarte con dicha Cartera de Estado a los respectivos contactos descritos en la página web.</span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></p>
+
+<p>&nbsp;</p>
+
+<p>
+<style type="text/css">body {font-family: Arial; font-size: 12px; color:#504E4E} /* Style the tab */ .tab { background-color: #68C2E5; margin: auto; } .tab .titulo{ font-size: 2.5ex; font-weight: bold; margin-left: 10px; margin-bottom: 10px; color: white; } /* Style the buttons inside the tab */ .tab button { list-style-type: none; background-color: inherit; float: left; cursor: pointer; padding: 0px 20px 0px 20px; transition: 0.3s; font-size: 15px; font-weight: bold; text-align: center; margin: 0px 2px -2px -0px; border-top-left-radius: 5px; border-top-right-radius: 5px; border: 2px solid #DADADA; border-bottom: #DADADA; padding: 0px 20px 0px 20px; color: white; } /* Change background color of buttons on hover */ .tab button:hover { background-color: #7888BF; } /* Create an active/current tablink class */ .tab button.active { background-color: #7888BF; } /* Style the tab content */ .tabcontent { display: none; background: #F7F6F6; clear: both; padding: 20px 0px 20px 20px; border-radius: 5px; border-top-left-radius: 0px; border: 2px solid #DADADA; width: 900px; } }
+</style>
+</p>
+					<p align="right">
+					  <a href="#arriba">
+						 <i class="icon-arrow-up" style="margin-top:5px; font-size:25px; color:#BFBFBF;"></i> 
+					  </a>
+					</p>
+				  </div>
+				</div>  
+			  </div>
+			</div>
+				
+		  </div>
+
+		<div id="contenidos2">
+			<div id="columna7"> 
+			  <div class="row seccion " style="border-block-end: 5px solid #0CA099;">
+				<div class="w-100">
+				  <div class="contenido-seccion">
+					<p>&nbsp;</p>
+					<a name="verificación-de-mérito">
+					  <p></p>
+						<h3 align="left">VERIFICACIÓN DE MÉRITO</h3>
+					  <p></p>
+					</a>
+					<p align="left"></p>
+					<br><br>
+					<p><picture data-fileentryid="3193252"><source media="(max-width:300px)" srcset="/portal/o/adaptive-media/image/3193252/Thumbnail-300x300/infografia_intra_2.png?t=1686345156886"><source media="(max-width:1000px) and (min-width:300px)" srcset="/portal/o/adaptive-media/image/3193252/Preview-1000x0/infografia_intra_2.png?t=1686345156886"><img src="/portal/documents/35138/3190413/infografia_intra_2.png/1a2c35a2-927e-94cd-c804-96af7ad051b2?t=1686345156886"></picture></p>
+
+<h1><a href="https://forms.gle/wtV4h6hLMsBQo6cj8"><picture data-fileentryid="3199482"><source media="(max-width:300px)" srcset="/portal/o/adaptive-media/image/3199482/Thumbnail-300x300/Captura+de+Pantalla+2023-06-12+a+la%28s%29+11.36.37.png?t=1686587937528"><source media="(max-width:1000px) and (min-width:300px)" srcset="/portal/o/adaptive-media/image/3199482/Preview-1000x0/Captura+de+Pantalla+2023-06-12+a+la%28s%29+11.36.37.png?t=1686587937528"><img src="/portal/documents/35138/3190413/Captura+de+Pantalla+2023-06-12+a+la%28s%29+11.36.37.png/c0918199-5904-5ced-88f8-768ba0940c17?t=1686587937528"></picture></a></h1>
+
+<p>&nbsp;</p>
+
+<h2>PREGUNTAS FRECUENTES</h2>
+
+<p style="text-align:start; text-indent:0px; -webkit-text-stroke-width:0px"><span style="font-size:11pt"><span style="line-height:normal"><span style="font-family:Calibri, sans-serif"><span style="caret-color:#000000"><span style="color:#000000"><span style="font-style:normal"><span style="font-variant-caps:normal"><span style="font-weight:normal"><span style="letter-spacing:normal"><span style="orphans:auto"><span style="text-transform:none"><span style="white-space:normal"><span style="widows:auto"><span style="word-spacing:0px"><span style="-webkit-text-size-adjust:auto"><span style="text-decoration:none"><b><span lang="ES" style="font-size:10pt">¿Se otorgará puntajes adicionales por exceder lo requerido en las bases del concurso, por ejemplo, al contar con maestrías, títulos o experiencia adicionales, logros o reconocimientos académicos?</span></b></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></p>
+
+<p style="text-align:start; text-indent:0px; -webkit-text-stroke-width:0px"><span style="font-size:11pt"><span style="line-height:normal"><span style="font-family:Calibri, sans-serif"><span style="caret-color:#000000"><span style="color:#000000"><span style="font-style:normal"><span style="font-variant-caps:normal"><span style="font-weight:normal"><span style="letter-spacing:normal"><span style="orphans:auto"><span style="text-transform:none"><span style="white-space:normal"><span style="widows:auto"><span style="word-spacing:0px"><span style="-webkit-text-size-adjust:auto"><span style="text-decoration:none"><span lang="ES" style="font-size:10pt"></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></p>
+
+<p style="text-align:start; text-indent:0px; -webkit-text-stroke-width:0px"><span style="font-size:11pt"><span style="line-height:normal"><span style="font-family:Calibri, sans-serif"><span style="caret-color:#000000"><span style="color:#000000"><span style="font-style:normal"><span style="font-variant-caps:normal"><span style="font-weight:normal"><span style="letter-spacing:normal"><span style="orphans:auto"><span style="text-transform:none"><span style="white-space:normal"><span style="widows:auto"><span style="word-spacing:0px"><span style="-webkit-text-size-adjust:auto"><span style="text-decoration:none"><span lang="ES" style="font-size:10pt">El ACUERDO MINISTERIAL Nro. MDT-2022-180 con el que se expide la Norma Técnica de Selección de Personal, no estipula puntajes adicionales por títulos o experiencia, logros o reconocimientos adicionales a lo que requiere el perfil del puesto.</span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></p>
+
+<p style="text-align:start; text-indent:0px; -webkit-text-stroke-width:0px"><span style="font-size:11pt"><span style="line-height:normal"><span style="font-family:Calibri, sans-serif"><span style="caret-color:#000000"><span style="color:#000000"><span style="font-style:normal"><span style="font-variant-caps:normal"><span style="font-weight:normal"><span style="letter-spacing:normal"><span style="orphans:auto"><span style="text-transform:none"><span style="white-space:normal"><span style="widows:auto"><span style="word-spacing:0px"><span style="-webkit-text-size-adjust:auto"><span style="text-decoration:none"><b><span lang="ES" style="font-size:10pt"></span></b></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></p>
+
+<p style="text-align:start; text-indent:0px; -webkit-text-stroke-width:0px"><span style="font-size:11pt"><span style="line-height:normal"><span style="font-family:Calibri, sans-serif"><span style="caret-color:#000000"><span style="color:#000000"><span style="font-style:normal"><span style="font-variant-caps:normal"><span style="font-weight:normal"><span style="letter-spacing:normal"><span style="orphans:auto"><span style="text-transform:none"><span style="white-space:normal"><span style="widows:auto"><span style="word-spacing:0px"><span style="-webkit-text-size-adjust:auto"><span style="text-decoration:none"><b><span lang="ES" style="font-size:10pt">¿Se considerará los certificados de Capacitación en la fase de verificación de postulaciones?</span></b></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></p>
+
+<p style="text-align:start; text-indent:0px; -webkit-text-stroke-width:0px"><span style="font-size:11pt"><span style="line-height:normal"><span style="font-family:Calibri, sans-serif"><span style="caret-color:#000000"><span style="color:#000000"><span style="font-style:normal"><span style="font-variant-caps:normal"><span style="font-weight:normal"><span style="letter-spacing:normal"><span style="orphans:auto"><span style="text-transform:none"><span style="white-space:normal"><span style="widows:auto"><span style="word-spacing:0px"><span style="-webkit-text-size-adjust:auto"><span style="text-decoration:none"><span lang="ES" style="font-size:10pt"></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></p>
+
+<p style="text-align:start; text-indent:0px; -webkit-text-stroke-width:0px"><span style="font-size:11pt"><span style="line-height:normal"><span style="font-family:Calibri, sans-serif"><span style="caret-color:#000000"><span style="color:#000000"><span style="font-style:normal"><span style="font-variant-caps:normal"><span style="font-weight:normal"><span style="letter-spacing:normal"><span style="orphans:auto"><span style="text-transform:none"><span style="white-space:normal"><span style="widows:auto"><span style="word-spacing:0px"><span style="-webkit-text-size-adjust:auto"><span style="text-decoration:none"><span lang="ES" style="font-size:10pt">El ACUERDO MINISTERIAL Nro. MDT-2022-180 con el que se expide la Norma Técnica de Selección de Personal, no considera la capacitación como factor a evaluar dentro de la verificación del mérito, por lo cual no será considerada la capacitación dentro del proceso selectivo.</span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></p>
+
+<p style="text-align:start; text-indent:0px; -webkit-text-stroke-width:0px"><span style="font-size:11pt"><span style="line-height:normal"><span style="font-family:Calibri, sans-serif"><span style="caret-color:#000000"><span style="color:#000000"><span style="font-style:normal"><span style="font-variant-caps:normal"><span style="font-weight:normal"><span style="letter-spacing:normal"><span style="orphans:auto"><span style="text-transform:none"><span style="white-space:normal"><span style="widows:auto"><span style="word-spacing:0px"><span style="-webkit-text-size-adjust:auto"><span style="text-decoration:none"><span lang="ES" style="font-size:10pt"></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></p>
+
+<p style="text-align:start; text-indent:0px; -webkit-text-stroke-width:0px"><span style="font-size:11pt"><span style="line-height:normal"><span style="font-family:Calibri, sans-serif"><span style="caret-color:#000000"><span style="color:#000000"><span style="font-style:normal"><span style="font-variant-caps:normal"><span style="font-weight:normal"><span style="letter-spacing:normal"><span style="orphans:auto"><span style="text-transform:none"><span style="white-space:normal"><span style="widows:auto"><span style="word-spacing:0px"><span style="-webkit-text-size-adjust:auto"><span style="text-decoration:none"><b><span lang="ES" style="font-size:10pt">¿Si no me encuentro conforme con los resultados de verificación al mérito puedo presentar apelación?</span></b></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></p>
+
+<p style="text-align:start; text-indent:0px; -webkit-text-stroke-width:0px; margin-bottom:11px"><span style="font-size:11pt"><span style="line-height:15.693333625793457px"><span style="font-family:Calibri, sans-serif"><span style="caret-color:#000000"><span style="color:#000000"><span style="font-style:normal"><span style="font-variant-caps:normal"><span style="font-weight:normal"><span style="letter-spacing:normal"><span style="orphans:auto"><span style="text-transform:none"><span style="white-space:normal"><span style="widows:auto"><span style="word-spacing:0px"><span style="-webkit-text-size-adjust:auto"><span style="text-decoration:none"></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></p>
+
+<p style="text-align:start; text-indent:0px; -webkit-text-stroke-width:0px"><span style="font-size:11pt"><span style="line-height:normal"><span style="font-family:Calibri, sans-serif"><span style="caret-color:#000000"><span style="color:#000000"><span style="font-style:normal"><span style="font-variant-caps:normal"><span style="font-weight:normal"><span style="letter-spacing:normal"><span style="orphans:auto"><span style="text-transform:none"><span style="white-space:normal"><span style="widows:auto"><span style="word-spacing:0px"><span style="-webkit-text-size-adjust:auto"><span style="text-decoration:none"><span lang="ES" style="font-size:10pt">Esta etapa del concurso de méritos y oposición si es susceptible de apelación, únicamente durante 1 día hábil que será publicado conforme cronograma establecido. Los postulantes podrán apelar exclusivamente en la página encuentra empleo, en el término establecido y únicamente sobre su postulación; no se atenderán apelaciones que se recepten por cualquier otro medio, ni fuera del plazo establecido.</span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span><span style="font-size:11pt"><span style="line-height:normal"><span style="font-family:Calibri, sans-serif"><span style="caret-color:#000000"><span style="color:#000000"><span style="font-style:normal"><span style="font-variant-caps:normal"><span style="font-weight:normal"><span style="letter-spacing:normal"><span style="orphans:auto"><span style="text-transform:none"><span style="white-space:normal"><span style="widows:auto"><span style="word-spacing:0px"><span style="-webkit-text-size-adjust:auto"><span style="text-decoration:none"><span lang="ES" style="font-size:10pt"></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></p>
+					<p align="right">
+					  <a href="#arriba">
+						 <i class="icon-arrow-up" style="margin-top:5px; font-size:25px; color:#BFBFBF;"></i> 
+					  </a>
+					</p>
+				  </div>
+				</div>  
+			  </div>
+			</div>
+				
+		  </div>
+
+		<div id="contenidos2">
+			<div id="columna7"> 
+			  <div class="row seccion " style="border-block-end: 5px solid #2370B4;">
+				<div class="w-100">
+				  <div class="contenido-seccion">
+					<p>&nbsp;</p>
+					<a name="oposición">
+					  <p></p>
+						<h3 align="left">OPOSICIÓN</h3>
+					  <p></p>
+					</a>
+					<p align="left"></p>
+					<br><br>
+					<p><picture data-fileentryid="3193267"><source media="(max-width:300px)" srcset="/portal/o/adaptive-media/image/3193267/Thumbnail-300x300/infografia_intra_3.png?t=1686345157097"><source media="(max-width:1000px) and (min-width:300px)" srcset="/portal/o/adaptive-media/image/3193267/Preview-1000x0/infografia_intra_3.png?t=1686345157097"><img src="/portal/documents/35138/3190413/infografia_intra_3.png/6bbd9cd7-5b35-dbc3-d9ff-a3a4a6ba15f1?t=1686345157097"></picture></p>
+
+<h1><a href="https://forms.gle/wtV4h6hLMsBQo6cj8"><picture data-fileentryid="3199482"><source media="(max-width:300px)" srcset="/portal/o/adaptive-media/image/3199482/Thumbnail-300x300/Captura+de+Pantalla+2023-06-12+a+la%28s%29+11.36.37.png?t=1686587937528"><source media="(max-width:1000px) and (min-width:300px)" srcset="/portal/o/adaptive-media/image/3199482/Preview-1000x0/Captura+de+Pantalla+2023-06-12+a+la%28s%29+11.36.37.png?t=1686587937528"><img src="/portal/documents/35138/3190413/Captura+de+Pantalla+2023-06-12+a+la%28s%29+11.36.37.png/c0918199-5904-5ced-88f8-768ba0940c17?t=1686587937528"></picture></a></h1>
+
+<p>&nbsp;</p>
+
+<h2>PREGUNTAS FRECUENTES</h2>
+
+<p style="text-align:start; text-indent:0px; -webkit-text-stroke-width:0px"><span style="font-size:11pt"><span style="line-height:normal"><span style="font-family:Calibri, sans-serif"><span style="caret-color:#000000"><span style="color:#000000"><span style="font-style:normal"><span style="font-variant-caps:normal"><span style="font-weight:normal"><span style="letter-spacing:normal"><span style="orphans:auto"><span style="text-transform:none"><span style="white-space:normal"><span style="widows:auto"><span style="word-spacing:0px"><span style="-webkit-text-size-adjust:auto"><span style="text-decoration:none"><b><span lang="ES" style="font-size:10pt">¿Qué evalúa las pruebas psicométricas?</span></b></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></p>
+
+<p style="text-align:start; text-indent:0px; -webkit-text-stroke-width:0px"><span style="font-size:11pt"><span style="line-height:normal"><span style="font-family:Calibri, sans-serif"><span style="caret-color:#000000"><span style="color:#000000"><span style="font-style:normal"><span style="font-variant-caps:normal"><span style="font-weight:normal"><span style="letter-spacing:normal"><span style="orphans:auto"><span style="text-transform:none"><span style="white-space:normal"><span style="widows:auto"><span style="word-spacing:0px"><span style="-webkit-text-size-adjust:auto"><span style="text-decoration:none"><span lang="ES" style="font-size:10pt"></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></p>
+
+<p style="text-align:start; text-indent:0px; -webkit-text-stroke-width:0px"><span style="font-size:11pt"><span style="line-height:normal"><span style="font-family:Calibri, sans-serif"><span style="caret-color:#000000"><span style="color:#000000"><span style="font-style:normal"><span style="font-variant-caps:normal"><span style="font-weight:normal"><span style="letter-spacing:normal"><span style="orphans:auto"><span style="text-transform:none"><span style="white-space:normal"><span style="widows:auto"><span style="word-spacing:0px"><span style="-webkit-text-size-adjust:auto"><span style="text-decoration:none"><span lang="ES" style="font-size:10pt">Las pruebas psicométricas evalúan los niveles de competencias conductuales y técnicas de cada candidato, descritas en las bases de concurso con base en los requisitos del descriptivo de perfil del puesto.</span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></p>
+
+<p style="text-align:start; text-indent:0px; -webkit-text-stroke-width:0px"><span style="font-size:11pt"><span style="line-height:normal"><span style="font-family:Calibri, sans-serif"><span style="caret-color:#000000"><span style="color:#000000"><span style="font-style:normal"><span style="font-variant-caps:normal"><span style="font-weight:normal"><span style="letter-spacing:normal"><span style="orphans:auto"><span style="text-transform:none"><span style="white-space:normal"><span style="widows:auto"><span style="word-spacing:0px"><span style="-webkit-text-size-adjust:auto"><span style="text-decoration:none"><b><span lang="ES" style="font-size:10pt"></span></b></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></p>
+
+<p style="text-align:start; text-indent:0px; -webkit-text-stroke-width:0px"><span style="font-size:11pt"><span style="line-height:normal"><span style="font-family:Calibri, sans-serif"><span style="caret-color:#000000"><span style="color:#000000"><span style="font-style:normal"><span style="font-variant-caps:normal"><span style="font-weight:normal"><span style="letter-spacing:normal"><span style="orphans:auto"><span style="text-transform:none"><span style="white-space:normal"><span style="widows:auto"><span style="word-spacing:0px"><span style="-webkit-text-size-adjust:auto"><span style="text-decoration:none"><b><span lang="ES" style="font-size:10pt">¿Se puede apelar a las pruebas psicométricas?</span></b></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></p>
+
+<p style="text-align:start; text-indent:0px; -webkit-text-stroke-width:0px"><span style="font-size:11pt"><span style="line-height:normal"><span style="font-family:Calibri, sans-serif"><span style="caret-color:#000000"><span style="color:#000000"><span style="font-style:normal"><span style="font-variant-caps:normal"><span style="font-weight:normal"><span style="letter-spacing:normal"><span style="orphans:auto"><span style="text-transform:none"><span style="white-space:normal"><span style="widows:auto"><span style="word-spacing:0px"><span style="-webkit-text-size-adjust:auto"><span style="text-decoration:none"><span lang="ES" style="font-size:10pt"></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></p>
+
+<p style="text-align:start; text-indent:0px; -webkit-text-stroke-width:0px"><span style="font-size:11pt"><span style="line-height:normal"><span style="font-family:Calibri, sans-serif"><span style="caret-color:#000000"><span style="color:#000000"><span style="font-style:normal"><span style="font-variant-caps:normal"><span style="font-weight:normal"><span style="letter-spacing:normal"><span style="orphans:auto"><span style="text-transform:none"><span style="white-space:normal"><span style="widows:auto"><span style="word-spacing:0px"><span style="-webkit-text-size-adjust:auto"><span style="text-decoration:none"><span lang="ES" style="font-size:10pt">Conforme a Norma técnica de Selección de Personal, no son apelables los resultados obtenidos en pruebas psicométricas.</span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></p>
+
+<p style="text-align:start; text-indent:0px; -webkit-text-stroke-width:0px; margin-bottom:11px"><span style="font-size:11pt"><span style="line-height:15.693333625793457px"><span style="font-family:Calibri, sans-serif"><span style="caret-color:#000000"><span style="color:#000000"><span style="font-style:normal"><span style="font-variant-caps:normal"><span style="font-weight:normal"><span style="letter-spacing:normal"><span style="orphans:auto"><span style="text-transform:none"><span style="white-space:normal"><span style="widows:auto"><span style="word-spacing:0px"><span style="-webkit-text-size-adjust:auto"><span style="text-decoration:none"><span lang="ES" style="font-size:10pt"><span style="line-height:14.266666412353516px"></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></p>
+
+<p style="text-align:start; text-indent:0px; -webkit-text-stroke-width:0px; margin-bottom:11px"><span style="font-size:11pt"><span style="line-height:15.693333625793457px"><span style="font-family:Calibri, sans-serif"><span style="caret-color:#000000"><span style="color:#000000"><span style="font-style:normal"><span style="font-variant-caps:normal"><span style="font-weight:normal"><span style="letter-spacing:normal"><span style="orphans:auto"><span style="text-transform:none"><span style="white-space:normal"><span style="widows:auto"><span style="word-spacing:0px"><span style="-webkit-text-size-adjust:auto"><span style="text-decoration:none"><b><span lang="ES" style="font-size:10pt"><span style="line-height:14.266666412353516px">¿En la convocatoria para preguntas técnicas se informará a los candidatos el temario de estudio para la prueba?</span></span></b></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></p>
+
+<p style="text-align:start; text-indent:0px; -webkit-text-stroke-width:0px"><span style="font-size:11pt"><span style="line-height:normal"><span style="font-family:Calibri, sans-serif"><span style="caret-color:#000000"><span style="color:#000000"><span style="font-style:normal"><span style="font-variant-caps:normal"><span style="font-weight:normal"><span style="letter-spacing:normal"><span style="orphans:auto"><span style="text-transform:none"><span style="white-space:normal"><span style="widows:auto"><span style="word-spacing:0px"><span style="-webkit-text-size-adjust:auto"><span style="text-decoration:none"><span lang="ES" style="font-size:10pt">Conforme a Norma Técnica de Selección de Personal, en la convocatoria a pruebas técnicas únicamente se comunicará a través de la plataforma encuentra empleo, el listado de los postulantes con la fecha, lugar y hora que deberán presentarse a las pruebas de conocimientos técnicos. No se informará temario a estudiar, sin embargo, las preguntas de las pruebas técnicas serán elaboradas con base en el rol, la misión y actividades establecidas en el perfil del puesto y bases del concurso.</span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></p>
+
+<p style="text-align:start; text-indent:0px; -webkit-text-stroke-width:0px"><span style="font-size:11pt"><span style="line-height:normal"><span style="font-family:Calibri, sans-serif"><span style="caret-color:#000000"><span style="color:#000000"><span style="font-style:normal"><span style="font-variant-caps:normal"><span style="font-weight:normal"><span style="letter-spacing:normal"><span style="orphans:auto"><span style="text-transform:none"><span style="white-space:normal"><span style="widows:auto"><span style="word-spacing:0px"><span style="-webkit-text-size-adjust:auto"><span style="text-decoration:none"><span lang="ES" style="font-size:10pt"></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></p>
+
+<p style="text-align:start; text-indent:0px; -webkit-text-stroke-width:0px"><span style="font-size:11pt"><span style="line-height:normal"><span style="font-family:Calibri, sans-serif"><span style="caret-color:#000000"><span style="color:#000000"><span style="font-style:normal"><span style="font-variant-caps:normal"><span style="font-weight:normal"><span style="letter-spacing:normal"><span style="orphans:auto"><span style="text-transform:none"><span style="white-space:normal"><span style="widows:auto"><span style="word-spacing:0px"><span style="-webkit-text-size-adjust:auto"><span style="text-decoration:none"><b><span lang="ES" style="font-size:10pt">¿Puedo solicitar la entrega o revisión de mi prueba técnica para preparar mi apelación?</span></b></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></p>
+
+<p style="text-align:start; text-indent:0px; -webkit-text-stroke-width:0px"><span style="font-size:11pt"><span style="line-height:normal"><span style="font-family:Calibri, sans-serif"><span style="caret-color:#000000"><span style="color:#000000"><span style="font-style:normal"><span style="font-variant-caps:normal"><span style="font-weight:normal"><span style="letter-spacing:normal"><span style="orphans:auto"><span style="text-transform:none"><span style="white-space:normal"><span style="widows:auto"><span style="word-spacing:0px"><span style="-webkit-text-size-adjust:auto"><span style="text-decoration:none"><span lang="ES" style="font-size:10pt"></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></p>
+
+<p style="text-align:start; text-indent:0px; -webkit-text-stroke-width:0px"><span style="font-size:11pt"><span style="line-height:normal"><span style="font-family:Calibri, sans-serif"><span style="caret-color:#000000"><span style="color:#000000"><span style="font-style:normal"><span style="font-variant-caps:normal"><span style="font-weight:normal"><span style="letter-spacing:normal"><span style="orphans:auto"><span style="text-transform:none"><span style="white-space:normal"><span style="widows:auto"><span style="word-spacing:0px"><span style="-webkit-text-size-adjust:auto"><span style="text-decoration:none"><span lang="ES" style="font-size:10pt">De acuerdo con lo establecido en la Norma Técnica de Selección de Personal, las pruebas técnicas deben mantenerse en estricta reserva antes, durante y después de su aplicación, por lo que ni la Unidad de Administración de Talento Humano ni el Administrador de concurso, podrán entregar las pruebas de conocimientos técnicos aplicadas, para efectos de apelación.</span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></p>
+
+<p style="text-align:start; text-indent:0px; -webkit-text-stroke-width:0px"><span style="font-size:11pt"><span style="line-height:normal"><span style="font-family:Calibri, sans-serif"><span style="caret-color:#000000"><span style="color:#000000"><span style="font-style:normal"><span style="font-variant-caps:normal"><span style="font-weight:normal"><span style="letter-spacing:normal"><span style="orphans:auto"><span style="text-transform:none"><span style="white-space:normal"><span style="widows:auto"><span style="word-spacing:0px"><span style="-webkit-text-size-adjust:auto"><span style="text-decoration:none"><span lang="ES" style="font-size:10pt"></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></p>
+
+<p style="text-align:start; text-indent:0px; -webkit-text-stroke-width:0px"><span style="font-size:11pt"><span style="line-height:normal"><span style="font-family:Calibri, sans-serif"><span style="caret-color:#000000"><span style="color:#000000"><span style="font-style:normal"><span style="font-variant-caps:normal"><span style="font-weight:normal"><span style="letter-spacing:normal"><span style="orphans:auto"><span style="text-transform:none"><span style="white-space:normal"><span style="widows:auto"><span style="word-spacing:0px"><span style="-webkit-text-size-adjust:auto"><span style="text-decoration:none"><span lang="ES" style="font-size:10pt"></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></p>
+
+<p style="text-align:start; text-indent:0px; -webkit-text-stroke-width:0px"><span style="font-size:11pt"><span style="line-height:normal"><span style="font-family:Calibri, sans-serif"><span style="caret-color:#000000"><span style="color:#000000"><span style="font-style:normal"><span style="font-variant-caps:normal"><span style="font-weight:normal"><span style="letter-spacing:normal"><span style="orphans:auto"><span style="text-transform:none"><span style="white-space:normal"><span style="widows:auto"><span style="word-spacing:0px"><span style="-webkit-text-size-adjust:auto"><span style="text-decoration:none"><b><span lang="ES" style="font-size:10pt">¿Para rendir las pruebas técnicas, psicométricas y entrevistas únicamente puedo asistir con mi credencial institucional?</span></b></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></p>
+
+<p style="text-align:start; text-indent:0px; -webkit-text-stroke-width:0px"><span style="font-size:11pt"><span style="line-height:normal"><span style="font-family:Calibri, sans-serif"><span style="caret-color:#000000"><span style="color:#000000"><span style="font-style:normal"><span style="font-variant-caps:normal"><span style="font-weight:normal"><span style="letter-spacing:normal"><span style="orphans:auto"><span style="text-transform:none"><span style="white-space:normal"><span style="widows:auto"><span style="word-spacing:0px"><span style="-webkit-text-size-adjust:auto"><span style="text-decoration:none"><span lang="ES" style="font-size:10pt"></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></p>
+
+<p style="text-align:start; text-indent:0px; -webkit-text-stroke-width:0px"><span style="font-size:11pt"><span style="line-height:normal"><span style="font-family:Calibri, sans-serif"><span style="caret-color:#000000"><span style="color:#000000"><span style="font-style:normal"><span style="font-variant-caps:normal"><span style="font-weight:normal"><span style="letter-spacing:normal"><span style="orphans:auto"><span style="text-transform:none"><span style="white-space:normal"><span style="widows:auto"><span style="word-spacing:0px"><span style="-webkit-text-size-adjust:auto"><span style="text-decoration:none"><span lang="ES" style="font-size:10pt">Para rendir las pruebas psicométricas, técnicas y entrevistas el postulante deberá presentar su documento original de identificación vigente sea este: cédula de identidad, licencia de conducir con fotografía o pasaporte. En caso de no presentar uno de dichos documentos al momento de presentarse a la aplicación de las pruebas, no será admitido y quedará descalificado del concurso.</span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></p>
+
+<p style="text-align:start; text-indent:0px; -webkit-text-stroke-width:0px"><span style="font-size:11pt"><span style="line-height:normal"><span style="font-family:Calibri, sans-serif"><span style="caret-color:#000000"><span style="color:#000000"><span style="font-style:normal"><span style="font-variant-caps:normal"><span style="font-weight:normal"><span style="letter-spacing:normal"><span style="orphans:auto"><span style="text-transform:none"><span style="white-space:normal"><span style="widows:auto"><span style="word-spacing:0px"><span style="-webkit-text-size-adjust:auto"><span style="text-decoration:none"><span lang="ES" style="font-size:10pt"></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></p>
+
+<p style="text-align:start; text-indent:0px; -webkit-text-stroke-width:0px"><span style="font-size:11pt"><span style="line-height:normal"><span style="font-family:Calibri, sans-serif"><span style="caret-color:#000000"><span style="color:#000000"><span style="font-style:normal"><span style="font-variant-caps:normal"><span style="font-weight:normal"><span style="letter-spacing:normal"><span style="orphans:auto"><span style="text-transform:none"><span style="white-space:normal"><span style="widows:auto"><span style="word-spacing:0px"><span style="-webkit-text-size-adjust:auto"><span style="text-decoration:none"><b><span lang="ES" style="font-size:10pt">¿Cuántos puntos tendría por autodefinición étnica?</span></b></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></p>
+
+<p style="text-align:start; text-indent:0px; -webkit-text-stroke-width:0px"><span style="font-size:11pt"><span style="line-height:normal"><span style="font-family:Calibri, sans-serif"><span style="caret-color:#000000"><span style="color:#000000"><span style="font-style:normal"><span style="font-variant-caps:normal"><span style="font-weight:normal"><span style="letter-spacing:normal"><span style="orphans:auto"><span style="text-transform:none"><span style="white-space:normal"><span style="widows:auto"><span style="word-spacing:0px"><span style="-webkit-text-size-adjust:auto"><span style="text-decoration:none"><span lang="ES" style="font-size:10pt"></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></p>
+
+<p style="text-align:start; text-indent:0px; -webkit-text-stroke-width:0px"><span style="font-size:11pt"><span style="line-height:normal"><span style="font-family:Calibri, sans-serif"><span style="caret-color:#000000"><span style="color:#000000"><span style="font-style:normal"><span style="font-variant-caps:normal"><span style="font-weight:normal"><span style="letter-spacing:normal"><span style="orphans:auto"><span style="text-transform:none"><span style="white-space:normal"><span style="widows:auto"><span style="word-spacing:0px"><span style="-webkit-text-size-adjust:auto"><span style="text-decoration:none"><span lang="ES" style="font-size:10pt">En el caso de autodefinirte como indígena, afroecuatoriano o montubio, podrás contar con dos puntos adicionales al puntaje tentativo final. Esta acción afirmativa será aplicable únicamente hasta que la Institución cumpla el porcentaje de la autodefinición de la población total nacional, según el último</span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></p>
+
+<p style="text-align:start; text-indent:0px; -webkit-text-stroke-width:0px"><span style="font-size:11pt"><span style="line-height:normal"><span style="font-family:Calibri, sans-serif"><span style="caret-color:#000000"><span style="color:#000000"><span style="font-style:normal"><span style="font-variant-caps:normal"><span style="font-weight:normal"><span style="letter-spacing:normal"><span style="orphans:auto"><span style="text-transform:none"><span style="white-space:normal"><span style="widows:auto"><span style="word-spacing:0px"><span style="-webkit-text-size-adjust:auto"><span style="text-decoration:none"><span lang="ES" style="font-size:10pt">censo del INEC.</span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></p>
+
+<p style="text-align:start; text-indent:0px; -webkit-text-stroke-width:0px"><span style="font-size:11pt"><span style="line-height:normal"><span style="font-family:Calibri, sans-serif"><span style="caret-color:#000000"><span style="color:#000000"><span style="font-style:normal"><span style="font-variant-caps:normal"><span style="font-weight:normal"><span style="letter-spacing:normal"><span style="orphans:auto"><span style="text-transform:none"><span style="white-space:normal"><span style="widows:auto"><span style="word-spacing:0px"><span style="-webkit-text-size-adjust:auto"><span style="text-decoration:none"><b><span lang="ES" style="font-size:10pt"></span></b></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></p>
+
+<p style="text-align:start; text-indent:0px; -webkit-text-stroke-width:0px"><span style="font-size:11pt"><span style="line-height:normal"><span style="font-family:Calibri, sans-serif"><span style="caret-color:#000000"><span style="color:#000000"><span style="font-style:normal"><span style="font-variant-caps:normal"><span style="font-weight:normal"><span style="letter-spacing:normal"><span style="orphans:auto"><span style="text-transform:none"><span style="white-space:normal"><span style="widows:auto"><span style="word-spacing:0px"><span style="-webkit-text-size-adjust:auto"><span style="text-decoration:none"><b><span lang="ES" style="font-size:10pt">¿Para aplicar a una acción afirmativa, debo contar con un documento sustento?</span></b></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></p>
+
+<p style="text-align:start; text-indent:0px; -webkit-text-stroke-width:0px; margin-bottom:11px"><span style="font-size:11pt"><span style="line-height:15.693333625793457px"><span style="font-family:Calibri, sans-serif"><span style="caret-color:#000000"><span style="color:#000000"><span style="font-style:normal"><span style="font-variant-caps:normal"><span style="font-weight:normal"><span style="letter-spacing:normal"><span style="orphans:auto"><span style="text-transform:none"><span style="white-space:normal"><span style="widows:auto"><span style="word-spacing:0px"><span style="-webkit-text-size-adjust:auto"><span style="text-decoration:none"><span lang="ES" style="font-size:10pt"><span style="line-height:14.266666412353516px">Para que sea validada la acción afirmativa, según su tipo, deberá constar descrita en la hoja de vida con la que el postulante aplicó al concurso; así como, de haber avanzado el candidato hasta la última del proceso, le será solicitado el documento que sustente la acción afirmativa del caso, con excepción de la autodefinición ética, si ésta fuera aplicable.</span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></p>
+
+<p style="text-align:start; text-indent:0px; -webkit-text-stroke-width:0px; margin-bottom:11px"><span style="font-size:11pt"><span style="line-height:15.693333625793457px"><span style="font-family:Calibri, sans-serif"><span style="caret-color:#000000"><span style="color:#000000"><span style="font-style:normal"><span style="font-variant-caps:normal"><span style="font-weight:normal"><span style="letter-spacing:normal"><span style="orphans:auto"><span style="text-transform:none"><span style="white-space:normal"><span style="widows:auto"><span style="word-spacing:0px"><span style="-webkit-text-size-adjust:auto"><span style="text-decoration:none"><span lang="ES" style="font-size:10pt"><span style="line-height:14.266666412353516px"></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></p>
+
+<p style="text-align:start; text-indent:0px; -webkit-text-stroke-width:0px; margin-bottom:11px"><span style="font-size:11pt"><span style="line-height:15.693333625793457px"><span style="font-family:Calibri, sans-serif"><span style="caret-color:#000000"><span style="color:#000000"><span style="font-style:normal"><span style="font-variant-caps:normal"><span style="font-weight:normal"><span style="letter-spacing:normal"><span style="orphans:auto"><span style="text-transform:none"><span style="white-space:normal"><span style="widows:auto"><span style="word-spacing:0px"><span style="-webkit-text-size-adjust:auto"><span style="text-decoration:none"><b><span lang="ES" style="font-size:10pt"><span style="line-height:14.266666412353516px">¿Puedo aplicar a un concurso con varias acciones afirmativas?</span></span></b></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></p>
+
+<p style="text-align:start; text-indent:0px; -webkit-text-stroke-width:0px"><span style="font-size:11pt"><span style="line-height:normal"><span style="font-family:Calibri, sans-serif"><span style="caret-color:#000000"><span style="color:#000000"><span style="font-style:normal"><span style="font-variant-caps:normal"><span style="font-weight:normal"><span style="letter-spacing:normal"><span style="orphans:auto"><span style="text-transform:none"><span style="white-space:normal"><span style="widows:auto"><span style="word-spacing:0px"><span style="-webkit-text-size-adjust:auto"><span style="text-decoration:none"><span lang="ES" style="font-size:10pt">Conforme a lo dispuesto en la Norma Técnica de Selección de Personal, en caso de que un postulante sea beneficiario de dos (2) o más acciones afirmativas, se aplicará una sola y será la acción afirmativa que más favorezca al participante.&nbsp;</span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></p>
+					<p align="right">
+					  <a href="#arriba">
+						 <i class="icon-arrow-up" style="margin-top:5px; font-size:25px; color:#BFBFBF;"></i> 
+					  </a>
+					</p>
+				  </div>
+				</div>  
+			  </div>
+			</div>
+				
+		  </div>
+
+		<div id="contenidos2">
+			<div id="columna7"> 
+			  <div class="row seccion " style="border-block-end: 5px solid #D86466;">
+				<div class="w-100">
+				  <div class="contenido-seccion">
+					<p>&nbsp;</p>
+					<a name="declaratoria">
+					  <p></p>
+						<h3 align="left">DECLARATORIA</h3>
+					  <p></p>
+					</a>
+					<p align="left"></p>
+					<br><br>
+					<p><picture data-fileentryid="3193282"><source media="(max-width:300px)" srcset="/portal/o/adaptive-media/image/3193282/Thumbnail-300x300/infografia_intra_4.png?t=1686345157389"><source media="(max-width:1000px) and (min-width:300px)" srcset="/portal/o/adaptive-media/image/3193282/Preview-1000x0/infografia_intra_4.png?t=1686345157389"><img src="/portal/documents/35138/3190413/infografia_intra_4.png/9c40fe8e-0505-9f58-24ca-e1b736daaf19?t=1686345157389"></picture></p>
+
+<h1><a href="https://forms.gle/wtV4h6hLMsBQo6cj8"><picture data-fileentryid="3199482"><source media="(max-width:300px)" srcset="/portal/o/adaptive-media/image/3199482/Thumbnail-300x300/Captura+de+Pantalla+2023-06-12+a+la%28s%29+11.36.37.png?t=1686587937528"><source media="(max-width:1000px) and (min-width:300px)" srcset="/portal/o/adaptive-media/image/3199482/Preview-1000x0/Captura+de+Pantalla+2023-06-12+a+la%28s%29+11.36.37.png?t=1686587937528"><img src="/portal/documents/35138/3190413/Captura+de+Pantalla+2023-06-12+a+la%28s%29+11.36.37.png/c0918199-5904-5ced-88f8-768ba0940c17?t=1686587937528"></picture></a></h1>
+
+<p>&nbsp;</p>
+
+<h2>PREGUNTAS FRECUENTES</h2>
+
+<p style="text-align:start; text-indent:0px; -webkit-text-stroke-width:0px"><span style="font-size:11pt"><span style="line-height:normal"><span style="font-family:Calibri, sans-serif"><span style="caret-color:#000000"><span style="color:#000000"><span style="font-style:normal"><span style="font-variant-caps:normal"><span style="font-weight:normal"><span style="letter-spacing:normal"><span style="orphans:auto"><span style="text-transform:none"><span style="white-space:normal"><span style="widows:auto"><span style="word-spacing:0px"><span style="-webkit-text-size-adjust:auto"><span style="text-decoration:none"><b><span lang="ES" style="font-size:10pt">¿Cuál es la calificación mínima que se deberá tener al finalizar el Concurso de Méritos y Oposición para que no sea declarado desierto?</span></b></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></p>
+
+<p style="text-align:start; text-indent:0px; -webkit-text-stroke-width:0px"><span style="font-size:11pt"><span style="line-height:normal"><span style="font-family:Calibri, sans-serif"><span style="caret-color:#000000"><span style="color:#000000"><span style="font-style:normal"><span style="font-variant-caps:normal"><span style="font-weight:normal"><span style="letter-spacing:normal"><span style="orphans:auto"><span style="text-transform:none"><span style="white-space:normal"><span style="widows:auto"><span style="word-spacing:0px"><span style="-webkit-text-size-adjust:auto"><span style="text-decoration:none"><span lang="ES" style="font-size:10pt"></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></p>
+
+<p style="text-align:start; text-indent:0px; -webkit-text-stroke-width:0px"><span style="font-size:11pt"><span style="line-height:normal"><span style="font-family:Calibri, sans-serif"><span style="caret-color:#000000"><span style="color:#000000"><span style="font-style:normal"><span style="font-variant-caps:normal"><span style="font-weight:normal"><span style="letter-spacing:normal"><span style="orphans:auto"><span style="text-transform:none"><span style="white-space:normal"><span style="widows:auto"><span style="word-spacing:0px"><span style="-webkit-text-size-adjust:auto"><span style="text-decoration:none"><span lang="ES" style="font-size:10pt">El Concurso de Méritos y Oposición puede ser declarado desierto cuando ningún postulante obtenga en el puntaje final una calificación mínima de setenta y cinco (75) puntos.</span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></p>
+
+<p style="text-align:start; text-indent:0px; -webkit-text-stroke-width:0px"><span style="font-size:11pt"><span style="line-height:normal"><span style="font-family:Calibri, sans-serif"><span style="caret-color:#000000"><span style="color:#000000"><span style="font-style:normal"><span style="font-variant-caps:normal"><span style="font-weight:normal"><span style="letter-spacing:normal"><span style="orphans:auto"><span style="text-transform:none"><span style="white-space:normal"><span style="widows:auto"><span style="word-spacing:0px"><span style="-webkit-text-size-adjust:auto"><span style="text-decoration:none"><b><span lang="ES" style="font-size:10pt">¿Qué sucede si omito presentar uno o más documentos que sustenten mi hoja de vida?</span></b></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></p>
+
+<p style="text-align:start; text-indent:0px; -webkit-text-stroke-width:0px"><span style="font-size:11pt"><span style="line-height:normal"><span style="font-family:Calibri, sans-serif"><span style="caret-color:#000000"><span style="color:#000000"><span style="font-style:normal"><span style="font-variant-caps:normal"><span style="font-weight:normal"><span style="letter-spacing:normal"><span style="orphans:auto"><span style="text-transform:none"><span style="white-space:normal"><span style="widows:auto"><span style="word-spacing:0px"><span style="-webkit-text-size-adjust:auto"><span style="text-decoration:none"><span lang="ES" style="font-size:10pt"></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></p>
+
+<p style="text-align:start; text-indent:0px; -webkit-text-stroke-width:0px"><span style="font-size:11pt"><span style="line-height:normal"><span style="font-family:Calibri, sans-serif"><span style="caret-color:#000000"><span style="color:#000000"><span style="font-style:normal"><span style="font-variant-caps:normal"><span style="font-weight:normal"><span style="letter-spacing:normal"><span style="orphans:auto"><span style="text-transform:none"><span style="white-space:normal"><span style="widows:auto"><span style="word-spacing:0px"><span style="-webkit-text-size-adjust:auto"><span style="text-decoration:none"><span lang="ES" style="font-size:10pt">En el caso de que el postulante omita presentar uno o más documentos que sustenten la información registrada en su "Hoja de vida", se le descontarán los puntos asignados por este concepto, de ser el caso. Si la falta de los referidos documentos hace al postulante incumplir con el perfil del puesto quedará descalificado.</span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></p>
+					<p align="right">
+					  <a href="#arriba">
+						 <i class="icon-arrow-up" style="margin-top:5px; font-size:25px; color:#BFBFBF;"></i> 
+					  </a>
+					</p>
+				  </div>
+				</div>  
+			  </div>
+			</div>
+				
+		  </div>
+   </div>
+ <script>
+function openCity(evt, cityName) {
+    var i, tabcontent, tablinks;
+    tabcontent = document.getElementsByClassName("tabcontent");
+    for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+    }
+    tablinks = document.getElementsByClassName("tablinks");
+    for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" active", "");
+    }
+    document.getElementById(cityName).style.display = "block";
+    evt.currentTarget.className += " active";
+}
+
+// Get the element with id="defaultOpen" and click on it
+document.getElementById("defaultOpen").click();
+
+</script>
+		</div>
+
+		
+
+	
+
+
+
+
+							
+						</div>
+					
+				
+			
+		
+	
+
+
+
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+
+	
+	
+					
+				
+			
+		
+	
+	
+
+
+	</div>
+
+			</div>
+		
+	</div>
+</section>
+	
+
+		
+		
+
+
+
+
+
+
+
+	</div>
+
+
+
+
+
+
+</div>
+		</div>
+	</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<form action="#" class="hide" id="hrefFm" method="post" name="hrefFm" aria-hidden="true"><span></span><button hidden="" type="submit">Oculto</button></form>			</main>
+
+<footer id="footer" role="contentinfo">
+<nav id="navbar-footer">
+<div class="container-fluid-1280">
+	<div class="row small">
+				<div class="align-items-center col-12 d-flex flex-col flex-md-row">
+					<div class="navbar-brand text-reset">
+						<div style="display: grid;min-width: 50%;min-height:70px;padding: 2%;">
+						<div class="nav navbar-left frase_footer">
+							¡Trabajamos con calidad hacia la excelencia!
+						</div>
+						<div class="nav navbar-left derechos_reservados">
+							Servicio de Rentas Internas :: Todos los derechos reservados 2020 
+						</div>
+					</div>
+					</div>
+
+					<div class="ml-0 ml-md-3 mt-3 mt-md-0">
+	
+					</div>
+					
+					<div class="ml-md-auto mt-3 mt-md-0">
+						<ul class="list-inline mb-0">
+							<li class="list-inline-item">
+								<div>
+									<a href="https://www.facebook.com/SRIoficialECUADOR/" title="Facebook">
+										<img alt="" class="img-fluid iconos-sociales" src="https://sriintra01/portal/o/sri-tema-intranet/images/social/facebook-icono.png">
+									</a>
+								</div>
+							</li>
+							<li class="list-inline-item">
+								<div>
+									<a href="https://twitter.com/SRIoficialEc" title="Twitter">
+										<img alt="" class="img-fluid iconos-sociales" src="https://sriintra01/portal/o/sri-tema-intranet/images/social/twitter-icono.png">
+									</a>
+								</div>
+							</li>
+							<li class="list-inline-item">
+								<div>
+									<a href="https://www.youtube.com/user/sricomunicacion" title="Youtube">
+										<img alt="" class="img-fluid iconos-sociales" src="https://sriintra01/portal/o/sri-tema-intranet/images/social/youtube-icono.png">
+									</a>
+								</div>
+							</li>
+							<li class="list-inline-item">
+								<div>
+									<a href="https://www.sri.gob.ec" title="Página SRI">
+										<img alt="" class="img-fluid iconos-sociales" src="https://sriintra01/portal/o/sri-tema-intranet/images/social/sri-icono-site.png">
+									</a>
+								</div>
+							</li>
+						</ul>
+					</div>
+				</div>
+
+			</div>
+		</div>	
+	</nav>
+</footer>		</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+	
+
+
+
+
+
+	
+
+
+
+	
+
+
+
+
+
+
+
+
+
+	
+
+	
+
+
+
+
+
+	
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+<script type="text/javascript">
+// <![CDATA[
+
+	
+		
+
+			
+
+			
+		
+	
+
+	Liferay.BrowserSelectors.run();
+
+// ]]>
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script type="text/javascript">
+	// <![CDATA[
+
+		
+
+		Liferay.currentURL = '\x2fportal\x2fweb\x2fintranet\x2fconcursos-meritos';
+		Liferay.currentURLEncoded = '\x252Fportal\x252Fweb\x252Fintranet\x252Fconcursos-meritos';
+
+	// ]]>
+</script>
+
+
+
+	
+
+	
+
+	<script type="text/javascript">
+		// <![CDATA[
+			
+				
+
+				
+			
+		// ]]>
+	</script>
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+	
+
+		
+
+		
+	
+
+
+<script type="text/javascript">
+// <![CDATA[
+(function() {var $ = AUI.$;var _ = AUI._;
+	var onDestroyPortlet = function() {
+		Liferay.detach('messagePosted', onMessagePosted);
+		Liferay.detach('destroyPortlet', onDestroyPortlet);
+	};
+
+	Liferay.on('destroyPortlet', onDestroyPortlet);
+
+	var onMessagePosted = function(event) {
+		if (window.Analytics) {
+			Analytics.send('posted', 'Comment', {
+				className: event.className,
+				classPK: event.classPK,
+				commentId: event.commentId,
+				text: event.text
+			});
+		}
+	};
+
+	Liferay.on('messagePosted', onMessagePosted);
+})();(function() {var $ = AUI.$;var _ = AUI._;
+	var pathnameRegexp = /\/documents\/(\d+)\/(\d+)\/(.+?)\/([^&]+)/;
+
+	function handleDownloadClick(event) {
+		if (event.target.nodeName.toLowerCase() === 'a' && window.Analytics) {
+			var anchor = event.target;
+			var match = pathnameRegexp.exec(anchor.pathname);
+
+			var fileEntryId =
+				anchor.dataset.analyticsFileEntryId ||
+				(anchor.parentElement &&
+					anchor.parentElement.dataset.analyticsFileEntryId);
+
+			if (fileEntryId && match) {
+				var getParameterValue = function(parameterName) {
+					var result = null;
+
+					anchor.search
+						.substr(1)
+						.split('&')
+						.forEach(function(item) {
+							var tmp = item.split('=');
+
+							if (tmp[0] === parameterName) {
+								result = decodeURIComponent(tmp[1]);
+							}
+						});
+
+					return result;
+				};
+
+				Analytics.send('documentDownloaded', 'Document', {
+					groupId: match[1],
+					fileEntryId: fileEntryId,
+					preview: !!window._com_liferay_document_library_analytics_isViewFileEntry,
+					title: decodeURIComponent(match[3].replace(/\+/gi, ' ')),
+					version: getParameterValue('version')
+				});
+			}
+		}
+	}
+
+	var onDestroyPortlet = function() {
+		document.body.removeEventListener('click', handleDownloadClick);
+	};
+
+	Liferay.once('destroyPortlet', onDestroyPortlet);
+
+	var onPortletReady = function() {
+		document.body.addEventListener('click', handleDownloadClick);
+	};
+
+	Liferay.once('portletReady', onPortletReady);
+})();(function() {var $ = AUI.$;var _ = AUI._;
+	var onVote = function(event) {
+		if (window.Analytics) {
+			Analytics.send('VOTE', 'Ratings', {
+				className: event.className,
+				classPK: event.classPK,
+				ratingType: event.ratingType,
+				score: event.score
+			});
+		}
+	};
+
+	var onDestroyPortlet = function() {
+		Liferay.detach('ratings:vote', onVote);
+		Liferay.detach('destroyPortlet', onDestroyPortlet);
+	};
+
+	Liferay.on('ratings:vote', onVote);
+	Liferay.on('destroyPortlet', onDestroyPortlet);
+})();(function() {var $ = AUI.$;var _ = AUI._;
+	var onShare = function(data) {
+		if (window.Analytics) {
+			Analytics.send('shared', 'SocialBookmarks', {
+				className: data.className,
+				classPK: data.classPK,
+				type: data.type,
+				url: data.url
+			});
+		}
+	};
+
+	var onDestroyPortlet = function() {
+		Liferay.detach('socialBookmarks:share', onShare);
+		Liferay.detach('destroyPortlet', onDestroyPortlet);
+	};
+
+	Liferay.on('socialBookmarks:share', onShare);
+	Liferay.on('destroyPortlet', onDestroyPortlet);
+})();
+	if (Liferay.Data.ICONS_INLINE_SVG) {
+		svg4everybody(
+			{
+				attributeName: 'data-href',
+				polyfill: true,
+				validate: function (src, svg, use) {
+					return !src || !src.startsWith('#');
+				}
+			}
+		);
+	}
+
+	
+		Liferay.Portlet.register('com_liferay_journal_content_web_portlet_JournalContentPortlet_INSTANCE_XnbsACNtX63u');
+	
+
+	Liferay.Portlet.onLoad(
+		{
+			canEditTitle: false,
+			columnPos: 0,
+			isStatic: 'end',
+			namespacedId: 'p_p_id_com_liferay_journal_content_web_portlet_JournalContentPortlet_INSTANCE_XnbsACNtX63u_',
+			portletId: 'com_liferay_journal_content_web_portlet_JournalContentPortlet_INSTANCE_XnbsACNtX63u',
+			refreshURL: '\x2fportal\x2fc\x2fportal\x2frender_portlet\x3fp_l_id\x3d9299\x26p_p_id\x3dcom_liferay_journal_content_web_portlet_JournalContentPortlet_INSTANCE_XnbsACNtX63u\x26p_p_lifecycle\x3d0\x26p_t_lifecycle\x3d0\x26p_p_state\x3dnormal\x26p_p_mode\x3dview\x26p_p_col_id\x3dcolumn-1\x26p_p_col_pos\x3d0\x26p_p_col_count\x3d2\x26p_p_isolated\x3d1\x26currentURL\x3d\x252Fportal\x252Fweb\x252Fintranet\x252Fconcursos-meritos',
+			refreshURLData: {}
+		}
+	);
+
+	
+		Liferay.Portlet.register('com_liferay_site_navigation_menu_web_portlet_SiteNavigationMenuPortlet_INSTANCE_main_navigation_menu');
+	
+
+	Liferay.Portlet.onLoad(
+		{
+			canEditTitle: false,
+			columnPos: 0,
+			isStatic: 'end',
+			namespacedId: 'p_p_id_com_liferay_site_navigation_menu_web_portlet_SiteNavigationMenuPortlet_INSTANCE_main_navigation_menu_',
+			portletId: 'com_liferay_site_navigation_menu_web_portlet_SiteNavigationMenuPortlet_INSTANCE_main_navigation_menu',
+			refreshURL: '\x2fportal\x2fc\x2fportal\x2frender_portlet\x3fp_l_id\x3d9299\x26p_p_id\x3dcom_liferay_site_navigation_menu_web_portlet_SiteNavigationMenuPortlet_INSTANCE_main_navigation_menu\x26p_p_lifecycle\x3d0\x26p_t_lifecycle\x3d0\x26p_p_state\x3dnormal\x26p_p_mode\x3dview\x26p_p_col_id\x3dnull\x26p_p_col_pos\x3dnull\x26p_p_col_count\x3dnull\x26p_p_static\x3d1\x26p_p_isolated\x3d1\x26currentURL\x3d\x252Fportal\x252Fweb\x252Fintranet\x252Fconcursos-meritos',
+			refreshURLData: {}
+		}
+	);
+
+	
+		Liferay.Portlet.register('com_liferay_product_navigation_user_personal_bar_web_portlet_ProductNavigationUserPersonalBarPortlet');
+	
+
+	Liferay.Portlet.onLoad(
+		{
+			canEditTitle: false,
+			columnPos: 0,
+			isStatic: 'end',
+			namespacedId: 'p_p_id_com_liferay_product_navigation_user_personal_bar_web_portlet_ProductNavigationUserPersonalBarPortlet_',
+			portletId: 'com_liferay_product_navigation_user_personal_bar_web_portlet_ProductNavigationUserPersonalBarPortlet',
+			refreshURL: '\x2fportal\x2fc\x2fportal\x2frender_portlet\x3fp_l_id\x3d9299\x26p_p_id\x3dcom_liferay_product_navigation_user_personal_bar_web_portlet_ProductNavigationUserPersonalBarPortlet\x26p_p_lifecycle\x3d0\x26p_t_lifecycle\x3d0\x26p_p_state\x3dnormal\x26p_p_mode\x3dview\x26p_p_col_id\x3dnull\x26p_p_col_pos\x3dnull\x26p_p_col_count\x3dnull\x26p_p_static\x3d1\x26p_p_isolated\x3d1\x26currentURL\x3d\x252Fportal\x252Fweb\x252Fintranet\x252Fconcursos-meritos',
+			refreshURLData: {}
+		}
+	);
+
+	
+		Liferay.Portlet.register('com_liferay_journal_content_web_portlet_JournalContentPortlet_INSTANCE_jpPCWVewoxO2');
+	
+
+	Liferay.Portlet.onLoad(
+		{
+			canEditTitle: false,
+			columnPos: 1,
+			isStatic: 'end',
+			namespacedId: 'p_p_id_com_liferay_journal_content_web_portlet_JournalContentPortlet_INSTANCE_jpPCWVewoxO2_',
+			portletId: 'com_liferay_journal_content_web_portlet_JournalContentPortlet_INSTANCE_jpPCWVewoxO2',
+			refreshURL: '\x2fportal\x2fc\x2fportal\x2frender_portlet\x3fp_l_id\x3d9299\x26p_p_id\x3dcom_liferay_journal_content_web_portlet_JournalContentPortlet_INSTANCE_jpPCWVewoxO2\x26p_p_lifecycle\x3d0\x26p_t_lifecycle\x3d0\x26p_p_state\x3dnormal\x26p_p_mode\x3dview\x26p_p_col_id\x3dcolumn-1\x26p_p_col_pos\x3d1\x26p_p_col_count\x3d2\x26p_p_isolated\x3d1\x26currentURL\x3d\x252Fportal\x252Fweb\x252Fintranet\x252Fconcursos-meritos',
+			refreshURLData: {}
+		}
+	);
+Liferay.Loader.require('metal-dom/src/all/dom', function(metalDomSrcAllDom) {
+(function(){
+var dom = metalDomSrcAllDom;
+(function() {var $ = AUI.$;var _ = AUI._;
+	var focusInPortletHandler = dom.delegate(
+		document,
+		'focusin',
+		'.portlet',
+		function(event) {
+			dom.addClasses(dom.closest(event.delegateTarget, '.portlet'), 'open');
+		}
+	);
+
+	var focusOutPortletHandler = dom.delegate(
+		document,
+		'focusout',
+		'.portlet',
+		function(event) {
+			dom.removeClasses(dom.closest(event.delegateTarget, '.portlet'), 'open');
+		}
+	);
+})();})();
+});AUI().use('liferay-menu', 'liferay-notice', 'aui-base', 'liferay-session', 'liferay-poller', function(A) {(function() {var $ = AUI.$;var _ = AUI._;
+	if (A.UA.mobile) {
+		Liferay.Util.addInputCancel();
+	}
+})();(function() {var $ = AUI.$;var _ = AUI._;
+	new Liferay.Menu();
+
+	var liferayNotices = Liferay.Data.notices;
+
+	for (var i = 1; i < liferayNotices.length; i++) {
+		new Liferay.Notice(liferayNotices[i]);
+	}
+
+	
+})();(function() {var $ = AUI.$;var _ = AUI._;
+			Liferay.Session = new Liferay.SessionBase(
+				{
+					autoExtend: true,
+					redirectOnExpire: false,
+					redirectUrl: 'https\x3a\x2f\x2fsriintra01\x2fportal\x2fweb\x2fintranet\x2finicio0',
+					sessionLength: 900,
+					sessionTimeoutOffset: 70,
+					warningLength: 0
+				}
+			);
+
+			
+		})();});
+// ]]>
+</script>
+
+
+
+
+
+
+
+
+
+<script src="https://sriintra01/portal/o/sri-tema-intranet/js/main.js?browserId=other&amp;minifierType=js&amp;languageId=es_ES&amp;t=1750976190000" type="text/javascript"></script>
+
+
+
+
+<script type="text/javascript">
+	// <![CDATA[
+		AUI().use(
+			'aui-base',
+			function(A) {
+				var frameElement = window.frameElement;
+
+				if (frameElement && frameElement.getAttribute('id') === 'simulationDeviceIframe') {
+					A.getBody().addClass('lfr-has-simulation-panel');
+				}
+			}
+		);
+	// ]]>
+</script><script type="text/javascript">
+// <![CDATA[
+Liferay.Loader.require('frontend-js-tooltip-support-web@2.0.5/index', function(frontendJsTooltipSupportWeb205Index) {
+(function(){
+var TooltipSupport = frontendJsTooltipSupportWeb205Index;
+(function() {
+try {
+TooltipSupport.default()
+}
+catch (err) {
+console.error(err);
+}
+})();})();
+});
+// ]]>
+</script>	
+
+		
+	
+
+<div id="yui3-css-stamp" style="position: absolute !important; visibility: hidden !important" class=""></div><div id="tooltipContainer"></div></div><div class="lfr-spa-loading-bar"></div></body>
