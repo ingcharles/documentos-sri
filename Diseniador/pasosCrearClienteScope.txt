@@ -1,0 +1,153 @@
+SSO_ESTRUCTURAS_CLIENT_ID=app-sri-estructuras-microservicio
+SSO_ESTRUCTURAS_CLIENT_SECRET=6HJUGpQVM5W8BE5JCXhyiOq6UAi2x6NU
+
+SSO_CATALOGOS_CLIENT_ID=app-sri-catalogos-microservicio
+SSO_CATALOGOS_CLIENT_SECRET=iTxrpl0NHrmmJQLVf2gCptLZ7TEgtpk4
+
+SSO_HABILITACION_CLIENT_ID=app-sri-habilitacion-microservicio
+SSO_HABILITACION_CLIENT_SECRET=mD6uqW0ukh5XeohAJS15UsPSW4W5BXsa
+
+SSO_AUTORIZACION_CLIENT_ID=app-sri-autorizacion-microservicio
+SSO_AUTORIZACION_CLIENT_SECRET=UsUWuTjW7JU2eJo3GvpN7V5CQhPQeDAG
+
+Aquí tienes la guía completa, basada en el patrón que ya está en este repo (Keycloak realm Intranet, Quarkus OIDC) y aplicable tanto al cliente web como a cada microservicio.
+
+1. Conceptos base
+
+Necesitas dos tipos de client en Keycloak:
+
+┌────────────────────┬─────────────────────────────────────────────────────────┬────────────────────────────┐
+│        Tipo        │                           Uso                           │        Access Type         │
+├────────────────────┼─────────────────────────────────────────────────────────┼────────────────────────────┤
+│ Web (SPA/frontend) │ Login interactivo del usuario, obtiene el token         │ public + PKCE              │
+├────────────────────┼─────────────────────────────────────────────────────────┼────────────────────────────┤
+│ Microservicio      │ Solo valida el token bearer que llega, nunca hace login │ bearer-only o confidential │
+└────────────────────┴─────────────────────────────────────────────────────────┴────────────────────────────┘
+
+2. Configurar el client del web en Keycloak
+
+En el admin console del realm Intranet (URL_SSO_INTRANET):
+
+1. Clients → Create client
+  - Client ID: p.ej. app-sri-anexos-web
+  - Client authentication: Off (es público, un SPA no puede guardar secretos)
+2. Capability config
+  - Standard flow: ON (Authorization Code)
+  - Direct access grants: normalmente OFF (evita password grant desde el navegador)
+3. Login settings
+  - Root URL / Home URL: http://localhost:8080 (o la URL real del front)
+  - Valid redirect URIs: http://localhost:8080/*
+  - Valid post logout redirect URIs: http://localhost:8080/*
+  - Web origins: http://localhost:8080 (o + para reflejar redirect URIs) → esto habilita CORS en el propio Keycloak
+4. Advanced → Proof Key for Code Exchange (PKCE): S256 — obligatorio para SPA públicos.
+5. Guardar. Con esto el front obtiene el token vía Authorization Code + PKCE contra ${URL_SSO_INTRANET}/auth/realms/Intranet.
+
+3. Configurar el client de cada microservicio en Keycloak
+
+Uno por microservicio (aquí ya existe app-sri-estructuras-microservicio, ver README.md:42). Para uno nuevo:
+
+1. Clients → Create client
+  - Client ID: app-sri-<nombre>-microservicio
+  - Client authentication: On (confidencial, para poder validar audience/introspección si hace falta)
+2. Capability config
+  - Standard flow: OFF
+  - Direct access grants: OFF
+  - Service accounts roles: ON solo si este microservicio necesita llamar a otro por sí mismo (client_credentials)
+3. Credentials → copia el Client secret generado.
+4. Si usas quarkus.oidc.token.audience (como en este servicio), asegúrate de que los tokens del usuario incluyan este client-id en el claim aud. Eso se logra agregando un Client scope de tipo Audience al client del web que mapee hacia este client del microservicio (Client scopes → crea uno aud-estructuras → mapper Audience → "Included Client Audience" = app-sri-estructuras-microservicio → asígnalo como Default en el client web). Sin este paso, el aud check rechazará todos los tokens.
+
+4. Configurar el microservicio (Quarkus) — patrón ya aplicado aquí
+
+Este repo ya tiene el template correcto en application.properties:55-62:
+
+quarkus.oidc.application-type=service
+quarkus.oidc.client-id=${SSO_ESTRUCTURAS_CLIENT_ID}
+quarkus.oidc.credentials.secret=${SSO_ESTRUCTURAS_CLIENT_SECRET}
+quarkus.oidc.token.audience=${SSO_ESTRUCTURAS_CLIENT_ID}
+
+Para replicarlo en otro microservicio (p.ej. catalogos o habilitacion, que hoy no tienen client-id/secret/audience configurados — solo auth-server-url):
+
+1. Agrega las mismas 4 líneas con el client-id propio de ese servicio.
+2. Define SSO_<NOMBRE>_CLIENT_ID / SSO_<NOMBRE>_CLIENT_SECRET como variables de entorno (.env, ConfigMap/Secret en k8s).
+3. Mantén las reglas de permisos existentes (quarkus.http.auth.permission.*) para exigir authenticated en las rutas de la API.
+
+▎ Nota: agregar client-id/secret no es estrictamente necesario para solo validar un JWT (con únicamente auth-server-url Quarkus ya valida firma/exp contra el JWKS). Se vuelve necesario cuando quieres el chequeo de audience por client, o si el servicio necesita introspección/token endpoint. Sin audience, cualquier token válido del realm —aunque no esté destinado a este microservicio— es aceptado.
+
+5. Configurar el web client (frontend)
+
+Con una librería OIDC (keycloak-js, oidc-client-ts, angular-oauth2-oidc, etc.):
+
+{
+  url: 'http://10.12.4.66/auth',   // URL_SSO_INTRANET
+  realm: 'Intranet',
+  clientId: 'app-sri-anexos-web',
+  onLoad: 'login-required', // o 'check-sso'
+  pkceMethod: 'S256'
+}
+
+El front adjunta Authorization: Bearer <token> en cada request a los microservicios (http://localhost:8781/estructuras/api/v1/..., etc.).
+
+6. Comunicación microservicio → microservicio (si aplica)
+
+Este servicio ya llama a catalogos-api, habilitacion-api, alertas-avisos-api vía REST client, pero no reenvía el token actualmente (no hay oidc-client-filter configurado). Si esos servicios destino exigen authenticated, necesitarás:
+- quarkus-rest-client-oidc-filter + quarkus.rest-client."xxx-api".providers=io.quarkus.oidc.client.reactive.filter.OidcClientRequestReactiveFilter, propagando el token entrante, o
+- Un client con Service accounts + client_credentials si es llamada service-to-service sin usuario.
+
+Dime si quieres que lo dejemos armado (¿el token debe propagarse del usuario original o es llamada de servicio pura?).
+
+7. Probar el flujo
+
+1. Login en el front → obtiene access_token.
+2. curl -H "Authorization: Bearer $TOKEN" http://localhost:8781/estructuras/api/v1/...
+3. Si falla con 401 y el mensaje menciona audience, revisa el client scope de audience del paso 3.
+4. Swagger UI (/estructuras/api/v1/q/swagger-ui) está permit sin auth — no sirve para probar el flujo protegido, solo para explorar la API.
+
+¿Quieres que aplique este mismo patrón de client-id/secret/audience a catalogos-service y habilitacion-service también, o solo necesitabas la guía?
+
+
+
+
+
+
+
+
+
+
+Tu token no trae el claim aud (audience) — solo tiene azp: "app-sri-gestion-anexos-web". Como configuramos quarkus.oidc.token.audience=${SSO_ESTRUCTURAS_CLIENT_ID} (application.properties:62), Quarkus va a rechazar este token con 401 porque no encuentra el client-id del microservicio dentro de aud. azp no cuenta para ese chequeo.
+
+Qué falta configurar en Keycloak
+
+Necesitas un Client Scope de tipo Audience en el client web (app-sri-gestion-anexos-web) que inyecte el client-id del microservicio dentro del aud.
+
+1. Client scopes → Create client scope
+  - Name: aud-estructuras (o aud-microservicios si vas a reusarlo para varios)
+  - Protocol: openid-connect
+  - Type: Default (así se aplica sin que el front tenga que pedirlo explícitamente)
+2. Entra al scope recién creado → Mappers → Add mapper → By configuration → Audience
+  - Name: aud-estructuras-mapper
+  - Included Client Audience: app-sri-estructuras-microservicio (el valor de SSO_ESTRUCTURAS_CLIENT_ID)
+  - Add to ID token: Off
+  - Add to access token: On
+  - Guardar
+3. Clients → app-sri-gestion-anexos-web → Client scopes → Add client scope
+  - Agrega aud-estructuras como Default
+4. El usuario debe volver a loguearse (o refrescar el token) para que el nuevo aud aparezca.
+
+Si tienes varios microservicios
+
+Cada microservicio valida aud contra su propio client-id. Opciones:
+- Un solo client scope aud-microservicios con varios mappers Audience, uno por cada client-id de microservicio (catalogos, habilitacion, alertas-avisos, estructuras...). Todos van en el mismo access token.
+- O un client scope por servicio, todos marcados como Default en el client web.
+
+Cualquiera de las dos funciona; la primera es más simple de mantener.
+
+Verificación
+
+1. Vuelve a autenticarte desde el front.
+2. Decodifica el nuevo access_token (jwt.io o similar) y confirma que aparece:
+"aud": ["app-sri-estructuras-microservicio", ...]
+3. Repite la llamada a estructuras/api/v1/... con ese token — ya no debería dar 401 por audience.
+
+Nota aparte (no bloqueante ahora)
+
+resource_access tampoco aparece en tu token — eso es normal si aún no has asignado client roles al usuario. Si en algún momento vas a proteger endpoints con @RolesAllowed, vas a necesitar definir roles en el client del microservicio y asignarlos al usuario/grupo; avísame cuando llegues a eso y armamos ese paso también.
