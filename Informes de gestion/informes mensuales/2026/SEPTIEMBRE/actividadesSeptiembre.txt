@@ -1,0 +1,30 @@
+-- n Reunion Revision historias de Usuario
+-- n Reunión Revisión campos de informacion y diseñador
+
+-- corregir issues 4/08/2026 estructura-service
+-- Issues 852 -859
+
+-- Agregar a los campos de entrada en el atributo oculto
+-- Al asignar a elementos campos de informacion se corrigo validación para que contemple los elementos que se encuentra dentro los contenedores
+-- Corregir funcionalidad duplicar en los elementos que contienen campos de información no se borre la asignacion previa.
+-- Corregir y homologar el tamaño de pantallas principales del sistema
+-- Corregir estilos del componente divisor del diseñador
+-- Cambiar funcionalidad de elemento del diseñador de tipo tabla jerárquica que muestre los niveles y sea mas amigable para el usuario
+-- Corregir validaciones de entrada de tipo solo lectura para los tipos ContenidoSelector, ContenidoSelectorBoton, ContenidoSelectorMultiple
+-- Agregar scroll en pantalla/popup de configuracion de reglas
+-- Corregir estilos del componente multiselect para que se expanda el contenedor al seleccionar varios elementos.
+-- Corregir estilos y funcionalidad de mensaje en la plantilla definir un ancho fijo para no distorsionar al momento de estar diseñando la plantilla.
+-- Agregar funcionalidad en el diseñador para dar sangria a los elementos tanto derecha e izquierda.
+-- Corregir funcionalidad de ocultar elementos se queda un espacion en blanco en pantalla cuando se agrega una regla de tipo ocultar.
+-- Agregar funcionalidad en los elementos de tipo numérico para que respete los decimales configurados y autocomplete con ceros a la derecha.
+-- Corregir pruebas unitarias en base a lo reportado en sonar en el nombrado de los test.
+-- Elaboración de informe de fin de gestión
+-- Capacitación de la transferencia de conocimiento al equipo de desarollo del proyecto de anexos.
+-- Creación del Acta sobre capacitación de la transferencia de conocimiento al equipo de desarollo del proyecto de anexos
+
+Reunión
+- Asistir a la reunión para revisar las funcionalidades del aplicativo SGA del 01/09/2026 al 03/09/2026.
+- Asistir a la reunión para revisar las historias de usuario Release 2 del componente Anexos el 02/09/2026, 04/09/2026 y 08/09/2026.
+- Asistir a la reunión para revisar las funcionalidades de campos de información del componente Anexos del 08/09/2026 al 09/09/2026.
+- Asistir a la reunión para revisar las funcionalidades SGA en menú y mensajes el 11/09/2026.
+- Asistir a la reunión para revisar las funcionalidades SGA el 14/09/2026.

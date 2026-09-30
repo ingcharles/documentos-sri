@@ -1,0 +1,48 @@
+-Corregir issues en el microservicios de estructura de la nueva regla para agrupar imports
+-Corregir bugs en la edición de la plantilla al importar el json se estan registrando un nuevo registro
+-Avanzar en el desarrollo de la funcionalidad del comparador de versiones aprobadas de plantillas.
+-Cambio en el filtrado en la funcionalidad administración de plantillas por pedido del la parte funcional para que se muestre solo los operativos atados al anexo.
+-Cambio en el filtrado en la funcionalidad aprobación de plantillas por pedido del la parte funcional para que se muestre todos los operativos activos.
+-Corregir Issues reportados por QA en el microservicio de catalogos en cuanto al openapi de las rutas de los servicios.
+-Corregir Issues reportados por QA en el microservicio de catalogos en cuanto a string harcodeado con el uso de constantes.
+-Corregir Issues reportados por QA en el microservicio de catalogos en cuanto a los nombres de los recursos de los servicios rest.
+-Corregir Issues reportados por QA en el microservicio de estructuras en cuanto a los nombres de los recursos de los servicios rest.
+-Corregir el paso a producción del proyecto de obligaciones para agregar el nivel de logs en auditoria logs.
+-Corregir el paso a producción del proyecto de obligaciones para cambiar el nombre del client id del oidc.
+-Realizar el documento de excepción para cantidad de importar en los archivos test
+-Creación del maquetado de la secciones version 1, version 2 y resultado.
+-Creación del maquetado de subsecciones en la seccion resultado para los elementos creados, actualizados, eliminados y json completo de resultado.
+-Implementar el botón comparar version y funcionalidades internas para retonar cambios en la sección resultado.
+-Implementar el botón para exportar el json completo de resultado de la comparación
+
+-Asistir al Taller SRI -  VKS el 01/07/2026 - 02/07/2026.
+-Asistir a la reunión para revisar regla de Imports en microservicios el 06/07/2026.
+-Asistir a la reunión para revisar historia de pistas de auditoria en aplicativo (SGA) el 06/07/2026.
+-Asistir a la reunión para revisar Estándar DevSecOps el 08/07/2026.
+-Asistir al Taller de Microservicios F5 el 15/07/2026.
+-Asistir a la reunión para el uso de usuario genérico para integración con Fachadas, aseguramiento de componentes s el 17/07/2026.
+-Asisitr a la reunión para la revisión de observaciones en catálogos por la parte funcional el 24/07/2026.
+-Asistir al Taller 1 de microservicios y DevSecOps el 24/07/2026.
+-Asistir al Taller 2 de microservicios y DevSecOps el 27/07/2026.
+
+
+- Asistir a la reunión para revisar funcionalidad SGA-Catálogos y campos Información el 26/08/2026.
+
+- Corregir issues reportado por qa en el microservicio de catalogos referente a la implementacion de la anotación @NotNull.
+- Corregir issues reportado por qa en el microservicio de estructura referente a la implementacion de la anotación @NotNull.
+- Corregir issues reportado por qa en el microservicio de estructura referente al uso de mensaje en la anotación @Min.
+-
+- Corregir paso a producción #512132 para cambiar configuración oidc en el servicio integración obligaciones y manual de insfraestrucutra
+- Corregir paso a producción #512132 para cambiar configuración Log rotating y nombre de archivos logs  y manual de insfraestrucutra
+- Corregir paso a producción #514176 para cambiar los script de GAN Configuración Aplicación Inicial (Opciones de menú del diseñador) y manual de insfraestructura.
+
+- Agregar validación en el proyecto de gestion anexos para mostrar mensaje "El archivo JSON está corrupto o fue modificado manualmente.".
+- Agregar validación en el proyecto de gestion anexos para mostrar mensaje "El archivo JSON no contiene elementos para importar.".
+- Indicaciones de a compañeros nuevos sobre el proyecto base internet para refactorizar.
+- Gestionar permisos seguridad y redes para la instalación vks y herramientas en el servidor de desarrollo.
+- Revisión documento de Arquitectura de la Solución Tecnológica Entrega y Recepción de Información Fiscal – Gestión Anexos (R2).
+- Revisión prevía de las historias de usuarios del release 2.
+- 837 Clientes de servicios integración configurados en oidc.json
+- Configuración y aseguramiento de microservicios con cliente SSO en el archivo properties de los microservicios catalogo, estructura, habilitacion y autenticación.
+- Configuración e integración de los cliente SSO web y api en el servidor de desarrollo.
+- Creación del documento de configuración e integración de los cliente SSO web y api en el servidor de desarrollo.

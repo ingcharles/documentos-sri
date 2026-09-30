@@ -1,0 +1,12 @@
+-- n Reunion Revision historias de Usuario
+-- n Reunión Revisión campos de informacion y diseñador
+-- corregir issues 4/08/2026 estructura-service
+-- agregar a los campos de entrada en el atributo oculto
+-- Issues 852 -859
+-- Al asignar a elementos campos de informacion se corrigo validación para que contemple los elementos que se encuentra dentro los contenedores
+-- Corregir funcionalidad duplicar en los elementos que contienen campos de información no se borre la asignacion previa.
+-- Corregir y homologar el tamaño de pantallas principales del sistema
+-- Corregir estilos del componente divisor del diseñador
+-- Cambiar funcionalidad de elemento del diseñador de tipo Tabla jerárquica que muestre los niveles y sea mas amigable para el usuario
+-- Corregir Validaciones de entrada de tipo solo lectura para los tipos ContenidoSelector, ContenidoSelectorBoton, ContenidoSelectorMultiple
+-- Agregar scroll en pantalla/popup de configuracion de reglas
