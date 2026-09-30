@@ -1,0 +1,1 @@
+npx -y yaml-lint .gitlab-ci.yml templates/build/*.yml templates/*/*.yml
