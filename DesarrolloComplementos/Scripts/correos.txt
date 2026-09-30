@@ -1,0 +1,18 @@
+**************************Apoyo revisión técnica de implementación de matrices******************
+
+Estimados, 
+
+Remito información compartida por Cristian Cabezas respecto del apoyo dado ayer para su lectura  
+
+“Se comunicó de forma general como el sistema de declaraciones implementa su propio BRMS (Drools) para la Gestión de Reglas de Negocio y su uso en la Declaración de impuestos.
+Comparto información técnica importante:
+
+Documentación oficial de drools: https://kie.apache.org/docs/components/drools/
+Documentación de la nueva página principal: https://kie.apache.org/
+Documentación del uso de drools con Kogito orientado a native cloud y Quarkus: https://kie.apache.org/docs/10.1.x/kogito/
+Ejemplo Arquitectura con Kogito: https://gitlab.sri.ad/cfcg070314/poc-anexos-tributarios/-/blob/main/arquitectura-c4-anexos-tributarios.md?ref_type=heads”
+
+Gracias 
+
+------------------------------------------------------------------------------------------------
+

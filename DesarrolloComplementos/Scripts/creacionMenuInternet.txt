@@ -1,0 +1,65 @@
+--MENU PADRE
+
+Insert into PSL_IMAGEN(CODIGO_IMAGEN, URL_ICONO, DESCRIPCION_CORTA, DESCRIPCION_LARGA, TIPO, ESTADO, ELIMINADO)
+Values(PSL_SEQ_IMAGEN.NEXTVAL, 'sri-menu-icon-declaraciones', 'Proyecto Base', 'Icono para el proyecto base', 'IMAGEN', 'ACT', 'N');
+
+
+Insert into PSL_ITEM (CODIGO_ITEM, NOMBRE, ESTADO, LEGADO, CODIGO_IMAGEN, ELIMINADO, TIPO, ULTIMO_NODO) Values
+   (PSL_SEQ_ITEM.NEXTVAL, 'Proyecto Base', 'ACT', 'NO', (select codigo_imagen from PSL_IMAGEN where DESCRIPCION_CORTA = 'Proyecto Base'), 'N','AUT','NO');
+   
+INSERT INTO PSL_PERFIL_ITEM (CODIGO_PERFIL_ITEM, CODIGO_ITEM, CODIGO_PERFIL, ELIMINADO, ESTADO) 
+Values (PSL_SEQ_PERFIL_ITEM.NEXTVAL, (select CODIGO_ITEM from PSL_ITEM where NOMBRE = 'Proyecto Base' and URL IS NULL and Estado = 'ACT'), (select CODIGO_PERFIL from psl_perfil where tipo_perfil='NAT'), 'N', 'ACT');   
+
+INSERT INTO PSL_PERFIL_ITEM (CODIGO_PERFIL_ITEM, CODIGO_ITEM, CODIGO_PERFIL, ELIMINADO, ESTADO) 
+Values (PSL_SEQ_PERFIL_ITEM.NEXTVAL, (select CODIGO_ITEM from PSL_ITEM where NOMBRE =  'Proyecto Base' and URL IS NULL and Estado = 'ACT'), (select CODIGO_PERFIL from psl_perfil where tipo_perfil='PNC'), 'N', 'ACT');   
+
+INSERT INTO PSL_PERFIL_ITEM (CODIGO_PERFIL_ITEM, CODIGO_ITEM, CODIGO_PERFIL, ELIMINADO, ESTADO) 
+Values (PSL_SEQ_PERFIL_ITEM.NEXTVAL, (select CODIGO_ITEM from PSL_ITEM where NOMBRE =  'Proyecto Base' and URL IS NULL and Estado = 'ACT'), (select CODIGO_PERFIL from psl_perfil where tipo_perfil='PNR'), 'N', 'ACT');   
+
+INSERT INTO PSL_PERFIL_ITEM (CODIGO_PERFIL_ITEM, CODIGO_ITEM, CODIGO_PERFIL, ELIMINADO, ESTADO) 
+Values (PSL_SEQ_PERFIL_ITEM.NEXTVAL, (select CODIGO_ITEM from PSL_ITEM where NOMBRE =  'Proyecto Base' and URL IS NULL and Estado = 'ACT'), (select CODIGO_PERFIL from psl_perfil where tipo_perfil='SCD'), 'N', 'ACT');   
+
+INSERT INTO PSL_PERFIL_ITEM (CODIGO_PERFIL_ITEM, CODIGO_ITEM, CODIGO_PERFIL, ELIMINADO, ESTADO) 
+Values (PSL_SEQ_PERFIL_ITEM.NEXTVAL, (select CODIGO_ITEM from PSL_ITEM where NOMBRE =  'Proyecto Base' and URL IS NULL and Estado = 'ACT'), (select CODIGO_PERFIL from psl_perfil where tipo_perfil='FLL'), 'N', 'ACT');   
+
+INSERT INTO PSL_MENU (CODIGO_MENU,CODIGO_ITEM,ESTADO,ORDEN,ELIMINADO) values (
+    PSL_SEQ_MENU.NEXTVAL,
+    (select CODIGO_ITEM from PSL_ITEM where NOMBRE = 'Proyecto Base' and URL IS NULL and Estado = 'ACT'),
+    'ACT',
+     (SELECT max(MM.orden)+1 FROM PSL_MENU MM WHERE ESTADO = 'ACT' 
+                              AND MM.CODIGO_ITEM in (SELECT II.CODIGO_ITEM FROM PSL_ITEM II, PSL_PERFIL_ITEM IP WHERE II.CODIGO_ITEM = IP.CODIGO_ITEM AND II.CODIGO_ITEM = MM.CODIGO_ITEM AND II.ESTADO='ACT' AND 
+                              IP.CODIGO_PERFIL IN (select PPP.CODIGO_PERFIL from psl_perfil PPP where PPP.tipo_perfil='NAT')) ),
+    'N');
+    
+	
+-- PRIMER MENU HIJO
+
+ Insert into PSL_ITEM (CODIGO_ITEM, NOMBRE, URL, ESTADO, LEGADO,  ELIMINADO, TIPO, ULTIMO_NODO, DESCRIPCION) Values
+   (PSL_SEQ_ITEM.NEXTVAL, 'Tipo Parametro', '/tipoParametro', 'ACT', 'NO',  'N','AUT','SI',
+   'Plantilla base para el tipo parametro');
+   
+INSERT INTO PSL_PERFIL_ITEM (CODIGO_PERFIL_ITEM, CODIGO_ITEM, CODIGO_PERFIL, ELIMINADO, ESTADO) 
+ Values (PSL_SEQ_PERFIL_ITEM.NEXTVAL, (select CODIGO_ITEM from PSL_ITEM where NOMBRE = 'Tipo Parametro' and URL = '/tipoParametro' and Estado = 'ACT'), (select CODIGO_PERFIL from psl_perfil where tipo_perfil='NAT'), 'N', 'ACT');   
+
+INSERT INTO PSL_PERFIL_ITEM (CODIGO_PERFIL_ITEM, CODIGO_ITEM, CODIGO_PERFIL, ELIMINADO, ESTADO) 
+ Values (PSL_SEQ_PERFIL_ITEM.NEXTVAL, (select CODIGO_ITEM from PSL_ITEM where NOMBRE = 'Tipo Parametro' and URL = '/tipoParametro' and Estado = 'ACT'), (select CODIGO_PERFIL from psl_perfil where tipo_perfil='PNC'), 'N', 'ACT');   
+
+INSERT INTO PSL_PERFIL_ITEM (CODIGO_PERFIL_ITEM, CODIGO_ITEM, CODIGO_PERFIL, ELIMINADO, ESTADO) 
+ Values (PSL_SEQ_PERFIL_ITEM.NEXTVAL, (select CODIGO_ITEM from PSL_ITEM where NOMBRE = 'Tipo Parametro' and URL = '/tipoParametro' and Estado = 'ACT'), (select CODIGO_PERFIL from psl_perfil where tipo_perfil='PNR'), 'N', 'ACT');   
+
+INSERT INTO PSL_PERFIL_ITEM (CODIGO_PERFIL_ITEM, CODIGO_ITEM, CODIGO_PERFIL, ELIMINADO, ESTADO) 
+ Values (PSL_SEQ_PERFIL_ITEM.NEXTVAL, (select CODIGO_ITEM from PSL_ITEM where NOMBRE = 'Tipo Parametro' and URL = '/tipoParametro' and Estado = 'ACT'), (select CODIGO_PERFIL from psl_perfil where tipo_perfil='SCD'), 'N', 'ACT');   
+
+INSERT INTO PSL_PERFIL_ITEM (CODIGO_PERFIL_ITEM, CODIGO_ITEM, CODIGO_PERFIL, ELIMINADO, ESTADO) 
+ Values (PSL_SEQ_PERFIL_ITEM.NEXTVAL, (select CODIGO_ITEM from PSL_ITEM where NOMBRE = 'Tipo Parametro' and URL = '/tipoParametro' and Estado = 'ACT'), (select CODIGO_PERFIL from psl_perfil where tipo_perfil='FLL'), 'N', 'ACT');   
+
+INSERT INTO PSL_MENU (CODIGO_MENU,CODIGO_PADRE,CODIGO_ITEM,ESTADO,ORDEN,ELIMINADO) values (
+    PSL_SEQ_MENU.NEXTVAL,
+    (select CODIGO_MENU from PSL_MENU where CODIGO_ITEM = (select CODIGO_ITEM from PSL_ITEM where NOMBRE = 'Proyecto Base' and URL IS NULL)),
+    (select CODIGO_ITEM from PSL_ITEM where NOMBRE = 'Tipo Parametro' and URL = '/tipoParametro' and Estado = 'ACT'),
+    'ACT',
+     1,
+    'N');
+	
+	
+	

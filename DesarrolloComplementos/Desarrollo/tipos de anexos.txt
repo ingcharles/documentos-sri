@@ -1,0 +1,32 @@
+Técnicamente la distribución de los sistemas de INTRANET se agrupan por la siguiente clasificación interna:
+
+Anexos Intranet:
+REOC (Compras)
+OPRE
+RDP (Relación de Dependencia)
+Renta
+
+Anexos Rig:
+MID (Movimiento Internacional de Divisas)
+GPR (Gastos Personales)
+DPT (Declaración Patrimonial)
+NOT (Notarios)
+REP (Registradores de la Propiedad)
+REM (Registradores Mercantiles)
+
+Anexos Core:
+
+ABT (Beneficios Tributarios)
+ACA (Calculo Actuarial)
+ADI (Dividendos)
+
+AFI (Fideicomisos)
+APS (Accionistas, Participes y Socios)
+ATS (Anexos Transaccional Simplificado)
+IBP (Botellas Plásticas)
+ICE (Impuesto Consumos Especiales)
+PVP (Precio de Venta al Publico)
+RTF (Transacciones Financieras)
+
+
+\\UIOP2RLOQ300725\compartida_anxs

@@ -1,0 +1,62 @@
+mvn test -Dtest=GrupoPorIntegranteRestTest -pl sri-int-grupos-trabajo-servicio
+
+
+
+
+
+
+
+
+
+
+
+
+         <deployment name="sri-adm-menu-generico.jar" runtime-name="sri-adm-menu-generico.jar">
+            <fs-archive path="D:\jboss-eap-8.1\bin\standalone\deployments\sri-adm-menu-generico.jar"/>
+        </deployment>
+        <deployment name="sri-adm-catalogo-generico.jar" runtime-name="sri-adm-catalogo-generico.jar">
+            <fs-archive path="D:\jboss-eap-8.1\bin\standalone\deployments\sri-adm-catalogo-generico.jar"/>
+        </deployment>
+		<deployment name="sri-numerador-generico.jar" runtime-name="sri-numerador-generico.jar">
+            <fs-archive path="D:\jboss-eap-8.1\bin\..\standalone\deployments\sri-numerador-generico.jar"/>
+        </deployment>
+        <deployment name="sri-gestion-documentacion-util.jar" runtime-name="sri-gestion-documentacion-util.jar">
+            <fs-archive path="D:\jboss-eap-8.1\bin\..\standalone\deployments\sri-gestion-documentacion-util.jar"/>
+        </deployment>
+        <deployment name="registro-civil-info.jar" runtime-name="registro-civil-info.jar">
+            <fs-archive path="D:\jboss-eap-8.1\bin\..\standalone\deployments\registro-civil-info.jar"/>
+        </deployment>
+        <deployment name="sri-pista-auditoria.jar" runtime-name="sri-pista-auditoria.jar">
+            <fs-archive path="D:\jboss-eap-8.1\bin\..\standalone\deployments\sri-pista-auditoria.jar"/>
+        </deployment>
+        <deployment name="sri-catastro-tributario-generico.jar" runtime-name="sri-catastro-tributario-generico.jar">
+            <fs-archive path="D:\jboss-eap-8.1\bin\..\standalone\deployments\sri-catastro-tributario-generico.jar"/>
+        </deployment>
+        <deployment name="sri-claves-generico.jar" runtime-name="sri-claves-generico.jar">
+            <fs-archive path="D:\jboss-eap-8.1\bin\..\standalone\deployments\sri-claves-generico.jar"/>
+        </deployment>
+        <deployment name="sri-talento-humano-generico.jar" runtime-name="sri-talento-humano-generico.jar">
+            <fs-archive path="D:\jboss-eap-8.1\bin\..\standalone\deployments\sri-talento-humano-generico.jar"/>
+        </deployment>
+        <deployment name="sri-grupo-trabajo-generico.jar" runtime-name="sri-grupo-trabajo-generico.jar">
+            <fs-archive path="D:\jboss-eap-8.1\bin\..\standalone\deployments\sri-grupo-trabajo-generico.jar"/>
+        </deployment>
+        <deployment name="sri-gestion-flujos-generico.jar" runtime-name="sri-gestion-flujos-generico.jar">
+            <fs-archive path="D:\jboss-eap-8.1\bin\..\standalone\deployments\sri-gestion-flujos-generico.jar"/>
+        </deployment>
+        <deployment name="gestion-documentos-servicio-cliente.jar" runtime-name="gestion-documentos-servicio-cliente.jar">
+            <fs-archive path="D:\jboss-eap-8.1\bin\..\standalone\deployments\gestion-documentos-servicio-cliente.jar"/>
+        </deployment>
+        <deployment name="sri-documentos-web.war" runtime-name="sri-documentos-web.war">
+            <fs-exploded path="D:\jboss-eap-8.1\bin\..\standalone\deployments\sri-documentos-web.war"/>
+        </deployment>
+		<deployment name="sri-int-grupos-trabajo-servicio.war" runtime-name="sri-int-grupos-trabajo-servicio.war">
+            <fs-archive path="D:\jboss-eap-8.1\bin\..\standalone\deployments\sri-int-grupos-trabajo-servicio.war"/>
+        </deployment>
+			 <deployments>
+       
+        <deployment name="sri-int-grupos-trabajo-servicio-3.0.0-SNAPSHOT.war" runtime-name="sri-int-grupos-trabajo-servicio.war">
+            <fs-exploded path="D:\jboss-eap-8.1\bin\..\standalone\deployments\sri-int-grupos-trabajo-servicio.war"/>
+        </deployment>
+    </deployments>
+	

@@ -1,0 +1,114 @@
+<ruleset xmlns="http://pmd.sourceforge.net/ruleset/2.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="PMD-SRI" xsi:schemaLocation="http://pmd.sourceforge.net/ruleset/2.0.0 http://pmd.sourceforge.net/ruleset_2_0_0.xsd">
+<description>Conjunto de reglas PMD para el SRI</description>
+<!--   MEJORES PRACTICAS: Reglas que hacen cumplir las mejores prácticas generalmente aceptadas..   -->
+<rule ref="category/java/bestpractices.xml">
+<exclude name="ForLoopCanBeForeach"/>
+<exclude name="MissingOverride"/>
+<exclude name="UnitTestAssertionsShouldIncludeMessage"/>
+<exclude name="UnusedAssignment"/>
+<!--  SONAR DEPRECATED  -->
+<exclude name="ReplaceHashtableWithMap"/>
+<exclude name="NonExhaustiveSwitch"/>
+<exclude name="DefaultLabelNotLastInSwitch"/>
+<exclude name="OneDeclarationPerLine"/>
+</rule>
+<rule ref="category/java/bestpractices.xml/UnitTestContainsTooManyAsserts">
+<properties>
+<property name="maximumAsserts" value="3"/>
+</properties>
+</rule>
+<!--   Code Style: Reglas que imponen un estilo de codificación específico..   -->
+<rule ref="category/java/codestyle.xml">
+<exclude name="CallSuperInConstructor"/>
+<exclude name="MethodArgumentCouldBeFinal"/>
+<exclude name="LongVariable"/>
+<exclude name="AtLeastOneConstructor"/>
+<exclude name="OnlyOneReturn"/>
+<exclude name="UnnecessaryConstructor"/>
+<exclude name="UnnecessaryModifier"/>
+<exclude name="LocalVariableCouldBeFinal"/>
+<exclude name="ShortVariable"/>
+<exclude name="CommentDefaultAccessModifier"/>
+<exclude name="UselessParentheses"/>
+<exclude name="UnnecessaryAnnotationValueElement"/>
+<exclude name="LocalVariableNamingConventions"/>
+<exclude name="FieldNamingConventions"/>
+<exclude name="LinguisticNaming"/>
+<exclude name="UnnecessaryLocalBeforeReturn"/>
+<exclude name="IdenticalCatchBranches"/>
+<exclude name="TooManyStaticImports"/>
+<exclude name="ClassNamingConventions"/>
+<exclude name="RemoteInterfaceNamingConvention"/>
+<exclude name="FormalParameterNamingConventions"/>
+<exclude name="ShortClassName"/>
+<exclude name="EmptyControlStatement"/>
+<!--  SONAR DEPRECATED  -->
+<exclude name="AvoidDollarSigns"/>
+<exclude name="ControlStatementBraces"/>
+<exclude name="GenericsNaming"/>
+<exclude name="ShortMethodName"/>
+<exclude name="MethodNamingConventions"/>
+<exclude name="PackageCase"/>
+</rule>
+<!--   Design: Reglas que lo ayudan a descubrir problemas de diseño.   -->
+<rule ref="category/java/design.xml">
+<exclude name="DataClass"/>
+<exclude name="LawOfDemeter"/>
+<exclude name="GodClass"/>
+<exclude name="TooManyMethods"/>
+<exclude name="TooManyFields"/>
+<exclude name="AvoidUncheckedExceptionsInSignatures"/>
+<exclude name="LoosePackageCoupling"/>
+<exclude name="SingularField"/>
+<!--  SONAR DEPRECATED  -->
+<exclude name="UseObjectForClearerAPI"/>
+<exclude name="AvoidThrowingRawExceptionTypes"/>
+<exclude name="UselessOverridingMethod"/>
+<exclude name="SignatureDeclareThrowsException"/>
+<exclude name="ExcessiveParameterList"/>
+<exclude name="CyclomaticComplexity"/>
+</rule>
+<rule name="NoDemasiadosCamposEnClase" message="No use mas de 15 campos en la clase, esto solo es posible en Entidades JPA" class="net.sourceforge.pmd.lang.rule.xpath.XPathRule" language="java">
+<priority>3</priority>
+<properties>
+<property name="xpath">
+<value>
+<![CDATA[ //ClassDeclaration[count(.//FieldDeclaration[@Static = false()])>15 and not(//Annotation/ClassType[@SimpleName = 'Entity'])] ]]>
+</value>
+</property>
+</properties>
+</rule>
+<!--   Documentation: Reglas relacionadas con la documentación del código.   -->
+<rule ref="category/java/documentation.xml">
+<exclude name="CommentRequired"/>
+<exclude name="UncommentedEmptyConstructor"/>
+<exclude name="CommentSize"/>
+</rule>
+<!--   Error Prone: Reglas para detectar construcciones que están rotas, extremadamente confusas o propensas a errores de tiempo de ejecución..   -->
+<rule ref="category/java/errorprone.xml">
+<exclude name="NonSerializableClass"/>
+<exclude name="EmptyCatchBlock"/>
+<exclude name="UseLocaleWithCaseConversions"/>
+<exclude name="SimpleDateFormatNeedsLocale"/>
+<exclude name="ProperLogger"/>
+<exclude name="AvoidDuplicateLiterals"/>
+<!--  SONAR DEPRECATED  -->
+<exclude name="JumbledIncrementer"/>
+<exclude name="AvoidCallingFinalize"/>
+<exclude name="AssignmentInOperand"/>
+<exclude name="FinalizeDoesNotCallSuperFinalize"/>
+</rule>
+<!--   Multithreading: Reglas que marcan problemas cuando se trata con múltiples hilos de ejecución.   -->
+<rule ref="category/java/multithreading.xml">
+<exclude name="UseNotifyAllInsteadOfNotify"/>
+<exclude name="NonThreadSafeSingleton"/>
+<exclude name="UnsynchronizedStaticFormatter"/>
+</rule>
+<!--   Performance: Reglas que marcan el código subóptimo..   -->
+<rule ref="category/java/performance.xml">
+<!--  SONAR DEPRECATED  -->
+<exclude name="RedundantFieldInitializer"/>
+</rule>
+<!--   Security: Rules that flag potential security flaws..   -->
+<rule ref="category/java/security.xml"> </rule>
+</ruleset>

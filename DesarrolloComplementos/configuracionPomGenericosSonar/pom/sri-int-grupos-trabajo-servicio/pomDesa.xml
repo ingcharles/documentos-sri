@@ -1,0 +1,526 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>ec.gob.sri.grupo.trabajo</groupId>
+	<artifactId>sri-grupo-trabajo</artifactId>
+	<version>3.0.0-SNAPSHOT</version>
+	<packaging>pom</packaging>
+	<name>${project.artifactId}</name>
+	<description>Arquetipo SRI para desarrollo Jakarta sobre EAP8</description>
+	<organization>
+		<name>Servicio de Rentas Internas</name>
+		<url>http://www.sri.gob.ec</url>
+	</organization>
+	<properties>
+		<!-- GENERALES -->
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<maven.compiler.source>21</maven.compiler.source>
+		<maven.compiler.target>21</maven.compiler.target>
+		<java.jdk.version>21</java.jdk.version>
+		<jakarta>10.0.0</jakarta>
+		<jboss.logging.version>3.6.1.Final-redhat-00001</jboss.logging.version>
+		
+		
+		<plugin.jar.version>3.4.2</plugin.jar.version>
+		<plugin.war.version>3.4.0</plugin.war.version>
+		<plugin.compiler.version>3.14.0</plugin.compiler.version>
+		<plugin.site.version>3.21.0</plugin.site.version>
+		<plugin.reports.version>3.9.0</plugin.reports.version>
+		<plugin.releases.version>3.1.1</plugin.releases.version>
+		<plugin.surefire.report.version>3.5.3</plugin.surefire.report.version>
+		<plugin.jxr.version>3.6.0</plugin.jxr.version>
+		<plugin.cs.version>3.6.0</plugin.cs.version>
+		<plugin.jacoco.version>0.8.13</plugin.jacoco.version>
+		
+		<adm.menu.version>2.0.0-SNAPSHOT</adm.menu.version>
+		<adm.catalogo.version>5.0.0-SNAPSHOT</adm.catalogo.version>
+		<primefaces-version>14.0.9</primefaces-version>
+		<talento-humano.version>5.0.0-SNAPSHOT</talento-humano.version>
+		
+		<!-- REPOSITORIO -->
+		<repositorio.releases.url>http://sridesa02:8081/repository/releases/</repositorio.releases.url>
+		<repositorio.snapshots.url>http://sridesa02:8081/repository/snapshots/</repositorio.snapshots.url>
+
+		<scm.url>http://gitlab.sri.ad/Arquetipos/sri-base.git</scm.url>
+		<scm.connection>scm:git:http://gitlab.sri.ad/Arquetipos/sri-base.git</scm.connection>
+		<scm.developer.connection>scm:git:http://gitlab.sri.ad/Arquetipos/sri-base.git</scm.developer.connection>
+		
+		<developer.id>djlu030215</developer.id>
+		<developer.name>Dennys Lara</developer.name>
+		<developer.email>djlara@sri.gob.ec</developer.email>
+		<developer.role>Experto de Planificacion</developer.role>
+		
+		<!-- Cobertura -->
+		<cobertura.linerate>85</cobertura.linerate>
+		<cobertura.branchrate>75</cobertura.branchrate>
+	</properties>
+	<scm>
+		<connection>${scm.connection}</connection>
+		<developerConnection>${scm.developer.connection}</developerConnection>
+		<url>${scm.url}</url>
+	</scm>
+	<developers>
+		<developer>
+			<id>${developer.id}</id>
+			<name>${developer.name}</name>
+			<email>${developer.email}</email>
+			<organization>Servicio de Rentas Internas</organization>
+			<organizationUrl>www.sri.gob.ec</organizationUrl>
+			<roles>
+				<role>${developer.role}</role>
+			</roles>
+		</developer>
+	</developers>
+	<distributionManagement>
+		<site>
+			<id>${project.artifactId}-site</id>
+			<name>sri-base</name>
+			<url>${project.baseUri}</url>
+		</site>
+		<repository>
+			<id>releases</id>
+			<name>Repositorio releases</name>
+			<url>${repositorio.releases.url}</url>
+		</repository>
+		<snapshotRepository>
+			<id>snapshots</id>
+			<name>Repositorio snapshots</name>
+			<url>${repositorio.snapshots.url}</url>
+		</snapshotRepository>
+	</distributionManagement>
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.hibernate</groupId>
+				<artifactId>hibernate-core</artifactId>
+				<version>6.2.18.Final</version>
+			</dependency>
+			<dependency>
+				<groupId>org.hibernate</groupId>
+				<artifactId>hibernate-jpamodelgen-jakarta</artifactId>
+				<version>5.6.15.Final</version>
+				<scope>provided</scope>
+			</dependency>
+			
+			<dependency>
+				<groupId>ec.gob.sri.grupo.trabajo</groupId>
+				<artifactId>sri-grupo-trabajo-modelo</artifactId>
+				<version>${project.version}</version>
+				<exclusions>
+					<exclusion>
+						<groupId>org.hibernate</groupId>
+						<artifactId>hibernate-jpamodelgen-jakarta</artifactId>
+					</exclusion>
+				</exclusions>
+			</dependency>
+			<dependency>
+				<groupId>ec.gob.sri.grupo.trabajo</groupId>
+				<artifactId>sri-grupo-trabajo-logica</artifactId>
+				<version>${project.version}</version>
+				<type>ejb</type>
+			</dependency>
+			<dependency>
+				<groupId>ec.gob.sri.grupo.trabajo</groupId>
+				<artifactId>sri-grupo-trabajo-cliente</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>ec.gob.sri</groupId>
+				<artifactId>sri-seguridad-intranet</artifactId>
+				<version>2.0.0-SNAPSHOT</version>
+			</dependency>
+
+			<!-- JEE stack -->
+			<dependency>
+				<groupId>jakarta.platform</groupId>
+				<artifactId>jakarta.jakartaee-api</artifactId>
+				<version>${jakarta}</version>
+				<scope>provided</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.junit.jupiter</groupId>
+				<artifactId>junit-jupiter-engine</artifactId>
+				<version>5.13.4</version>
+				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.mockito</groupId>
+				<artifactId>mockito-junit-jupiter</artifactId>
+				<version>5.18.0</version>
+				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.jboss.resteasy</groupId>
+				<artifactId>resteasy-core</artifactId>
+				<version>6.2.7.Final</version>
+				<scope>test</scope>
+			</dependency>										 							  					  		   	
+			<dependency>
+				<groupId>org.wildfly.security</groupId>
+				<artifactId>wildfly-elytron-http-oidc</artifactId>
+				<version>2.6.3.Final</version>
+				<scope>provided</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.wildfly</groupId>
+				<artifactId>wildfly-security-api</artifactId>
+				<version>25.0.1.Final</version>
+				<scope>test</scope>
+			</dependency>
+			<!-- Librerias utilitarias -->
+			<dependency>
+				<groupId>ec.gob.sri.gestion.documentacion.util</groupId>
+				<artifactId>sri-gestion-documentacion-util</artifactId>
+				<version>6.0.0-SNAPSHOT</version>
+				<type>jar</type>
+				<classifier>jb8</classifier>
+				<scope>provided</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>ec.gob.sri.adm.menu</groupId>
+				<artifactId>sri-adm-menu-generico</artifactId>
+				<version>${adm.menu.version}</version>
+				<classifier>jb8</classifier>
+				<scope>provided</scope>
+			</dependency>
+			<dependency>
+				<groupId>ec.gob.sri.adm.catalogo</groupId>
+				<artifactId>sri-adm-catalogo-generico</artifactId>
+				<version>${adm.catalogo.version}</version>
+				<classifier>jb8</classifier>
+				<scope>provided</scope>
+			</dependency>
+			<dependency>
+				<groupId>ec.gob.sri.auditoria</groupId>
+				<artifactId>sri-pista-auditoria</artifactId>
+				<version>3.0.0-SNAPSHOT</version>
+				<scope>provided</scope>
+			</dependency>
+			<dependency>
+				<groupId>com.google.code.gson</groupId>
+				<artifactId>gson</artifactId>
+				<version>2.12.1.redhat-00001</version>
+				<scope>provided</scope>
+			</dependency>
+			<dependency>
+				<groupId>ec.gob.sri.talento-humano</groupId>
+				<artifactId>sri-talento-humano-generico</artifactId>
+				<version>${talento-humano.version}</version>
+				<classifier>jb8</classifier>
+				<scope>provided</scope>
+			</dependency>
+			<dependency>
+    			<groupId>org.apache.commons</groupId>
+    			<artifactId>commons-collections4</artifactId>
+   				<version>4.5.0</version>
+   				<scope>provided</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.primefaces</groupId>
+				<artifactId>primefaces</artifactId>
+				<classifier>jakarta</classifier>
+				<version>${primefaces-version}</version>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+	<dependencies>
+		<dependency>
+			<groupId>org.jboss.logging</groupId>
+			<artifactId>jboss-logging</artifactId>
+			<version>${jboss.logging.version}</version>
+			<scope>provided</scope>
+		</dependency>
+		
+	</dependencies>
+	<build>
+		<plugins>
+
+			<!-- Compila el proyecto con la version de JDK especificada -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>${plugin.compiler.version}</version>
+				<configuration>
+					<source>${java.jdk.version}</source>
+					<target>${java.jdk.version}</target>
+				</configuration>
+			</plugin>
+			<!-- Site plugin para maven 3 -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-site-plugin</artifactId>
+				<version>${plugin.site.version}</version>
+			</plugin>
+			<!-- Plugin de reportes -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-project-info-reports-plugin</artifactId>
+				<version>${plugin.reports.version}</version>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>${plugin.surefire.report.version}</version>
+			</plugin>
+			<!-- Liberacion versiones -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-release-plugin</artifactId>
+				<version>${plugin.releases.version}</version>
+				<configuration>
+					<allowTimestampedSnapshots>false</allowTimestampedSnapshots>
+				</configuration>
+			</plugin>
+		</plugins>
+		<pluginManagement>
+			<plugins>
+
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-war-plugin</artifactId>
+					<version>${plugin.war.version}</version>
+					<configuration>
+						<failOnMissingWebXml>false</failOnMissingWebXml>
+					</configuration>
+				</plugin>
+				<!-- Habilita la generación del jar de pruebas -->
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-jar-plugin</artifactId>
+					<version>${plugin.jar.version}</version>
+					<executions>
+						<execution>
+							<goals>
+								<goal>test-jar</goal>
+							</goals>
+							<configuration>
+								<skipIfEmpty>true</skipIfEmpty>
+							</configuration>
+						</execution>
+					</executions>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+	</build>
+	
+	<profiles>
+		<profile>
+			<id>auditoria-codigo</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<build>
+				<plugins>
+					<!-- Referencia cruzada al codigo fuente -->
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-jxr-plugin</artifactId>
+						<version>${plugin.jxr.version}</version>
+						<executions>
+							<execution>
+								<id>cross-reference-source</id>
+								<phase>pre-site</phase>
+								<goals>
+									<goal>jxr</goal>
+									<goal>test-jxr</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+					<!-- PMD -->
+					
+					<!-- Findbugs -->
+
+					<!-- Cobertura de pruebas unitarias -->
+
+					<!-- Check Style -->
+					
+
+					<!-- Cobertura -->
+					<plugin>
+						<groupId>org.jacoco</groupId>
+						<artifactId>jacoco-maven-plugin</artifactId>
+						<version>${plugin.jacoco.version}</version>
+						<executions>
+							<execution>
+								<id>prepare-agent</id>
+								<goals>
+									<goal>prepare-agent</goal>
+								</goals>
+							</execution>
+							<execution>
+								<id>reporte-jacoco</id>
+								<phase>test</phase>
+								<goals>
+									<goal>report</goal>
+								</goals>
+								<configuration>
+									<outputDirectory>${project.build.directory}/site/reporte-jacoco</outputDirectory>
+									<formats>
+										<format>XML</format>
+									</formats>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+
+			<reporting>
+				<plugins>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-jxr-plugin</artifactId>
+						<version>${plugin.jxr.version}</version>
+					</plugin>
+					<plugin>
+						<groupId>org.jacoco</groupId>
+						<artifactId>jacoco-maven-plugin</artifactId>
+						<version>${plugin.jacoco.version}</version>
+						<reportSets>
+							<reportSet>
+								<reports>
+									<report>report</report>
+								</reports>
+							</reportSet>
+						</reportSets>
+					</plugin>
+				</plugins>
+			</reporting>
+		</profile>
+		<profile>
+			<id>reportes</id>
+			<build>
+				<plugins>
+					<!--Referencia cruzada al codigo fuente -->
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-jxr-plugin</artifactId>
+						<version>${plugin.jxr.version}</version>
+						<executions>
+							<execution>
+								<id>cross-reference-source</id>
+								<phase>pre-site</phase>
+								<goals>
+									<goal>jxr</goal>
+									<goal>test-jxr</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+					<!-- PMD -->
+					
+					<!-- Findbugs -->
+
+					<!-- Check Style -->
+					
+					<!-- Cobertura -->
+					<plugin>
+						<groupId>org.jacoco</groupId>
+						<artifactId>jacoco-maven-plugin</artifactId>
+						<version>${plugin.jacoco.version}</version>
+						<executions>
+							<execution>
+								<id>prepare-agent</id>
+								<goals>
+									<goal>prepare-agent</goal>
+								</goals>
+							</execution>
+							<execution>
+								<id>reporte-jacoco</id>
+								<phase>test</phase>
+								<goals>
+									<goal>report</goal>
+								</goals>
+								<configuration>
+									<outputDirectory>${project.build.directory}/site/reporte-jacoco</outputDirectory>
+									<formats>
+										<format>XML</format>
+									</formats>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+			<reporting>
+				<plugins>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-surefire-report-plugin</artifactId>
+						<version>${plugin.surefire.report.version}</version>
+						<configuration>
+							<aggregate>true</aggregate>
+							<linkXRef>false</linkXRef>
+						</configuration>
+					</plugin>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-jxr-plugin</artifactId>
+						<version>${plugin.jxr.version}</version>
+						<configuration>
+							<linkXRef>false</linkXRef>
+						</configuration>
+					</plugin>
+
+					<plugin>
+						<groupId>org.jacoco</groupId>
+						<artifactId>jacoco-maven-plugin</artifactId>
+						<version>${plugin.jacoco.version}</version>
+						<reportSets>
+							<reportSet>
+								<reports>
+									<report>report</report>
+								</reports>
+							</reportSet>
+						</reportSets>
+					</plugin>
+				</plugins>
+			</reporting>
+		</profile>
+		<profile>
+			<id>coverage</id>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.jacoco</groupId>
+						<artifactId>jacoco-maven-plugin</artifactId>
+						<version>${plugin.jacoco.version}</version>
+						<executions>
+							<execution>
+								<id>prepare-agent</id>
+								<goals>
+									<goal>prepare-agent</goal>
+								</goals>
+							</execution>
+							<execution>
+								<id>reporte-jacoco</id>
+								<phase>test</phase>
+								<goals>
+									<goal>report</goal>
+								</goals>
+								<configuration>
+									<outputDirectory>${project.build.directory}/site/reporte-jacoco</outputDirectory>
+									<formats>
+										<format>XML</format>
+									</formats>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
+	<modules>
+		<module>sri-grupo-trabajo-modelo</module>
+		<module>sri-grupo-trabajo-logica</module>
+		<module>sri-grupo-trabajo-web</module>
+		<module>sri-grupo-trabajo-cliente</module>
+		<module>sri-grupo-trabajo-generico</module>
+		<module>sri-int-grupos-trabajo-servicio</module>										  
+	</modules>
+</project>

@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ruleset xmlns="http://pmd.sourceforge.net/ruleset/2.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://pmd.sourceforge.net/ruleset/2.0.0 https://pmd.sourceforge.io/ruleset_2_0_0.xsd"
+         name="CJ-PMD_REGLAS">
+    <description>Conjunto de reglas PMD </description>    
+        
+    <!-- Best Practices -->
+    <rule ref="category/java/bestpractices.xml/SystemPrintln" message="Se debe evitar el uso de System.out.println y System.out.print; se recomienda usar un sistema de logging (LoggerUtil)." />    
+    <rule ref="category/java/bestpractices.xml/UnusedFormalParameter" message="No utilices parámetros formales que no se usen en el método."/>
+    <rule ref="category/java/bestpractices.xml/UnusedLocalVariable" message="Se deben eliminar las variables locales que no se utilizan."/>
+    <rule ref="category/java/bestpractices.xml/UnusedPrivateField" message="Se deben eliminar los campos privados que no se utilizan."/>
+    <rule ref="category/java/bestpractices.xml/UnusedPrivateMethod" message="Se deben eliminar los métodos privados que no se utilizan."/>
+    <rule ref="category/java/bestpractices.xml/AvoidUsingHardCodedIP" message="Se debe evitar el uso de direcciones IP codificadas en duro."/>
+    <rule ref="category/java/bestpractices.xml/CheckResultSet" message="Se debe verificar el ResultSet antes de usarlo."/>
+    <rule ref="category/java/bestpractices.xml/PrimitiveWrapperInstantiation" message="Se debe evitar la creación de instancias innecesarias de envoltorios de tipos primitivos."/>
+    <rule ref="category/java/bestpractices.xml/AvoidMessageDigestField" message="Se debe evitar el uso de campos para almacenar objetos de tipo MessageDigest."/>
+    <rule ref="category/java/bestpractices.xml/AvoidStringBufferField" message="Se debe evitar el uso de campos para almacenar objetos de tipo StringBuffer."/>
+    <rule ref="category/java/bestpractices.xml/ConstantsInInterface" message="Se debe evitar la declaración de constantes en interfaces."/>
+    <!-- rule ref="category/java/bestpractices.xml/DefaultLabelNotLastInSwitch" message="La etiqueta 'default' debe ser la última en una instrucción switch."/ -->
+    <rule ref="category/java/bestpractices.xml/DoubleBraceInitialization" message="Se debe evitar la inicialización con doble llave."/>
+    <rule ref="category/java/bestpractices.xml/ForLoopCanBeForeach" message="Se debe usar 'for-each' en lugar de un bucle 'for' cuando sea posible."/>
+    <!-- rule ref="category/java/bestpractices.xml/GuardLogStatement" message="Se deben proteger las declaraciones de registro con comprobaciones de nivel de registro."/-->
+    <rule ref="category/java/bestpractices.xml/LiteralsFirstInComparisons" message="Los literales deben ir primero en las comparaciones."/>    
+    <rule ref="category/java/bestpractices.xml/MissingOverride" message="Se debe anotar con '@Override' cuando se sobrescriben métodos."/>
+    <rule ref="category/java/bestpractices.xml/OneDeclarationPerLine" message="Se debe declarar un único elemento por línea."/>
+    <rule ref="category/java/bestpractices.xml/PreserveStackTrace" message="Se debe preservar la pila de llamadas en las excepciones."/>
+    <rule ref="category/java/bestpractices.xml/SimplifiableTestAssertion" message="Se deben simplificar las aserciones en las pruebas."/>
+    <!-- rule ref="category/java/bestpractices.xml/NonExhaustiveSwitch" message="Las instrucciones switch deben tener una etiqueta 'default'."/-->
+    <rule ref="category/java/bestpractices.xml/UseCollectionIsEmpty" message="Se debe utilizar 'isEmpty' para comprobar si una colección está vacía."/>
+    <rule ref="category/java/bestpractices.xml/UseStandardCharsets" message="Se debe utilizar StandardCharsets cuando sea posible."/>
+    <!-- Code style -->
+    <rule ref="category/java/codestyle.xml/EmptyControlStatement" message="Se deben evitar las declaraciones de control vacías."/>
+    <rule ref="category/java/codestyle.xml/ExtendsObject" message="Se debe evitar la declaración explícita de extensión de 'Object'."/>
+    <rule ref="category/java/codestyle.xml/ForLoopShouldBeWhileLoop" message="Un bucle 'for' sin inicialización ni incremento debe reescribirse como un bucle 'while'."/>
+    <!-- rule ref="category/java/codestyle.xml/UnnecessaryFullyQualifiedName" message="Se debe evitar el uso innecesario de nombres completamente cualificados."/-->
+    <rule ref="category/java/codestyle.xml/UnnecessaryImport" message="Se deben eliminar las importaciones innecesarias."/>
+    <rule ref="category/java/codestyle.xml/UnnecessaryModifier" message="Se deben eliminar los modificadores innecesarios."/>
+    <rule ref="category/java/codestyle.xml/UnnecessaryReturn" message="Se debe evitar el uso innecesario de 'return' al final de los métodos."/>
+    <rule ref="category/java/codestyle.xml/UnnecessarySemicolon" message="Se deben eliminar los puntos y coma innecesarios."/>
+    <rule ref="category/java/codestyle.xml/UselessParentheses" message="Se deben eliminar los paréntesis innecesarios."/>
+    <rule ref="category/java/codestyle.xml/UselessQualifiedThis" message="Se debe eliminar el uso innecesario de 'this' cualificado."/>
+    <rule ref="category/java/codestyle.xml/ClassNamingConventions" message="Se deben seguir las convenciones de nomenclatura para las clases."/>
+    <rule ref="category/java/codestyle.xml/FormalParameterNamingConventions" message="Se deben seguir las convenciones de nomenclatura para los parámetros formales."/>
+    <rule ref="category/java/codestyle.xml/GenericsNaming" message="Se deben seguir las convenciones de nomenclatura para los genéricos."/>    
+    <rule ref="category/java/codestyle.xml/LocalVariableNamingConventions" message="Se deben seguir las convenciones de nomenclatura para las variables locales."/>
+    <rule ref="category/java/codestyle.xml/MethodNamingConventions" message="Se deben seguir las convenciones de nomenclatura para los métodos."/>
+    <rule ref="category/java/codestyle.xml/PackageCase" message="Se debe utilizar minúsculas para los nombres de paquetes."/>
+    <rule ref="category/java/codestyle.xml/AvoidDollarSigns" message="Se debe evitar el uso de signos de dólar en los nombres de identificadores."/>
+    <rule ref="category/java/codestyle.xml/AvoidProtectedFieldInFinalClass" message="Se debe evitar el uso de campos protegidos en clases finales."/>
+    <rule ref="category/java/codestyle.xml/AvoidProtectedMethodInFinalClassNotExtending" message="Se deben evitar los métodos protegidos en clases finales que no extienden otras clases."/>
+    <rule ref="category/java/codestyle.xml/ControlStatementBraces" message="Se deben usar llaves en las declaraciones de control, incluso si el cuerpo contiene una sola instrucción."/>
+    <rule ref="category/java/codestyle.xml/FinalParameterInAbstractMethod" message="Se debe evitar el uso de parámetros finales en métodos abstractos."/>
+    <rule ref="category/java/codestyle.xml/IdenticalCatchBranches" message="Se deben fusionar las ramas de 'catch' idénticas."/>
+    <rule ref="category/java/codestyle.xml/NoPackage" message="Se debe evitar el uso de clases sin paquete."/>
+    <rule ref="category/java/codestyle.xml/UnnecessaryAnnotationValueElement" message="Se deben evitar los valores de elementos de anotación innecesarios cuando coincidan con los valores predeterminados."/>
+    <rule ref="category/java/codestyle.xml/UnnecessaryConstructor" message="Se debe evitar la declaración explícita de constructores innecesarios."/>
+    <rule ref="category/java/codestyle.xml/UnnecessaryLocalBeforeReturn" message="Se debe evitar la creación de variables locales innecesarias antes de un 'return'."/>
+    <rule ref="category/java/codestyle.xml/TooManyStaticImports" message="Se deben limitar los importes estáticos para mejorar la legibilidad del código.">        
+        <properties>
+            <property name="maximumStaticImports" value="10" />
+        </properties>
+    </rule>
+    <!-- Design -->
+    <rule ref="category/java/design.xml/AbstractClassWithoutAnyMethod" message="Se deben evitar las clases abstractas sin métodos."/>
+    <rule ref="category/java/design.xml/ClassWithOnlyPrivateConstructorsShouldBeFinal" message="Las clases con solo constructores privados deben ser finales."/>
+    <rule ref="category/java/design.xml/DoNotExtendJavaLangError" message="No se debe extender 'java.lang.Error'."/>
+    <rule ref="category/java/design.xml/FinalFieldCouldBeStatic" message="Los campos finales que no dependen de la instancia deben ser estáticos."/>
+    <rule ref="category/java/design.xml/LogicInversion" message="Se debe evitar la inversión lógica innecesaria."/>
+    <rule ref="category/java/design.xml/SimplifyBooleanReturns" message="Se deben simplificar las devoluciones booleanas."/>
+    <rule ref="category/java/design.xml/SimplifyConditional" message="Se deben simplificar las condiciones."/>
+    <rule ref="category/java/design.xml/SingularField" message="Se deben evitar los campos singulares en las clases."/>    
+    <rule ref="category/java/design.xml/CollapsibleIfStatements" message="Se deben colapsar las declaraciones 'if' anidadas cuando sea posible para simplificar el flujo de control."/>
+    <rule ref="category/java/design.xml/SimplifiedTernary" message="Se deben simplificar las operaciones ternarias cuando la expresión condicional y uno de los resultados son idénticos."/>
+    <rule ref="category/java/design.xml/UselessOverridingMethod" message="Se deben eliminar los métodos que solo invocan el método correspondiente en la superclase sin realizar cambios adicionales."/>
+    <!-- Error prone -->
+    <rule ref="category/java/errorprone.xml/AssignmentToNonFinalStatic" message="Se debe evitar la asignación a campos estáticos no finales desde constructores o métodos de instancia."/>
+    <rule ref="category/java/errorprone.xml/AvoidAccessibilityAlteration" message="Se debe evitar la alteración de la accesibilidad de las clases, métodos o campos."/>
+    <rule ref="category/java/errorprone.xml/AvoidCatchingThrowable" message="Se debe evitar la captura de 'Throwable'."/>
+    <rule ref="category/java/errorprone.xml/AvoidInstanceofChecksInCatchClause" message="Se debe evitar el uso de 'instanceof' en cláusulas 'catch'."/>
+    <rule ref="category/java/errorprone.xml/CloneMethodMustBePublic" message="Los métodos 'clone' deben ser públicos."/>
+    <rule ref="category/java/errorprone.xml/CloneMethodMustImplementCloneable" message="Las clases que definen un método 'clone' deben implementar 'Cloneable'."/>
+    <rule ref="category/java/errorprone.xml/CloneMethodReturnTypeMustMatchClassName" message="El tipo de retorno del método 'clone' debe coincidir con el nombre de la clase."/>
+    <rule ref="category/java/errorprone.xml/CloseResource" message="Se deben cerrar los recursos de forma adecuada."/>
+    <rule ref="category/java/errorprone.xml/CompareObjectsWithEquals" message="Se deben comparar objetos con 'equals' en lugar de '=='."/>
+    <rule ref="category/java/errorprone.xml/ComparisonWithNaN" message="Se deben evitar las comparaciones con NaN."/>
+    <rule ref="category/java/errorprone.xml/DoNotCallGarbageCollectionExplicitly" message="No se debe llamar explícitamente a la recolección de basura."/>
+    <rule ref="category/java/errorprone.xml/DoNotExtendJavaLangThrowable" message="No se debe extender 'java.lang.Throwable'."/>
+    <rule ref="category/java/errorprone.xml/EqualsNull" message="Se debe evitar comparar directamente con 'null'."/>
+    <rule ref="category/java/errorprone.xml/IdempotentOperations" message="Las operaciones idempotentes deben evitarse en bucles."/>
+    <rule ref="category/java/errorprone.xml/ImplicitSwitchFallThrough" message="Se debe evitar la caída implícita entre casos en instrucciones 'switch'."/>
+    <rule ref="category/java/errorprone.xml/InstantiationToGetClass" message="Se debe evitar la creación de instancias solo para obtener el objeto 'Class'."/>
+    <rule ref="category/java/errorprone.xml/MissingStaticMethodInNonInstantiatableClass" message="Las clases no instanciables deben contener solo métodos estáticos."/>
+    <!-- rule ref="category/java/errorprone.xml/NonCaseLabelInSwitch" message="Se deben evitar las etiquetas que no sean de casos en las instrucciones 'switch'."/-->
+    <rule ref="category/java/errorprone.xml/NonStaticInitializer" message="Se deben evitar los inicializadores no estáticos."/>
+    <rule ref="category/java/errorprone.xml/ProperCloneImplementation" message="Se debe implementar correctamente el método 'clone'."/>
+    <rule ref="category/java/errorprone.xml/ProperLogger" message="Se debe usar adecuadamente el logger."/>
+    <rule ref="category/java/errorprone.xml/ReturnEmptyCollectionRatherThanNull" message="Se debe devolver una colección vacía en lugar de 'null'."/>
+    <rule ref="category/java/errorprone.xml/SingleMethodSingleton" message="Se debe implementar el patrón singleton con un método único."/>
+    <rule ref="category/java/errorprone.xml/SingletonClassReturningNewInstance" message="Las clases singleton no deben devolver nuevas instancias."/>
+    <rule ref="category/java/errorprone.xml/SuspiciousEqualsMethodName" message="Se debe evitar un nombre de método 'equals' sospechoso."/>
+    <rule ref="category/java/errorprone.xml/SuspiciousHashcodeMethodName" message="Se debe evitar un nombre de método 'hashCode' sospechoso."/>
+    <rule ref="category/java/errorprone.xml/SuspiciousOctalEscape" message="Se deben evitar las secuencias de escape octales sospechosas."/>
+    <rule ref="category/java/errorprone.xml/UseEqualsToCompareStrings" message="Se deben usar 'equals' para comparar cadenas."/>
+    <rule ref="category/java/errorprone.xml/UseLocaleWithCaseConversions" message="Se debe usar 'Locale' con conversiones de mayúsculas y minúsculas."/>
+    <rule ref="category/java/errorprone.xml/EmptyFinalizer" message="Se deben evitar los finalizadores vacíos."/>
+    <rule ref="category/java/errorprone.xml/AvoidBranchingStatementAsLastInLoop" message="Se debe evitar usar declaraciones de ramificación como última instrucción dentro de un bucle."/>
+    <rule ref="category/java/errorprone.xml/AvoidDecimalLiteralsInBigDecimalConstructor" message="Se debe evitar el uso de literales decimales en el constructor de BigDecimal."/>
+    <rule ref="category/java/errorprone.xml/AvoidMultipleUnaryOperators" message="Se debe evitar el uso de múltiples operadores unarios en una sola expresión."/>
+    <rule ref="category/java/errorprone.xml/AvoidUsingOctalValues" message="Se debe evitar el uso de valores octales debido a posibles confusiones."/>
+    <rule ref="category/java/errorprone.xml/BrokenNullCheck" message="Se debe corregir las comprobaciones de nulidad que son incorrectas o inútiles."/>
+    <rule ref="category/java/errorprone.xml/CheckSkipResult" message="Se debe verificar el resultado de un método 'skip' para asegurar que se ha saltado la cantidad correcta de datos."/>
+    <rule ref="category/java/errorprone.xml/ClassCastExceptionWithToArray" message="Se debe evitar la posibilidad de 'ClassCastException' al convertir un arreglo obtenido de 'toArray()' sin especificación de tipo."/>
+    <rule ref="category/java/errorprone.xml/DontUseFloatTypeForLoopIndices" message="No se debe usar el tipo float para índices de bucle debido a posibles problemas de precisión."/>
+    <rule ref="category/java/errorprone.xml/EmptyCatchBlock" message="Se debe evitar dejar bloques 'catch' vacíos sin manejo de la excepción."/>
+    <rule ref="category/java/errorprone.xml/JumbledIncrementer" message="Se debe evitar el incremento confuso de variables dentro de bucles anidados."/>
+    <rule ref="category/java/errorprone.xml/MisplacedNullCheck" message="Se debe colocar correctamente las comprobaciones de nulidad para evitar errores de lógica."/>
+    <rule ref="category/java/errorprone.xml/OverrideBothEqualsAndHashcode" message="Se deben sobrescribir ambos métodos, equals y hashCode, para mantener la consistencia entre ellos."/>
+    <rule ref="category/java/errorprone.xml/ReturnFromFinallyBlock" message="Se debe evitar devolver un valor desde un bloque finally porque puede ocultar excepciones."/>
+    <rule ref="category/java/errorprone.xml/UnconditionalIfStatement" message="Se debe evitar el uso de declaraciones 'if' que siempre resulten verdaderas o falsas."/>
+    <rule ref="category/java/errorprone.xml/UnnecessaryConversionTemporary" message="Se debe evitar la conversión innecesaria a otros tipos de datos que no añaden claridad ni utilidad."/>
+    <rule ref="category/java/errorprone.xml/UnusedNullCheckInEquals" message="Se debe eliminar la comprobación de nulidad que no tiene efecto en el método equals."/>
+    <rule ref="category/java/errorprone.xml/UselessOperationOnImmutable" message="Se debe evitar realizar operaciones inútiles sobre objetos inmutables."/>
+    <!-- Multithreading -->
+    <rule ref="category/java/multithreading.xml/AvoidUsingVolatile" message="Se debe evitar el uso de 'volatile' si no es necesario."/>
+    <rule ref="category/java/multithreading.xml/NonThreadSafeSingleton" message="Se deben evitar los singletons no seguros en entornos multihilo."/>
+    <rule ref="category/java/multithreading.xml/UnsynchronizedStaticFormatter" message="Se deben sincronizar los formateadores estáticos si se utilizan en múltiples hilos."/>
+    <rule ref="category/java/multithreading.xml/UseNotifyAllInsteadOfNotify" message="Se debe usar 'notifyAll' en lugar de 'notify' para despertar todos los hilos en espera."/>
+    <rule ref="category/java/multithreading.xml/AvoidThreadGroup" message="Se debe evitar el uso de 'ThreadGroup' ya que está obsoleto en los nuevos modelos de programación concurrente."/>
+    <rule ref="category/java/multithreading.xml/DontCallThreadRun" message="No se debe llamar directamente al método 'run' de un hilo; en su lugar, se debe usar 'Thread.start()' para iniciar un hilo correctamente."/>
+    <rule ref="category/java/multithreading.xml/DoubleCheckedLocking" message="Se debe evitar el bloqueo doblemente verificado, ya que no es seguro en Java sin volátiles debido a problemas de reordenamiento de memoria."/>
+    <!-- Performance -->
+    <rule ref="category/java/performance.xml/OptimizableToArrayCall" message="Se deben optimizar las llamadas a 'toArray' para mejorar el rendimiento."/>
+    <rule ref="category/java/documentation.xml/UncommentedEmptyConstructor" message="Se deben comentar los constructores vacíos."/>
+    <rule ref="category/java/documentation.xml/UncommentedEmptyMethodBody" message="Se deben comentar los cuerpos de métodos vacíos."/>
+    <rule ref="category/java/performance.xml/BigIntegerInstantiation" message="Se debe utilizar 'BigInteger.valueOf' en lugar de instanciar directamente con 'new BigInteger' para aprovechar el caching interno y mejorar el rendimiento."/>
+    <rule ref="category/java/errorprone.xml/AssignmentInOperand" message="Se debe evitar la asignación dentro de operandos, ya que puede llevar a confusiones y errores difíciles de detectar, excepto en bucles 'while' donde se permite." properties="true">
+        <properties>
+            <property name="allowWhile" value="true"/>
+        </properties>
+    </rule>
+</ruleset>

@@ -1,0 +1,11 @@
+services:
+  nginx:
+    image: nginx:1.25   # versión fija, más estable que "latest"
+    container_name: nginx_server
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./html:/usr/share/nginx/html:ro
+      - ./logs:/var/log/nginx
+    restart: always

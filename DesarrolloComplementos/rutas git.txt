@@ -1,0 +1,16 @@
+https://github.com/ingcharles/analisis-codigo/blob/trunck/checkstyle.xml
+https://github.com/ingcharles/analisis-codigo/blob/trunck/pmd-ruleset.xml
+
+http://sridesa02:8081/repository/snapshots/ec/gob/sri/resources/reglas-pmd-sri/4.0-SNAPSHOT/reglas-pmd-sri-4.0-20250624.171658-1.xml
+
+mvn clean install -Preportes
+
+
+		<repositorio.releases.url>http://sridesa02:8081/repository/releases/</repositorio.releases.url>
+		<repositorio.snapshots.url>http://sridesa02:8081/repository/snapshots/</repositorio.snapshots.url>
+
+		<!--<plugin.pmd.ruleset>${repositorio.releases.url}/ec/gob/sri/resources/reglas-pmd-sri/3.0/reglas-pmd-sri-3.0.xml</plugin.pmd.ruleset>-->
+		<plugin.pmd.ruleset>${repositorio.snapshots.url}/ec/gob/sri/resources/reglas-pmd-sri/4.0-SNAPSHOT/reglas-pmd-sri-4.0-20250624.171658-1.xml</plugin.pmd.ruleset>
+
+		<plugin.cs.ruleset>${repositorio.releases.url}/ec/gob/sri/resources/reglas-checkstyle-sri/2.0/reglas-checkstyle-sri-2.0.xml</plugin.cs.ruleset>
+		<plugin.pmd.excludes>${project.parent.basedir}/src/test/resources/aud-codigo/exclude-pmd.properties</plugin.pmd.excludes>

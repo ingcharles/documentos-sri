@@ -1,0 +1,54 @@
+Gracias muchachos, aquí les envío la URL del confluence y revisen el tema relacionado con Anexos.
+
+http://sriarqic01:1100/display/MANT2014/ANEXOS
+
+les adjunto el usuario genérico para que se puedan logear en el confluence.
+
+Usuario: GEN_DESARROLLO_DECLA
+Clave: gen_desarrollo
+
+Les voy a dar permiso a los proyectos de anexos para que también los revisen.
+
+https://gitlab.sri.ad/DesarrolloAplicaciones/anexos-e-Informes/medios-antiguos
+
+Nota: dentro del GIT solamente está el usuario de Jonathan Garces, los otros aún no están.
+
+Cualquier duda me la comentan.
+
+surveyjs example codepen
+
+zentao
+http://sridesa03/zentao/user-login-L3plbnRhby8=.html
+ceav300725
+Edu6049***
+
+Gestion TI
+ceav300725
+Edu-abc123
+
+Mesa de servicio
+Requerimientos
+•	https://sriintra01/portal/web/intranet/mesa-servicios
+incidentes de aplciaciones
+•	https://sri-dwp.onbmc.com/dwp/app/#/activity
+
+
+Quality Profile → desactivar o parametrizar las reglas de licencia prohibida para dependencias transitivas del Quarkus BOM/Jakarta EE
+Issue Management → marcar como Won't Fix los issues de esas dependencias en la UI de SonarQube
+
+
+Curso vks
+ceanchundia@sri.gob.ec
+Edu3751997***
+https://access.broadcom.com/default/ui/v1/signin/
+
+
+Quipux
+1722039953
+Edu6049****
+
+Realizar requerimientos tecnologicos;
+https://www.youtube.com/watch?si=12XgVJDSEnHYA2vI&v=pCI4nab87YU&feature=youtu.be
+
+
+https://sriintra01/share/page/folder-details?nodeRef=workspace://SpacesStore/dcdd9d74-636c-46b2-ac24-f1b6318525bc

@@ -1,0 +1,71 @@
+-- PASOS PARA ENVIAR A TESTING con GESTION TI --
+ 
+Link para paso a produccion
+https://sriintra01/gestionTI/pages/inicio.jsf
+ 
+Lista Solicitudes  buscamos el codigo 512124 
+
+ver detalles
+ 
+--Descargo el archivo de la solicitud  512124
+
+deploy.zip   editamos archivo
+ 
+//Copio el numero de  Interaccion: Q465343
+ 
+Nuevamente Lista Solicitudes  buscamos el codigo 512124
+ 
+Duplicar Sol
+ 
+Añadir el archivo editado deploy
+
+Ponemos en Interaccion el codigo : Q465343 (DAR CLICK en la flecha verde)
+ 
+Guardar solicitud
+ 
+Añadir detalles (Editar cada uno de los detalles con la información que corresponda)
+ 
+Chequeamos que todo esta bien en los detalle
+ 
+Si hay script hay que versionar en el svn si no lo hay,
+ 
+damos click en Enviar Pruebas Testing
+ 
+ 
+-- Requerimiento sri-int-gestor-obligaciones-servicio = 512132  --
+ 
+ 
+Scripts para la creacion de objetos y usuario para la autorizacion del servicio rest para el gestor de obligaciones usada para el nuevo sistema de anexos
+ 
+Repositorio donde se sube los script de base de datos:
+http://sriarqic01/svn/OracleDataModeler/ADM/Scripts/SRI/Datos/2026/
+ 
+Instalar el Tortoise svn
+
+Checkout del repo
+
+Versionar con commit
+ 
+Crear los script reversa (Cuando son Insert los de reversa son delete)
+ 
+ 
+--Se creo las solicitudes de paso a produccion 
+
+	N° : 512139 Script
+
+	N° : 512132 Servicio REST Obligaciones
+
+	N  : 512281 Paso del manual de infra del gestor de obligaciones
+ 
+ 
+const jsonData = pm.response.json();
+const token = jsonData.access_token;
+pm.environment.set("Access-token",token);
+ 
+Edu3751997#
+
+
+ paso a produccion script grupo trabajo
+512552 script
+512574 war
+512614 Paso del manual de infra del gestor de obligaciones

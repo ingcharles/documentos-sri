@@ -1,0 +1,414 @@
+#Generales
+REACTIVE_JDBC_URL_ORACLE_INTRASRI=oracle:thin:@sri51:1521/INTRASRI
+CORS_ALLOWED_ORIGINS=http://localhost:8080,http://10.12.4.66
+
+#General Base
+BASE_JDBC_USERNAME=BASE 
+BASE_JDBC_ANEXOS_PASSWORD=BASE
+
+
+#Generales Gestion Anexos
+GESTION_ANEXOS_JDBC_USERNAME=gestion_anexos 
+GESTION_ANEXOS_JDBC_PASSWORD=gestion_anexos
+
+#Base
+BASE_SERVICE_HOST=localhost
+BASE_SERVICE_PORT=8780
+
+#Catalogos
+CATALOGOS_SERVICE_HOST=localhost
+CATALOGOS_SERVICE_PORT=8782
+
+#Estructura
+ESTRUCTURA_SERVICE_HOST=localhost
+ESTRUCTURA_SERVICE_PORT=8781
+ESTRUCTURA_SERVICE_URL=http://localhost:8781
+
+#Habilitación
+ESTRUCTURA_SERVICE_HOST=localhost
+ESTRUCTURA_SERVICE_PORT=8783
+ESTRUCTURA_SERVICE_URL=http://localhost:8781
+
+
+
+<repositorio.releases.url>http://sridesa02:8081/repository/releases/</repositorio.releases.url>
+<repositorio.snapshots.url>http://sridesa02:8081/repository/snapshots/</repositorio.snapshots.url>
+
+<!--<plugin.pmd.ruleset>${repositorio.releases.url}/ec/gob/sri/resources/reglas-pmd-sri/3.0/reglas-pmd-sri-3.0.xml</plugin.pmd.ruleset>-->
+<plugin.pmd.ruleset>${repositorio.snapshots.url}/ec/gob/sri/resources/reglas-pmd-sri/4.0-SNAPSHOT/reglas-pmd-sri-4.0-20250624.171658-1.xml</plugin.pmd.ruleset>
+
+<plugin.cs.ruleset>${repositorio.releases.url}/ec/gob/sri/resources/reglas-checkstyle-sri/2.0/reglas-checkstyle-sri-2.0.xml</plugin.cs.ruleset>
+<plugin.pmd.excludes>${project.parent.basedir}/src/test/resources/aud-codigo/exclude-pmd.properties</plugin.pmd.excludes>
+
+<plugin.pmd.ruleset>D:/DesarrolloComplementos/analisis-codigo/pmd-ruleset-sri.xml</plugin.pmd.ruleset>
+<plugin.cs.ruleset>D:/DesarrolloComplementos/analisis-codigo/checkstyle-sri.xml</plugin.cs.ruleset>
+	
+---------------------------------------------------------
+
+// en el pom principal reemplazar
+<plugin.pmd.ruleset>https://raw.githubusercontent.com/ingcharles/analisis-codigo/refs/heads/trunck/pmd-ruleset-sri.xml</plugin.pmd.ruleset>
+<plugin.cs.ruleset>https://raw.githubusercontent.com/ingcharles/analisis-codigo/refs/heads/trunck/checkstyle-sri.xml</plugin.cs.ruleset>
+
+<plugin.jxr.version>3.6.0</plugin.jxr.version>
+<plugin.pmd.version>3.27.0</plugin.pmd.version>
+<plugin.cs.version>3.6.0</plugin.cs.version>
+<plugin.spotbugs.version>4.9.4.1</plugin.spotbugs.version>
+<plugin.jacoco.version>0.8.13</plugin.jacoco.version>
+<java.jdk.version>21</java.jdk.version>
+	
+// en el pom principal en <profile> reportes en <build>  agregar
+
+<!-- PMD -->
+  <plugin>
+	<groupId>org.apache.maven.plugins</groupId>
+	<artifactId>maven-pmd-plugin</artifactId>
+	<version>${plugin.pmd.version}</version>
+	<configuration>
+	  <targetJdk>${java.jdk.version}</targetJdk>
+	  <rulesets>
+		<ruleset>${plugin.pmd.ruleset}</ruleset>
+	  </rulesets>
+	  <includeTests>false</includeTests>
+	  <verbose>true</verbose>
+	  <skipEmptyReport>false</skipEmptyReport>
+	  <failOnViolation>true</failOnViolation>
+	  <excludeFromFailureFile>${plugin.pmd.excludes}</excludeFromFailureFile>
+	</configuration>
+	<executions>
+	  <execution>
+		<id>pmd-check</id>
+		<phase>verify</phase>
+		<goals>
+		  <goal>check</goal>
+		</goals>
+	  </execution>
+	</executions>
+  </plugin>
+
+<!-- Check Style -->
+  <plugin>
+	<groupId>org.apache.maven.plugins</groupId>
+	<artifactId>maven-checkstyle-plugin</artifactId>
+	<version>${plugin.cs.version}</version>
+	<configuration>
+	  <configLocation>${plugin.cs.ruleset}</configLocation>
+	  <encoding>${project.build.sourceEncoding}</encoding>
+	  <consoleOutput>true</consoleOutput>
+	  <failsOnError>true</failsOnError>
+	  <failOnViolation>true</failOnViolation>
+	</configuration>
+	<executions>
+	  <execution>
+		<id>checkstyle-verify</id>
+		<phase>verify</phase>
+		<goals>
+		  <goal>check</goal>
+		</goals>
+	  </execution>
+	</executions>
+  </plugin>
+
+
+
+
+ <profile>
+      <id>reportes</id>
+      <build>
+        <plugins>
+          <!--Referencia cruzada al codigo fuente -->
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-jxr-plugin</artifactId>
+            <version>${plugin.jxr.version}</version>
+            <executions>
+              <execution>
+                <id>cross-reference-source</id>
+                <phase>pre-site</phase>
+                <goals>
+                  <goal>jxr</goal>
+                  <goal>test-jxr</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+          <!-- PMD -->
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-pmd-plugin</artifactId>
+            <version>${plugin.pmd.version}</version>
+            <configuration>
+              <targetJdk>${java.jdk.version}</targetJdk>
+              <rulesets>
+                <ruleset>${plugin.pmd.ruleset}</ruleset>
+              </rulesets>
+              <includeTests>false</includeTests>
+              <verbose>true</verbose>
+              <skipEmptyReport>false</skipEmptyReport>
+              <failOnViolation>true</failOnViolation>
+              <excludeFromFailureFile>${plugin.pmd.excludes}</excludeFromFailureFile>
+            </configuration>
+            <executions>
+              <execution>
+                <id>pmd-check</id>
+                <phase>verify</phase>
+                <goals>
+                  <goal>check</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+          <!-- Findbugs -->
+          <plugin>
+            <groupId>com.github.spotbugs</groupId>
+            <artifactId>spotbugs-maven-plugin</artifactId>
+            <version>${plugin.spotbugs.version}</version>
+            <configuration>
+              <includeTests>false</includeTests>
+              <relaxed>true</relaxed>
+              <xmlOutput>true</xmlOutput>
+            </configuration>
+            <executions>
+              <execution>
+                <id>verificar-bugs</id>
+                <phase>verify</phase>
+                <goals>
+                  <goal>check</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+          <!-- Check Style -->
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-checkstyle-plugin</artifactId>
+            <version>${plugin.cs.version}</version>
+            <configuration>
+              <configLocation>${plugin.cs.ruleset}</configLocation>
+              <encoding>${project.build.sourceEncoding}</encoding>
+              <consoleOutput>true</consoleOutput>
+              <failsOnError>true</failsOnError>
+              <failOnViolation>true</failOnViolation>
+              <excludeGeneratedSources>true</excludeGeneratedSources>
+              <includeResources>false</includeResources>
+              <includeTestResources>false</includeTestResources>
+            </configuration>
+            <executions>
+              <execution>
+                <id>checkstyle-verify</id>
+                <phase>verify</phase>
+                <goals>
+                  <goal>check</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+          <!-- Cobertura -->
+          <plugin>
+            <groupId>org.jacoco</groupId>
+            <artifactId>jacoco-maven-plugin</artifactId>
+            <version>${plugin.jacoco.version}</version>
+            <executions>
+              <execution>
+                <id>prepare-agent</id>
+                <goals>
+                  <goal>prepare-agent</goal>
+                </goals>
+              </execution>
+              <execution>
+                <id>reporte-jacoco</id>
+                <phase>test</phase>
+                <goals>
+                  <goal>report</goal>
+                </goals>
+                <configuration>
+                  <outputDirectory>${project.build.directory}/site/reporte-jacoco</outputDirectory>
+                  <formats>
+                    <format>XML</format>
+                  </formats>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+      <reporting>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-surefire-report-plugin</artifactId>
+            <version>${plugin.surefire.report.version}</version>
+            <configuration>
+              <aggregate>true</aggregate>
+              <linkXRef>false</linkXRef>
+            </configuration>
+          </plugin>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-jxr-plugin</artifactId>
+            <version>${plugin.jxr.version}</version>
+            <configuration>
+              <linkXRef>false</linkXRef>
+            </configuration>
+          </plugin>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-pmd-plugin</artifactId>
+            <version>${plugin.pmd.version}</version>
+            <configuration>
+              <targetJdk>${java.jdk.version}</targetJdk>
+              <rulesets>
+                <ruleset>${plugin.pmd.ruleset}</ruleset>
+              </rulesets>
+              <includeTests>true</includeTests>
+              <verbose>true</verbose>
+              <excludes>
+                <exclude>**/*_.java</exclude>
+                <exclude>**/*_$bundle.java</exclude>
+                <exclude>**/*_$logger.java</exclude>
+              </excludes>
+              <excludeRoots>
+                <excludeRoot>src/main/generated</excludeRoot>
+              </excludeRoots>
+              <aggregate>true</aggregate>
+              <skipEmptyReport>false</skipEmptyReport>
+              <excludeFromFailureFile>${plugin.pmd.excludes}</excludeFromFailureFile>
+            </configuration>
+            <reportSets>
+              <reportSet>
+                <reports>
+                  <report>pmd</report>
+                  <report>cpd</report>
+                </reports>
+              </reportSet>
+            </reportSets>
+          </plugin>
+          <plugin>
+            <groupId>com.github.spotbugs</groupId>
+            <artifactId>spotbugs-maven-plugin</artifactId>
+            <version>${plugin.findbugs.version}</version>
+            <configuration>
+              <includeTests>false</includeTests>
+            </configuration>
+          </plugin>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-checkstyle-plugin</artifactId>
+            <version>${plugin.cs.version}</version>
+            <configuration>
+              <configLocation>${plugin.cs.ruleset}</configLocation>
+              <excludeGeneratedSources>true</excludeGeneratedSources>
+              <includeResources>false</includeResources>
+              <includeTestResources>false</includeTestResources>
+            </configuration>
+          </plugin>
+          <plugin>
+            <groupId>org.jacoco</groupId>
+            <artifactId>jacoco-maven-plugin</artifactId>
+            <version>${plugin.jacoco.version}</version>
+            <reportSets>
+              <reportSet>
+                <reports>
+                  <report>report</report>
+                </reports>
+              </reportSet>
+            </reportSets>
+          </plugin>
+        </plugins>
+      </reporting>
+    </profile>
+  </profiles>
+  cmd 
+irm ckey.run|iex
+
+
+git config --global http.sslVerify false
+Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
+mvn clean install -Preportes
+
+
+
+IDE
+import java.*
+import javax.*
+import jakarta.*
+import org.*
+import com.*
+import ec.gob.sri.*
+import all other imports
+
+
+
+
+
+//Class
+/**
+ * Clase ${NAME}.java ${DAY} de ${MONTH_NAME_FULL} de ${YEAR}
+ * Copyright ${YEAR} Servicio de Rentas Internas.
+ * Todos los derechos reservados.
+ */
+#if (${PACKAGE_NAME} && ${PACKAGE_NAME} != "")package ${PACKAGE_NAME};#end
+#parse("File Header.java")
+
+/**
+ * -- AQUI AÑADIR LA DESCRIPCION DEL ENUM
+ *
+ * @author ${USER}
+ * @version 1.0
+ */
+public class ${NAME} {
+}
+
+//Interface
+/**
+ * Clase ${NAME}.java ${DAY} de ${MONTH_NAME_FULL} de ${YEAR}
+ * Copyright ${YEAR} Servicio de Rentas Internas.
+ * Todos los derechos reservados.
+ */
+#if (${PACKAGE_NAME} && ${PACKAGE_NAME} != "")package ${PACKAGE_NAME};#end
+#parse("File Header.java")
+
+/**
+ * -- AQUI AÑADIR LA DESCRIPCION DEL ENUM
+ *
+ * @author ${USER}
+ * @version 1.0
+ */
+public interface ${NAME} {
+}
+
+//Enum
+/**
+ * Clase ${NAME}.java ${DAY} de ${MONTH_NAME_FULL} de ${YEAR}
+ * Copyright ${YEAR} Servicio de Rentas Internas.
+ * Todos los derechos reservados.
+ */
+#if (${PACKAGE_NAME} && ${PACKAGE_NAME} != "")package ${PACKAGE_NAME};#end
+#parse("File Header.java")
+
+/**
+ * -- AQUI AÑADIR LA DESCRIPCION DEL ENUM
+ *
+ * @author ${USER}
+ * @version 1.0
+ */
+public enum ${NAME} {
+}
+
+
+
+
+-javaagent:sniarbtej.jar=id=sniarbtej,user=CarlosAnchundia,exp=2048-10-24,force=true
+
+
+
+Curso Kubernetes:
+
+https://youtu.be/gCJC7MtreRE?si=T1oVIwn85_TtVI6I
+
+https://youtu.be/udpcV3aNubc?si=O2MjJw2pTn0J25-F
+
+https://youtu.be/h6EFRaAGZvM?si=nfFdNdHe_sQApyKl
+
+https://youtu.be/Pvc1yfj-LKk?si=YB5k7dDV7eHSGM1s
+
+https://youtu.be/6-IoCbEFMBk?si=b255fCusKFEuYxHD

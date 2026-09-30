@@ -1,0 +1,34 @@
+https://gitlab.sri.ad/Arquetipos/piloto-base-microservicios/sri-base-internet.git
+
+https://gitlab.sri.ad/Arquetipos/recursos-sri-internet
+
+npm run test:unit -- MenuNavegacionBase.spec.ts --coverage
+npm run test:unit -- MenuNavegacionBase.spec.ts --coverage --reporter=verbose
+file:///c:/dev/proyectosSri/proyectoAnexo/frontend/sri-base-internet/coverage/index.html
+
+npm run test:coverage -- CatalogoA
+
+
+ValidacionesBase.ts - Fácil y alto impacto
+ConsultarTipoParametro.vue - Completar funciones CRUD
+TipoParametro.vue - Completar validaciones
+PrincipalBase.vue - Completar casos edge
+CabeceraBase.vue - Completar casos edge
+principalBase.ts (store) - Completar acciones
+InicioBase.vue - Solo 3 líneas
+App.vue - Tests básicos de renderizado
+router/index.ts - Tests de rutas (opcional)
+main.ts - Tests de inicialización (opcional)
+
+
+Archivos pendientes con mayor impacto:
+ConsultarTipoParametro.vue - 78.19% (múltiples líneas: 280-283, 295-317, 366-377, 383-389, 395-426)
+TipoParametro.vue - 80.83% (líneas: 124-134, 141-142, 153-167, 197-199, 209-210)
+InicioBase.vue - 93.18% (líneas 56-58 documentadas como no testeables)
+MenuNavegacionBase.vue - 68.75% (muchas líneas)
+autorizacionServicio.ts - 58.33% (funciones Keycloak)
+📈 Progreso general:
+Inicio: 76.4% coverage
+Actual: 79.18% coverage
+Mejora: +2.78 puntos porcentuales
+Tests agregados: 11 archivos completados al 100%
