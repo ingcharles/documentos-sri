@@ -1,0 +1,36 @@
+ALTER SYSTEM SET LOCAL_LISTENER='(ADDRESS=(PROTOCOL=TCP)(HOST=localhost)(PORT=1522))';
+ALTER SYSTEM REGISTER;
+
+sqlplus system/Edu6049***@localhost:1521/orcl.sri.ad
+sqlplus system/Edu6049***@localhost:1521/orclpdb.sri.ad
+jdbc:oracle:thin:@//localhost:1521/orcl.sri.ad
+
+CREATE USER GESTION_ANEXOS IDENTIFIED BY GESTION_ANEXOS;
+GRANT CONNECT, RESOURCE TO GESTION_ANEXOS;
+
+ALTER USER GESTION_ANEXOS QUOTA UNLIMITED ON USERS;
+
+sqlplus / as sysdba
+
+sqlplus / as GESTION_ANEXOS
+
+sqlplus GESTION_ANEXOS/Edu6049***@localhost:1521/orclpdb.sri.ad
+
+sqlplus GESTION_ANEXOS/Edu6049***@localhost:1521/orclpdb.sri.ad as sysdba
+ALTER USER GESTION_ANEXOS QUOTA UNLIMITED ON USERS;
+
+jdbc.username = GESTION_ANEXOS
+jdbc.password = GESTION_ANEXOS
+jdbc.url.intrasri = oracle:thin:@localhost:1521/orclpdb.sri.ad
+
+lsnrctl status
+lsnrctl start
+sqlplus / as sysdba
+alter pluggable database orclpdb open;
+
+ncpa.cpl
+
+0999262546
+
+Usuario: 0900898974
+Password: 1234

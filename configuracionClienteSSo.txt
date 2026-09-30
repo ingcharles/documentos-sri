@@ -1,0 +1,24 @@
+1. Acceso de administrador a la consola de Keycloak (Realm Intranet/internet).
+2. Permisos para crear Clients y Client Scopes en ese realm.
+3. Acceso al repositorio del microservicio backend y al del cliente web, para configurar variables de entorno.
+4.(Opcional) Herramienta de inspección de JWT, por ejemplo jwt.io.
+
+
+1. Ingresar a la consola de administración de Keycloak y seleccionar el realm Intranet.
+2. Ir a Clients → Create client.
+3. En menú Settings: Client type = OpenID Connect; Client ID =app-sri-xyz-microservicio; Access Type=bearer-only.
+4. En Login settings dejar los campos en blanco (no aplica, no redirige) → Save.
+5. En menú Credentials: activar Client authenticator = Client Id and Secret; generar y copiar el Client secret generado; este valor se usará como SSO_XYZ_CLIENT_SECRET en el backend.
+
+1. Ir a Client Scopes → Create client scope.
+2. Name: aud-xyz; Type: Default; Protocol: openid-connect; Include in token scope: ON → Save.
+3. Abrir el scope recién creado → pestaña Mappers → Add mapper → By configuration → Audience.
+4. Configurar el mapper: Name = aud-xyz-mapper; Included Client Audience = app-sri-xyz-microservicio (el cliente backend creado en el paso 1); Add to access token = ON.
+
+1. Ir al menú Realm → ingresa el realm “Intranet” 
+2. Ir a Clients → Create client.
+3. En menú Settings: Client type = OpenID Connect; Client ID = app-sri-xyz-web; Access Type=public; Standard Flow Enabled = ON; Direct Access Grants Enabled = ON Root URL = https://sri-anexos-gestion-anexos-web-dev.sridesa.ad; Valid Redirect URIs = https://sri-anexos-gestion-anexos-web-dev.sridesa.ad/sri-gestion-anexos-web/*; Web Origins = https://sri-anexos-gestion-anexos-web-dev.sridesa.ad 
+
+
+iTxrpl0NHrmmJQLVf2gCptLZ7TEgtpk4
+SSO_CATALOGOS_CLIENT_SECRET = mTTZuzljdm6CAPBbXGlM48gUFAzqnqVi

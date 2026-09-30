@@ -1,0 +1,9 @@
+Url SSO desarrollo: http://10.12.4.66/auth/
+Usuario SSO: admin
+Contraseña SSO: admin
+
+Realm:Intranet
+Client:app-sri-int-adm-catalogo-servicio
+Usuario: jjdl010426
+Contraseña usuario: jjdl1978
+

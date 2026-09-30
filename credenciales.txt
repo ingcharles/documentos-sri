@@ -52,3 +52,7 @@ https://www.youtube.com/watch?si=12XgVJDSEnHYA2vI&v=pCI4nab87YU&feature=youtu.be
 
 
 https://sriintra01/share/page/folder-details?nodeRef=workspace://SpacesStore/dcdd9d74-636c-46b2-ac24-f1b6318525bc
+
+Sso Desarrollo
+http://10.12.4.66
+https://srissointradesa.sridesa.ad/auth/

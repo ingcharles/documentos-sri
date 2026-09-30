@@ -1,0 +1,45 @@
+
+Chicos buena tarde… 
+Les envío la ubicación de los estándares. Me faltan de los resaltados
+Muchas gracias
+
+Estándar Tecnológico de Seguridad de Aplicaciones
+https://sriintra01/share/page/folder-details?nodeRef=workspace://SpacesStore/dfdef022-d4fb-448c-a3e0-2c9ece014065
+
+
+Estándar Tecnológico de Seguridad de Aplicaciones Java
+https://sriintra01/share/page/folder-details?nodeRef=workspace://SpacesStore/8eb03d18-2db7-4707-ac32-b5aaaa6614a3
+
+
+Estándar Tecnológico de Seguridad de API Web
+https://sriintra01/share/page/document-details?nodeRef=workspace://SpacesStore/5280cffa-8a1b-4d46-bad6-7dc9bf90d0b6
+
+
+Estándar Tecnológico de Protección de Datos Personales
+https://sriintra01/share/page/document-details?nodeRef=workspace://SpacesStore/2adc5cfd-ccb7-45ad-b357-9485cf858122
+
+
+Estándar Tecnológico Desarrollo Plataforma Java EE
+https://sriintra01/share/page/document-details?nodeRef=workspace://SpacesStore/d8ed59f7-cfe6-447e-b2de-549a26219fb3
+
+
+Estándar Tecnológico Desarrollo Codificación Lenguaje Programación JavaSE
+https://sriintra01/share/page/document-details?nodeRef=workspace://SpacesStore/6a5ea3ec-3551-43b3-abbb-cc2674d6488c
+
+
+Estándar Tecnológico Nombrado de Objetos de Base de Datos
+https://sriintra01/share/page/document-details?nodeRef=workspace://SpacesStore/a149fe89-b424-45da-baf1-2ff4bfb0e21a
+
+
+Estándar de Desarrollo Tecnológico Backend-Arquitectura Resiliente
+Estándar de Desarrollo Aplicaciones Web – VUE JS
+
+Estándar de Desarrollo Tecnológico Orquestador de Contenedores
+https://sriintra01/share/page/document-details?nodeRef=workspace://SpacesStore/98239523-d7f2-4e27-9951-cdc29cbe9417
+
+
+Estándar DEVSECOPS
+
+Estándar de Configuración de Servidores de Aplicaciones JBoss EAP8.x
+https://sriintra01/share/page/document-details?nodeRef=workspace://SpacesStore/acba3b50-09c0-49a3-95a7-bd1442f3a1c7
+
